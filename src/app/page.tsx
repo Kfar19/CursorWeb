@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { 
   Menu, 
   X, 
@@ -19,12 +20,49 @@ import {
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
     message: ''
   });
+
+  // Parallax scroll effect
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 500], [0, -100]);
+  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0.3]);
+
+  // Animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { opacity: 1, y: 0 }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const cardHover = {
+    hover: { 
+      y: -10, 
+      scale: 1.02,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  const buttonHover = {
+    hover: { 
+      scale: 1.05,
+      transition: { duration: 0.2 }
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -36,14 +74,37 @@ export default function Home() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you! Your message has been logged.');
-    setIsContactModalOpen(false);
-    setFormData({ name: '', email: '', company: '', message: '' });
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      console.log('Form submitted:', formData);
+      alert('Thank you! Your message has been logged.');
+      setIsContactModalOpen(false);
+      setFormData({ name: '', email: '', company: '', message: '' });
+      setIsSubmitting(false);
+    }, 1500);
+  };
+
+  // Scroll Animation Component
+  const ScrollAnimation = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
+    
+    return (
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 60 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+        transition={{ duration: 0.6, delay }}
+      >
+        {children}
+      </motion.div>
+    );
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 overflow-x-hidden">
       {/* Contact Modal */}
       {isContactModalOpen && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -121,12 +182,30 @@ export default function Home() {
                 />
               </div>
               
-              <button
+              <motion.button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-3 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Send Message
-              </button>
+                {isSubmitting ? (
+                  <motion.div
+                    className="flex items-center justify-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                  >
+                    <motion.div
+                      className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    />
+                    Sending...
+                  </motion.div>
+                ) : (
+                  "Send Message"
+                )}
+              </motion.button>
             </form>
           </div>
         </div>
@@ -177,47 +256,77 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+      <motion.section 
+        id="home" 
+        className="pt-32 pb-20 px-4 sm:px-6 lg:px-8"
+        style={{ y: heroY, opacity: heroOpacity }}
+      >
+        <motion.div 
+          className="max-w-7xl mx-auto text-center"
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+        >
+          <motion.h1 
+            className="text-5xl md:text-7xl font-bold text-white mb-6"
+            variants={fadeInUp}
+          >
             See What Others
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
               Miss
             </span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-300 mb-4 font-mono">
+          </motion.h1>
+          <motion.p 
+            className="text-lg md:text-xl text-gray-300 mb-4 font-mono"
+            variants={fadeInUp}
+          >
             Machine-native. Protocol-first. Liquidity-aware.
-          </p>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          </motion.p>
+          <motion.p 
+            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
+            variants={fadeInUp}
+          >
             A structural shift is happening.
-          </p>
-          <button 
+          </motion.p>
+          <motion.button 
             onClick={() => setIsContactModalOpen(true)}
-            className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+            className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-4 px-8 rounded-full text-lg shadow-lg"
+            variants={fadeInUp}
+            whileHover={{ scale: 1.05 }}
           >
             Join the Signal
-          </button>
-        </div>
-      </section>
+          </motion.button>
+        </motion.div>
+      </motion.section>
 
       {/* Coding Capital Section */}
       <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Coding Capital
-            </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-              The fastest-growing asset class isn&apos;t just emerging—it&apos;s rewriting the rules. Are you inside the system, or watching it evolve from the outside?
-            </p>
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-2xl mx-auto">
-              <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-2">
-                $3.25T
+            <ScrollAnimation>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                Coding Capital
+              </h2>
+            </ScrollAnimation>
+            <ScrollAnimation delay={0.2}>
+              <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
+                The fastest-growing asset class isn&apos;t just emerging—it&apos;s rewriting the rules. Are you inside the system, or watching it evolve from the outside?
               </p>
-              <p className="text-gray-300">
-                Private markets growth from negligible size in 2013 to over $3.25 trillion in 2025
-              </p>
-            </div>
+            </ScrollAnimation>
+            <ScrollAnimation delay={0.4}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-2xl mx-auto"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-2">
+                  $3.25T
+                </p>
+                <p className="text-gray-300">
+                  Private markets growth from negligible size in 2013 to over $3.25 trillion in 2025
+                </p>
+              </motion.div>
+            </ScrollAnimation>
           </div>
         </div>
       </section>
@@ -277,37 +386,61 @@ export default function Home() {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Feature 1 */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6">
+            <motion.div 
+              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6"
+                whileHover={{ rotate: 5, scale: 1.1 }}
+                transition={{ duration: 0.2 }}
+              >
                 <Brain className="w-8 h-8 text-white" />
-              </div>
+              </motion.div>
               <h3 className="text-2xl font-bold text-white mb-4">Better Tooling</h3>
               <p className="text-gray-300">
                 AI + on-chain infrastructure enables unprecedented deal discovery and execution.
               </p>
-            </div>
+            </motion.div>
 
             {/* Feature 2 */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-r from-teal-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+            <motion.div 
+              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-r from-teal-500 to-blue-600 rounded-xl flex items-center justify-center mb-6"
+                whileHover={{ rotate: 5, scale: 1.1 }}
+                transition={{ duration: 0.2 }}
+              >
                 <TrendingUp className="w-8 h-8 text-white" />
-              </div>
+              </motion.div>
               <h3 className="text-2xl font-bold text-white mb-4">Proven Exits</h3>
               <p className="text-gray-300">
                 Real founder demand with demonstrated liquidity events and regulatory momentum.
               </p>
-            </div>
+            </motion.div>
 
             {/* Feature 3 */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+            <motion.div 
+              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center mb-6"
+                whileHover={{ rotate: 5, scale: 1.1 }}
+                transition={{ duration: 0.2 }}
+              >
                 <Code className="w-8 h-8 text-white" />
-              </div>
+              </motion.div>
               <h3 className="text-2xl font-bold text-white mb-4">Fundamental Execution</h3>
               <p className="text-gray-300">
                 Where legacy firms add headcount, we add code. Scalable, intelligent, and aligned from day one.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
