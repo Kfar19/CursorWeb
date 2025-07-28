@@ -1,5 +1,6 @@
 'use client';
 // Force Vercel rebuild from main branch - deployment fix
+// TEST: Animated logo deployment check - 2025
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
