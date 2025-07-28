@@ -1361,6 +1361,23 @@ export default function Home() {
       >
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
+          {/* AI Productivity Animation Background */}
+          <motion.div 
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 opacity-20"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 0.15, scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+          >
+            <Lottie
+              animationData={productivityAnimation}
+              loop={true}
+              autoplay={true}
+              style={{ width: '100%', height: '100%' }}
+            />
+            {/* Subtle glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-2xl"></div>
+          </motion.div>
+          
           <motion.div 
             className="absolute top-20 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"
             animate={{ 
@@ -1438,60 +1455,7 @@ export default function Home() {
             </motion.span>
           </motion.h1>
 
-          {/* AI Productivity Animation */}
-          <motion.div 
-            className="flex justify-center mb-8"
-            variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div 
-              className="relative"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <motion.div 
-                className="w-64 h-64 md:w-80 md:h-80 relative"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <Lottie
-                  animationData={productivityAnimation}
-                  loop={true}
-                  autoplay={true}
-                  style={{ width: '100%', height: '100%' }}
-                />
-                {/* Enhanced glow effect with animation */}
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-blue-500/8 to-cyan-500/8 rounded-full blur-xl"
-                  animate={{ 
-                    opacity: [0.3, 0.6, 0.3],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
-                />
-                {/* Additional subtle pulse effect */}
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-blue-400/3 to-cyan-400/3 rounded-full"
-                  animate={{ 
-                    opacity: [0, 0.5, 0],
-                    scale: [0.8, 1.2, 0.8]
-                  }}
-                  transition={{ 
-                    duration: 3, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    delay: 1
-                  }}
-                />
-              </motion.div>
-            </motion.div>
-          </motion.div>
+
 
           {/* Animated Tagline */}
           <motion.div 
