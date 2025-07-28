@@ -187,6 +187,128 @@ export default function Home() {
     volatility: 'moderate'
   });
 
+  // Bitcoin Holdings Monitor state
+  const [bitcoinHoldings, setBitcoinHoldings] = useState({
+    totalInstitutional: 1250000, // 1.25M BTC
+    totalETFs: 850000, // 850K BTC
+    totalTreasury: 320000, // 320K BTC
+    totalOther: 450000, // 450K BTC
+    lastUpdated: new Date()
+  });
+
+  const [institutionalHolders, setInstitutionalHolders] = useState([
+    {
+      id: 1,
+      name: 'MicroStrategy',
+      type: 'treasury',
+      holdings: 214400,
+      value: '$8.2B',
+      change: '+2,400',
+      changePercent: '+1.13%',
+      lastUpdated: '2 hours ago',
+      category: 'treasury'
+    },
+    {
+      id: 2,
+      name: 'BlackRock IBIT',
+      type: 'etf',
+      holdings: 185000,
+      value: '$7.1B',
+      change: '+3,200',
+      changePercent: '+1.76%',
+      lastUpdated: '1 hour ago',
+      category: 'etf'
+    },
+    {
+      id: 3,
+      name: 'Fidelity FBTC',
+      type: 'etf',
+      holdings: 125000,
+      value: '$4.8B',
+      change: '+1,800',
+      changePercent: '+1.46%',
+      lastUpdated: '45 min ago',
+      category: 'etf'
+    },
+    {
+      id: 4,
+      name: 'ARKB ETF',
+      type: 'etf',
+      holdings: 42000,
+      value: '$1.6B',
+      change: '+800',
+      changePercent: '+1.94%',
+      lastUpdated: '30 min ago',
+      category: 'etf'
+    },
+    {
+      id: 5,
+      name: 'Tesla',
+      type: 'treasury',
+      holdings: 11500,
+      value: '$440M',
+      change: '0',
+      changePercent: '0%',
+      lastUpdated: '1 day ago',
+      category: 'treasury'
+    },
+    {
+      id: 6,
+      name: 'Square/Block',
+      type: 'treasury',
+      holdings: 8027,
+      value: '$307M',
+      change: '+27',
+      changePercent: '+0.34%',
+      lastUpdated: '3 hours ago',
+      category: 'treasury'
+    },
+    {
+      id: 7,
+      name: 'Coinbase',
+      type: 'exchange',
+      holdings: 250000,
+      value: '$9.6B',
+      change: '+5,000',
+      changePercent: '+2.04%',
+      lastUpdated: '15 min ago',
+      category: 'other'
+    },
+    {
+      id: 8,
+      name: 'Binance',
+      type: 'exchange',
+      holdings: 180000,
+      value: '$6.9B',
+      change: '+2,500',
+      changePercent: '+1.41%',
+      lastUpdated: '20 min ago',
+      category: 'other'
+    },
+    {
+      id: 9,
+      name: 'Grayscale GBTC',
+      type: 'fund',
+      holdings: 280000,
+      value: '$10.7B',
+      change: '-1,200',
+      changePercent: '-0.43%',
+      lastUpdated: '1 hour ago',
+      category: 'other'
+    },
+    {
+      id: 10,
+      name: 'Marathon Digital',
+      type: 'miner',
+      holdings: 15000,
+      value: '$575M',
+      change: '+300',
+      changePercent: '+2.04%',
+      lastUpdated: '2 hours ago',
+      category: 'other'
+    }
+  ]);
+
   // Fetch live crypto market cap
   const fetchMarketCap = useCallback(async () => {
     try {
@@ -367,6 +489,34 @@ export default function Home() {
     return signals;
   };
 
+  // Simulate Bitcoin holdings updates
+  const updateBitcoinHoldings = useCallback(() => {
+    // Update total holdings with realistic variations
+    setBitcoinHoldings(prev => ({
+      totalInstitutional: prev.totalInstitutional + Math.floor(Math.random() * 1000) - 500,
+      totalETFs: prev.totalETFs + Math.floor(Math.random() * 2000) - 1000,
+      totalTreasury: prev.totalTreasury + Math.floor(Math.random() * 500) - 250,
+      totalOther: prev.totalOther + Math.floor(Math.random() * 1500) - 750,
+      lastUpdated: new Date()
+    }));
+
+    // Update individual holders
+    setInstitutionalHolders(prev => prev.map(holder => {
+      const change = Math.floor(Math.random() * 1000) - 500; // Random change between -500 and +500
+      const newHoldings = Math.max(0, holder.holdings + change);
+      const changePercent = ((change / holder.holdings) * 100).toFixed(2);
+      
+      return {
+        ...holder,
+        holdings: newHoldings,
+        value: `$${(newHoldings * 38000 / 1000000000).toFixed(1)}B`, // Assuming $38K BTC price
+        change: change >= 0 ? `+${change.toLocaleString()}` : `${change.toLocaleString()}`,
+        changePercent: change >= 0 ? `+${changePercent}%` : `${changePercent}%`,
+        lastUpdated: 'Just now'
+      };
+    }));
+  }, []);
+
   // Fetch data on component mount and every 60 seconds
   useEffect(() => {
     fetchMarketCap();
@@ -391,6 +541,12 @@ export default function Home() {
     const aiInterval = setInterval(updateAiPredictions, 45000); // Update every 45 seconds
     return () => clearInterval(aiInterval);
   }, [updateAiPredictions]);
+
+  // Update Bitcoin holdings every 60 seconds
+  useEffect(() => {
+    const bitcoinInterval = setInterval(updateBitcoinHoldings, 60000); // Update every 60 seconds
+    return () => clearInterval(bitcoinInterval);
+  }, [updateBitcoinHoldings]);
 
   // Format market cap for display
   const formatMarketCap = (value: number) => {
@@ -1379,6 +1535,169 @@ export default function Home() {
                     </div>
                   </motion.div>
                 ))}
+              </div>
+            </div>
+          </ScrollAnimation>
+        </div>
+      </section>
+
+      {/* Bitcoin Holdings Monitor Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+        <div className="max-w-7xl mx-auto">
+          <ScrollAnimation>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-center">
+              Bitcoin Holdings Monitor
+            </h2>
+          </ScrollAnimation>
+          <ScrollAnimation delay={0.2}>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-12 text-center">
+              Real-time tracking of institutional holdings, treasury companies, ETFs, and major holders
+            </p>
+          </ScrollAnimation>
+
+          {/* Total Holdings Overview */}
+          <div className="grid md:grid-cols-4 gap-6 mb-12">
+            <ScrollAnimation delay={0.3}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-orange-400 mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                >
+                  {(bitcoinHoldings.totalInstitutional / 1000).toFixed(1)}K
+                </motion.div>
+                <p className="text-gray-400">Institutional BTC</p>
+              </motion.div>
+            </ScrollAnimation>
+
+            <ScrollAnimation delay={0.4}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-blue-400 mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+                >
+                  {(bitcoinHoldings.totalETFs / 1000).toFixed(1)}K
+                </motion.div>
+                <p className="text-gray-400">ETF Holdings</p>
+              </motion.div>
+            </ScrollAnimation>
+
+            <ScrollAnimation delay={0.5}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-green-400 mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 2 }}
+                >
+                  {(bitcoinHoldings.totalTreasury / 1000).toFixed(1)}K
+                </motion.div>
+                <p className="text-gray-400">Treasury BTC</p>
+              </motion.div>
+            </ScrollAnimation>
+
+            <ScrollAnimation delay={0.6}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-purple-400 mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 3 }}
+                >
+                  {(bitcoinHoldings.totalOther / 1000).toFixed(1)}K
+                </motion.div>
+                <p className="text-gray-400">Other Holdings</p>
+              </motion.div>
+            </ScrollAnimation>
+          </div>
+
+          {/* Institutional Holders Table */}
+          <ScrollAnimation delay={0.7}>
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <h3 className="text-2xl font-bold text-white mb-6">Institutional Holders</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-white/10">
+                      <th className="text-left py-4 px-4 text-gray-400 font-semibold">Holder</th>
+                      <th className="text-left py-4 px-4 text-gray-400 font-semibold">Type</th>
+                      <th className="text-right py-4 px-4 text-gray-400 font-semibold">Holdings (BTC)</th>
+                      <th className="text-right py-4 px-4 text-gray-400 font-semibold">Value</th>
+                      <th className="text-right py-4 px-4 text-gray-400 font-semibold">24h Change</th>
+                      <th className="text-right py-4 px-4 text-gray-400 font-semibold">Last Updated</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {institutionalHolders.map((holder, index) => (
+                      <motion.tr 
+                        key={holder.id}
+                        className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                      >
+                        <td className="py-4 px-4">
+                          <div className="flex items-center space-x-3">
+                            <div className={`w-3 h-3 rounded-full ${
+                              holder.category === 'treasury' ? 'bg-green-400' : 
+                              holder.category === 'etf' ? 'bg-blue-400' : 'bg-purple-400'
+                            }`} />
+                            <div>
+                              <div className="text-white font-semibold">{holder.name}</div>
+                              <div className="text-xs text-gray-400 capitalize">{holder.type}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <span className={`px-2 py-1 rounded text-xs font-semibold ${
+                            holder.category === 'treasury' ? 'bg-green-400/20 text-green-400' : 
+                            holder.category === 'etf' ? 'bg-blue-400/20 text-blue-400' : 'bg-purple-400/20 text-purple-400'
+                          }`}>
+                            {holder.category.toUpperCase()}
+                          </span>
+                        </td>
+                        <td className="py-4 px-4 text-right">
+                          <div className="text-white font-semibold">{holder.holdings.toLocaleString()}</div>
+                        </td>
+                        <td className="py-4 px-4 text-right">
+                          <div className="text-white font-semibold">{holder.value}</div>
+                        </td>
+                        <td className="py-4 px-4 text-right">
+                          <div className={`font-semibold ${
+                            holder.change.startsWith('+') ? 'text-green-400' : 
+                            holder.change.startsWith('-') ? 'text-red-400' : 'text-gray-400'
+                          }`}>
+                            {holder.change}
+                          </div>
+                          <div className={`text-xs ${
+                            holder.changePercent.startsWith('+') ? 'text-green-400' : 
+                            holder.changePercent.startsWith('-') ? 'text-red-400' : 'text-gray-400'
+                          }`}>
+                            {holder.changePercent}
+                          </div>
+                        </td>
+                        <td className="py-4 px-4 text-right">
+                          <div className="text-xs text-gray-400">{holder.lastUpdated}</div>
+                        </td>
+                      </motion.tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </ScrollAnimation>
