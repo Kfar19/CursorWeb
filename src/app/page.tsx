@@ -19,7 +19,7 @@ import {
   Mail,
   Code
 } from 'lucide-react';
-import SignalProcessor from './components/SignalProcessor';
+
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -130,6 +130,14 @@ export default function Home() {
   const [totalTransactions, setTotalTransactions] = useState(1247500);
   const [activeProtocols, setActiveProtocols] = useState(47);
   const [gasPrice, setGasPrice] = useState(25);
+
+  // Backend Analytics Data
+  const [analyticsData, setAnalyticsData] = useState({
+    insights: [],
+    marketData: null,
+    sentimentData: null,
+    isLoading: true
+  });
 
   // AI Market Predictions state
 
@@ -379,6 +387,31 @@ export default function Home() {
       setMarketCap(3250000000000);
     } finally {
       setIsLoading(false);
+    }
+  }, []);
+
+  // Fetch analytics data from backend
+  const fetchAnalyticsData = useCallback(async () => {
+    try {
+      const [insightsRes, marketRes, sentimentRes] = await Promise.all([
+        fetch('/api/insights'),
+        fetch('/api/market-data'),
+        fetch('/api/sentiment')
+      ]);
+
+      const insights = await insightsRes.json();
+      const marketData = await marketRes.json();
+      const sentimentData = await sentimentRes.json();
+
+      setAnalyticsData({
+        insights: insights.data?.insights || [],
+        marketData: marketData.data || null,
+        sentimentData: sentimentData.data || null,
+        isLoading: false
+      });
+    } catch (error) {
+      console.error('Error fetching analytics data:', error);
+      setAnalyticsData(prev => ({ ...prev, isLoading: false }));
     }
   }, []);
 
@@ -789,15 +822,18 @@ export default function Home() {
   useEffect(() => {
     fetchMarketCap();
     fetchBitcoinTreasuries(); // Fetch real Bitcoin treasury data
+    fetchAnalyticsData(); // Fetch backend analytics data
     const marketInterval = setInterval(fetchMarketCap, 60000); // Update every 60 seconds
     const socialInterval = setInterval(updatePlaceholderSocialData, 45000); // Update social data every 45 seconds
     const treasuryInterval = setInterval(fetchBitcoinTreasuries, 120000); // Update every 2 minutes
+    const analyticsInterval = setInterval(fetchAnalyticsData, 120000); // Update analytics every 2 minutes
     return () => {
       clearInterval(marketInterval);
       clearInterval(socialInterval);
       clearInterval(treasuryInterval);
+      clearInterval(analyticsInterval);
     };
-  }, [fetchMarketCap, updatePlaceholderSocialData, fetchBitcoinTreasuries]);
+  }, [fetchMarketCap, updatePlaceholderSocialData, fetchBitcoinTreasuries, fetchAnalyticsData]);
 
   // Update social buzz every 45 seconds (keeping for fallback)
   useEffect(() => {
@@ -1701,7 +1737,15 @@ export default function Home() {
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <div className="text-4xl mb-4">⚡</div>
+                  <motion.div 
+                    className="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6"
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </motion.div>
                   <h3 className="text-2xl font-bold text-white mb-2">AI-Native Capital</h3>
                   <p className="text-gray-300">The infrastructure is ready</p>
                 </motion.div>
@@ -1711,7 +1755,15 @@ export default function Home() {
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <div className="text-4xl mb-4">🎯</div>
+                  <motion.div 
+                    className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6"
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </motion.div>
                   <h3 className="text-2xl font-bold text-white mb-2">Perfect Timing</h3>
                   <p className="text-gray-300">Early conviction pays</p>
                 </motion.div>
@@ -1721,7 +1773,15 @@ export default function Home() {
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <div className="text-4xl mb-4">🚀</div>
+                  <motion.div 
+                    className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6"
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                  </motion.div>
                   <h3 className="text-2xl font-bold text-white mb-2">Built for Scale</h3>
                   <p className="text-gray-300">Code over headcount</p>
                 </motion.div>
@@ -1796,31 +1856,11 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Signal Processing Flow */}
-          <div className="mt-16">
-            <ScrollAnimation delay={0.6}>
-              <h3 className="text-3xl font-bold text-white text-center mb-8">How Signals Are Processed</h3>
-            </ScrollAnimation>
-            <ScrollAnimation delay={0.7}>
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden">
-                <SignalProcessor />
-              </div>
-            </ScrollAnimation>
-          </div>
+
         </div>
       </section>
 
-      {/* Infrastructure for a Machine-Readable Market Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Infrastructure for a Machine-Readable Market
-            </h2>
 
-          </div>
-        </div>
-      </section>
 
       {/* Live Blockchain Feed Section */}
       <section id="blockchain-feed" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
