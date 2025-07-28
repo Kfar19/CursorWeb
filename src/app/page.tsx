@@ -201,57 +201,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works Section */}
+      {/* Infrastructure for a Machine-Readable Market Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              How It Works
+              Infrastructure for a Machine-Readable Market
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-              A software-powered venture platform that turns sourcing, diligence, and capital deployment into a repeatable, data-driven process.
+              Our AI agents transform raw market data into structured, executable insight.
             </p>
-          </div>
-          
-          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 text-white">
-            <div className="flex items-center">
-              <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full p-3">
-                <Network className="w-6 h-6" />
-              </div>
-              <span className="ml-3 text-lg font-semibold">Signal</span>
-            </div>
-            <div className="text-gray-400">→</div>
-            <div className="flex items-center">
-              <div className="bg-gradient-to-r from-teal-500 to-blue-600 rounded-full p-3">
-                <TrendingUp className="w-6 h-6" />
-              </div>
-              <span className="ml-3 text-lg font-semibold">Score</span>
-            </div>
-            <div className="text-gray-400">→</div>
-            <div className="flex items-center">
-              <div className="bg-gradient-to-r from-indigo-500 to-blue-600 rounded-full p-3">
-                <Shield className="w-6 h-6" />
-              </div>
-              <span className="ml-3 text-lg font-semibold">Structure</span>
-            </div>
-            <div className="text-gray-400">→</div>
-            <div className="flex items-center">
-              <div className="bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full p-3">
-                <Zap className="w-6 h-6" />
-              </div>
-              <span className="ml-3 text-lg font-semibold">Allocate</span>
-            </div>
-            <div className="text-gray-400">→</div>
-            <div className="flex items-center">
-              <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full p-3">
-                <Brain className="w-6 h-6" />
-              </div>
-              <span className="ml-3 text-lg font-semibold">Monitor</span>
-            </div>
-          </div>
-          
-          <div className="text-center mt-8">
-            {/* Removed: 52% of Fund I deals were AI-sourced */}
           </div>
         </div>
       </section>
