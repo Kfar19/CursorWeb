@@ -204,13 +204,33 @@ export default function ResearchPage() {
     setEmailModal({ isOpen: true, fileName });
   };
 
-  const handleEmailSubmit = (email: string) => {
-    // Here you would typically send the email to your backend
-    console.log('Email submitted:', email);
-    
-    // Close email modal and open PDF viewer
-    setEmailModal({ isOpen: false, fileName: '' });
-    setPdfViewer({ isOpen: true, fileName: emailModal.fileName });
+  const handleEmailSubmit = async (email: string) => {
+    try {
+      const response = await fetch('/api/collect-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          fileName: emailModal.fileName
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('Email collected successfully:', email);
+        // Close email modal and open PDF viewer
+        setEmailModal({ isOpen: false, fileName: '' });
+        setPdfViewer({ isOpen: true, fileName: emailModal.fileName });
+      } else {
+        alert(data.error || 'Failed to submit email');
+      }
+    } catch (error) {
+      console.error('Error submitting email:', error);
+      alert('Failed to submit email. Please try again.');
+    }
   };
 
   return (
