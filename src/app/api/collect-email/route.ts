@@ -4,51 +4,45 @@ import path from 'path';
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, fileName, source, name, company, message } = await request.json();
+    const body = await request.json();
+    const { email, name, company, message, source, fileName } = body;
 
-    // Validate email
-    if (!email || !email.includes('@')) {
+    // Validate required fields
+    if (!email || !source) {
       return NextResponse.json(
-        { error: 'Valid email is required' },
+        { error: 'Email and source are required' },
         { status: 400 }
       );
     }
 
-    // Validate work email (basic check) - only for research papers
-    if (source !== 'contact_form') {
-      const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com'];
-      const emailDomain = email.split('@')[1]?.toLowerCase();
-      
-      if (personalDomains.includes(emailDomain)) {
-        return NextResponse.json(
-          { error: 'Please use a work email address' },
-          { status: 400 }
-        );
-      }
-    }
+    // Get client IP address
+    const forwarded = request.headers.get('x-forwarded-for');
+    const ip = forwarded ? forwarded.split(',')[0] : 'unknown';
+    
+    // Get user agent
+    const userAgent = request.headers.get('user-agent') || 'unknown';
 
-    // Create emails directory if it doesn't exist
-    const emailsDir = path.join(process.cwd(), 'data', 'emails');
-    if (!fs.existsSync(emailsDir)) {
-      fs.mkdirSync(emailsDir, { recursive: true });
-    }
-
-    // Save email to file
     const emailData = {
       email,
-      fileName,
-      source: source || 'research_paper',
+      fileName: fileName || null,
+      source,
       name: name || '',
       company: company || '',
       message: message || '',
       timestamp: new Date().toISOString(),
-      userAgent: request.headers.get('user-agent') || '',
-      ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
+      userAgent,
+      ip
     };
 
-    const emailFile = path.join(emailsDir, 'research-emails.json');
+    // Ensure data directory exists
+    const dataDir = path.join(process.cwd(), 'data', 'emails');
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+
+    const emailFile = path.join(dataDir, 'research-emails.json');
     
-    // Read existing emails or create new array
+    // Read existing emails or create empty array
     let emails = [];
     if (fs.existsSync(emailFile)) {
       const fileContent = fs.readFileSync(emailFile, 'utf-8');
@@ -56,18 +50,15 @@ export async function POST(request: NextRequest) {
     }
 
     // Add new email
-    emails.push(emailData);
+    emails.unshift(emailData);
 
     // Write back to file
     fs.writeFileSync(emailFile, JSON.stringify(emails, null, 2));
 
-    // Log to console for development
-    console.log('📧 Email collected:', emailData);
-
-    return NextResponse.json(
-      { success: true, message: 'Email collected successfully' },
-      { status: 200 }
-    );
+    return NextResponse.json({ 
+      success: true, 
+      message: 'Email collected successfully' 
+    });
 
   } catch (error) {
     console.error('Error collecting email:', error);

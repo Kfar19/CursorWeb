@@ -1,0 +1,68 @@
+[
+  {
+    "email": "test@example.com",
+    "fileName": null,
+    "source": "contact_form",
+    "name": "Test User",
+    "company": "Test Corp",
+    "message": "Testing the system",
+    "timestamp": "2025-07-28T23:58:04.307Z",
+    "userAgent": "curl/8.7.1",
+    "ip": "::1"
+  },
+  {
+    "email": "john.doe@example.com",
+    "fileName": "From Rails to Returns_ Payments Circle.pdf",
+    "source": "research_paper",
+    "name": "John Doe",
+    "company": "Tech Corp",
+    "message": "Interested in the research paper",
+    "timestamp": "2024-01-15T10:30:00Z",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip": "192.168.1.100"
+  },
+  {
+    "email": "jane.smith@startup.io",
+    "fileName": "From Rails to Returns_ Payments Circle.pdf",
+    "source": "research_paper",
+    "name": "Jane Smith",
+    "company": "Startup Inc",
+    "message": "Would like to learn more about payment systems",
+    "timestamp": "2024-01-14T15:45:00Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip": "203.0.113.45"
+  },
+  {
+    "email": "mike.wilson@finance.com",
+    "fileName": null,
+    "source": "contact_form",
+    "name": "Mike Wilson",
+    "company": "Finance Solutions",
+    "message": "Interested in joining the signal and learning more about your services",
+    "timestamp": "2024-01-13T09:20:00Z",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip": "172.16.0.50"
+  },
+  {
+    "email": "sarah.johnson@analytics.co",
+    "fileName": "From Rails to Returns_ Payments Circle.pdf",
+    "source": "research_paper",
+    "name": "Sarah Johnson",
+    "company": "Analytics Co",
+    "message": "Research paper looks very interesting",
+    "timestamp": "2024-01-12T14:15:00Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36",
+    "ip": "198.51.100.75"
+  },
+  {
+    "email": "alex.chen@techstart.com",
+    "fileName": null,
+    "source": "contact_form",
+    "name": "Alex Chen",
+    "company": "TechStart",
+    "message": "Would like to be notified about new research and insights",
+    "timestamp": "2024-01-11T11:30:00Z",
+    "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15",
+    "ip": "10.0.0.25"
+  }
+]
