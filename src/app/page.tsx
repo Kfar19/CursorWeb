@@ -424,7 +424,7 @@ export default function Home() {
       const totalMarketCap = response.data.data.total_market_cap.usd;
       setMarketCap(totalMarketCap);
       setLastUpdated(new Date());
-    } catch (error) {
+    } catch {
       console.log('Using fallback market cap data');
       // Fallback to a realistic estimate if API fails
       setMarketCap(3250000000000);
@@ -672,14 +672,14 @@ export default function Home() {
         // Set institutional holders with static data
         setInstitutionalHolders(staticHolders);
         
-        // Calculate totals from static data
-        const daoTotal = staticHolders
-          .filter((holder: any) => holder.type === 'DAO')
-          .reduce((sum: number, holder: any) => sum + holder.holdings, 0);
-        
-        const protocolTotal = staticHolders
-          .filter((holder: any) => holder.type === 'Protocol')
-          .reduce((sum: number, holder: any) => sum + holder.holdings, 0);
+              // Calculate totals from static data
+      const daoTotal = staticHolders
+        .filter((holder: { type: string }) => holder.type === 'DAO')
+        .reduce((sum: number, holder: { holdings: number }) => sum + holder.holdings, 0);
+      
+      const protocolTotal = staticHolders
+        .filter((holder: { type: string }) => holder.type === 'Protocol')
+        .reduce((sum: number, holder: { holdings: number }) => sum + holder.holdings, 0);
 
         console.log('DAO total calculated:', daoTotal);
         console.log('Protocol total calculated:', protocolTotal);
@@ -699,53 +699,6 @@ export default function Home() {
                 setBitcoinHoldings(totals);
         console.log('Static Bitcoin treasury data loaded successfully');
       }, []);
-        
-        const totals = {
-          totalPublicCompanies: 627297, // MicroStrategy + Tesla + Square
-          totalSpotETFs: 620000, // All major spot ETFs
-          totalTrusts: 280000, // Grayscale GBTC
-          totalPrivateCompanies: 180000, // Binance
-          totalAssetManagers: 85000, // Franklin Templeton
-          totalSovereigns: 2800, // El Salvador
-          totalDAOs: 11700, // Uniswap DAO + Compound DAO
-          totalProtocols: 4300, // Aave + Curve
-          lastUpdated: new Date()
-        };
-        
-        setBitcoinHoldings(totals);
-        return;
-      }
-
-      // Set institutional holders with static data
-      setInstitutionalHolders(staticHolders);
-      
-      // Calculate totals from static data
-      const daoTotal = staticHolders
-        .filter((holder: any) => holder.type === 'DAO')
-        .reduce((sum: number, holder: any) => sum + holder.holdings, 0);
-      
-      const protocolTotal = staticHolders
-        .filter((holder: any) => holder.type === 'Protocol')
-        .reduce((sum: number, holder: any) => sum + holder.holdings, 0);
-
-      console.log('DAO total calculated:', daoTotal);
-      console.log('Protocol total calculated:', protocolTotal);
-
-      const totals = {
-        totalPublicCompanies: 627297, // MicroStrategy + Tesla + Square
-        totalSpotETFs: 620000, // All major spot ETFs
-        totalTrusts: 280000, // Grayscale GBTC
-        totalPrivateCompanies: 180000, // Binance
-        totalAssetManagers: 85000, // Franklin Templeton
-        totalSovereigns: 2800, // El Salvador
-        totalDAOs: daoTotal, // Calculated from static data
-        totalProtocols: protocolTotal, // Calculated from static data
-        lastUpdated: new Date()
-      };
-
-      setBitcoinHoldings(totals);
-      console.log('Static Bitcoin treasury data loaded successfully');
-    }, []);
 
   // Simulate social buzz updates
   const updateSocialBuzz = useCallback(() => {
