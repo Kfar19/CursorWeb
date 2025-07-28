@@ -6,9 +6,6 @@ import {
   X, 
   Brain, 
   Zap, 
-  Users, 
-  ChevronLeft, 
-  ChevronRight,
   Twitter,
   Linkedin,
   Github,
@@ -21,36 +18,6 @@ import {
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
-  const testimonials = [
-    {
-      name: "Sarah Chen",
-      role: "Founder, TechFlow",
-      content: "Birdai's AI-powered deal flow helped us discover opportunities we never would have found. Game-changing platform.",
-      avatar: "SC"
-    },
-    {
-      name: "Marcus Rodriguez",
-      role: "Managing Partner, Future Ventures",
-      content: "The blockchain-native liquidity solutions are revolutionary. We've increased our deal velocity by 300%.",
-      avatar: "MR"
-    },
-    {
-      name: "Dr. Emily Watson",
-      role: "CEO, BioInnovate",
-      content: "Founder-first discovery means we get matched with investors who truly understand our vision. Incredible experience.",
-      avatar: "EW"
-    }
-  ];
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
@@ -110,12 +77,12 @@ export default function Home() {
           <p className="text-lg md:text-xl text-gray-300 mb-4 font-mono">
             Machine-native. Protocol-first. Liquidity-aware.
           </p>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            A structural shift is happening. AI is nuking traditional venture. 
-            <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-              Don't miss this cycle.
-            </span>
-          </p>
+                      <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+              A structural shift is happening. AI is nuking traditional venture. 
+              <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                Don&apos;t miss this cycle.
+              </span>
+            </p>
           <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
             Join the Signal
           </button>
@@ -152,7 +119,7 @@ export default function Home() {
               AI Eats Data, Spews Decisions
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-              Legacy VCs are scrambling to adapt. Traditional firms can't scale signal — we can.
+              Legacy VCs are scrambling to adapt. Traditional firms can&apos;t scale signal — we can.
             </p>
             <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-6 max-w-2xl mx-auto">
               <p className="text-2xl font-bold text-red-400 mb-2">13%</p>
@@ -183,7 +150,7 @@ export default function Home() {
                   From 2017–2021, LPs passed on early crypto-native funds—missing 50x+ returns.
                 </p>
                 <p className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-semibold">
-                  This time it's bigger: AI-native capital infrastructure is here.
+                  This time it&apos;s bigger: AI-native capital infrastructure is here.
                 </p>
               </div>
             </div>
@@ -324,12 +291,12 @@ export default function Home() {
             {/* Greg Scanlon */}
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
               <h3 className="text-2xl font-bold text-white mb-4">Greg Scanlon</h3>
-              <p className="text-gray-300 mb-4">
-                Greg is a seasoned investor and technologist operating at the intersection of blockchain, data science, 
-                and institutional capital. He co-founded Franklin Templeton's Blockchain Venture Funds I and II, and 
-                brings over 15 years of experience in investing and risk management from leading firms such as Citadel 
-                and Orange Capital.
-              </p>
+                             <p className="text-gray-300 mb-4">
+                 Greg is a seasoned investor and technologist operating at the intersection of blockchain, data science, 
+                 and institutional capital. He co-founded Franklin Templeton&apos;s Blockchain Venture Funds I and II, and 
+                 brings over 15 years of experience in investing and risk management from leading firms such as Citadel 
+                 and Orange Capital.
+               </p>
               <p className="text-gray-300 mb-4">
                 Greg is also an active mentor and advisor across multiple top universities.
               </p>
