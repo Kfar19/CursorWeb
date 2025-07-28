@@ -114,6 +114,79 @@ export default function Home() {
   const [activeProtocols, setActiveProtocols] = useState(47);
   const [gasPrice, setGasPrice] = useState(25);
 
+  // AI Market Predictions state
+  const [aiPredictions, setAiPredictions] = useState([
+    {
+      id: 1,
+      asset: 'ETH',
+      prediction: 'bullish',
+      confidence: 87,
+      timeframe: '24h',
+      priceTarget: '$3,850',
+      reasoning: 'Strong on-chain activity, whale accumulation, technical breakout',
+      signals: ['whale_accumulation', 'technical_breakout', 'defi_growth'],
+      riskLevel: 'medium',
+      lastUpdated: '2 min ago'
+    },
+    {
+      id: 2,
+      asset: 'UNI',
+      prediction: 'bullish',
+      confidence: 92,
+      timeframe: '7d',
+      priceTarget: '$12.50',
+      reasoning: 'V4 launch success, increasing TVL, governance momentum',
+      signals: ['protocol_upgrade', 'tvl_growth', 'governance_activity'],
+      riskLevel: 'low',
+      lastUpdated: '5 min ago'
+    },
+    {
+      id: 3,
+      asset: 'AAVE',
+      prediction: 'neutral',
+      confidence: 65,
+      timeframe: '24h',
+      priceTarget: '$280',
+      reasoning: 'Stable lending metrics, moderate growth, regulatory clarity',
+      signals: ['stable_metrics', 'moderate_growth', 'regulatory_clarity'],
+      riskLevel: 'low',
+      lastUpdated: '8 min ago'
+    },
+    {
+      id: 4,
+      asset: 'LINK',
+      prediction: 'bullish',
+      confidence: 78,
+      timeframe: '7d',
+      priceTarget: '$18.75',
+      reasoning: 'Oracle network expansion, institutional adoption, CCIP growth',
+      signals: ['network_expansion', 'institutional_adoption', 'ccip_growth'],
+      riskLevel: 'medium',
+      lastUpdated: '12 min ago'
+    },
+    {
+      id: 5,
+      asset: 'COMP',
+      prediction: 'bearish',
+      confidence: 71,
+      timeframe: '24h',
+      priceTarget: '$65',
+      reasoning: 'Competition pressure, declining TVL, governance challenges',
+      signals: ['competition_pressure', 'declining_tvl', 'governance_issues'],
+      riskLevel: 'high',
+      lastUpdated: '15 min ago'
+    }
+  ]);
+  const [modelAccuracy, setModelAccuracy] = useState(89.7);
+  const [totalPredictions, setTotalPredictions] = useState(1247);
+  const [successRate, setSuccessRate] = useState(87.3);
+  const [marketSentiment, setMarketSentiment] = useState({
+    overall: 'bullish',
+    confidence: 82,
+    momentum: 'increasing',
+    volatility: 'moderate'
+  });
+
   // Fetch live crypto market cap
   const fetchMarketCap = useCallback(async () => {
     try {
@@ -212,6 +285,88 @@ export default function Home() {
     return hash + '...' + chars[Math.floor(Math.random() * chars.length)] + chars[Math.floor(Math.random() * chars.length)];
   };
 
+  // Simulate AI predictions updates
+  const updateAiPredictions = useCallback(() => {
+    const assets = ['ETH', 'UNI', 'AAVE', 'LINK', 'COMP', 'CRV', 'BAL', 'SUSHI', 'SNX', 'YFI'];
+    const predictions = ['bullish', 'bearish', 'neutral'];
+    const timeframes = ['24h', '7d', '30d'];
+    const riskLevels = ['low', 'medium', 'high'];
+    
+    const newPrediction = {
+      id: Date.now(),
+      asset: assets[Math.floor(Math.random() * assets.length)],
+      prediction: predictions[Math.floor(Math.random() * predictions.length)],
+      confidence: 60 + Math.floor(Math.random() * 35),
+      timeframe: timeframes[Math.floor(Math.random() * timeframes.length)],
+      priceTarget: generatePriceTarget(),
+      reasoning: generatePredictionReasoning(),
+      signals: generateSignals(),
+      riskLevel: riskLevels[Math.floor(Math.random() * riskLevels.length)],
+      lastUpdated: 'Just now'
+    };
+
+    setAiPredictions(prev => [newPrediction, ...prev.slice(0, 4)]); // Keep only 5 items
+    
+    // Update model stats
+    setModelAccuracy(prev => Math.max(85, Math.min(95, prev + (Math.random() > 0.5 ? 0.1 : -0.1))));
+    setTotalPredictions(prev => prev + Math.floor(Math.random() * 10) + 5);
+    setSuccessRate(prev => Math.max(80, Math.min(92, prev + (Math.random() > 0.5 ? 0.2 : -0.2))));
+    
+    // Update market sentiment
+    setMarketSentiment({
+      overall: predictions[Math.floor(Math.random() * predictions.length)],
+      confidence: 70 + Math.floor(Math.random() * 25),
+      momentum: ['increasing', 'decreasing', 'stable'][Math.floor(Math.random() * 3)],
+      volatility: ['low', 'moderate', 'high'][Math.floor(Math.random() * 3)]
+    });
+  }, []);
+
+  // Helper functions for AI predictions
+  const generatePriceTarget = () => {
+    const targets = ['$3,850', '$12.50', '$280', '$18.75', '$65', '$2.25', '$15.80', '$45.20', '$8.90', '$125.50'];
+    return targets[Math.floor(Math.random() * targets.length)];
+  };
+
+  const generatePredictionReasoning = () => {
+    const reasons = [
+      'Strong on-chain activity, whale accumulation, technical breakout',
+      'Protocol upgrade success, increasing TVL, governance momentum',
+      'Stable lending metrics, moderate growth, regulatory clarity',
+      'Network expansion, institutional adoption, cross-chain growth',
+      'Competition pressure, declining TVL, governance challenges',
+      'Technical resistance, volume decline, bearish divergence',
+      'Institutional inflow, positive news sentiment, technical support',
+      'Market consolidation, neutral momentum, balanced metrics',
+      'Innovation breakthrough, developer activity, ecosystem growth',
+      'Regulatory uncertainty, market volatility, risk aversion'
+    ];
+    return reasons[Math.floor(Math.random() * reasons.length)];
+  };
+
+  const generateSignals = (): string[] => {
+    const allSignals = [
+      'whale_accumulation', 'technical_breakout', 'defi_growth', 'protocol_upgrade',
+      'tvl_growth', 'governance_activity', 'stable_metrics', 'moderate_growth',
+      'regulatory_clarity', 'network_expansion', 'institutional_adoption',
+      'ccip_growth', 'competition_pressure', 'declining_tvl', 'governance_issues',
+      'technical_resistance', 'volume_decline', 'bearish_divergence',
+      'institutional_inflow', 'positive_sentiment', 'technical_support',
+      'market_consolidation', 'neutral_momentum', 'balanced_metrics',
+      'innovation_breakthrough', 'developer_activity', 'ecosystem_growth',
+      'regulatory_uncertainty', 'market_volatility', 'risk_aversion'
+    ];
+    
+    const numSignals = 2 + Math.floor(Math.random() * 2); // 2-3 signals
+    const signals: string[] = [];
+    for (let i = 0; i < numSignals; i++) {
+      const signal = allSignals[Math.floor(Math.random() * allSignals.length)];
+      if (!signals.includes(signal)) {
+        signals.push(signal);
+      }
+    }
+    return signals;
+  };
+
   // Fetch data on component mount and every 30 seconds
   useEffect(() => {
     fetchMarketCap();
@@ -230,6 +385,12 @@ export default function Home() {
     const blockchainInterval = setInterval(updateBlockchainFeed, 8000); // Update every 8 seconds
     return () => clearInterval(blockchainInterval);
   }, [updateBlockchainFeed]);
+
+  // Update AI predictions every 12 seconds
+  useEffect(() => {
+    const aiInterval = setInterval(updateAiPredictions, 12000); // Update every 12 seconds
+    return () => clearInterval(aiInterval);
+  }, [updateAiPredictions]);
 
   // Format market cap for display
   const formatMarketCap = (value: number) => {
@@ -1007,6 +1168,214 @@ export default function Home() {
                         animate={{ opacity: [0.5, 1, 0.5] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
                       />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </ScrollAnimation>
+        </div>
+      </section>
+
+      {/* AI Market Predictions Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <ScrollAnimation>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-center">
+              AI Market Predictions
+            </h2>
+          </ScrollAnimation>
+          <ScrollAnimation delay={0.2}>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-12 text-center">
+              ML-powered insights with real-time confidence scoring and market sentiment analysis
+            </p>
+          </ScrollAnimation>
+
+          {/* Model Performance Stats */}
+          <div className="grid md:grid-cols-4 gap-6 mb-12">
+            <ScrollAnimation delay={0.3}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-purple-400 mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  {modelAccuracy.toFixed(1)}%
+                </motion.div>
+                <p className="text-gray-400">Model Accuracy</p>
+              </motion.div>
+            </ScrollAnimation>
+
+            <ScrollAnimation delay={0.4}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-green-400 mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                >
+                  {totalPredictions.toLocaleString()}
+                </motion.div>
+                <p className="text-gray-400">Total Predictions</p>
+              </motion.div>
+            </ScrollAnimation>
+
+            <ScrollAnimation delay={0.5}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-blue-400 mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                >
+                  {successRate.toFixed(1)}%
+                </motion.div>
+                <p className="text-gray-400">Success Rate</p>
+              </motion.div>
+            </ScrollAnimation>
+
+            <ScrollAnimation delay={0.6}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-orange-400 mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
+                >
+                  {marketSentiment.confidence}%
+                </motion.div>
+                <p className="text-gray-400">Market Confidence</p>
+              </motion.div>
+            </ScrollAnimation>
+          </div>
+
+          {/* Market Sentiment Overview */}
+          <ScrollAnimation delay={0.7}>
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 mb-12">
+              <h3 className="text-2xl font-bold text-white mb-6">Market Sentiment Overview</h3>
+              <div className="grid md:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className={`text-2xl font-bold mb-2 ${
+                    marketSentiment.overall === 'bullish' ? 'text-green-400' : 
+                    marketSentiment.overall === 'bearish' ? 'text-red-400' : 'text-yellow-400'
+                  }`}>
+                    {marketSentiment.overall.toUpperCase()}
+                  </div>
+                  <p className="text-gray-400 text-sm">Overall Sentiment</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-400 mb-2">{marketSentiment.confidence}%</div>
+                  <p className="text-gray-400 text-sm">Confidence Level</p>
+                </div>
+                <div className="text-center">
+                  <div className={`text-2xl font-bold mb-2 ${
+                    marketSentiment.momentum === 'increasing' ? 'text-green-400' : 
+                    marketSentiment.momentum === 'decreasing' ? 'text-red-400' : 'text-yellow-400'
+                  }`}>
+                    {marketSentiment.momentum.toUpperCase()}
+                  </div>
+                  <p className="text-gray-400 text-sm">Momentum</p>
+                </div>
+                <div className="text-center">
+                  <div className={`text-2xl font-bold mb-2 ${
+                    marketSentiment.volatility === 'low' ? 'text-green-400' : 
+                    marketSentiment.volatility === 'high' ? 'text-red-400' : 'text-yellow-400'
+                  }`}>
+                    {marketSentiment.volatility.toUpperCase()}
+                  </div>
+                  <p className="text-gray-400 text-sm">Volatility</p>
+                </div>
+              </div>
+            </div>
+          </ScrollAnimation>
+
+          {/* Live Predictions Feed */}
+          <ScrollAnimation delay={0.8}>
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <h3 className="text-2xl font-bold text-white mb-6">Live Predictions Feed</h3>
+              <div className="space-y-4 max-h-96 overflow-y-auto">
+                {aiPredictions.map((prediction, index) => (
+                  <motion.div 
+                    key={prediction.id}
+                    className="p-6 bg-white/5 rounded-lg border border-white/10"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center space-x-4">
+                        <div className={`text-2xl font-bold ${
+                          prediction.prediction === 'bullish' ? 'text-green-400' : 
+                          prediction.prediction === 'bearish' ? 'text-red-400' : 'text-yellow-400'
+                        }`}>
+                          {prediction.asset}
+                        </div>
+                        <div className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                          prediction.prediction === 'bullish' ? 'bg-green-400/20 text-green-400' : 
+                          prediction.prediction === 'bearish' ? 'bg-red-400/20 text-red-400' : 'bg-yellow-400/20 text-yellow-400'
+                        }`}>
+                          {prediction.prediction.toUpperCase()}
+                        </div>
+                        <div className="text-sm text-gray-400">
+                          {prediction.timeframe}
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-bold text-white">{prediction.priceTarget}</div>
+                        <div className="text-sm text-gray-400">Target Price</div>
+                      </div>
+                    </div>
+                    
+                    <p className="text-gray-300 text-sm mb-4">{prediction.reasoning}</p>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-sm text-gray-400">Confidence:</span>
+                          <div className="w-20 bg-gray-700 rounded-full h-2">
+                            <motion.div 
+                              className={`h-2 rounded-full ${
+                                prediction.confidence >= 80 ? 'bg-green-400' : 
+                                prediction.confidence >= 60 ? 'bg-yellow-400' : 'bg-red-400'
+                              }`}
+                              initial={{ width: 0 }}
+                              animate={{ width: `${prediction.confidence}%` }}
+                              transition={{ duration: 1 }}
+                            />
+                          </div>
+                          <span className="text-sm text-white font-semibold">{prediction.confidence}%</span>
+                        </div>
+                        <div className={`px-2 py-1 rounded text-xs font-semibold ${
+                          prediction.riskLevel === 'low' ? 'bg-green-400/20 text-green-400' : 
+                          prediction.riskLevel === 'high' ? 'bg-red-400/20 text-red-400' : 'bg-yellow-400/20 text-yellow-400'
+                        }`}>
+                          {prediction.riskLevel.toUpperCase()} RISK
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="flex flex-wrap gap-1 mb-2">
+                          {prediction.signals.map((signal, signalIndex) => (
+                            <span key={signalIndex} className="text-xs bg-blue-400/20 text-blue-400 px-2 py-1 rounded">
+                              {signal.replace('_', ' ')}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="text-xs text-gray-400">{prediction.lastUpdated}</div>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
