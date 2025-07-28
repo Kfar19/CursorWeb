@@ -1709,38 +1709,57 @@ export default function Home() {
       {/* AI Eats Data Section */}
       <section id="live-data" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Trained on data. Tuned for decisions
-            </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-              The old system filters signal through committees. Ours reads it in real time.
-            </p>
-
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Text Content */}
+            <div className="text-left">
+              <ScrollAnimation>
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                  Trained on data. Tuned for decisions
+                </h2>
+              </ScrollAnimation>
+              <ScrollAnimation delay={0.2}>
+                <p className="text-xl text-gray-300 mb-8">
+                  The old system filters signal through committees. Ours reads it in real time.
+                </p>
+              </ScrollAnimation>
+            </div>
+            
+            {/* Right Side - AI Productivity Animation */}
+            <div className="flex justify-center md:justify-end">
+              <motion.div 
+                className="w-80 h-80 relative"
+                initial={{ opacity: 0, scale: 0.8, x: 50 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              >
+                <Lottie
+                  animationData={productivityAnimation}
+                  loop={true}
+                  autoplay={true}
+                  style={{ width: '100%', height: '100%' }}
+                />
+                {/* Enhanced glow effect */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-2xl"
+                  animate={{ 
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                />
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Why Now Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20 relative overflow-hidden">
-        {/* Strategic AI Productivity Animation Background */}
-        <motion.div 
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-10"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.1, scale: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-        >
-          <Lottie
-            animationData={productivityAnimation}
-            loop={true}
-            autoplay={true}
-            style={{ width: '100%', height: '100%' }}
-          />
-          {/* Strategic glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/15 to-cyan-500/15 rounded-full blur-3xl"></div>
-        </motion.div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center">
             <ScrollAnimation>
               <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">
