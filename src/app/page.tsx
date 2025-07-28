@@ -1712,10 +1712,7 @@ export default function Home() {
             <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
               The old system filters signal through committees. Ours reads it in real time.
             </p>
-            <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-6 max-w-2xl mx-auto">
-              <p className="text-2xl font-bold text-red-400 mb-2">13%</p>
-              <p className="text-gray-300">of VC funds return more than 2x DPI after 10 years</p>
-            </div>
+
           </div>
         </div>
       </section>
