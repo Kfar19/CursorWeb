@@ -15,6 +15,7 @@ import {
   Network,
   Code
 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,6 +28,14 @@ export default function Home() {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="Birdai Logo"
+                width={40}
+                height={40}
+                className="mr-3"
+                priority
+              />
               <div className="text-2xl font-bold text-white">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                   Birdai
@@ -251,11 +260,7 @@ export default function Home() {
           </div>
           
           <div className="text-center mt-8">
-            <p className="text-lg text-gray-300">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-semibold">
-                52% of Fund I deals were AI-sourced
-              </span>
-            </p>
+            {/* Removed: 52% of Fund I deals were AI-sourced */}
           </div>
         </div>
       </section>
