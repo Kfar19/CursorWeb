@@ -1,4 +1,5 @@
 'use client';
+// Force Vercel rebuild from main branch - deployment fix
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
