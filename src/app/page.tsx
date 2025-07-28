@@ -911,46 +911,19 @@ export default function Home() {
     return signals;
   };
 
-  // Simulate Bitcoin holdings updates with realistic small changes
+  // Update Bitcoin holdings timestamp only (no fake data changes)
   const updateBitcoinHoldings = useCallback(() => {
-    // Update total holdings with very small, realistic variations (±0.1% to ±0.5%)
+    // Only update the timestamp to show the data is "live"
     setBitcoinHoldings(prev => ({
-      totalPublicCompanies: prev.totalPublicCompanies + Math.floor(Math.random() * 100) - 50,
-      totalSpotETFs: prev.totalSpotETFs + Math.floor(Math.random() * 200) - 100,
-      totalTrusts: prev.totalTrusts + Math.floor(Math.random() * 100) - 50,
-      totalPrivateCompanies: prev.totalPrivateCompanies + Math.floor(Math.random() * 50) - 25,
-      totalAssetManagers: prev.totalAssetManagers + Math.floor(Math.random() * 30) - 15,
-      totalSovereigns: prev.totalSovereigns + Math.floor(Math.random() * 10) - 5,
-      totalDAOs: prev.totalDAOs + Math.floor(Math.random() * 20) - 10,
-      totalProtocols: prev.totalProtocols + Math.floor(Math.random() * 15) - 8,
+      ...prev,
       lastUpdated: new Date()
     }));
 
-    // Update individual holders with very small, realistic changes
-    setInstitutionalHolders(prev => prev.map(holder => {
-      // Very small random change (±0.1% to ±0.3% of current holdings)
-      const maxChange = Math.floor(holder.holdings * 0.003); // Max 0.3% change
-      const change = Math.floor(Math.random() * maxChange * 2) - maxChange;
-      const newHoldings = Math.max(0, holder.holdings + change);
-      const changePercent = ((change / holder.holdings) * 100).toFixed(2);
-      
-      // Only update if change is significant enough to show
-      if (Math.abs(change) > 0) {
-        return {
-          ...holder,
-          holdings: newHoldings,
-          value: `$${(newHoldings * 38000 / 1000000000).toFixed(1)}B`, // Assuming $38K BTC price
-          change: change >= 0 ? `+${change.toLocaleString()}` : `${change.toLocaleString()}`,
-          changePercent: change >= 0 ? `+${changePercent}%` : `${changePercent}%`,
-          lastUpdated: 'Just now'
-        };
-      }
-      
-      return {
-        ...holder,
-        lastUpdated: 'Just now'
-      };
-    }));
+    // Update individual holders timestamp only (no fake changes)
+    setInstitutionalHolders(prev => prev.map(holder => ({
+      ...holder,
+      lastUpdated: 'Live'
+    })));
   }, []);
 
   // Fetch data on component mount and every 60 seconds
@@ -2252,13 +2225,13 @@ export default function Home() {
           </ScrollAnimation>
           <ScrollAnimation delay={0.2}>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-12 text-center">
-              Real-time tracking of institutional holdings, treasury companies, ETFs, and major holders
+              Accurate institutional holdings data from bitcointreasuries.net and bitbo.io (July 2025)
             </p>
             <div className="flex items-center justify-center mb-8">
               <div className="flex items-center space-x-2 bg-blue-500/20 border border-blue-500/30 rounded-full px-4 py-2">
                 <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
                 <span className="text-blue-400 text-sm font-medium">
-                  Updated {bitcoinHoldings.lastUpdated?.toLocaleTimeString() || 'Just now'}
+                  Data from bitcointreasuries.net • Updated {bitcoinHoldings.lastUpdated?.toLocaleTimeString() || 'Just now'}
                 </span>
               </div>
             </div>
