@@ -10,14 +10,11 @@ import {
   Menu, 
   X, 
   Brain, 
-  Zap, 
   Twitter,
   Linkedin,
   Github,
   Mail,
   TrendingUp,
-  Shield,
-  Network,
   Code
 } from 'lucide-react';
 
@@ -444,9 +441,10 @@ export default function Home() {
       
       // Filter for Bitcoin holdings and transform the data
       const bitcoinHolders = treasuryData
-        .filter((entity: any) => entity.holdings && entity.holdings.some((holding: any) => holding.coin === 'Bitcoin'))
-        .map((entity: any, index: number) => {
-          const btcHolding = entity.holdings.find((holding: any) => holding.coin === 'Bitcoin');
+        .filter((entity: { holdings?: Array<{ coin: string; amount: number; value: number }> }) => 
+          entity.holdings && entity.holdings.some((holding) => holding.coin === 'Bitcoin'))
+        .map((entity: { name: string; category: string; holdings?: Array<{ coin: string; amount: number; value: number }> }, index: number) => {
+          const btcHolding = entity.holdings?.find((holding) => holding.coin === 'Bitcoin');
           const btcAmount = btcHolding ? btcHolding.amount : 0;
           const btcValue = btcHolding ? btcHolding.value : 0;
           
@@ -467,15 +465,15 @@ export default function Home() {
             description: `${entity.name} (${entity.category})`
           };
         })
-        .filter((holder: any) => holder.holdings > 0)
-        .sort((a: any, b: any) => b.holdings - a.holdings)
+        .filter((holder: { holdings: number }) => holder.holdings > 0)
+        .sort((a: { holdings: number }, b: { holdings: number }) => b.holdings - a.holdings)
         .slice(0, 20); // Top 20 holders
 
       // Update institutional holders with real DeFiLlama data
       setInstitutionalHolders(bitcoinHolders);
 
       // Calculate totals by category
-      const categoryTotals = bitcoinHolders.reduce((acc: any, holder: any) => {
+      const categoryTotals = bitcoinHolders.reduce((acc: Record<string, number>, holder: { category: string; holdings: number }) => {
         const category = holder.category;
         if (!acc[category]) acc[category] = 0;
         acc[category] += holder.holdings;
@@ -498,18 +496,18 @@ export default function Home() {
       
       console.log('DeFiLlama Treasuries data loaded:', bitcoinHolders.length, 'entities');
       
-    } catch (error) {
-      console.log('Error fetching DeFiLlama treasuries:', error);
+    } catch {
+      console.log('Error fetching DeFiLlama treasuries');
       // Fallback to CoinGecko API
       try {
         const fallbackResponse = await axios.get('https://api.coingecko.com/api/v3/companies/public_treasury/bitcoin');
         const fallbackData = fallbackResponse.data.companies;
         console.log('Using CoinGecko fallback data:', fallbackData.length, 'companies');
-      } catch (fallbackError) {
-        console.log('Fallback API also failed:', fallbackError);
-      }
+              } catch {
+          console.log('Fallback API also failed');
+        }
     }
-  }, [marketCap]);
+  }, []);
 
   // Simulate social buzz updates
   const updateSocialBuzz = useCallback(() => {
@@ -773,21 +771,6 @@ export default function Home() {
       transition: {
         staggerChildren: 0.3
       }
-    }
-  };
-
-  const cardHover = {
-    hover: { 
-      y: -10, 
-      scale: 1.02,
-      transition: { duration: 0.5 }
-    }
-  };
-
-  const buttonHover = {
-    hover: { 
-      scale: 1.05,
-      transition: { duration: 0.3 }
     }
   };
 
