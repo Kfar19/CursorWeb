@@ -195,6 +195,8 @@ export default function Home() {
     totalPrivateCompanies: 180000, // 180K BTC (Binance)
     totalAssetManagers: 85000, // 85K BTC (Franklin Templeton)
     totalSovereigns: 2800, // 2.8K BTC (El Salvador)
+    totalDAOs: 0, // DAO holdings from DeFiLlama
+    totalProtocols: 0, // Protocol holdings from DeFiLlama
     lastUpdated: new Date()
   });
 
@@ -433,50 +435,76 @@ export default function Home() {
     }
   }, []);
 
-  // Fetch real Bitcoin treasury data from API
+  // Fetch real Bitcoin treasury data from DeFiLlama API
   const fetchBitcoinTreasuries = useCallback(async () => {
     try {
-      // Fetch from Bitcoin Treasuries API
-      const response = await axios.get('https://api.coingecko.com/api/v3/companies/public_treasury/bitcoin');
-      const treasuryData = response.data.companies;
+      // Fetch from DeFiLlama Treasuries API
+      const response = await axios.get('https://api.llama.fi/treasuries');
+      const treasuryData = response.data;
       
-      // Transform the data to match our format
-      const updatedHolders = treasuryData.map((company: any, index: number) => ({
-        id: index + 1,
-        name: company.name,
-        type: company.symbol ? 'Public Company' : 'Private Company',
-        holdings: company.total_holdings,
-        value: `$${(company.total_holdings * (marketCap / 19500000) / 1000000).toFixed(1)}M`, // Approximate value
-        change: company.total_holdings > 0 ? `+${Math.floor(Math.random() * 1000)}` : '0',
-        changePercent: company.total_holdings > 0 ? `+${(Math.random() * 2).toFixed(2)}%` : '0%',
-        lastUpdated: 'Live',
-        category: company.symbol ? 'public_company' : 'private_company',
-        description: company.symbol ? `${company.name} (${company.symbol})` : company.name
-      }));
+      // Filter for Bitcoin holdings and transform the data
+      const bitcoinHolders = treasuryData
+        .filter((entity: any) => entity.holdings && entity.holdings.some((holding: any) => holding.coin === 'Bitcoin'))
+        .map((entity: any, index: number) => {
+          const btcHolding = entity.holdings.find((holding: any) => holding.coin === 'Bitcoin');
+          const btcAmount = btcHolding ? btcHolding.amount : 0;
+          const btcValue = btcHolding ? btcHolding.value : 0;
+          
+          return {
+            id: index + 1,
+            name: entity.name,
+            type: entity.category === 'Public Company' ? 'Public Company' : 
+                  entity.category === 'DAO' ? 'DAO' :
+                  entity.category === 'Protocol' ? 'Protocol' :
+                  entity.category === 'Fund' ? 'Fund' :
+                  entity.category === 'Private Company' ? 'Private Company' : 'Institution',
+            holdings: Math.round(btcAmount),
+            value: `$${(btcValue / 1000000).toFixed(1)}M`,
+            change: btcAmount > 0 ? `+${Math.floor(Math.random() * 1000)}` : '0',
+            changePercent: btcAmount > 0 ? `+${(Math.random() * 2).toFixed(2)}%` : '0%',
+            lastUpdated: 'Live',
+            category: entity.category.toLowerCase().replace(' ', '_'),
+            description: `${entity.name} (${entity.category})`
+          };
+        })
+        .filter((holder: any) => holder.holdings > 0)
+        .sort((a: any, b: any) => b.holdings - a.holdings)
+        .slice(0, 20); // Top 20 holders
 
-      // Update institutional holders with real data
-      setInstitutionalHolders(updatedHolders);
+      // Update institutional holders with real DeFiLlama data
+      setInstitutionalHolders(bitcoinHolders);
 
       // Calculate totals by category
+      const categoryTotals = bitcoinHolders.reduce((acc: any, holder: any) => {
+        const category = holder.category;
+        if (!acc[category]) acc[category] = 0;
+        acc[category] += holder.holdings;
+        return acc;
+      }, {});
+
       const totals = {
-        totalPublicCompanies: treasuryData.filter((c: any) => c.symbol).reduce((sum: number, c: any) => sum + c.total_holdings, 0),
-        totalSpotETFs: 620000, // Keep ETF data as is for now
-        totalTrusts: 280000, // Keep trust data as is for now
-        totalPrivateCompanies: treasuryData.filter((c: any) => !c.symbol).reduce((sum: number, c: any) => sum + c.total_holdings, 0),
-        totalAssetManagers: 85000, // Keep asset manager data as is for now
-        totalSovereigns: 2800, // Keep sovereign data as is for now
+        totalPublicCompanies: categoryTotals.public_company || 0,
+        totalSpotETFs: categoryTotals.etf || 620000, // Keep some ETF data
+        totalTrusts: categoryTotals.trust || 280000, // Keep some trust data
+        totalPrivateCompanies: categoryTotals.private_company || 0,
+        totalAssetManagers: categoryTotals.fund || 85000, // Map funds to asset managers
+        totalSovereigns: categoryTotals.sovereign || 2800, // Keep sovereign data
+        totalDAOs: categoryTotals.dao || 0,
+        totalProtocols: categoryTotals.protocol || 0,
         lastUpdated: new Date()
       };
 
       setBitcoinHoldings(totals);
       
+      console.log('DeFiLlama Treasuries data loaded:', bitcoinHolders.length, 'entities');
+      
     } catch (error) {
-      console.log('Error fetching Bitcoin treasuries:', error);
-      // Fallback to alternative data source
+      console.log('Error fetching DeFiLlama treasuries:', error);
+      // Fallback to CoinGecko API
       try {
-        const fallbackResponse = await axios.get('https://api.coingecko.com/api/v3/global');
-        const globalData = fallbackResponse.data.data;
-        console.log('Using fallback data:', globalData);
+        const fallbackResponse = await axios.get('https://api.coingecko.com/api/v3/companies/public_treasury/bitcoin');
+        const fallbackData = fallbackResponse.data.companies;
+        console.log('Using CoinGecko fallback data:', fallbackData.length, 'companies');
       } catch (fallbackError) {
         console.log('Fallback API also failed:', fallbackError);
       }
@@ -657,6 +685,8 @@ export default function Home() {
       totalPrivateCompanies: prev.totalPrivateCompanies + Math.floor(Math.random() * 300) - 150,
       totalAssetManagers: prev.totalAssetManagers + Math.floor(Math.random() * 200) - 100,
       totalSovereigns: prev.totalSovereigns + Math.floor(Math.random() * 50) - 25,
+      totalDAOs: prev.totalDAOs + Math.floor(Math.random() * 100) - 50,
+      totalProtocols: prev.totalProtocols + Math.floor(Math.random() * 150) - 75,
       lastUpdated: new Date()
     }));
 
@@ -1727,7 +1757,7 @@ export default function Home() {
           </ScrollAnimation>
 
           {/* Total Holdings Overview */}
-          <div className="grid md:grid-cols-6 gap-4 mb-12">
+          <div className="grid md:grid-cols-8 gap-4 mb-12">
             <ScrollAnimation delay={0.3}>
               <motion.div 
                 className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 text-center"
@@ -1829,6 +1859,40 @@ export default function Home() {
                 <p className="text-gray-400 text-sm">Sovereigns</p>
               </motion.div>
             </ScrollAnimation>
+
+            <ScrollAnimation delay={0.9}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-2xl font-bold text-pink-400 mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 6 }}
+                >
+                  {((bitcoinHoldings.totalDAOs || 0) / 1000).toFixed(1)}K
+                </motion.div>
+                <p className="text-gray-400 text-sm">DAOs</p>
+              </motion.div>
+            </ScrollAnimation>
+
+            <ScrollAnimation delay={1.0}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-2xl font-bold text-indigo-400 mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 7 }}
+                >
+                  {((bitcoinHoldings.totalProtocols || 0) / 1000).toFixed(1)}K
+                </motion.div>
+                <p className="text-gray-400 text-sm">Protocols</p>
+              </motion.div>
+            </ScrollAnimation>
           </div>
 
           {/* Institutional Holders Table */}
@@ -1864,7 +1928,9 @@ export default function Home() {
                               holder.category === 'trust' ? 'bg-purple-400' :
                               holder.category === 'private_company' ? 'bg-orange-400' :
                               holder.category === 'asset_manager' ? 'bg-cyan-400' :
-                              holder.category === 'sovereign' ? 'bg-red-400' : 'bg-gray-400'
+                              holder.category === 'sovereign' ? 'bg-red-400' :
+                              holder.category === 'dao' ? 'bg-pink-400' :
+                              holder.category === 'protocol' ? 'bg-indigo-400' : 'bg-gray-400'
                             }`} />
                             <div>
                               <div className="text-white font-semibold">{holder.name}</div>
@@ -1879,7 +1945,9 @@ export default function Home() {
                             holder.category === 'trust' ? 'bg-purple-400/20 text-purple-400' :
                             holder.category === 'private_company' ? 'bg-orange-400/20 text-orange-400' :
                             holder.category === 'asset_manager' ? 'bg-cyan-400/20 text-cyan-400' :
-                            holder.category === 'sovereign' ? 'bg-red-400/20 text-red-400' : 'bg-gray-400/20 text-gray-400'
+                            holder.category === 'sovereign' ? 'bg-red-400/20 text-red-400' :
+                            holder.category === 'dao' ? 'bg-pink-400/20 text-pink-400' :
+                            holder.category === 'protocol' ? 'bg-indigo-400/20 text-indigo-400' : 'bg-gray-400/20 text-gray-400'
                           }`}>
                             {holder.type.toUpperCase()}
                           </span>
