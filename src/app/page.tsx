@@ -1069,44 +1069,167 @@ export default function Home() {
       {/* Hero Section */}
       <motion.section 
         id="home" 
-        className="pt-32 pb-20 px-4 sm:px-6 lg:px-8"
+        className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
         style={{ y: heroY, opacity: heroOpacity }}
       >
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div 
+            className="absolute top-20 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.6, 0.3],
+              x: [0, 50, 0],
+              y: [0, -30, 0]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div 
+            className="absolute top-40 right-20 w-24 h-24 bg-cyan-500/10 rounded-full blur-2xl"
+            animate={{ 
+              scale: [1, 1.5, 1],
+              opacity: [0.2, 0.5, 0.2],
+              x: [0, -40, 0],
+              y: [0, 40, 0]
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          />
+          <motion.div 
+            className="absolute bottom-20 left-1/4 w-20 h-20 bg-purple-500/10 rounded-full blur-2xl"
+            animate={{ 
+              scale: [1, 1.3, 1],
+              opacity: [0.2, 0.4, 0.2],
+              x: [0, 30, 0],
+              y: [0, -20, 0]
+            }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+          />
+        </div>
+
         <motion.div 
-          className="max-w-7xl mx-auto text-center"
+          className="max-w-7xl mx-auto text-center relative z-10"
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
         >
+          {/* Live Market Cap Badge */}
+          <motion.div 
+            className="inline-flex items-center space-x-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2 mb-8"
+            variants={fadeInUp}
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span className="text-green-400 text-sm font-medium">Live Market Cap: {formatMarketCap(marketCap)}</span>
+            <span className="text-gray-400 text-xs">• Updated {lastUpdated.toLocaleTimeString()}</span>
+          </motion.div>
+
           <motion.h1 
-            className="text-5xl md:text-7xl font-bold text-white mb-6"
+            className="text-5xl md:text-7xl font-bold text-white mb-6 relative"
             variants={fadeInUp}
           >
-            See What Others
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+            <motion.span
+              animate={{ 
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-[length:200%_100%] bg-clip-text text-transparent"
+            >
+              See What Others
+            </motion.span>
+            <motion.span 
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 relative"
+              animate={{ 
+                textShadow: [
+                  "0 0 20px rgba(96, 165, 250, 0.5)",
+                  "0 0 40px rgba(96, 165, 250, 0.8)",
+                  "0 0 20px rgba(96, 165, 250, 0.5)"
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
               Miss
-            </span>
+            </motion.span>
           </motion.h1>
-          <motion.p 
-            className="text-lg md:text-xl text-gray-300 mb-4 font-mono"
+
+          {/* Animated Tagline */}
+          <motion.div 
+            className="flex flex-wrap justify-center items-center gap-4 mb-6"
             variants={fadeInUp}
           >
-            Machine-native. Protocol-first. Liquidity-aware.
-          </motion.p>
+            <motion.span 
+              className="text-lg md:text-xl text-gray-300 font-mono px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10"
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(96, 165, 250, 0.1)" }}
+              transition={{ duration: 0.3 }}
+            >
+              Machine-native
+            </motion.span>
+            <motion.span 
+              className="text-lg md:text-xl text-gray-300 font-mono px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10"
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(34, 211, 238, 0.1)" }}
+              transition={{ duration: 0.3 }}
+            >
+              Protocol-first
+            </motion.span>
+            <motion.span 
+              className="text-lg md:text-xl text-gray-300 font-mono px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10"
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(168, 85, 247, 0.1)" }}
+              transition={{ duration: 0.3 }}
+            >
+              Liquidity-aware
+            </motion.span>
+          </motion.div>
+
           <motion.p 
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
             variants={fadeInUp}
           >
             A structural shift is happening.
           </motion.p>
-          <motion.button 
-            onClick={() => setIsContactModalOpen(true)}
-            className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-4 px-8 rounded-full text-lg shadow-lg"
-            variants={fadeInUp}
-            whileHover={{ scale: 1.05 }}
-          >
-            Join the Signal
-          </motion.button>
+
+          {/* Enhanced CTA Button */}
+          <motion.div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <motion.button 
+              onClick={() => setIsContactModalOpen(true)}
+              className="group relative bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-4 px-8 rounded-full text-lg shadow-lg overflow-hidden"
+              variants={fadeInUp}
+              whileHover={{ scale: 1.05 }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "100%" }}
+                transition={{ duration: 0.6 }}
+              />
+              <span className="relative z-10 flex items-center space-x-2">
+                <span>Join the Signal</span>
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  →
+                </motion.div>
+              </span>
+            </motion.button>
+
+            {/* Live Stats */}
+            <motion.div 
+              className="flex items-center space-x-6 text-sm text-gray-400"
+              variants={fadeInUp}
+            >
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                <span>{totalMentions.toLocaleString()} mentions</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span>{totalTransactions.toLocaleString()} transactions</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                <span>{modelAccuracy}% accuracy</span>
+              </div>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </motion.section>
 
