@@ -189,12 +189,12 @@ export default function Home() {
 
   // Bitcoin Holdings Monitor state
   const [bitcoinHoldings, setBitcoinHoldings] = useState({
-    totalPublicCompanies: 485927, // ~486K BTC
-    totalSpotETFs: 415000, // 415K BTC
-    totalTrusts: 280000, // 280K BTC
-    totalPrivateCompanies: 180000, // 180K BTC
-    totalAssetManagers: 85000, // 85K BTC
-    totalSovereigns: 2800, // 2.8K BTC
+    totalPublicCompanies: 650297, // ~650K BTC (including MicroStrategy's 607,770)
+    totalSpotETFs: 620000, // 620K BTC (all major spot ETFs)
+    totalTrusts: 280000, // 280K BTC (Grayscale GBTC)
+    totalPrivateCompanies: 180000, // 180K BTC (Binance)
+    totalAssetManagers: 85000, // 85K BTC (Franklin Templeton)
+    totalSovereigns: 2800, // 2.8K BTC (El Salvador)
     lastUpdated: new Date()
   });
 
@@ -203,11 +203,11 @@ export default function Home() {
       id: 1,
       name: 'MicroStrategy',
       type: 'Public Company',
-      holdings: 214400,
-      value: '$8.2B',
-      change: '+2,400',
-      changePercent: '+1.13%',
-      lastUpdated: '2 hours ago',
+      holdings: 607770,
+      value: '$23.1B',
+      change: '+12,000',
+      changePercent: '+2.02%',
+      lastUpdated: '1 day ago',
       category: 'public_company',
       description: 'Software company with largest corporate BTC holdings'
     },
@@ -215,10 +215,10 @@ export default function Home() {
       id: 2,
       name: 'BlackRock IBIT',
       type: 'Spot ETF',
-      holdings: 185000,
-      value: '$7.1B',
-      change: '+3,200',
-      changePercent: '+1.76%',
+      holdings: 285000,
+      value: '$10.8B',
+      change: '+5,200',
+      changePercent: '+1.86%',
       lastUpdated: '1 hour ago',
       category: 'spot_etf',
       description: 'Largest Bitcoin spot ETF by AUM'
@@ -227,10 +227,10 @@ export default function Home() {
       id: 3,
       name: 'Fidelity FBTC',
       type: 'Spot ETF',
-      holdings: 125000,
-      value: '$4.8B',
-      change: '+1,800',
-      changePercent: '+1.46%',
+      holdings: 165000,
+      value: '$6.3B',
+      change: '+2,800',
+      changePercent: '+1.73%',
       lastUpdated: '45 min ago',
       category: 'spot_etf',
       description: 'Second largest Bitcoin spot ETF'
@@ -239,10 +239,10 @@ export default function Home() {
       id: 4,
       name: 'ARKB ETF',
       type: 'Spot ETF',
-      holdings: 42000,
-      value: '$1.6B',
-      change: '+800',
-      changePercent: '+1.94%',
+      holdings: 52000,
+      value: '$2.0B',
+      change: '+1,200',
+      changePercent: '+2.36%',
       lastUpdated: '30 min ago',
       category: 'spot_etf',
       description: 'ARK Invest Bitcoin ETF'
@@ -252,7 +252,7 @@ export default function Home() {
       name: 'Tesla',
       type: 'Public Company',
       holdings: 11500,
-      value: '$440M',
+      value: '$437M',
       change: '0',
       changePercent: '0%',
       lastUpdated: '1 day ago',
@@ -264,7 +264,7 @@ export default function Home() {
       name: 'Square/Block',
       type: 'Public Company',
       holdings: 8027,
-      value: '$307M',
+      value: '$305M',
       change: '+27',
       changePercent: '+0.34%',
       lastUpdated: '3 hours ago',
@@ -276,7 +276,7 @@ export default function Home() {
       name: 'Coinbase',
       type: 'Public Company',
       holdings: 250000,
-      value: '$9.6B',
+      value: '$9.5B',
       change: '+5,000',
       changePercent: '+2.04%',
       lastUpdated: '15 min ago',
@@ -288,7 +288,7 @@ export default function Home() {
       name: 'Binance',
       type: 'Private Company',
       holdings: 180000,
-      value: '$6.9B',
+      value: '$6.8B',
       change: '+2,500',
       changePercent: '+1.41%',
       lastUpdated: '20 min ago',
@@ -300,7 +300,7 @@ export default function Home() {
       name: 'Grayscale GBTC',
       type: 'Trust',
       holdings: 280000,
-      value: '$10.7B',
+      value: '$10.6B',
       change: '-1,200',
       changePercent: '-0.43%',
       lastUpdated: '1 hour ago',
@@ -312,7 +312,7 @@ export default function Home() {
       name: 'Marathon Digital',
       type: 'Public Company',
       holdings: 15000,
-      value: '$575M',
+      value: '$570M',
       change: '+300',
       changePercent: '+2.04%',
       lastUpdated: '2 hours ago',
@@ -324,7 +324,7 @@ export default function Home() {
       name: 'El Salvador',
       type: 'Sovereign Nation',
       holdings: 2800,
-      value: '$107M',
+      value: '$106M',
       change: '+100',
       changePercent: '+3.70%',
       lastUpdated: '1 week ago',
@@ -335,10 +335,10 @@ export default function Home() {
       id: 12,
       name: 'Bitwise BITB',
       type: 'Spot ETF',
-      holdings: 35000,
-      value: '$1.3B',
-      change: '+500',
-      changePercent: '+1.45%',
+      holdings: 45000,
+      value: '$1.7B',
+      change: '+800',
+      changePercent: '+1.81%',
       lastUpdated: '2 hours ago',
       category: 'spot_etf',
       description: 'Bitwise Bitcoin ETF'
@@ -347,10 +347,10 @@ export default function Home() {
       id: 13,
       name: 'VanEck HODL',
       type: 'Spot ETF',
-      holdings: 28000,
-      value: '$1.1B',
-      change: '+400',
-      changePercent: '+1.45%',
+      holdings: 35000,
+      value: '$1.3B',
+      change: '+600',
+      changePercent: '+1.74%',
       lastUpdated: '3 hours ago',
       category: 'spot_etf',
       description: 'VanEck Bitcoin ETF'
@@ -372,12 +372,48 @@ export default function Home() {
       name: 'Galaxy Digital',
       type: 'Public Company',
       holdings: 12000,
-      value: '$460M',
+      value: '$456M',
       change: '+200',
       changePercent: '+1.69%',
       lastUpdated: '1 day ago',
       category: 'public_company',
       description: 'Digital asset financial services'
+    },
+    {
+      id: 16,
+      name: 'WisdomTree BTCW',
+      type: 'Spot ETF',
+      holdings: 25000,
+      value: '$950M',
+      change: '+400',
+      changePercent: '+1.63%',
+      lastUpdated: '1 hour ago',
+      category: 'spot_etf',
+      description: 'WisdomTree Bitcoin ETF'
+    },
+    {
+      id: 17,
+      name: 'Invesco BTCO',
+      type: 'Spot ETF',
+      holdings: 22000,
+      value: '$836M',
+      change: '+300',
+      changePercent: '+1.38%',
+      lastUpdated: '2 hours ago',
+      category: 'spot_etf',
+      description: 'Invesco Bitcoin ETF'
+    },
+    {
+      id: 18,
+      name: 'Valkyrie BRRR',
+      type: 'Spot ETF',
+      holdings: 8000,
+      value: '$304M',
+      change: '+100',
+      changePercent: '+1.27%',
+      lastUpdated: '3 hours ago',
+      category: 'spot_etf',
+      description: 'Valkyrie Bitcoin ETF'
     }
   ]);
 
