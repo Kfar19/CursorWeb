@@ -279,54 +279,7 @@ export default function ResearchPage() {
             <div className="mb-20">
               <h2 className="text-3xl font-bold text-white mb-12 text-center">Research Publications</h2>
               
-              {/* Featured Research Papers */}
-              <div className="grid md:grid-cols-2 gap-8 mb-12">
-                <motion.div 
-                  className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
-                  whileHover={{ scale: 1.02, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="flex items-center mb-4">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                    <span className="text-gray-400 text-sm">December 2024</span>
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-3">
-                    The AI Infrastructure Investment Thesis: Why Developer Tools Will Define the Next Decade
-                  </h3>
-                  <p className="text-gray-300 text-sm mb-4">
-                    An in-depth analysis of the AI tooling ecosystem and why infrastructure plays will outperform application layers in the coming years.
-                  </p>
-                  <motion.button 
-                    className="text-blue-400 hover:text-blue-300 text-sm font-semibold"
-                    whileHover={{ x: 5 }}
-                  >
-                    Read More →
-                  </motion.button>
-                </motion.div>
 
-                <motion.div 
-                  className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
-                  whileHover={{ scale: 1.02, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="flex items-center mb-4">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
-                    <span className="text-gray-400 text-sm">November 2024</span>
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-3">
-                    DeFi 3.0: The Evolution from Speculation to Utility
-                  </h3>
-                  <p className="text-gray-300 text-sm mb-4">
-                    How the next generation of decentralized finance protocols are solving real-world problems and creating sustainable value.
-                  </p>
-                  <motion.button 
-                    className="text-cyan-400 hover:text-cyan-300 text-sm font-semibold"
-                    whileHover={{ x: 5 }}
-                  >
-                    Read More →
-                  </motion.button>
-                </motion.div>
-              </div>
 
               {/* Downloadable Research Papers */}
               <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
