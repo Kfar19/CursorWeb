@@ -227,7 +227,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              AI Eats Data, Spews Decisions
+              Trained on data. Tuned for decisions
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
               The old system filters signal through committees. Ours reads it in real time.
