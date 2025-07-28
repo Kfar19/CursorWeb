@@ -1456,14 +1456,6 @@ export default function Home() {
                 {/* Subtle glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 rounded-full blur-xl"></div>
               </div>
-              <motion.div 
-                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500/90 to-cyan-600/90 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg border border-white/20"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 0.5 }}
-              >
-                Machines vs Humans
-              </motion.div>
             </div>
           </motion.div>
 
