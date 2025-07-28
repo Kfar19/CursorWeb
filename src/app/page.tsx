@@ -1036,10 +1036,87 @@ export default function Home() {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#home" className="text-gray-300 hover:text-white transition-colors">Home</a>
-              <a href="#mission" className="text-gray-300 hover:text-white transition-colors">Mission</a>
-              <a href="#team" className="text-gray-300 hover:text-white transition-colors">Team</a>
+            <div className="hidden md:flex items-center space-x-6">
+              <motion.a 
+                href="#home" 
+                className="text-gray-300 hover:text-white transition-colors relative group"
+                whileHover={{ scale: 1.05 }}
+              >
+                <span>Home</span>
+                <motion.div 
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-full transition-all duration-300"
+                  whileHover={{ width: "100%" }}
+                />
+              </motion.a>
+              
+              <motion.a 
+                href="#live-data" 
+                className="text-gray-300 hover:text-white transition-colors relative group flex items-center space-x-1"
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span>Live Data</span>
+                <motion.div 
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-400 to-emerald-400 group-hover:w-full transition-all duration-300"
+                  whileHover={{ width: "100%" }}
+                />
+              </motion.a>
+              
+              <motion.a 
+                href="#social-sentiment" 
+                className="text-gray-300 hover:text-white transition-colors relative group"
+                whileHover={{ scale: 1.05 }}
+              >
+                <span>Social Sentiment</span>
+                <motion.div 
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 group-hover:w-full transition-all duration-300"
+                  whileHover={{ width: "100%" }}
+                />
+              </motion.a>
+              
+              <motion.a 
+                href="#blockchain-feed" 
+                className="text-gray-300 hover:text-white transition-colors relative group"
+                whileHover={{ scale: 1.05 }}
+              >
+                <span>Blockchain</span>
+                <motion.div 
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-red-400 group-hover:w-full transition-all duration-300"
+                  whileHover={{ width: "100%" }}
+                />
+              </motion.a>
+              
+              <motion.a 
+                href="#ai-predictions" 
+                className="text-gray-300 hover:text-white transition-colors relative group"
+                whileHover={{ scale: 1.05 }}
+              >
+                <span>AI Predictions</span>
+                <motion.div 
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-400 to-purple-400 group-hover:w-full transition-all duration-300"
+                  whileHover={{ width: "100%" }}
+                />
+              </motion.a>
+              
+              <motion.a 
+                href="#bitcoin-holdings" 
+                className="text-gray-300 hover:text-white transition-colors relative group"
+                whileHover={{ scale: 1.05 }}
+              >
+                <span>Bitcoin Holdings</span>
+                <motion.div 
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-orange-400 group-hover:w-full transition-all duration-300"
+                  whileHover={{ width: "100%" }}
+                />
+              </motion.a>
+              
+              <motion.button 
+                onClick={() => setIsContactModalOpen(true)}
+                className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-2 px-4 rounded-full text-sm shadow-lg transition-all duration-300"
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(59, 130, 246, 0.3)" }}
+              >
+                Join Signal
+              </motion.button>
             </div>
 
             {/* Mobile menu button */}
@@ -1056,10 +1133,63 @@ export default function Home() {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <div className="md:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/50 backdrop-blur-md rounded-lg mt-2">
-                <a href="#home" className="block px-3 py-2 text-gray-300 hover:text-white transition-colors">Home</a>
-                <a href="#mission" className="block px-3 py-2 text-gray-300 hover:text-white transition-colors">Mission</a>
-                <a href="#team" className="block px-3 py-2 text-gray-300 hover:text-white transition-colors">Team</a>
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/50 backdrop-blur-md rounded-lg mt-2 border border-white/10">
+                <motion.a 
+                  href="#home" 
+                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5"
+                  whileHover={{ x: 5 }}
+                >
+                  Home
+                </motion.a>
+                
+                <motion.a 
+                  href="#live-data" 
+                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5 flex items-center space-x-2"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span>Live Data</span>
+                </motion.a>
+                
+                <motion.a 
+                  href="#social-sentiment" 
+                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5"
+                  whileHover={{ x: 5 }}
+                >
+                  Social Sentiment
+                </motion.a>
+                
+                <motion.a 
+                  href="#blockchain-feed" 
+                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5"
+                  whileHover={{ x: 5 }}
+                >
+                  Blockchain Feed
+                </motion.a>
+                
+                <motion.a 
+                  href="#ai-predictions" 
+                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5"
+                  whileHover={{ x: 5 }}
+                >
+                  AI Predictions
+                </motion.a>
+                
+                <motion.a 
+                  href="#bitcoin-holdings" 
+                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5"
+                  whileHover={{ x: 5 }}
+                >
+                  Bitcoin Holdings
+                </motion.a>
+                
+                <motion.button 
+                  onClick={() => setIsContactModalOpen(true)}
+                  className="w-full mt-2 bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-2 px-4 rounded-md text-sm shadow-lg transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  Join Signal
+                </motion.button>
               </div>
             </div>
           )}
@@ -1291,7 +1421,7 @@ export default function Home() {
       </section>
 
       {/* Social Buzz Tracking Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+      <section id="social-sentiment" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-center">
@@ -1408,7 +1538,7 @@ export default function Home() {
       </section>
 
       {/* AI Eats Data Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="live-data" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -1534,7 +1664,7 @@ export default function Home() {
       </section>
 
       {/* Live Blockchain Feed Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+      <section id="blockchain-feed" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-center">
@@ -1652,7 +1782,7 @@ export default function Home() {
       </section>
 
       {/* AI Market Predictions Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="ai-predictions" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-center">
@@ -1860,7 +1990,7 @@ export default function Home() {
       </section>
 
       {/* Bitcoin Holdings Monitor Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+      <section id="bitcoin-holdings" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-center">
