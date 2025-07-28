@@ -20,6 +20,7 @@ import {
   Code
 } from 'lucide-react';
 import Lottie from 'lottie-react';
+import productivityAnimation from '../../public/productivity-animation.json';
 
 
 export default function Home() {
@@ -1447,7 +1448,7 @@ export default function Home() {
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-2xl border border-white/10 backdrop-blur-sm p-4">
                 <Lottie
-                  animationData={require('/public/productivity-animation.json')}
+                  animationData={productivityAnimation}
                   loop={true}
                   autoplay={true}
                   style={{ width: '100%', height: '100%' }}
