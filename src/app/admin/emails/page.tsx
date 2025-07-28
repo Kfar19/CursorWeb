@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, Download, Mail, Calendar, FileText } from 'lucide-react';
+import { ArrowLeft, Download, Mail, Calendar, FileText, Lock, Eye, EyeOff } from 'lucide-react';
 
 interface EmailData {
   email: string;
@@ -23,9 +23,26 @@ export default function AdminEmailsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<'all' | 'research' | 'contact'>('all');
+  
+  // Authentication state
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState<string | null>(null);
+  const [credentials, setCredentials] = useState({
+    username: '',
+    password: ''
+  });
 
   useEffect(() => {
-    fetchEmails();
+    // Check if already authenticated
+    const authStatus = localStorage.getItem('admin_authenticated');
+    if (authStatus === 'true') {
+      setIsAuthenticated(true);
+      fetchEmails();
+    } else {
+      setIsLoading(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -37,6 +54,37 @@ export default function AdminEmailsPage() {
       setFilteredEmails(emails.filter(email => email.source === 'contact_form'));
     }
   }, [emails, filter]);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoggingIn(true);
+    setLoginError(null);
+
+    try {
+      // Simple authentication - you can change these credentials
+      const validUsername = 'admin';
+      const validPassword = 'birdai2024';
+
+      if (credentials.username === validUsername && credentials.password === validPassword) {
+        setIsAuthenticated(true);
+        localStorage.setItem('admin_authenticated', 'true');
+        fetchEmails();
+      } else {
+        setLoginError('Invalid credentials');
+      }
+    } catch (error) {
+      setLoginError('Login failed. Please try again.');
+    } finally {
+      setIsLoggingIn(false);
+    }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('admin_authenticated');
+    setEmails([]);
+    setFilteredEmails([]);
+  };
 
   const fetchEmails = async () => {
     try {
@@ -71,6 +119,114 @@ export default function AdminEmailsPage() {
     window.URL.revokeObjectURL(url);
   };
 
+  // Login Form
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center p-4">
+        <motion.div 
+          className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-md w-full"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Lock className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-3xl font-bold text-white mb-2">Admin Access</h1>
+            <p className="text-gray-400">Enter your credentials to view email collection data</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label htmlFor="username" className="block text-sm font-medium text-gray-300 mb-2">
+                Username
+              </label>
+              <input
+                type="text"
+                id="username"
+                value={credentials.username}
+                onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
+                required
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors"
+                placeholder="Enter username"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  value={credentials.password}
+                  onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+                  required
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors pr-12"
+                  placeholder="Enter password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
+            </div>
+
+            {loginError && (
+              <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+                <p className="text-red-400 text-sm">{loginError}</p>
+              </div>
+            )}
+
+            <motion.button
+              type="submit"
+              disabled={isLoggingIn}
+              className="w-full bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-3 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {isLoggingIn ? (
+                <motion.div
+                  className="flex items-center justify-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
+                  <motion.div
+                    className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  />
+                  Signing in...
+                </motion.div>
+              ) : (
+                'Sign In'
+              )}
+            </motion.button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <Link href="/" className="text-gray-400 hover:text-white transition-colors text-sm">
+              ← Back to Home
+            </Link>
+          </div>
+
+          <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+            <p className="text-blue-400 text-sm text-center">
+              <strong>Default Credentials:</strong><br />
+              Username: admin<br />
+              Password: birdai2024
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center">
@@ -104,13 +260,22 @@ export default function AdminEmailsPage() {
               </span>
             </div>
             
-            <button
-              onClick={downloadEmails}
-              className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-2 px-4 rounded-full text-sm shadow-lg transition-all duration-300 flex items-center space-x-2"
-            >
-              <Download size={16} />
-              <span>Export CSV</span>
-            </button>
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={downloadEmails}
+                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-2 px-4 rounded-full text-sm shadow-lg transition-all duration-300 flex items-center space-x-2"
+              >
+                <Download size={16} />
+                <span>Export CSV</span>
+              </button>
+              
+              <button
+                onClick={handleLogout}
+                className="bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white font-semibold py-2 px-4 rounded-full text-sm shadow-lg transition-all duration-300"
+              >
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </nav>

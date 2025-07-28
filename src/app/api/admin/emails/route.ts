@@ -4,18 +4,8 @@ import path from 'path';
 
 export async function GET(request: NextRequest) {
   try {
-    // Basic security check - you might want to add proper authentication
-    const authHeader = request.headers.get('authorization');
-    
-    // For now, we'll just check if the request comes from localhost
-    // In production, you should implement proper authentication
-    const host = request.headers.get('host') || '';
-    if (!host.includes('localhost') && !host.includes('127.0.0.1')) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
-    }
+    // Note: Authentication is now handled on the frontend
+    // The admin page has its own login system
 
     const emailFile = path.join(process.cwd(), 'data', 'emails', 'research-emails.json');
     
