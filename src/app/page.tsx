@@ -1361,23 +1361,6 @@ export default function Home() {
       >
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* AI Productivity Animation Background */}
-          <motion.div 
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 opacity-20"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 0.15, scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-          >
-            <Lottie
-              animationData={productivityAnimation}
-              loop={true}
-              autoplay={true}
-              style={{ width: '100%', height: '100%' }}
-            />
-            {/* Subtle glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-2xl"></div>
-          </motion.div>
-          
           <motion.div 
             className="absolute top-20 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"
             animate={{ 
@@ -1739,8 +1722,25 @@ export default function Home() {
       </section>
 
       {/* Why Now Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20 relative overflow-hidden">
+        {/* Strategic AI Productivity Animation Background */}
+        <motion.div 
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-10"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.1, scale: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        >
+          <Lottie
+            animationData={productivityAnimation}
+            loop={true}
+            autoplay={true}
+            style={{ width: '100%', height: '100%' }}
+          />
+          {/* Strategic glow effect */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/15 to-cyan-500/15 rounded-full blur-3xl"></div>
+        </motion.div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center">
             <ScrollAnimation>
               <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">
