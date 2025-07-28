@@ -1446,16 +1446,18 @@ export default function Home() {
             animate="visible"
           >
             <div className="relative">
-              <div className="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-2xl border border-white/10 backdrop-blur-sm p-4">
+              <div className="w-64 h-64 md:w-80 md:h-80 relative">
                 <Lottie
                   animationData={productivityAnimation}
                   loop={true}
                   autoplay={true}
                   style={{ width: '100%', height: '100%' }}
                 />
+                {/* Subtle glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 rounded-full blur-xl"></div>
               </div>
               <motion.div 
-                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
+                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500/90 to-cyan-600/90 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg border border-white/20"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.5 }}
