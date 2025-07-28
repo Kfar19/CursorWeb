@@ -20,7 +20,7 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       {/* Navbar */}
       <nav className="fixed top-0 w-full bg-black/20 backdrop-blur-md border-b border-white/10 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,7 +28,7 @@ export default function Home() {
             {/* Logo */}
             <div className="flex items-center">
               <div className="text-2xl font-bold text-white">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
                   Birdai
                 </span>
               </div>
@@ -70,7 +70,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
             See What Others
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
               Miss
             </span>
           </h1>
@@ -79,11 +79,11 @@ export default function Home() {
           </p>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
             A structural shift is happening.
-            <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+            <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
               Don&apos;t miss this cycle.
             </span>
           </p>
-          <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+          <button className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
             Join the Signal
           </button>
         </div>
@@ -100,7 +100,7 @@ export default function Home() {
               How do you plan to access the fastest-growing asset class in capital markets—while the system itself is being rewritten?
             </p>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-2xl mx-auto">
-              <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400 mb-2">
+              <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-2">
                 $3.25T
               </p>
               <p className="text-gray-300">
@@ -149,7 +149,7 @@ export default function Home() {
                 <p className="text-xl text-gray-300 mb-4">
                   The last cycle rewarded early conviction in emerging infrastructure. Few were positioned to capture it.
                 </p>
-                <p className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-semibold">
+                <p className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 font-semibold">
                   This time it&apos;s bigger: AI-native capital infrastructure is here.
                 </p>
               </div>
@@ -167,7 +167,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Feature 1 */}
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6">
                 <Brain className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Better Tooling</h3>
@@ -178,7 +178,7 @@ export default function Home() {
 
             {/* Feature 2 */}
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-gradient-to-r from-teal-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
                 <TrendingUp className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Proven Exits</h3>
@@ -189,7 +189,7 @@ export default function Home() {
 
             {/* Feature 3 */}
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
                 <Code className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Fundamental Execution</h3>
@@ -215,21 +215,21 @@ export default function Home() {
           
           <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 text-white">
             <div className="flex items-center">
-              <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-full p-3">
+              <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full p-3">
                 <Network className="w-6 h-6" />
               </div>
               <span className="ml-3 text-lg font-semibold">Signal</span>
             </div>
             <div className="text-gray-400">→</div>
             <div className="flex items-center">
-              <div className="bg-gradient-to-r from-green-500 to-blue-600 rounded-full p-3">
+              <div className="bg-gradient-to-r from-teal-500 to-blue-600 rounded-full p-3">
                 <TrendingUp className="w-6 h-6" />
               </div>
               <span className="ml-3 text-lg font-semibold">Score</span>
             </div>
             <div className="text-gray-400">→</div>
             <div className="flex items-center">
-              <div className="bg-gradient-to-r from-purple-500 to-pink-600 rounded-full p-3">
+              <div className="bg-gradient-to-r from-indigo-500 to-blue-600 rounded-full p-3">
                 <Shield className="w-6 h-6" />
               </div>
               <span className="ml-3 text-lg font-semibold">Structure</span>
@@ -243,7 +243,7 @@ export default function Home() {
             </div>
             <div className="text-gray-400">→</div>
             <div className="flex items-center">
-              <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full p-3">
+              <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full p-3">
                 <Brain className="w-6 h-6" />
               </div>
               <span className="ml-3 text-lg font-semibold">Monitor</span>
@@ -307,7 +307,7 @@ export default function Home() {
             {/* Brand */}
             <div className="md:col-span-2">
               <div className="text-2xl font-bold text-white mb-4">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
                   Birdai
                 </span>
               </div>
