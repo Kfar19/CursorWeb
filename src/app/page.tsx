@@ -367,28 +367,28 @@ export default function Home() {
     return signals;
   };
 
-  // Fetch data on component mount and every 30 seconds
+  // Fetch data on component mount and every 60 seconds
   useEffect(() => {
     fetchMarketCap();
-    const marketInterval = setInterval(fetchMarketCap, 30000); // Update every 30 seconds
+    const marketInterval = setInterval(fetchMarketCap, 60000); // Update every 60 seconds
     return () => clearInterval(marketInterval);
   }, [fetchMarketCap]);
 
-  // Update social buzz every 15 seconds
+  // Update social buzz every 45 seconds
   useEffect(() => {
-    const socialInterval = setInterval(updateSocialBuzz, 15000); // Update every 15 seconds
+    const socialInterval = setInterval(updateSocialBuzz, 45000); // Update every 45 seconds
     return () => clearInterval(socialInterval);
   }, [updateSocialBuzz]);
 
-  // Update blockchain feed every 8 seconds
+  // Update blockchain feed every 30 seconds
   useEffect(() => {
-    const blockchainInterval = setInterval(updateBlockchainFeed, 8000); // Update every 8 seconds
+    const blockchainInterval = setInterval(updateBlockchainFeed, 30000); // Update every 30 seconds
     return () => clearInterval(blockchainInterval);
   }, [updateBlockchainFeed]);
 
-  // Update AI predictions every 12 seconds
+  // Update AI predictions every 45 seconds
   useEffect(() => {
-    const aiInterval = setInterval(updateAiPredictions, 12000); // Update every 12 seconds
+    const aiInterval = setInterval(updateAiPredictions, 45000); // Update every 45 seconds
     return () => clearInterval(aiInterval);
   }, [updateAiPredictions]);
 
@@ -420,7 +420,7 @@ export default function Home() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.3
       }
     }
   };
@@ -429,14 +429,14 @@ export default function Home() {
     hover: { 
       y: -10, 
       scale: 1.02,
-      transition: { duration: 0.3 }
+      transition: { duration: 0.5 }
     }
   };
 
   const buttonHover = {
     hover: { 
       scale: 1.05,
-      transition: { duration: 0.2 }
+      transition: { duration: 0.3 }
     }
   };
 
@@ -481,7 +481,7 @@ export default function Home() {
         ref={ref}
         initial={{ opacity: 0, y: 60 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-        transition={{ duration: 0.6, delay }}
+        transition={{ duration: 0.8, delay }}
       >
         {children}
       </motion.div>
@@ -1084,7 +1084,7 @@ export default function Home() {
                 <motion.div 
                   className="text-3xl font-bold text-blue-400 mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  transition={{ duration: 4, repeat: Infinity }}
                 >
                   {totalTransactions.toLocaleString()}
                 </motion.div>
@@ -1101,7 +1101,7 @@ export default function Home() {
                 <motion.div 
                   className="text-3xl font-bold text-green-400 mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 1 }}
                 >
                   {activeProtocols}
                 </motion.div>
@@ -1118,7 +1118,7 @@ export default function Home() {
                 <motion.div 
                   className="text-3xl font-bold text-orange-400 mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 2 }}
                 >
                   {gasPrice} gwei
                 </motion.div>
@@ -1166,7 +1166,7 @@ export default function Home() {
                       <motion.div 
                         className="w-2 h-2 bg-blue-400 rounded-full mt-2"
                         animate={{ opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
+                        transition={{ duration: 3, repeat: Infinity }}
                       />
                     </div>
                   </motion.div>
@@ -1202,7 +1202,7 @@ export default function Home() {
                 <motion.div 
                   className="text-3xl font-bold text-purple-400 mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  transition={{ duration: 4, repeat: Infinity }}
                 >
                   {modelAccuracy.toFixed(1)}%
                 </motion.div>
@@ -1219,7 +1219,7 @@ export default function Home() {
                 <motion.div 
                   className="text-3xl font-bold text-green-400 mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 1 }}
                 >
                   {totalPredictions.toLocaleString()}
                 </motion.div>
@@ -1236,7 +1236,7 @@ export default function Home() {
                 <motion.div 
                   className="text-3xl font-bold text-blue-400 mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 2 }}
                 >
                   {successRate.toFixed(1)}%
                 </motion.div>
@@ -1253,7 +1253,7 @@ export default function Home() {
                 <motion.div 
                   className="text-3xl font-bold text-orange-400 mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 3 }}
                 >
                   {marketSentiment.confidence}%
                 </motion.div>
