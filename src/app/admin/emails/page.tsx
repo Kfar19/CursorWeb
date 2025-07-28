@@ -72,7 +72,7 @@ export default function AdminEmailsPage() {
       } else {
         setLoginError('Invalid credentials');
       }
-    } catch (error) {
+    } catch {
       setLoginError('Login failed. Please try again.');
     } finally {
       setIsLoggingIn(false);
@@ -95,7 +95,7 @@ export default function AdminEmailsPage() {
       } else {
         setError('Failed to fetch emails');
       }
-    } catch (error) {
+    } catch {
       setError('Failed to fetch emails');
     } finally {
       setIsLoading(false);
