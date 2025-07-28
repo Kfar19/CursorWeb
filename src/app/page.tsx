@@ -18,6 +18,7 @@ import {
   Mail,
   Code
 } from 'lucide-react';
+import SignalProcessor from './components/SignalProcessor';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -1746,6 +1747,18 @@ export default function Home() {
                 Where legacy firms add headcount, we add code. Scalable, intelligent, and aligned from day one.
               </p>
             </motion.div>
+          </div>
+
+          {/* Signal Processing Flow */}
+          <div className="mt-16">
+            <ScrollAnimation delay={0.6}>
+              <h3 className="text-3xl font-bold text-white text-center mb-8">How Signals Are Processed</h3>
+            </ScrollAnimation>
+            <ScrollAnimation delay={0.7}>
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden">
+                <SignalProcessor />
+              </div>
+            </ScrollAnimation>
           </div>
         </div>
       </section>
