@@ -15,7 +15,6 @@ import {
   Linkedin,
   Github,
   Mail,
-  TrendingUp,
   Code
 } from 'lucide-react';
 
@@ -1929,11 +1928,11 @@ export default function Home() {
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
-                <TrendingUp className="w-8 h-8 text-white" />
+                <Code className="w-8 h-8 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-white mb-4">Proven Exits</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Fundamental Execution</h3>
               <p className="text-gray-300">
-                Real founder demand with demonstrated liquidity events and regulatory momentum.
+                Where legacy firms add headcount, we add code. Scalable, intelligent, and aligned from day one.
               </p>
             </motion.div>
 
