@@ -36,9 +36,8 @@ export default function Home() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you can add form submission logic
     console.log('Form submitted:', formData);
-    // For now, just close the modal
+    alert('Thank you! Your message has been logged.');
     setIsContactModalOpen(false);
     setFormData({ name: '', email: '', company: '', message: '' });
   };
@@ -124,7 +123,7 @@ export default function Home() {
               
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
+                className="w-full bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Send Message
               </button>
