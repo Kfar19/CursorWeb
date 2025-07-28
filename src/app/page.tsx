@@ -319,9 +319,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Infrastructure for a Machine-Readable Market
             </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-              Our AI agents transform raw market data into structured, executable insight.
-            </p>
+
           </div>
         </div>
       </section>
