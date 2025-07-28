@@ -89,15 +89,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Market Access Section */}
+      {/* Coding Capital Section */}
       <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Market Access
+              Coding Capital
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-              How do you plan to access the fastest-growing asset class in capital markets—while the system itself is being rewritten?
+              The fastest-growing asset class isn&apos;t just emerging—it&apos;s rewriting the rules. Are you inside the system, or watching it evolve from the outside?
             </p>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-2xl mx-auto">
               <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-2">
