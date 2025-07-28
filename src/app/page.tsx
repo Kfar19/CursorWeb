@@ -190,9 +190,6 @@ export default function Home() {
           </p>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
             A structural shift is happening.
-            <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-              Don&apos;t miss this cycle.
-            </span>
           </p>
           <button 
             onClick={() => setIsContactModalOpen(true)}
