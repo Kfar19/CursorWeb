@@ -52,6 +52,68 @@ export default function Home() {
   });
   const [totalMentions, setTotalMentions] = useState(3385);
 
+  // Live blockchain feed state
+  const [blockchainFeed, setBlockchainFeed] = useState([
+    {
+      id: 1,
+      type: 'whale_movement',
+      protocol: 'Uniswap V4',
+      description: 'Whale moved 2,500 ETH to liquidity pool',
+      amount: '2,500 ETH',
+      value: '$4.2M',
+      time: '2 min ago',
+      impact: 'high',
+      txHash: '0x7a8b...3f2e'
+    },
+    {
+      id: 2,
+      type: 'protocol_activity',
+      protocol: 'Compound',
+      description: 'New lending pool launched: USDC/ETH',
+      amount: 'Pool Size: $12M',
+      value: 'APY: 8.5%',
+      time: '5 min ago',
+      impact: 'medium',
+      txHash: '0x9c1d...7a4b'
+    },
+    {
+      id: 3,
+      type: 'defi_activity',
+      protocol: 'Aave',
+      description: 'Flash loan executed: $850K USDC',
+      amount: '850K USDC',
+      value: 'Fee: $425',
+      time: '8 min ago',
+      impact: 'low',
+      txHash: '0x3e2f...9c8d'
+    },
+    {
+      id: 4,
+      type: 'nft_activity',
+      protocol: 'OpenSea',
+      description: 'Rare NFT sold: CryptoPunk #1234',
+      amount: '1 NFT',
+      value: '45 ETH',
+      time: '12 min ago',
+      impact: 'high',
+      txHash: '0x5a7b...1e9f'
+    },
+    {
+      id: 5,
+      type: 'governance',
+      protocol: 'Uniswap DAO',
+      description: 'Proposal passed: Fee structure update',
+      amount: 'Votes: 2.1M',
+      value: 'Quorum: 85%',
+      time: '15 min ago',
+      impact: 'medium',
+      txHash: '0x8d4e...6b2a'
+    }
+  ]);
+  const [totalTransactions, setTotalTransactions] = useState(1247500);
+  const [activeProtocols, setActiveProtocols] = useState(47);
+  const [gasPrice, setGasPrice] = useState(25);
+
   // Fetch live crypto market cap
   const fetchMarketCap = useCallback(async () => {
     try {
@@ -89,6 +151,67 @@ export default function Home() {
     });
   }, [trendingTopics]);
 
+  // Simulate blockchain feed updates
+  const updateBlockchainFeed = useCallback(() => {
+    const protocols = ['Uniswap V4', 'Compound', 'Aave', 'OpenSea', 'Uniswap DAO', 'Curve', 'Balancer', 'SushiSwap', 'dYdX', 'GMX'];
+    const types = ['whale_movement', 'protocol_activity', 'defi_activity', 'nft_activity', 'governance', 'liquidity_event', 'flash_loan', 'yield_farming'];
+    
+    const newActivity = {
+      id: Date.now(),
+      type: types[Math.floor(Math.random() * types.length)],
+      protocol: protocols[Math.floor(Math.random() * protocols.length)],
+      description: generateActivityDescription(),
+      amount: generateAmount(),
+      value: generateValue(),
+      time: 'Just now',
+      impact: ['high', 'medium', 'low'][Math.floor(Math.random() * 3)],
+      txHash: generateTxHash()
+    };
+
+    setBlockchainFeed(prev => [newActivity, ...prev.slice(0, 4)]); // Keep only 5 items
+    
+    // Update stats
+    setTotalTransactions(prev => prev + Math.floor(Math.random() * 100) + 50);
+    setActiveProtocols(prev => Math.max(40, Math.min(60, prev + (Math.random() > 0.5 ? 1 : -1))));
+    setGasPrice(prev => Math.max(15, Math.min(50, prev + (Math.random() > 0.5 ? 2 : -2))));
+  }, []);
+
+  // Helper functions for blockchain feed
+  const generateActivityDescription = () => {
+    const descriptions = [
+      'Whale moved large position to new protocol',
+      'Flash loan executed for arbitrage opportunity',
+      'New liquidity pool launched with high APY',
+      'Governance proposal passed with overwhelming support',
+      'Rare NFT sold for significant premium',
+      'Protocol upgrade deployed successfully',
+      'Cross-chain bridge activity detected',
+      'Yield farming strategy executed',
+      'Liquidation event occurred',
+      'New token listing on DEX'
+    ];
+    return descriptions[Math.floor(Math.random() * descriptions.length)];
+  };
+
+  const generateAmount = () => {
+    const amounts = ['1,250 ETH', '500K USDC', '2.5M DAI', '100K LINK', '50K UNI', '25K AAVE', '10K COMP', '5K CRV'];
+    return amounts[Math.floor(Math.random() * amounts.length)];
+  };
+
+  const generateValue = () => {
+    const values = ['$2.1M', '$500K', '$1.8M', '$750K', '$300K', '$950K', '$420K', '$1.2M'];
+    return values[Math.floor(Math.random() * values.length)];
+  };
+
+  const generateTxHash = () => {
+    const chars = '0123456789abcdef';
+    let hash = '0x';
+    for (let i = 0; i < 8; i++) {
+      hash += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return hash + '...' + chars[Math.floor(Math.random() * chars.length)] + chars[Math.floor(Math.random() * chars.length)];
+  };
+
   // Fetch data on component mount and every 30 seconds
   useEffect(() => {
     fetchMarketCap();
@@ -101,6 +224,12 @@ export default function Home() {
     const socialInterval = setInterval(updateSocialBuzz, 15000); // Update every 15 seconds
     return () => clearInterval(socialInterval);
   }, [updateSocialBuzz]);
+
+  // Update blockchain feed every 8 seconds
+  useEffect(() => {
+    const blockchainInterval = setInterval(updateBlockchainFeed, 8000); // Update every 8 seconds
+    return () => clearInterval(blockchainInterval);
+  }, [updateBlockchainFeed]);
 
   // Format market cap for display
   const formatMarketCap = (value: number) => {
@@ -766,6 +895,124 @@ export default function Home() {
             </h2>
 
           </div>
+        </div>
+      </section>
+
+      {/* Live Blockchain Feed Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+        <div className="max-w-7xl mx-auto">
+          <ScrollAnimation>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-center">
+              Live Blockchain Feed
+            </h2>
+          </ScrollAnimation>
+          <ScrollAnimation delay={0.2}>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-12 text-center">
+              Real-time on-chain activity across DeFi protocols, whale movements, and market events
+            </p>
+          </ScrollAnimation>
+
+          {/* Live Stats */}
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <ScrollAnimation delay={0.3}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-blue-400 mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  {totalTransactions.toLocaleString()}
+                </motion.div>
+                <p className="text-gray-400">Total Transactions (24h)</p>
+              </motion.div>
+            </ScrollAnimation>
+
+            <ScrollAnimation delay={0.4}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-green-400 mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                >
+                  {activeProtocols}
+                </motion.div>
+                <p className="text-gray-400">Active Protocols</p>
+              </motion.div>
+            </ScrollAnimation>
+
+            <ScrollAnimation delay={0.5}>
+              <motion.div 
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-orange-400 mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                >
+                  {gasPrice} gwei
+                </motion.div>
+                <p className="text-gray-400">Current Gas Price</p>
+              </motion.div>
+            </ScrollAnimation>
+          </div>
+
+          {/* Live Activity Feed */}
+          <ScrollAnimation delay={0.6}>
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <h3 className="text-2xl font-bold text-white mb-6">Live Activity Feed</h3>
+              <div className="space-y-4 max-h-96 overflow-y-auto">
+                {blockchainFeed.map((activity, index) => (
+                  <motion.div 
+                    key={activity.id}
+                    className="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/10"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className={`w-3 h-3 rounded-full ${
+                        activity.impact === 'high' ? 'bg-red-400' : 
+                        activity.impact === 'medium' ? 'bg-yellow-400' : 'bg-green-400'
+                      }`} />
+                      <div>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-white font-semibold">{activity.protocol}</span>
+                          <span className="text-xs text-gray-400 bg-white/10 px-2 py-1 rounded">
+                            {activity.type.replace('_', ' ')}
+                          </span>
+                        </div>
+                        <p className="text-gray-300 text-sm">{activity.description}</p>
+                        <div className="flex items-center space-x-4 mt-1">
+                          <span className="text-blue-400 text-sm">{activity.amount}</span>
+                          <span className="text-green-400 text-sm">{activity.value}</span>
+                          <span className="text-gray-400 text-xs">{activity.time}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs text-gray-500 font-mono">{activity.txHash}</p>
+                      <motion.div 
+                        className="w-2 h-2 bg-blue-400 rounded-full mt-2"
+                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </ScrollAnimation>
         </div>
       </section>
 
