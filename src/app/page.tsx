@@ -1087,13 +1087,41 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <div className="flex items-center">
-              <div className="text-2xl font-bold text-white">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+            <motion.div 
+              className="flex items-center cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div 
+                className="text-2xl font-bold text-white"
+                animate={{ 
+                  y: [0, -2, 0],
+                  scale: [1, 1.02, 1]
+                }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <motion.span 
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400"
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  style={{
+                    backgroundSize: "200% 200%"
+                  }}
+                >
                   Birdai
-                </span>
-              </div>
-            </div>
+                </motion.span>
+              </motion.div>
+            </motion.div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
@@ -2196,11 +2224,27 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8">
             {/* Brand */}
             <div className="md:col-span-2">
-              <div className="text-2xl font-bold text-white mb-4">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+              <motion.div 
+                className="text-2xl font-bold text-white mb-4"
+                whileHover={{ scale: 1.05 }}
+              >
+                <motion.span 
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400"
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  style={{
+                    backgroundSize: "200% 200%"
+                  }}
+                >
                   Birdai
-                </span>
-              </div>
+                </motion.span>
+              </motion.div>
               <p className="text-gray-300 mb-6 max-w-md">
                 Machine-native. Protocol-first. Liquidity-aware. See what others miss.
               </p>
