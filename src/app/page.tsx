@@ -19,6 +19,7 @@ import {
   Mail,
   Code
 } from 'lucide-react';
+import Lottie from 'lottie-react';
 
 
 export default function Home() {
@@ -1435,6 +1436,33 @@ export default function Home() {
               Miss
             </motion.span>
           </motion.h1>
+
+          {/* AI Productivity Animation */}
+          <motion.div 
+            className="flex justify-center mb-8"
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+          >
+            <div className="relative">
+              <div className="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-2xl border border-white/10 backdrop-blur-sm p-4">
+                <Lottie
+                  animationData={require('/public/productivity-animation.json')}
+                  loop={true}
+                  autoplay={true}
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </div>
+              <motion.div 
+                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1, duration: 0.5 }}
+              >
+                Machines vs Humans
+              </motion.div>
+            </div>
+          </motion.div>
 
           {/* Animated Tagline */}
           <motion.div 
