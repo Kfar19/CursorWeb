@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, X, Download, Mail } from 'lucide-react';
+import { ArrowLeft, X, Eye, Mail } from 'lucide-react';
 import { useState } from 'react';
 
 // ScrollAnimation component for consistent animations
@@ -14,6 +14,76 @@ const ScrollAnimation = ({ children, delay = 0 }: { children: React.ReactNode; d
       transition={{ duration: 0.6, delay }}
     >
       {children}
+    </motion.div>
+  );
+};
+
+// PDF Viewer Component
+const PDFViewer = ({ isOpen, onClose, fileName }: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  fileName: string;
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        className="bg-gradient-to-br from-gray-900 to-black rounded-2xl w-full max-w-6xl h-[90vh] border border-white/20 flex flex-col"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 border-b border-white/10">
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
+              <svg className="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold">{fileName.replace('.pdf', '')}</h3>
+              <p className="text-gray-400 text-sm">Research Paper</p>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-white transition-colors"
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        {/* PDF Viewer */}
+        <div className="flex-1 p-6">
+          <iframe
+            src={`/research/${fileName}#toolbar=0&navpanes=0&scrollbar=0`}
+            className="w-full h-full rounded-lg border border-white/10"
+            title={fileName}
+          />
+        </div>
+
+        {/* Footer */}
+        <div className="p-6 border-t border-white/10">
+          <div className="flex items-center justify-between">
+            <p className="text-gray-400 text-sm">
+              This research paper is for internal use only. Please do not share or distribute.
+            </p>
+            <div className="flex items-center space-x-2 text-gray-400 text-sm">
+              <Eye size={16} />
+              <span>View Only</span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -69,9 +139,9 @@ const EmailCaptureModal = ({ isOpen, onClose, onEmailSubmit, fileName }: {
           <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
             <Mail size={24} className="text-white" />
           </div>
-          <h3 className="text-xl font-bold text-white mb-2">Get Your Research Paper</h3>
+          <h3 className="text-xl font-bold text-white mb-2">Access Research Paper</h3>
           <p className="text-gray-300 text-sm">
-            Enter your email to download &ldquo;{fileName}&rdquo;
+            Enter your work email to read &ldquo;{fileName}&rdquo;
           </p>
         </div>
 
@@ -79,14 +149,14 @@ const EmailCaptureModal = ({ isOpen, onClose, onEmailSubmit, fileName }: {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-              Email Address
+              Work Email Address
             </label>
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
+              placeholder="your@company.com"
               required
               className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
@@ -104,8 +174,8 @@ const EmailCaptureModal = ({ isOpen, onClose, onEmailSubmit, fileName }: {
               </>
             ) : (
               <>
-                <Download size={20} />
-                <span>Download Research Paper</span>
+                <Eye size={20} />
+                <span>Read Research Paper</span>
               </>
             )}
           </button>
@@ -125,8 +195,12 @@ export default function ResearchPage() {
     isOpen: false,
     fileName: ''
   });
+  const [pdfViewer, setPdfViewer] = useState<{ isOpen: boolean; fileName: string }>({
+    isOpen: false,
+    fileName: ''
+  });
 
-  const handleDownloadRequest = (fileName: string) => {
+  const handleReadRequest = (fileName: string) => {
     setEmailModal({ isOpen: true, fileName });
   };
 
@@ -134,16 +208,9 @@ export default function ResearchPage() {
     // Here you would typically send the email to your backend
     console.log('Email submitted:', email);
     
-    // For now, we'll just close the modal and trigger download
+    // Close email modal and open PDF viewer
     setEmailModal({ isOpen: false, fileName: '' });
-    
-    // Trigger actual download
-    const link = document.createElement('a');
-    link.href = `/research/${emailModal.fileName}`;
-    link.download = emailModal.fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    setPdfViewer({ isOpen: true, fileName: emailModal.fileName });
   };
 
   return (
@@ -154,6 +221,13 @@ export default function ResearchPage() {
         onClose={() => setEmailModal({ isOpen: false, fileName: '' })}
         onEmailSubmit={handleEmailSubmit}
         fileName={emailModal.fileName}
+      />
+
+      {/* PDF Viewer Modal */}
+      <PDFViewer
+        isOpen={pdfViewer.isOpen}
+        onClose={() => setPdfViewer({ isOpen: false, fileName: '' })}
+        fileName={pdfViewer.fileName}
       />
 
       {/* Navigation Header */}
@@ -281,9 +355,9 @@ export default function ResearchPage() {
               
 
 
-              {/* Downloadable Research Papers */}
+              {/* Research Papers */}
               <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-                <h3 className="text-2xl font-bold text-white mb-8 text-center">Download Research Papers</h3>
+                <h3 className="text-2xl font-bold text-white mb-8 text-center">Research Papers</h3>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   
                   {/* From Rails to Returns */}
@@ -309,12 +383,12 @@ export default function ResearchPage() {
                     <div className="flex items-center justify-between">
                       <span className="text-gray-400 text-xs">3.9 MB • PDF</span>
                       <motion.button 
-                        onClick={() => handleDownloadRequest('From Rails to Returns_ Payments Circle.pdf')}
+                        onClick={() => handleReadRequest('From Rails to Returns_ Payments Circle.pdf')}
                         className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        Download
+                        Read
                       </motion.button>
                     </div>
                   </motion.div>
