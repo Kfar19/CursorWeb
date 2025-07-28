@@ -1065,6 +1065,20 @@ export default function Home() {
                 </motion.div>
               </Link>
               
+              <Link
+                href="/chatbot" 
+                className="text-gray-300 hover:text-white transition-colors relative group flex items-center space-x-1"
+              >
+                <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-1">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                  <span>Chatbot</span>
+                  <motion.div 
+                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-full transition-all duration-300"
+                    whileHover={{ width: "100%" }}
+                  />
+                </motion.div>
+              </Link>
+              
               <motion.a 
                 href="#live-data" 
                 className="text-gray-300 hover:text-white transition-colors relative group flex items-center space-x-1"
@@ -1154,6 +1168,16 @@ export default function Home() {
                 >
                   <motion.div whileHover={{ x: 5 }}>
                     Research
+                  </motion.div>
+                </Link>
+                
+                <Link
+                  href="/chatbot" 
+                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5 flex items-center space-x-2"
+                >
+                  <motion.div whileHover={{ x: 5 }} className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    <span>Chatbot</span>
                   </motion.div>
                 </Link>
                 
