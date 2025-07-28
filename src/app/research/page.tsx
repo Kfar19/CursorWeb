@@ -71,7 +71,7 @@ const EmailCaptureModal = ({ isOpen, onClose, onEmailSubmit, fileName }: {
           </div>
           <h3 className="text-xl font-bold text-white mb-2">Get Your Research Paper</h3>
           <p className="text-gray-300 text-sm">
-            Enter your email to download "{fileName}"
+            Enter your email to download &ldquo;{fileName}&rdquo;
           </p>
         </div>
 
@@ -384,7 +384,7 @@ export default function ResearchPage() {
                       </div>
                     </div>
                     <p className="text-gray-300 text-sm mb-4">
-                      We're constantly adding new research papers. Subscribe to get notified when new content is available.
+                      We&apos;re constantly adding new research papers. Subscribe to get notified when new content is available.
                     </p>
                     <div className="flex items-center justify-between">
                       <span className="text-gray-400 text-xs">Stay Updated</span>
