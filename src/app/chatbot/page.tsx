@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, Send, Bot, AlertTriangle, Info, BookOpen, TrendingUp, Shield } from 'lucide-react';
+import { ArrowLeft, Send, Bot, AlertTriangle, Info, BookOpen, Shield } from 'lucide-react';
 
 // Legal disclaimer component
 const LegalDisclaimer = () => (

@@ -464,25 +464,39 @@ export default function Home() {
       const allRedditPosts = redditResults.flat();
       
       // Process CryptoPanic news
-      const cryptopanicNews = cryptopanicResults.map((item: any) => ({
+      const cryptopanicNews = cryptopanicResults.map((item: {
+        title: string;
+        metadata?: { description?: string };
+        votes?: { positive: number; negative: number };
+        published_at: string;
+      }) => ({
         title: item.title,
         content: item.metadata?.description || '',
-        sentiment: item.votes?.positive > item.votes?.negative ? 'bullish' : 'bearish',
+        sentiment: (item.votes?.positive || 0) > (item.votes?.negative || 0) ? 'bullish' : 'bearish',
         source: 'CryptoPanic',
         published_at: item.published_at
       }));
       
       // Process CoinGecko news
-      const coingeckoNews = coingeckoResults.map((item: any) => ({
+      const coingeckoNews = coingeckoResults.map((item: {
+        title: string;
+        description?: string;
+        published_at: string;
+      }) => ({
         title: item.title,
         content: item.description || '',
-        sentiment: 'neutral', // CoinGecko doesn't provide sentiment
+        sentiment: 'neutral' as const, // CoinGecko doesn't provide sentiment
         source: 'CoinGecko',
         published_at: item.published_at
       }));
       
       // Process Alpha Vantage news
-      const alphaVantageNews = alphaVantageResults.map((item: any) => ({
+      const alphaVantageNews = alphaVantageResults.map((item: {
+        title: string;
+        summary?: string;
+        overall_sentiment_label?: string;
+        time_published: string;
+      }) => ({
         title: item.title,
         content: item.summary || '',
         sentiment: item.overall_sentiment_label || 'neutral',
@@ -492,10 +506,16 @@ export default function Home() {
       
       // Combine all data sources
       const allContent = [
-        ...allRedditPosts.map((post: any) => ({
+        ...allRedditPosts.map((post: {
+          data: {
+            title: string;
+            selftext?: string;
+            created_utc: number;
+          };
+        }) => ({
           title: post.data.title,
           content: post.data.selftext || '',
-          sentiment: 'neutral', // Will be calculated
+          sentiment: 'neutral' as const, // Will be calculated
           source: 'Reddit',
           published_at: post.data.created_utc
         })),
