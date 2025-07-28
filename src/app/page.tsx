@@ -1687,28 +1687,46 @@ export default function Home() {
       {/* Why Now Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Why Now: Birdai Is Built for This Moment
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div className="text-left">
-                <p className="text-xl text-gray-300 mb-4">
-                  Capital is becoming code. Balance sheets are turning into networks.
-                </p>
-                <p className="text-xl text-gray-300">
-                  Signal is no longer human-limited. AI scales it, compounds it, and deploys it.
-                </p>
+          <div className="text-center">
+            <ScrollAnimation>
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">
+                Why Now
+              </h2>
+            </ScrollAnimation>
+            
+            <ScrollAnimation delay={0.2}>
+              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <motion.div 
+                  className="text-center"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="text-4xl mb-4">⚡</div>
+                  <h3 className="text-2xl font-bold text-white mb-2">AI-Native Capital</h3>
+                  <p className="text-gray-300">The infrastructure is ready</p>
+                </motion.div>
+                
+                <motion.div 
+                  className="text-center"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="text-4xl mb-4">🎯</div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Perfect Timing</h3>
+                  <p className="text-gray-300">Early conviction pays</p>
+                </motion.div>
+                
+                <motion.div 
+                  className="text-center"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="text-4xl mb-4">🚀</div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Built for Scale</h3>
+                  <p className="text-gray-300">Code over headcount</p>
+                </motion.div>
               </div>
-              <div className="text-left">
-                <p className="text-xl text-gray-300 mb-4">
-                  The last cycle rewarded early conviction in emerging infrastructure. Few were positioned to capture it.
-                </p>
-                <p className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 font-semibold">
-                  This time it&apos;s bigger: AI-native capital infrastructure is here.
-                </p>
-              </div>
-            </div>
+            </ScrollAnimation>
           </div>
         </div>
       </section>
@@ -1765,15 +1783,15 @@ export default function Home() {
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center mb-6"
+                className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
-                <Code className="w-8 h-8 text-white" />
+                <Brain className="w-8 h-8 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-white mb-4">Fundamental Execution</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Machine Intelligence</h3>
               <p className="text-gray-300">
-                Where legacy firms add headcount, we add code. Scalable, intelligent, and aligned from day one.
+                AI-powered signal processing at scale. See patterns others miss.
               </p>
             </motion.div>
           </div>
