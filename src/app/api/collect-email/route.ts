@@ -4,7 +4,7 @@ import path from 'path';
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, fileName } = await request.json();
+    const { email, fileName, source, name, company, message } = await request.json();
 
     // Validate email
     if (!email || !email.includes('@')) {
@@ -14,15 +14,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate work email (basic check)
-    const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com'];
-    const emailDomain = email.split('@')[1]?.toLowerCase();
-    
-    if (personalDomains.includes(emailDomain)) {
-      return NextResponse.json(
-        { error: 'Please use a work email address' },
-        { status: 400 }
-      );
+    // Validate work email (basic check) - only for research papers
+    if (source !== 'contact_form') {
+      const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com'];
+      const emailDomain = email.split('@')[1]?.toLowerCase();
+      
+      if (personalDomains.includes(emailDomain)) {
+        return NextResponse.json(
+          { error: 'Please use a work email address' },
+          { status: 400 }
+        );
+      }
     }
 
     // Create emails directory if it doesn't exist
@@ -35,6 +37,10 @@ export async function POST(request: NextRequest) {
     const emailData = {
       email,
       fileName,
+      source: source || 'research_paper',
+      name: name || '',
+      company: company || '',
+      message: message || '',
       timestamp: new Date().toISOString(),
       userAgent: request.headers.get('user-agent') || '',
       ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'

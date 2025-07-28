@@ -907,18 +907,42 @@ export default function Home() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      alert('Thank you! Your message has been logged.');
-      setIsContactModalOpen(false);
-      setFormData({ name: '', email: '', company: '', message: '' });
+    try {
+      // Collect email for "Join the Signal"
+      const response = await fetch('/api/collect-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          fileName: 'Join the Signal',
+          source: 'contact_form',
+          name: formData.name,
+          company: formData.company,
+          message: formData.message
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Join the Signal email collected:', formData.email);
+        alert('Thank you! We\'ll be in touch soon.');
+        setIsContactModalOpen(false);
+        setFormData({ name: '', email: '', company: '', message: '' });
+      } else {
+        const data = await response.json();
+        alert(data.error || 'Failed to submit. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to submit. Please try again.');
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   // Scroll Animation Component
