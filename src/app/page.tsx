@@ -230,7 +230,7 @@ export default function Home() {
               AI Eats Data, Spews Decisions
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-              Legacy VCs are scrambling to adapt. Traditional firms can&apos;t scale signal — we can.
+              The old system filters signal through committees. Ours reads it in real time.
             </p>
             <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-6 max-w-2xl mx-auto">
               <p className="text-2xl font-bold text-red-400 mb-2">13%</p>
