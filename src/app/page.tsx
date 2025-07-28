@@ -1034,13 +1034,13 @@ export default function Home() {
               },
               particles: {
                 color: {
-                  value: "#60a5fa",
+                  value: "#3b82f6",
                 },
                 links: {
-                  color: "#60a5fa",
+                  color: "#3b82f6",
                   distance: 150,
                   enable: true,
-                  opacity: 0.3,
+                  opacity: 0.5,
                   width: 1,
                 },
                 move: {
@@ -1057,16 +1057,16 @@ export default function Home() {
                   density: {
                     enable: true,
                   },
-                  value: Math.min(Math.max(Math.floor(marketCap / 50000000000), 20), 200), // 1 particle per $50B, min 20, max 200
+                  value: 80, // Fixed number for better visibility
                 },
                 opacity: {
-                  value: 0.5,
+                  value: 0.8,
                 },
                 shape: {
                   type: "circle",
                 },
                 size: {
-                  value: { min: 1, max: 3 },
+                  value: { min: 2, max: 4 },
                 },
               },
               detectRetina: true,
