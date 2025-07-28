@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, X, Download, Mail } from 'lucide-react';
+import { useState } from 'react';
 
 // ScrollAnimation component for consistent animations
 const ScrollAnimation = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
@@ -17,9 +18,144 @@ const ScrollAnimation = ({ children, delay = 0 }: { children: React.ReactNode; d
   );
 };
 
+// Email Capture Modal Component
+const EmailCaptureModal = ({ isOpen, onClose, onEmailSubmit, fileName }: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  onEmailSubmit: (email: string) => void;
+  fileName: string;
+}) => {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    
+    setIsSubmitting(true);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    onEmailSubmit(email);
+    setIsSubmitting(false);
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 max-w-md w-full border border-white/20"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+        >
+          <X size={24} />
+        </button>
+
+        {/* Header */}
+        <div className="text-center mb-6">
+          <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Mail size={24} className="text-white" />
+          </div>
+          <h3 className="text-xl font-bold text-white mb-2">Get Your Research Paper</h3>
+          <p className="text-gray-300 text-sm">
+            Enter your email to download "{fileName}"
+          </p>
+        </div>
+
+        {/* Email Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+              Email Address
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
+              required
+              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          
+          <button
+            type="submit"
+            disabled={isSubmitting || !email}
+            className="w-full bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2"
+          >
+            {isSubmitting ? (
+              <>
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                <span>Processing...</span>
+              </>
+            ) : (
+              <>
+                <Download size={20} />
+                <span>Download Research Paper</span>
+              </>
+            )}
+          </button>
+        </form>
+
+        {/* Privacy Note */}
+        <p className="text-gray-400 text-xs text-center mt-4">
+          We respect your privacy. Your email will only be used to send you research updates.
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 export default function ResearchPage() {
+  const [emailModal, setEmailModal] = useState<{ isOpen: boolean; fileName: string }>({
+    isOpen: false,
+    fileName: ''
+  });
+
+  const handleDownloadRequest = (fileName: string) => {
+    setEmailModal({ isOpen: true, fileName });
+  };
+
+  const handleEmailSubmit = (email: string) => {
+    // Here you would typically send the email to your backend
+    console.log('Email submitted:', email);
+    
+    // For now, we'll just close the modal and trigger download
+    setEmailModal({ isOpen: false, fileName: '' });
+    
+    // Trigger actual download
+    const link = document.createElement('a');
+    link.href = `/research/${emailModal.fileName}`;
+    link.download = emailModal.fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      {/* Email Capture Modal */}
+      <EmailCaptureModal
+        isOpen={emailModal.isOpen}
+        onClose={() => setEmailModal({ isOpen: false, fileName: '' })}
+        onEmailSubmit={handleEmailSubmit}
+        fileName={emailModal.fileName}
+      />
+
       {/* Navigation Header */}
       <nav className="fixed top-0 w-full bg-black/20 backdrop-blur-md border-b border-white/10 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -138,11 +274,13 @@ export default function ResearchPage() {
             </ScrollAnimation>
           </div>
 
-          {/* Latest Research Publications */}
+          {/* Research Publications & Downloads */}
           <ScrollAnimation delay={0.6}>
             <div className="mb-20">
-              <h2 className="text-3xl font-bold text-white mb-12 text-center">Latest Research</h2>
-              <div className="grid md:grid-cols-2 gap-8">
+              <h2 className="text-3xl font-bold text-white mb-12 text-center">Research Publications</h2>
+              
+              {/* Featured Research Papers */}
+              <div className="grid md:grid-cols-2 gap-8 mb-12">
                 <motion.div 
                   className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
                   whileHover={{ scale: 1.02, y: -5 }}
@@ -188,6 +326,79 @@ export default function ResearchPage() {
                     Read More →
                   </motion.button>
                 </motion.div>
+              </div>
+
+              {/* Downloadable Research Papers */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                <h3 className="text-2xl font-bold text-white mb-8 text-center">Download Research Papers</h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  
+                  {/* From Rails to Returns */}
+                  <motion.div 
+                    className="bg-white/10 rounded-xl p-6 border border-white/20"
+                    whileHover={{ scale: 1.05, y: -3 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="flex items-center mb-4">
+                      <div className="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center mr-3">
+                        <svg className="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold">From Rails to Returns</h4>
+                        <p className="text-gray-400 text-xs">Payments Circle Analysis</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-sm mb-4">
+                      Comprehensive analysis of payment infrastructure evolution and investment opportunities in fintech.
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-400 text-xs">3.9 MB • PDF</span>
+                      <motion.button 
+                        onClick={() => handleDownloadRequest('From Rails to Returns_ Payments Circle.pdf')}
+                        className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Download
+                      </motion.button>
+                    </div>
+                  </motion.div>
+
+                  {/* Template for new research papers */}
+                  <motion.div 
+                    className="bg-white/10 rounded-xl p-6 border border-white/20 border-dashed"
+                    whileHover={{ scale: 1.05, y: -3 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="flex items-center mb-4">
+                      <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center mr-3">
+                        <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold">Coming Soon</h4>
+                        <p className="text-gray-400 text-xs">More Research Papers</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-sm mb-4">
+                      We're constantly adding new research papers. Subscribe to get notified when new content is available.
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-400 text-xs">Stay Updated</span>
+                      <motion.button 
+                        className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Subscribe
+                      </motion.button>
+                    </div>
+                  </motion.div>
+
+                </div>
               </div>
             </div>
           </ScrollAnimation>
