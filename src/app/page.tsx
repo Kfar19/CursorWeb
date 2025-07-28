@@ -147,7 +147,7 @@ export default function Home() {
               </div>
               <div className="text-left">
                 <p className="text-xl text-gray-300 mb-4">
-                  From 2017–2021, LPs passed on early crypto-native funds—missing 50x+ returns.
+                  The last cycle rewarded early conviction in emerging infrastructure. Few were positioned to capture it.
                 </p>
                 <p className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-semibold">
                   This time it&apos;s bigger: AI-native capital infrastructure is here.
