@@ -787,8 +787,32 @@ export default function ResearchPage() {
             </div>
           </ScrollAnimation>
 
-          {/* Research Methodology */}
+          {/* Models Section */}
           <ScrollAnimation delay={0.7}>
+            <div className="mb-20">
+              <h2 className="text-3xl font-bold text-white mb-12 text-center">Models</h2>
+              
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                <h3 className="text-2xl font-bold text-white mb-8 text-center">AI & Investment Models</h3>
+                <p className="text-gray-300 text-center mb-8 max-w-4xl mx-auto">
+                  Explore our comprehensive models and datasets that power our research and investment insights. 
+                  These interactive tools provide real-time data and analysis across various market sectors.
+                </p>
+                
+                <div className="w-full">
+                  <iframe 
+                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT3bAmligji-xjp06XjYx4z41PFu-ICXp4DLpAGFZtUgdpJEJcCyHmJGycLJP6OWbiDS1AITWSy38VT/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"
+                    className="w-full h-[600px] rounded-lg border border-white/10"
+                    title="AI & Investment Models"
+                    frameBorder="0"
+                  />
+                </div>
+              </div>
+            </div>
+          </ScrollAnimation>
+
+          {/* Research Methodology */}
+          <ScrollAnimation delay={0.8}>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
               <h2 className="text-2xl font-bold text-white mb-6 text-center">Our Research Methodology</h2>
               <div className="grid md:grid-cols-3 gap-8">
