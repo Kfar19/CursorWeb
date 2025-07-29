@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import Lottie from 'lottie-react';
 import productivityAnimation from '../../public/productivity-animation.json';
+import OracleTrigger from './components/OracleTrigger';
 
 
 export default function Home() {
@@ -2365,6 +2366,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Oracle Trigger */}
+      <OracleTrigger onContactModalOpen={() => setIsContactModalOpen(true)} />
     </div>
   );
 }
