@@ -38,24 +38,94 @@ const oracleQuestions: OracleQuestion[] = [
   }
 ];
 
+const questionSubtitles = {
+  timeline: 'Your timeline determines our AI\'s analysis frequency and strategy approach.',
+  risk: 'Risk tolerance shapes portfolio construction and opportunity selection.',
+  focus: 'Your focus area helps our AI prioritize the most relevant market signals.'
+};
+
 const oracleResponses = {
   timeline: {
-    '0-6 months': 'Short-term focus requires precision timing. Our AI excels at identifying immediate opportunities while managing volatility.',
-    '6-12 months': 'Medium-term positioning balances growth with stability. Perfect for our systematic approach to market cycles.',
-    '1-3 years': 'Strategic horizon aligns with our institutional-grade analysis. Time to compound intelligent decisions.',
-    '3+ years': 'Long-term vision matches our fundamental approach. Building wealth through structural market shifts.'
+    '0-6 months': {
+      insight: 'Short-term focus requires precision timing. Our AI excels at identifying immediate opportunities while managing volatility.',
+      strategy: 'High-frequency pattern recognition with real-time risk management. Perfect for capturing short-term market inefficiencies.',
+      marketContext: 'Current market conditions show increased volatility, creating more short-term opportunities for disciplined traders.',
+      aiCapability: 'Our AI processes 10,000+ data points per second to identify micro-trends before they become mainstream.'
+    },
+    '6-12 months': {
+      insight: 'Medium-term positioning balances growth with stability. Perfect for our systematic approach to market cycles.',
+      strategy: 'Cycle-aware positioning with momentum and mean reversion signals. Captures medium-term trends while managing drawdowns.',
+      marketContext: 'We\'re in a transitional market phase where medium-term strategies can capture both growth and stability.',
+      aiCapability: 'AI analyzes 50+ market cycles to predict optimal entry and exit points for 6-12 month horizons.'
+    },
+    '1-3 years': {
+      insight: 'Strategic horizon aligns with our institutional-grade analysis. Time to compound intelligent decisions.',
+      strategy: 'Fundamental analysis combined with macro trends. Position for structural shifts in the crypto ecosystem.',
+      marketContext: 'Long-term crypto adoption is accelerating. Our AI identifies the protocols and companies that will dominate.',
+      aiCapability: 'Machine learning models trained on 10+ years of crypto data to identify long-term winners.'
+    },
+    '3+ years': {
+      insight: 'Long-term vision matches our fundamental approach. Building wealth through structural market shifts.',
+      strategy: 'Generational wealth building through early identification of paradigm-shifting technologies.',
+      marketContext: 'We\'re witnessing the birth of a new financial system. Position for the future, not the present.',
+      aiCapability: 'AI predicts which technologies will reshape finance over the next decade.'
+    }
   },
   risk: {
-    'Conservative': 'Capital preservation is paramount. Our AI prioritizes downside protection while identifying asymmetric opportunities.',
-    'Moderate': 'Balanced approach suits our diversified strategy. Risk-adjusted returns through systematic analysis.',
-    'Aggressive': 'Growth-focused positioning leverages our AI\'s ability to identify high-conviction opportunities.',
-    'Very Aggressive': 'Maximum growth potential through our most dynamic strategies. AI-driven alpha generation.'
+    'Conservative': {
+      insight: 'Capital preservation is paramount. Our AI prioritizes downside protection while identifying asymmetric opportunities.',
+      strategy: 'Portfolio construction with 70% stable assets, 30% growth opportunities. Maximum 15% drawdown tolerance.',
+      marketContext: 'Conservative strategies are outperforming in current market conditions. Safety first, growth second.',
+      aiCapability: 'AI continuously monitors 100+ risk metrics to protect capital while capturing upside.'
+    },
+    'Moderate': {
+      insight: 'Balanced approach suits our diversified strategy. Risk-adjusted returns through systematic analysis.',
+      strategy: '50/50 split between established assets and emerging opportunities. Balanced risk-reward profile.',
+      marketContext: 'Moderate risk strategies are ideal for current market conditions. Growth with measured risk.',
+      aiCapability: 'AI optimizes portfolio allocation for maximum risk-adjusted returns across market cycles.'
+    },
+    'Aggressive': {
+      insight: 'Growth-focused positioning leverages our AI\'s ability to identify high-conviction opportunities.',
+      strategy: '70% growth assets, 30% stability. Higher volatility tolerance for maximum upside potential.',
+      marketContext: 'Aggressive strategies can capture significant upside in emerging markets and new protocols.',
+      aiCapability: 'AI identifies high-conviction opportunities with 3-5x potential while managing downside risk.'
+    },
+    'Very Aggressive': {
+      insight: 'Maximum growth potential through our most dynamic strategies. AI-driven alpha generation.',
+      strategy: '90% growth assets, 10% stability. Maximum volatility tolerance for maximum returns.',
+      marketContext: 'Very aggressive strategies can capture 10x+ opportunities in nascent markets and protocols.',
+      aiCapability: 'AI hunts for asymmetric opportunities with 10x+ potential in emerging technologies.'
+    }
   },
   focus: {
-    'Bitcoin': 'Digital gold thesis aligns with our macro analysis. Institutional adoption patterns and network effects.',
-    'DeFi Protocols': 'Protocol-first approach matches our infrastructure focus. TVL analysis and yield optimization.',
-    'AI Infrastructure': 'AI-native capital deployment. We\'re positioned at the intersection of AI and crypto.',
-    'Emerging Tech': 'Early-stage opportunity identification. Our AI excels at pattern recognition in nascent markets.'
+    'Bitcoin': {
+      insight: 'Digital gold thesis aligns with our macro analysis. Institutional adoption patterns and network effects.',
+      strategy: 'Bitcoin-first portfolio with allocation to Bitcoin infrastructure and related protocols.',
+      marketContext: 'Bitcoin is becoming the digital reserve asset. Institutional adoption is accelerating rapidly.',
+      aiCapability: 'AI analyzes institutional flows, on-chain metrics, and macro trends to optimize Bitcoin positioning.',
+      currentTrend: 'Bitcoin dominance is increasing as institutions allocate more capital to digital gold.'
+    },
+    'DeFi Protocols': {
+      insight: 'Protocol-first approach matches our infrastructure focus. TVL analysis and yield optimization.',
+      strategy: 'Diversified DeFi portfolio across lending, DEXs, and yield farming protocols.',
+      marketContext: 'DeFi TVL is growing rapidly. New protocols are emerging with innovative tokenomics.',
+      aiCapability: 'AI monitors 500+ DeFi protocols to identify the best yield opportunities and emerging trends.',
+      currentTrend: 'DeFi 2.0 protocols are gaining traction with improved tokenomics and sustainability.'
+    },
+    'AI Infrastructure': {
+      insight: 'AI-native capital deployment. We\'re positioned at the intersection of AI and crypto.',
+      strategy: 'Focus on AI infrastructure tokens, compute networks, and data protocols.',
+      marketContext: 'AI infrastructure is the fastest-growing sector in crypto. Compute and data are the new oil.',
+      aiCapability: 'Our AI identifies the most promising AI infrastructure projects before they become mainstream.',
+      currentTrend: 'AI infrastructure tokens are outperforming as demand for compute and data grows exponentially.'
+    },
+    'Emerging Tech': {
+      insight: 'Early-stage opportunity identification. Our AI excels at pattern recognition in nascent markets.',
+      strategy: 'Early-stage investment in emerging protocols, Layer 2s, and experimental technologies.',
+      marketContext: 'Emerging technologies are creating new paradigms. Early identification is key to outsized returns.',
+      aiCapability: 'AI scans 1000+ emerging projects to identify the next big thing before the crowd.',
+      currentTrend: 'Layer 2 scaling solutions and cross-chain bridges are the hottest emerging technologies.'
+    }
   }
 };
 
@@ -88,10 +158,16 @@ export default function OracleModal({ isOpen, onClose, onContactModalOpen }: Ora
     const focus = answers.focus;
 
     if (timeline && risk && focus) {
+      const timelineData = oracleResponses.timeline[timeline as keyof typeof oracleResponses.timeline];
+      const riskData = oracleResponses.risk[risk as keyof typeof oracleResponses.risk];
+      const focusData = oracleResponses.focus[focus as keyof typeof oracleResponses.focus];
+
       return {
         title: "Your AI Investment Profile",
         insight: `Based on your ${risk.toLowerCase()} risk approach and ${timeline} timeline, our AI is optimized for ${focus.toLowerCase()} opportunities.`,
-        recommendation: oracleResponses.focus[focus as keyof typeof oracleResponses.focus],
+        timeline: timelineData,
+        risk: riskData,
+        focus: focusData,
         nextStep: "Ready to see what our AI sees?"
       };
     }
@@ -141,9 +217,12 @@ export default function OracleModal({ isOpen, onClose, onContactModalOpen }: Ora
                       {currentStep + 1} of {oracleQuestions.length}
                     </span>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     {oracleQuestions[currentStep].question}
                   </h3>
+                  <p className="text-gray-500 text-sm mb-6">
+                    {questionSubtitles[oracleQuestions[currentStep].id as keyof typeof questionSubtitles]}
+                  </p>
                 </div>
 
                 <div className="space-y-3">
@@ -154,10 +233,23 @@ export default function OracleModal({ isOpen, onClose, onContactModalOpen }: Ora
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
                       onClick={() => handleAnswer(oracleQuestions[currentStep].id, option)}
-                      className="w-full p-4 text-left bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-lg transition-all duration-200 group"
+                      className="w-full p-4 text-left bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-lg transition-all duration-200 group relative overflow-hidden"
                     >
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-900 font-medium">{option}</span>
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        initial={{ x: '-100%' }}
+                        whileHover={{ x: '100%' }}
+                        transition={{ duration: 0.6 }}
+                      />
+                      <div className="flex items-center justify-between relative z-10">
+                        <div className="flex items-center space-x-3">
+                          <motion.div
+                            className="w-2 h-2 bg-blue-500 rounded-full"
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                          />
+                          <span className="text-gray-900 font-medium">{option}</span>
+                        </div>
                         <motion.div
                           className="text-blue-500 opacity-0 group-hover:opacity-100"
                           initial={{ x: -10 }}
@@ -184,10 +276,45 @@ export default function OracleModal({ isOpen, onClose, onContactModalOpen }: Ora
                   <p className="text-gray-600 mb-6">
                     {insight?.insight}
                   </p>
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-                    <p className="text-blue-900 text-sm">
-                      {insight?.recommendation}
-                    </p>
+                  <div className="space-y-4 mb-6">
+                    {/* Timeline Strategy */}
+                    <div className="bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-blue-900 mb-2 flex items-center">
+                        <Clock className="w-4 h-4 mr-2" />
+                        Timeline Strategy
+                      </h4>
+                      <p className="text-blue-800 text-sm mb-2">{insight?.timeline.strategy}</p>
+                      <p className="text-blue-700 text-xs">{insight?.timeline.marketContext}</p>
+                    </div>
+
+                    {/* Risk Profile */}
+                    <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-purple-900 mb-2 flex items-center">
+                        <Shield className="w-4 h-4 mr-2" />
+                        Risk Profile
+                      </h4>
+                      <p className="text-purple-800 text-sm mb-2">{insight?.risk.strategy}</p>
+                      <p className="text-purple-700 text-xs">{insight?.risk.marketContext}</p>
+                    </div>
+
+                    {/* Focus Area */}
+                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-900 mb-2 flex items-center">
+                        <Brain className="w-4 h-4 mr-2" />
+                        Focus Area
+                      </h4>
+                      <p className="text-green-800 text-sm mb-2">{insight?.focus.strategy}</p>
+                      <p className="text-green-700 text-xs">{insight?.focus.currentTrend}</p>
+                    </div>
+
+                    {/* AI Capabilities */}
+                    <div className="bg-gradient-to-r from-orange-50 to-red-50 border border-orange-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-orange-900 mb-2 flex items-center">
+                        <Zap className="w-4 h-4 mr-2" />
+                        AI Capabilities
+                      </h4>
+                      <p className="text-orange-800 text-sm">{insight?.focus.aiCapability}</p>
+                    </div>
                   </div>
                   <p className="text-gray-700 font-medium mb-6">
                     {insight?.nextStep}
