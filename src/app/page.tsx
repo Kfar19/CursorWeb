@@ -21,12 +21,13 @@ import {
 } from 'lucide-react';
 import Lottie from 'lottie-react';
 import productivityAnimation from '../../public/productivity-animation.json';
-import OracleTrigger from './components/OracleTrigger';
+import OracleModal from './components/OracleModal';
 
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isOracleOpen, setIsOracleOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -1683,6 +1684,55 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Oracle Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-blue-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <ScrollAnimation>
+              <div className="flex items-center justify-center space-x-3 mb-4">
+                <div className="text-4xl">𓂀</div>
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                  The Oracle
+                </h2>
+                <div className="text-4xl">🔮</div>
+              </div>
+            </ScrollAnimation>
+            <ScrollAnimation delay={0.2}>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Discover how our AI is optimized for your investment profile
+              </p>
+            </ScrollAnimation>
+          </div>
+          
+          <ScrollAnimation delay={0.3}>
+            <div className="max-w-2xl mx-auto">
+              <motion.div 
+                className="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
+                whileHover={{ scale: 1.02, y: -5 }}
+                onClick={() => setIsOracleOpen(true)}
+              >
+                <div className="text-center">
+                  <div className="text-6xl mb-4">🔮</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    Ask the Oracle
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    Answer 3 simple questions to discover how our AI is tailored for your investment approach
+                  </p>
+                  <motion.button
+                    className="bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white font-semibold py-3 px-8 rounded-full text-lg shadow-lg"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Begin Your Reading
+                  </motion.button>
+                </div>
+              </motion.div>
+            </div>
+          </ScrollAnimation>
+        </div>
+      </section>
+
       {/* AI Eats Data Section */}
       <section id="live-data" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -2367,8 +2417,12 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Oracle Trigger */}
-      <OracleTrigger onContactModalOpen={() => setIsContactModalOpen(true)} />
+      {/* Oracle Modal */}
+      <OracleModal 
+        isOpen={isOracleOpen} 
+        onClose={() => setIsOracleOpen(false)} 
+        onContactModalOpen={() => setIsContactModalOpen(true)}
+      />
     </div>
   );
 }
