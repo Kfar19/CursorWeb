@@ -296,77 +296,7 @@ export default function ResearchPage() {
             </ScrollAnimation>
           </div>
 
-          {/* Research Areas Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            {/* AI-Driven Deal Flow */}
-            <ScrollAnimation delay={0.3}>
-              <motion.div 
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 h-full"
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="text-blue-400 mb-4">
-                  <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-4">AI-Driven Deal Flow</h3>
-                <p className="text-gray-300 mb-4">
-                  Our proprietary algorithms analyze millions of data points across startup ecosystems, 
-                  social sentiment, and market indicators to identify high-potential investments before they hit mainstream radar.
-                </p>
-                <div className="text-sm text-blue-400 font-semibold">
-                  95% accuracy in predicting Series A success
-                </div>
-              </motion.div>
-            </ScrollAnimation>
 
-            {/* Blockchain Intelligence */}
-            <ScrollAnimation delay={0.4}>
-              <motion.div 
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 h-full"
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="text-cyan-400 mb-4">
-                  <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-4">Blockchain Intelligence</h3>
-                <p className="text-gray-300 mb-4">
-                  Deep dive analysis into DeFi protocols, NFT markets, and Web3 infrastructure. 
-                  We track on-chain metrics, developer activity, and community growth to spot the next breakthrough.
-                </p>
-                <div className="text-sm text-cyan-400 font-semibold">
-                  Tracking 500+ protocols daily
-                </div>
-              </motion.div>
-            </ScrollAnimation>
-
-            {/* Market Intelligence */}
-            <ScrollAnimation delay={0.5}>
-              <motion.div 
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 h-full"
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="text-green-400 mb-4">
-                  <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-4">Market Intelligence</h3>
-                <p className="text-gray-300 mb-4">
-                  Comprehensive analysis of funding rounds, valuations, and exit patterns. 
-                  Our research identifies emerging sectors and investment themes before they become crowded.
-                </p>
-                <div className="text-sm text-green-400 font-semibold">
-                  $2.3T+ in deals analyzed
-                </div>
-              </motion.div>
-            </ScrollAnimation>
-          </div>
 
           {/* Research Publications & Downloads */}
           <ScrollAnimation delay={0.6}>
