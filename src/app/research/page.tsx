@@ -207,6 +207,7 @@ const CryptoTreasuries = () => {
   }>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   const cryptoTreasuries = useMemo(() => [
     { company: 'Strategy', crypto: 'BTC', ticker: 'MSTR', cryptoOwned: 597325, yahoo: 'https://finance.yahoo.com/quote/MSTR/key-statistics/' },
@@ -233,10 +234,12 @@ const CryptoTreasuries = () => {
         }
         const data = await response.json();
         setTreasuryData(data);
+        setLastUpdated(new Date());
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
         // Use static data as fallback
         setTreasuryData(cryptoTreasuries);
+        setLastUpdated(new Date());
       } finally {
         setLoading(false);
       }
@@ -275,13 +278,25 @@ const CryptoTreasuries = () => {
       <div className="flex items-center justify-center mb-8">
         <TrendingUp className="w-8 h-8 text-blue-400 mr-3" />
         <h2 className="text-3xl font-bold text-white">Crypto Treasuries</h2>
+        <div className="flex items-center ml-4">
+          <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse mr-2"></div>
+          <span className="text-green-400 text-sm font-medium">LIVE</span>
+          {lastUpdated && (
+            <span className="text-gray-400 text-xs ml-3">
+              Updated: {lastUpdated.toLocaleTimeString()}
+            </span>
+          )}
+        </div>
       </div>
       
       {error && (
         <div className="bg-red-500/20 border border-red-500/30 rounded-lg p-4 mb-6">
-          <p className="text-red-300 text-sm">
-            {error} - Showing static data as fallback
-          </p>
+          <div className="flex items-center">
+            <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+            <p className="text-red-300 text-sm">
+              {error} - Showing static data as fallback
+            </p>
+          </div>
         </div>
       )}
 
