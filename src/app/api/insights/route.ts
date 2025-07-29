@@ -1,17 +1,44 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:3002';
-
 export async function GET(request: NextRequest) {
   try {
-    const response = await fetch(`${BACKEND_URL}/api/insights`);
-    const data = await response.json();
+    // Return mock insights data
+    const mockData = {
+      data: {
+        insights: [
+          {
+            id: 1,
+            title: "AI Infrastructure Demand Surge",
+            description: "Increased institutional adoption of AI-native protocols",
+            sentiment: "bullish",
+            confidence: 0.85,
+            timestamp: new Date().toISOString()
+          },
+          {
+            id: 2,
+            title: "DeFi Liquidity Migration",
+            description: "Significant capital flows to emerging DeFi protocols",
+            sentiment: "neutral",
+            confidence: 0.72,
+            timestamp: new Date().toISOString()
+          },
+          {
+            id: 3,
+            title: "Layer 2 Scaling Solutions",
+            description: "Growing adoption of L2 solutions for improved throughput",
+            sentiment: "bullish",
+            confidence: 0.91,
+            timestamp: new Date().toISOString()
+          }
+        ]
+      }
+    };
     
-    return NextResponse.json(data);
+    return NextResponse.json(mockData);
   } catch (error) {
-    console.error('Error fetching insights:', error);
+    console.error('Error generating insights:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch insights' },
+      { error: 'Failed to generate insights' },
       { status: 500 }
     );
   }

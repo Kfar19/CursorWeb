@@ -1,17 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:3002';
-
 export async function GET(request: NextRequest) {
   try {
-    const response = await fetch(`${BACKEND_URL}/api/market-data`);
-    const data = await response.json();
+    // Return mock market data
+    const mockData = {
+      data: {
+        totalMarketCap: 3250000000000,
+        bitcoinPrice: 42000,
+        ethereumPrice: 2800,
+        volume24h: 85000000000,
+        dominance: {
+          bitcoin: 52.3,
+          ethereum: 18.7,
+          others: 29.0
+        },
+        timestamp: new Date().toISOString()
+      }
+    };
     
-    return NextResponse.json(data);
+    return NextResponse.json(mockData);
   } catch (error) {
-    console.error('Error fetching market data:', error);
+    console.error('Error generating market data:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch market data' },
+      { error: 'Failed to generate market data' },
       { status: 500 }
     );
   }
