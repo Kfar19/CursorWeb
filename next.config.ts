@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Configuration for stable deployment
+  // Configuration for stable deployment - Vercel build fix
 };
 
 export default nextConfig;
