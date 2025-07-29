@@ -1163,7 +1163,7 @@ export default function Home() {
                 }}
               >
                 <motion.span 
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400"
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-900"
                   animate={{
                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
                   }}
