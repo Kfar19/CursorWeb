@@ -337,15 +337,14 @@ const CryptoTreasuries = () => {
             <tr className="border-b border-white/10">
               <th className="text-left text-gray-300 font-semibold py-4 px-2">Company</th>
               <th className="text-left text-gray-300 font-semibold py-4 px-2">Crypto</th>
-              <th className="text-left text-gray-300 font-semibold py-4 px-2">Ticker</th>
-              <th className="text-right text-gray-300 font-semibold py-4 px-2">Holdings</th>
+              <th className="text-right text-gray-300 font-semibold py-4 px-2">mNAV</th>
               <th className="text-right text-gray-300 font-semibold py-4 px-2">Treasury Value</th>
-              <th className="text-right text-gray-300 font-semibold py-4 px-2">Market Cap</th>
-              <th className="text-right text-gray-300 font-semibold py-4 px-2">OCF (TTM)</th>
-              <th className="text-right text-gray-300 font-semibold py-4 px-2">Obligation Rate</th>
+              <th className="text-right text-gray-300 font-semibold py-4 px-2">Obligation Rate (Est.)</th>
               <th className="text-right text-gray-300 font-semibold py-4 px-2">Short %</th>
               <th className="text-right text-gray-300 font-semibold py-4 px-2">Short Days</th>
-              <th className="text-center text-gray-300 font-semibold py-4 px-2">Yahoo</th>
+              <th className="text-right text-gray-300 font-semibold py-4 px-2">Market Cap</th>
+              <th className="text-right text-gray-300 font-semibold py-4 px-2">Holdings</th>
+              <th className="text-left text-gray-300 font-semibold py-4 px-2">Ticker</th>
             </tr>
           </thead>
           <tbody>
@@ -365,22 +364,11 @@ const CryptoTreasuries = () => {
                     {company.crypto}
                   </span>
                 </td>
-                <td className="py-4 px-2">
-                  <span className="text-blue-400 font-mono">
-                    {company.ticker || 'N/A'}
-                  </span>
-                </td>
-                <td className="py-4 px-2 text-right text-gray-300">
-                  {formatCrypto(company.cryptoOwned, company.crypto)}
+                <td className="py-4 px-2 text-right text-purple-400 font-semibold">
+                  {company.mNAV ? `${company.mNAV.toFixed(3)}x` : 'N/A'}
                 </td>
                 <td className="py-4 px-2 text-right text-green-400 font-semibold">
                   {company.treasuryValue ? formatNumber(company.treasuryValue) : 'N/A'}
-                </td>
-                <td className="py-4 px-2 text-right text-gray-300">
-                  {company.marketCap ? formatNumber(company.marketCap) : 'N/A'}
-                </td>
-                <td className="py-4 px-2 text-right text-gray-300">
-                  {company.operatingCashFlow ? formatNumber(company.operatingCashFlow) : 'N/A'}
                 </td>
                 <td className="py-4 px-2 text-right text-gray-300">
                   {company.obligationRate ? `${(company.obligationRate * 100).toFixed(2)}%` : 'N/A'}
@@ -391,17 +379,28 @@ const CryptoTreasuries = () => {
                 <td className="py-4 px-2 text-right text-gray-300">
                   {company.shortDays ? `${company.shortDays.toFixed(1)}d` : 'N/A'}
                 </td>
-                <td className="py-4 px-2 text-center">
-                  {company.yahoo && (
-                    <a
-                      href={company.yahoo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-400 hover:text-blue-300 transition-colors"
-                    >
-                      <ExternalLink size={16} />
-                    </a>
-                  )}
+                <td className="py-4 px-2 text-right text-gray-300">
+                  {company.marketCap ? formatNumber(company.marketCap) : 'N/A'}
+                </td>
+                <td className="py-4 px-2 text-right text-gray-300">
+                  {formatCrypto(company.cryptoOwned, company.crypto)}
+                </td>
+                <td className="py-4 px-2">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-blue-400 font-mono">
+                      {company.ticker || 'N/A'}
+                    </span>
+                    {company.yahoo && (
+                      <a
+                        href={company.yahoo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        <ExternalLink size={14} />
+                      </a>
+                    )}
+                  </div>
                 </td>
               </motion.tr>
             ))}

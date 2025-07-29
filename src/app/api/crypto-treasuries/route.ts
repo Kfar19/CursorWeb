@@ -16,6 +16,7 @@ interface TreasuryCompany {
   obligationRate?: number;
   shortPercent?: number;
   shortDays?: number;
+  mNAV?: number;
 }
 
 // Mock crypto prices - in production, this would fetch from a crypto API
@@ -33,19 +34,9 @@ const getCryptoPrices = async (): Promise<CryptoPrice> => {
 // Mock Yahoo Finance data scraper - in production, this would scrape actual data
 const getYahooFinanceData = async (ticker: string) => {
   // This is mock data - in production, you'd scrape or use Yahoo Finance API
-  interface YahooFinanceData {
-    marketCap: number;
-    sharesOutstanding: number;
-    lastPrice: number;
-    operatingCashFlow: number;
-    shortPercent: number;
-    sharesShort: number;
-    avgVolume10Day: number;
-  }
-
-  const mockData: { [key: string]: YahooFinanceData } = {
+  const mockData: { [key: string]: any } = {
     'MSTR': {
-      marketCap: 85000000000,
+      marketCapFromYahoo: 85000000000,
       sharesOutstanding: 22000000,
       lastPrice: 3863,
       operatingCashFlow: 150000000,
@@ -54,7 +45,7 @@ const getYahooFinanceData = async (ticker: string) => {
       avgVolume10Day: 8500000
     },
     'MARA': {
-      marketCap: 8500000000,
+      marketCapFromYahoo: 8500000000,
       sharesOutstanding: 235000000,
       lastPrice: 36.17,
       operatingCashFlow: 75000000,
@@ -63,7 +54,7 @@ const getYahooFinanceData = async (ticker: string) => {
       avgVolume10Day: 12000000
     },
     'RIOT': {
-      marketCap: 3200000000,
+      marketCapFromYahoo: 3200000000,
       sharesOutstanding: 135000000,
       lastPrice: 23.70,
       operatingCashFlow: 45000000,
@@ -72,7 +63,7 @@ const getYahooFinanceData = async (ticker: string) => {
       avgVolume10Day: 8200000
     },
     'BITF': {
-      marketCap: 1800000000,
+      marketCapFromYahoo: 1800000000,
       sharesOutstanding: 425000000,
       lastPrice: 4.24,
       operatingCashFlow: 28000000,
@@ -81,7 +72,7 @@ const getYahooFinanceData = async (ticker: string) => {
       avgVolume10Day: 15000000
     },
     'HUT': {
-      marketCap: 2100000000,
+      marketCapFromYahoo: 2100000000,
       sharesOutstanding: 175000000,
       lastPrice: 12.00,
       operatingCashFlow: 35000000,
@@ -90,7 +81,7 @@ const getYahooFinanceData = async (ticker: string) => {
       avgVolume10Day: 6800000
     },
     'CCCM': {
-      marketCap: 450000000,
+      marketCapFromYahoo: 450000000,
       sharesOutstanding: 45000000,
       lastPrice: 10.00,
       operatingCashFlow: 12000000,
@@ -99,7 +90,7 @@ const getYahooFinanceData = async (ticker: string) => {
       avgVolume10Day: 850000
     },
     'DJT': {
-      marketCap: 7200000000,
+      marketCapFromYahoo: 7200000000,
       sharesOutstanding: 200000000,
       lastPrice: 36.00,
       operatingCashFlow: -25000000, // Negative cash flow
@@ -108,26 +99,26 @@ const getYahooFinanceData = async (ticker: string) => {
       avgVolume10Day: 18500000
     },
     'SBET': {
-      marketCap: 85000000,
-      sharesOutstanding: 25000000,
-      lastPrice: 3.40,
+      marketCapFromYahoo: 2090000000, // Updated Yahoo market cap
+      sharesOutstanding: 99960000, // Updated: 99.96M shares
+      lastPrice: 20.92, // Updated: $20.92
       operatingCashFlow: 2500000,
       shortPercent: 28.5,
       sharesShort: 7125000,
       avgVolume10Day: 450000
     },
     'BMNR': {
-      marketCap: 120000000,
-      sharesOutstanding: 40000000,
-      lastPrice: 3.00,
+      marketCapFromYahoo: 4470000000, // Updated Yahoo market cap
+      sharesOutstanding: 127310000, // Updated: 127.31M shares
+      lastPrice: 35.11, // Updated: $35.11
       operatingCashFlow: 1800000,
       shortPercent: 31.2,
       sharesShort: 12480000,
       avgVolume10Day: 680000
     },
     'UPXI': {
-      marketCap: 95000000,
-      sharesOutstanding: 19000000,
+      marketCapFromYahoo: 269000000, // Updated Yahoo market cap
+      sharesOutstanding: 53790000, // Updated: 53.79M shares
       lastPrice: 5.00,
       operatingCashFlow: 3200000,
       shortPercent: 19.8,
@@ -174,8 +165,11 @@ export async function GET() {
             const yahooData = await getYahooFinanceData(company.ticker);
             
             if (yahooData) {
-              // Calculate NAV (Market Cap)
-              const marketCap = yahooData.sharesOutstanding * yahooData.lastPrice;
+              // Calculate computed Market Cap = sharesOutstanding * lastPrice
+              const computedMarketCap = yahooData.sharesOutstanding * yahooData.lastPrice;
+              
+              // Use the larger of computed vs Yahoo market cap
+              const marketCap = Math.max(computedMarketCap, yahooData.marketCapFromYahoo);
               
               // Operating Cash Flow (TTM)
               const operatingCashFlow = yahooData.operatingCashFlow;
@@ -189,13 +183,17 @@ export async function GET() {
               // Short volume days = Shares Short / Avg Vol (10 day)
               const shortDays = yahooData.avgVolume10Day > 0 ? yahooData.sharesShort / yahooData.avgVolume10Day : 0;
 
+              // mNAV = Market Cap / Treasury Value
+              const mNAV = treasuryValue > 0 ? marketCap / treasuryValue : 0;
+
               enrichedCompany = {
                 ...enrichedCompany,
                 marketCap,
                 operatingCashFlow,
                 obligationRate,
                 shortPercent,
-                shortDays
+                shortDays,
+                mNAV
               };
             }
           } catch (error) {
