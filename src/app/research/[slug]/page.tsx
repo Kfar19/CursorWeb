@@ -34,11 +34,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${paper.title} - Birdai Research`,
     description: paper.description,
+    alternates: {
+      canonical: `/research/${slug}`,
+    },
     openGraph: {
       title: `${paper.title} - Birdai Research`,
       description: paper.description,
       type: 'article',
-      url: `https://birdai.com/research/${slug}`,
+      url: `/research/${slug}`,
       images: [
         {
           url: paper.image,
