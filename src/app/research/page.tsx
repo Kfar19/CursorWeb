@@ -652,7 +652,7 @@ export default function ResearchPage() {
                       </div>
                     </div>
                     <p className="text-gray-300 text-sm mb-4">
-                      Deep dive into the transformation of traditional wire transfers to modern digital wallet solutions.
+                      Mental model shift for how we should think about Bitcoin relative to past innovations.
                     </p>
                     <div className="flex items-center justify-between">
                       <span className="text-gray-400 text-xs">5.2 MB • PDF</span>
