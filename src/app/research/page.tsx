@@ -202,6 +202,9 @@ export default function ResearchPage() {
   const [subscribeModal, setSubscribeModal] = useState<{ isOpen: boolean }>({
     isOpen: false
   });
+  const [contactModal, setContactModal] = useState<{ isOpen: boolean }>({
+    isOpen: false
+  });
 
   const handleReadRequest = (fileName: string) => {
     setEmailModal({ isOpen: true, fileName });
@@ -209,6 +212,10 @@ export default function ResearchPage() {
 
   const handleSubscribeRequest = () => {
     setSubscribeModal({ isOpen: true });
+  };
+
+  const handleContactRequest = () => {
+    setContactModal({ isOpen: true });
   };
 
   const handleEmailSubmit = async (email: string) => {
@@ -270,6 +277,36 @@ export default function ResearchPage() {
     }
   };
 
+  const handleContactEmailSubmit = async (email: string) => {
+    try {
+      const response = await fetch('/api/collect-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          source: 'contact_form',
+          message: 'Contact request from research page'
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('Contact email collected successfully:', email);
+        // Close contact modal
+        setContactModal({ isOpen: false });
+        alert('Thank you for your interest! We\'ll get back to you soon.');
+      } else {
+        alert(data.error || 'Failed to submit contact request');
+      }
+    } catch (error) {
+      console.error('Error submitting contact request:', error);
+      alert('Failed to submit contact request. Please try again.');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
       {/* Email Capture Modal */}
@@ -286,6 +323,14 @@ export default function ResearchPage() {
         onClose={() => setSubscribeModal({ isOpen: false })}
         onEmailSubmit={handleSubscribeEmailSubmit}
         fileName="Research Updates"
+      />
+
+      {/* Contact Modal */}
+      <EmailCaptureModal
+        isOpen={contactModal.isOpen}
+        onClose={() => setContactModal({ isOpen: false })}
+        onEmailSubmit={handleContactEmailSubmit}
+        fileName="Contact Request"
       />
 
       {/* PDF Viewer Modal */}
@@ -313,12 +358,12 @@ export default function ResearchPage() {
             </div>
             
             {/* Contact Button */}
-            <Link 
-              href="/#contact"
+            <button 
+              onClick={handleContactRequest}
               className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-2 px-4 rounded-full text-sm shadow-lg transition-all duration-300"
             >
               Contact
-            </Link>
+            </button>
           </div>
         </div>
       </nav>
