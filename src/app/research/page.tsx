@@ -38,25 +38,25 @@ const PDFViewer = ({ isOpen, onClose, fileName }: {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        className="bg-gradient-to-br from-gray-900 to-black rounded-2xl w-full max-w-6xl h-[90vh] border border-white/20 flex flex-col"
+        className="bg-white rounded-2xl w-full max-w-6xl h-[90vh] border border-gray-200 flex flex-col shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-white/10">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
-              <svg className="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
             </div>
             <div>
-              <h3 className="text-white font-semibold">{fileName.replace('.pdf', '')}</h3>
-              <p className="text-gray-400 text-sm">Research Paper</p>
+              <h3 className="text-gray-900 font-semibold">{fileName.replace('.pdf', '')}</h3>
+              <p className="text-gray-600 text-sm">Research Paper</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-white transition-colors"
+            className="text-gray-500 hover:text-gray-700 transition-colors"
           >
             <X size={24} />
           </button>
@@ -66,24 +66,24 @@ const PDFViewer = ({ isOpen, onClose, fileName }: {
         <div className="flex-1 p-6">
           <iframe
             src={`/research/${fileName}#toolbar=0&navpanes=0&scrollbar=0`}
-            className="w-full h-full rounded-lg border border-white/10"
+            className="w-full h-full rounded-lg border border-gray-200"
             title={fileName}
           />
         </div>
 
         {/* Footer */}
-        <div className="p-6 border-t border-white/10">
+        <div className="p-6 border-t border-gray-200">
           <div className="flex items-center justify-between">
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-600 text-sm">
               This research paper is for internal use only. Please do not share or distribute.
             </p>
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-gray-400 text-sm">
+              <div className="flex items-center space-x-2 text-gray-600 text-sm">
                 <Eye size={16} />
                 <span>View Only</span>
               </div>
               <div className="flex items-center space-x-2">
-                <span className="text-gray-400 text-sm">Share:</span>
+                <span className="text-gray-600 text-sm">Share:</span>
                 <button
                   onClick={() => {
                     const paperSlug = fileName === 'From Rails to Returns_ Payments Circle.pdf' ? 'from-rails-to-returns' : 'from-wires-to-wallets';
@@ -92,7 +92,7 @@ const PDFViewer = ({ isOpen, onClose, fileName }: {
                     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
                     window.open(twitterUrl, '_blank');
                   }}
-                  className="text-blue-400 hover:text-blue-300 transition-colors p-2 rounded-lg hover:bg-blue-500/10"
+                  className="text-blue-500 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-blue-50"
                   title="Share on Twitter"
                 >
                   <Twitter size={18} />
@@ -105,7 +105,7 @@ const PDFViewer = ({ isOpen, onClose, fileName }: {
                     const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent(fileName.replace('.pdf', ''))}&summary=${encodeURIComponent(text)}`;
                     window.open(linkedinUrl, '_blank');
                   }}
-                  className="text-blue-600 hover:text-blue-500 transition-colors p-2 rounded-lg hover:bg-blue-600/10"
+                  className="text-blue-600 hover:text-blue-700 transition-colors p-2 rounded-lg hover:bg-blue-50"
                   title="Share on LinkedIn"
                 >
                   <Linkedin size={18} />
@@ -131,13 +131,17 @@ const EmailCaptureModal = ({ isOpen, onClose, onEmailSubmit, fileName }: {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
-    
+    if (!email.trim()) return;
+
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    onEmailSubmit(email);
-    setIsSubmitting(false);
+    try {
+      await onEmailSubmit(email);
+      setEmail('');
+    } catch (error) {
+      console.error('Error submitting email:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -147,75 +151,66 @@ const EmailCaptureModal = ({ isOpen, onClose, onEmailSubmit, fileName }: {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
       onClick={onClose}
     >
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 max-w-md w-full border border-white/20"
+        className="bg-white rounded-2xl w-full max-w-md p-8 border border-gray-200 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
-        >
-          <X size={24} />
-        </button>
-
-        {/* Header */}
         <div className="text-center mb-6">
           <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Mail size={24} className="text-white" />
+            <Mail className="w-8 h-8 text-white" />
           </div>
-          <h3 className="text-xl font-bold text-white mb-2">Access Research Paper</h3>
-          <p className="text-gray-300 text-sm">
-            Enter your work email to read &ldquo;{fileName}&rdquo;
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">
+            {fileName === 'Research Updates' ? 'Subscribe to Research Updates' : 
+             fileName === 'Contact Request' ? 'Get in Touch' : 
+             `Download ${fileName.replace('.pdf', '')}`}
+          </h3>
+          <p className="text-gray-600">
+            {fileName === 'Research Updates' ? 'Stay updated with our latest research papers and insights.' :
+             fileName === 'Contact Request' ? 'We\'d love to hear from you. Send us a message.' :
+             'Enter your email to access this research paper.'}
           </p>
         </div>
 
-        {/* Email Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-              Work Email Address
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              Email Address
             </label>
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@company.com"
+              placeholder="your@email.com"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
               required
-              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
-          
+
           <button
             type="submit"
-            disabled={isSubmitting || !email}
-            className="w-full bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2"
+            disabled={isSubmitting}
+            className="w-full bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isSubmitting ? (
-              <>
-                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                <span>Processing...</span>
-              </>
-            ) : (
-              <>
-                <Eye size={20} />
-                <span>Read Research Paper</span>
-              </>
-            )}
+            {isSubmitting ? 'Submitting...' : 
+             fileName === 'Research Updates' ? 'Subscribe' :
+             fileName === 'Contact Request' ? 'Send Message' :
+             'Download Paper'}
           </button>
         </form>
 
-        {/* Privacy Note */}
-        <p className="text-gray-400 text-xs text-center mt-4">
-          We respect your privacy. Your email will only be used to send you research updates.
-        </p>
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+        >
+          <X size={24} />
+        </button>
       </motion.div>
     </motion.div>
   );
@@ -294,26 +289,26 @@ const CryptoTreasuries = () => {
 
   if (loading) {
     return (
-      <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-        <h2 className="text-3xl font-bold text-white mb-8 text-center">Crypto Treasuries</h2>
+      <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Crypto Treasuries</h2>
         <div className="flex items-center justify-center py-12">
           <div className="w-8 h-8 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
-          <span className="ml-3 text-gray-300">Loading treasury data...</span>
+          <span className="ml-3 text-gray-600">Loading treasury data...</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+    <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
       <div className="flex items-center justify-center mb-8">
-        <TrendingUp className="w-8 h-8 text-blue-400 mr-3" />
-        <h2 className="text-3xl font-bold text-white">Crypto Treasuries</h2>
+        <TrendingUp className="w-8 h-8 text-blue-500 mr-3" />
+        <h2 className="text-3xl font-bold text-gray-900">Crypto Treasuries</h2>
         <div className="flex items-center ml-4">
           <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse mr-2"></div>
-          <span className="text-green-400 text-sm font-medium">LIVE</span>
+          <span className="text-green-600 text-sm font-medium">LIVE</span>
           {lastUpdated && (
-            <span className="text-gray-400 text-xs ml-3">
+            <span className="text-gray-500 text-xs ml-3">
               Updated: {lastUpdated.toLocaleTimeString()}
             </span>
           )}
@@ -321,10 +316,10 @@ const CryptoTreasuries = () => {
       </div>
       
       {error && (
-        <div className="bg-red-500/20 border border-red-500/30 rounded-lg p-4 mb-6">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
           <div className="flex items-center">
             <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-            <p className="text-red-300 text-sm">
+            <p className="text-red-700 text-sm">
               {error} - Showing static data as fallback
             </p>
           </div>
@@ -334,60 +329,60 @@ const CryptoTreasuries = () => {
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10">
-              <th className="text-left text-gray-300 font-semibold py-4 px-2">Company</th>
-              <th className="text-left text-gray-300 font-semibold py-4 px-2">Crypto</th>
-              <th className="text-right text-gray-300 font-semibold py-4 px-2">mNAV</th>
-              <th className="text-right text-gray-300 font-semibold py-4 px-2">Treasury Value</th>
-              <th className="text-right text-gray-300 font-semibold py-4 px-2">Obligation Rate (Est.)</th>
-              <th className="text-right text-gray-300 font-semibold py-4 px-2">Short %</th>
-              <th className="text-right text-gray-300 font-semibold py-4 px-2">Short Days</th>
-              <th className="text-right text-gray-300 font-semibold py-4 px-2">Market Cap</th>
-              <th className="text-right text-gray-300 font-semibold py-4 px-2">Holdings</th>
-              <th className="text-left text-gray-300 font-semibold py-4 px-2">Ticker</th>
+            <tr className="border-b border-gray-200">
+              <th className="text-left text-gray-700 font-semibold py-4 px-2">Company</th>
+              <th className="text-left text-gray-700 font-semibold py-4 px-2">Crypto</th>
+              <th className="text-right text-gray-700 font-semibold py-4 px-2">mNAV</th>
+              <th className="text-right text-gray-700 font-semibold py-4 px-2">Treasury Value</th>
+              <th className="text-right text-gray-700 font-semibold py-4 px-2">Obligation Rate (Est.)</th>
+              <th className="text-right text-gray-700 font-semibold py-4 px-2">Short %</th>
+              <th className="text-right text-gray-700 font-semibold py-4 px-2">Short Days</th>
+              <th className="text-right text-gray-700 font-semibold py-4 px-2">Market Cap</th>
+              <th className="text-right text-gray-700 font-semibold py-4 px-2">Holdings</th>
+              <th className="text-left text-gray-700 font-semibold py-4 px-2">Ticker</th>
             </tr>
           </thead>
           <tbody>
             {treasuryData.map((company, index) => (
               <motion.tr
                 key={index}
-                className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
               >
                 <td className="py-4 px-2">
-                  <div className="text-white font-medium">{company.company}</div>
+                  <div className="text-gray-900 font-medium">{company.company}</div>
                 </td>
                 <td className="py-4 px-2">
                   <span className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-2 py-1 rounded text-xs font-semibold">
                     {company.crypto}
                   </span>
                 </td>
-                <td className="py-4 px-2 text-right text-purple-400 font-semibold">
+                <td className="py-4 px-2 text-right text-purple-600 font-semibold">
                   {company.mNAV ? `${company.mNAV.toFixed(3)}x` : 'N/A'}
                 </td>
-                <td className="py-4 px-2 text-right text-green-400 font-semibold">
+                <td className="py-4 px-2 text-right text-green-600 font-semibold">
                   {company.treasuryValue ? formatNumber(company.treasuryValue) : 'N/A'}
                 </td>
-                <td className="py-4 px-2 text-right text-gray-300">
+                <td className="py-4 px-2 text-right text-gray-600">
                   {company.obligationRate ? `${(company.obligationRate * 100).toFixed(2)}%` : 'N/A'}
                 </td>
-                <td className="py-4 px-2 text-right text-red-400">
+                <td className="py-4 px-2 text-right text-red-600">
                   {company.shortPercent ? `${company.shortPercent.toFixed(2)}%` : 'N/A'}
                 </td>
-                <td className="py-4 px-2 text-right text-gray-300">
+                <td className="py-4 px-2 text-right text-gray-600">
                   {company.shortDays ? `${company.shortDays.toFixed(1)}d` : 'N/A'}
                 </td>
-                <td className="py-4 px-2 text-right text-gray-300">
+                <td className="py-4 px-2 text-right text-gray-600">
                   {company.marketCap ? formatNumber(company.marketCap) : 'N/A'}
                 </td>
-                <td className="py-4 px-2 text-right text-gray-300">
+                <td className="py-4 px-2 text-right text-gray-600">
                   {formatCrypto(company.cryptoOwned, company.crypto)}
                 </td>
                 <td className="py-4 px-2">
                   <div className="flex items-center space-x-2">
-                    <span className="text-blue-400 font-mono">
+                    <span className="text-blue-600 font-mono">
                       {company.ticker || 'N/A'}
                     </span>
                     {company.yahoo && (
@@ -395,7 +390,7 @@ const CryptoTreasuries = () => {
                         href={company.yahoo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-400 hover:text-blue-300 transition-colors"
+                        className="text-blue-600 hover:text-blue-700 transition-colors"
                       >
                         <ExternalLink size={14} />
                       </a>
@@ -409,7 +404,7 @@ const CryptoTreasuries = () => {
       </div>
 
       <div className="mt-6 text-center">
-        <p className="text-gray-400 text-sm">
+        <p className="text-gray-500 text-sm">
           Data updates every 15 minutes during market hours. Treasury values calculated using real-time crypto prices.
         </p>
       </div>
@@ -536,7 +531,7 @@ export default function ResearchPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <div className="min-h-screen bg-white">
       {/* Email Capture Modal */}
       <EmailCaptureModal
         isOpen={emailModal.isOpen}
@@ -569,18 +564,18 @@ export default function ResearchPage() {
       />
 
       {/* Navigation Header */}
-      <nav className="fixed top-0 w-full bg-black/20 backdrop-blur-md border-b border-white/10 z-50">
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-gray-200 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Back to Home */}
-            <Link href="/" className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
               <ArrowLeft size={20} />
               <span>Back to Home</span>
             </Link>
             
             {/* Logo */}
-            <div className="text-2xl font-bold text-white">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+            <div className="text-2xl font-bold text-gray-900">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-500">
                 Birdai
               </span>
             </div>
@@ -602,12 +597,12 @@ export default function ResearchPage() {
           {/* Header Section */}
           <div className="text-center mb-16">
             <ScrollAnimation>
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
                 Research & Insights
               </h1>
             </ScrollAnimation>
             <ScrollAnimation delay={0.2}>
-              <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
                 Cutting-edge research at the intersection of AI, blockchain, and venture capital. 
                 We analyze market trends, emerging technologies, and investment patterns to identify tomorrow&apos;s unicorns today.
               </p>
@@ -624,35 +619,35 @@ export default function ResearchPage() {
           {/* Research Publications & Downloads */}
           <ScrollAnimation delay={0.6}>
             <div className="mb-20">
-              <h2 className="text-3xl font-bold text-white mb-12 text-center">Research Publications</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Research Publications</h2>
               
               {/* Research Papers */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-                <h3 className="text-2xl font-bold text-white mb-8 text-center">Research Papers</h3>
+              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Research Papers</h3>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   
                   {/* From Rails to Returns */}
                   <motion.div 
-                    className="bg-white/10 rounded-xl p-6 border border-white/20"
+                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
                     whileHover={{ scale: 1.05, y: -3 }}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="flex items-center mb-4">
                       <div className="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center mr-3">
-                        <svg className="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                         </svg>
                       </div>
                       <div>
-                        <h4 className="text-white font-semibold">From Rails to Returns</h4>
-                        <p className="text-gray-400 text-xs">Payments Circle Analysis</p>
+                        <h4 className="text-gray-900 font-semibold">From Rails to Returns</h4>
+                        <p className="text-gray-500 text-xs">Payments Circle Analysis</p>
                       </div>
                     </div>
-                    <p className="text-gray-300 text-sm mb-4">
+                    <p className="text-gray-600 text-sm mb-4">
                       Comprehensive analysis of payment infrastructure evolution and investment opportunities in fintech.
                     </p>
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-400 text-xs">3.9 MB • PDF</span>
+                      <span className="text-gray-500 text-xs">3.9 MB • PDF</span>
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => {
@@ -661,7 +656,7 @@ export default function ResearchPage() {
                             const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
                             window.open(twitterUrl, '_blank');
                           }}
-                          className="text-blue-400 hover:text-blue-300 transition-colors p-1 rounded hover:bg-blue-500/10"
+                          className="text-blue-500 hover:text-blue-600 transition-colors p-1 rounded hover:bg-blue-50"
                           title="Share on Twitter"
                         >
                           <Twitter size={16} />
@@ -673,7 +668,7 @@ export default function ResearchPage() {
                             const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=From Rails to Returns&summary=${encodeURIComponent(text)}`;
                             window.open(linkedinUrl, '_blank');
                           }}
-                          className="text-blue-600 hover:text-blue-500 transition-colors p-1 rounded hover:bg-blue-600/10"
+                          className="text-blue-600 hover:text-blue-700 transition-colors p-1 rounded hover:bg-blue-50"
                           title="Share on LinkedIn"
                         >
                           <Linkedin size={16} />
@@ -692,26 +687,26 @@ export default function ResearchPage() {
 
                   {/* From Wires to Wallets */}
                   <motion.div 
-                    className="bg-white/10 rounded-xl p-6 border border-white/20"
+                    className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
                     whileHover={{ scale: 1.05, y: -3 }}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="flex items-center mb-4">
                       <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center mr-3">
-                        <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                         </svg>
                       </div>
                       <div>
-                        <h4 className="text-white font-semibold">From Wires to Wallets</h4>
-                        <p className="text-gray-400 text-xs">Digital Payment Evolution</p>
+                        <h4 className="text-gray-900 font-semibold">From Wires to Wallets</h4>
+                        <p className="text-gray-500 text-xs">Digital Payment Evolution</p>
                       </div>
                     </div>
-                    <p className="text-gray-300 text-sm mb-4">
+                    <p className="text-gray-600 text-sm mb-4">
                       Mental model shift for how we should think about Bitcoin relative to past innovations.
                     </p>
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-400 text-xs">5.2 MB • PDF</span>
+                      <span className="text-gray-500 text-xs">5.2 MB • PDF</span>
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => {
@@ -720,7 +715,7 @@ export default function ResearchPage() {
                             const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
                             window.open(twitterUrl, '_blank');
                           }}
-                          className="text-blue-400 hover:text-blue-300 transition-colors p-1 rounded hover:bg-blue-500/10"
+                          className="text-blue-500 hover:text-blue-600 transition-colors p-1 rounded hover:bg-blue-50"
                           title="Share on Twitter"
                         >
                           <Twitter size={16} />
@@ -732,7 +727,7 @@ export default function ResearchPage() {
                             const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=From Wires to Wallets&summary=${encodeURIComponent(text)}`;
                             window.open(linkedinUrl, '_blank');
                           }}
-                          className="text-blue-600 hover:text-blue-500 transition-colors p-1 rounded hover:bg-blue-600/10"
+                          className="text-blue-600 hover:text-blue-700 transition-colors p-1 rounded hover:bg-blue-50"
                           title="Share on LinkedIn"
                         >
                           <Linkedin size={16} />
@@ -751,26 +746,26 @@ export default function ResearchPage() {
 
                   {/* Template for new research papers */}
                   <motion.div 
-                    className="bg-white/10 rounded-xl p-6 border border-white/20 border-dashed"
+                    className="bg-white rounded-xl p-6 border border-gray-200 border-dashed shadow-sm hover:shadow-md transition-shadow"
                     whileHover={{ scale: 1.05, y: -3 }}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="flex items-center mb-4">
                       <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center mr-3">
-                        <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
                       </div>
                       <div>
-                        <h4 className="text-white font-semibold">Coming Soon</h4>
-                        <p className="text-gray-400 text-xs">More Research Papers</p>
+                        <h4 className="text-gray-900 font-semibold">Coming Soon</h4>
+                        <p className="text-gray-500 text-xs">More Research Papers</p>
                       </div>
                     </div>
-                    <p className="text-gray-300 text-sm mb-4">
+                    <p className="text-gray-600 text-sm mb-4">
                       We&apos;re constantly adding new research papers. Subscribe to get notified when new content is available.
                     </p>
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-400 text-xs">Stay Updated</span>
+                      <span className="text-gray-500 text-xs">Stay Updated</span>
                       <motion.button 
                         onClick={handleSubscribeRequest}
                         className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300"
@@ -790,11 +785,11 @@ export default function ResearchPage() {
           {/* Models Section */}
           <ScrollAnimation delay={0.7}>
             <div className="mb-20">
-              <h2 className="text-3xl font-bold text-white mb-12 text-center">Models</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Models</h2>
               
-              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-                <h3 className="text-2xl font-bold text-white mb-8 text-center">AI & Investment Models</h3>
-                <p className="text-gray-300 text-center mb-8 max-w-4xl mx-auto">
+              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">AI & Investment Models</h3>
+                <p className="text-gray-600 text-center mb-8 max-w-4xl mx-auto">
                   Explore our comprehensive models and datasets that power our research and investment insights. 
                   These interactive tools provide real-time data and analysis across various market sectors.
                 </p>
@@ -802,7 +797,7 @@ export default function ResearchPage() {
                 <div className="w-full">
                   <iframe 
                     src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT3bAmligji-xjp06XjYx4z41PFu-ICXp4DLpAGFZtUgdpJEJcCyHmJGycLJP6OWbiDS1AITWSy38VT/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"
-                    className="w-full h-[600px] rounded-lg border border-white/10"
+                    className="w-full h-[600px] rounded-lg border border-gray-200"
                     title="AI & Investment Models"
                     frameBorder="0"
                   />
@@ -813,15 +808,15 @@ export default function ResearchPage() {
 
           {/* Research Methodology */}
           <ScrollAnimation delay={0.8}>
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <h2 className="text-2xl font-bold text-white mb-6 text-center">Our Research Methodology</h2>
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Our Research Methodology</h2>
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-white font-bold text-xl">1</span>
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Data Collection</h3>
-                  <p className="text-gray-300 text-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Data Collection</h3>
+                  <p className="text-gray-600 text-sm">
                     Aggregate data from sources including social media, news, financial reports, and on-chain analytics
                   </p>
                 </div>
@@ -830,8 +825,8 @@ export default function ResearchPage() {
                   <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-white font-bold text-xl">2</span>
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">AI Analysis</h3>
-                  <p className="text-gray-300 text-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Analysis</h3>
+                  <p className="text-gray-600 text-sm">
                     Apply machine learning models to identify patterns, sentiment, and predictive signals across datasets
                   </p>
                 </div>
@@ -840,8 +835,8 @@ export default function ResearchPage() {
                   <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-white font-bold text-xl">3</span>
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Expert Validation</h3>
-                  <p className="text-gray-300 text-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Expert Validation</h3>
+                  <p className="text-gray-600 text-sm">
                     Combine AI insights with human expertise to validate findings and generate actionable intelligence
                   </p>
                 </div>
