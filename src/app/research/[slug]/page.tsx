@@ -6,7 +6,12 @@ import { Mail, Download, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 // Research paper metadata
-const researchPapers = {
+const researchPapers: Record<string, {
+  title: string;
+  description: string;
+  fileName: string;
+  image: string;
+}> = {
   'from-rails-to-returns': {
     title: 'From Rails to Returns: Payments Circle',
     description: 'Comprehensive analysis of payment infrastructure evolution and investment opportunities in fintech',
