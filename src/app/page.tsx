@@ -995,13 +995,13 @@ export default function Home() {
               },
               particles: {
                 color: {
-                  value: "#6b7280",
+                  value: "#9ca3af",
                 },
                 links: {
-                  color: "#6b7280",
+                  color: "#9ca3af",
                   distance: 150,
                   enable: true,
-                  opacity: 0.3,
+                  opacity: 0.2,
                   width: 1,
                 },
                 move: {
