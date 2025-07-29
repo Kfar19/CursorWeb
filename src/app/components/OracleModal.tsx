@@ -233,10 +233,10 @@ export default function OracleModal({ isOpen, onClose, onContactModalOpen }: Ora
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
                       onClick={() => handleAnswer(oracleQuestions[currentStep].id, option)}
-                      className="w-full p-4 text-left bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-lg transition-all duration-200 group relative overflow-hidden"
+                      className="w-full p-4 text-left bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300 rounded-lg transition-all duration-200 group relative overflow-hidden shadow-sm"
                     >
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className="absolute inset-0 bg-gradient-to-r from-gray-100/50 to-gray-200/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         initial={{ x: '-100%' }}
                         whileHover={{ x: '100%' }}
                         transition={{ duration: 0.6 }}
@@ -244,14 +244,14 @@ export default function OracleModal({ isOpen, onClose, onContactModalOpen }: Ora
                       <div className="flex items-center justify-between relative z-10">
                         <div className="flex items-center space-x-3">
                           <motion.div
-                            className="w-2 h-2 bg-blue-500 rounded-full"
+                            className="w-2 h-2 bg-gray-400 rounded-full"
                             animate={{ scale: [1, 1.2, 1] }}
                             transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
                           />
                           <span className="text-gray-900 font-medium">{option}</span>
                         </div>
                         <motion.div
-                          className="text-blue-500 opacity-0 group-hover:opacity-100"
+                          className="text-gray-600 opacity-0 group-hover:opacity-100"
                           initial={{ x: -10 }}
                           animate={{ x: 0 }}
                         >
@@ -278,42 +278,42 @@ export default function OracleModal({ isOpen, onClose, onContactModalOpen }: Ora
                   </p>
                   <div className="space-y-4 mb-6">
                     {/* Timeline Strategy */}
-                    <div className="bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-lg p-4">
-                      <h4 className="font-semibold text-blue-900 mb-2 flex items-center">
-                        <Clock className="w-4 h-4 mr-2" />
+                    <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                      <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                        <Clock className="w-4 h-4 mr-2 text-blue-600" />
                         Timeline Strategy
                       </h4>
-                      <p className="text-blue-800 text-sm mb-2">{insight?.timeline.strategy}</p>
-                      <p className="text-blue-700 text-xs">{insight?.timeline.marketContext}</p>
+                      <p className="text-gray-700 text-sm mb-2">{insight?.timeline.strategy}</p>
+                      <p className="text-gray-500 text-xs">{insight?.timeline.marketContext}</p>
                     </div>
 
                     {/* Risk Profile */}
-                    <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-4">
-                      <h4 className="font-semibold text-purple-900 mb-2 flex items-center">
-                        <Shield className="w-4 h-4 mr-2" />
+                    <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                      <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                        <Shield className="w-4 h-4 mr-2 text-purple-600" />
                         Risk Profile
                       </h4>
-                      <p className="text-purple-800 text-sm mb-2">{insight?.risk.strategy}</p>
-                      <p className="text-purple-700 text-xs">{insight?.risk.marketContext}</p>
+                      <p className="text-gray-700 text-sm mb-2">{insight?.risk.strategy}</p>
+                      <p className="text-gray-500 text-xs">{insight?.risk.marketContext}</p>
                     </div>
 
                     {/* Focus Area */}
-                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg p-4">
-                      <h4 className="font-semibold text-green-900 mb-2 flex items-center">
-                        <Brain className="w-4 h-4 mr-2" />
+                    <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                      <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                        <Brain className="w-4 h-4 mr-2 text-green-600" />
                         Focus Area
                       </h4>
-                      <p className="text-green-800 text-sm mb-2">{insight?.focus.strategy}</p>
-                      <p className="text-green-700 text-xs">{insight?.focus.currentTrend}</p>
+                      <p className="text-gray-700 text-sm mb-2">{insight?.focus.strategy}</p>
+                      <p className="text-gray-500 text-xs">{insight?.focus.currentTrend}</p>
                     </div>
 
                     {/* AI Capabilities */}
-                    <div className="bg-gradient-to-r from-orange-50 to-red-50 border border-orange-200 rounded-lg p-4">
-                      <h4 className="font-semibold text-orange-900 mb-2 flex items-center">
-                        <Zap className="w-4 h-4 mr-2" />
+                    <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                      <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                        <Zap className="w-4 h-4 mr-2 text-orange-600" />
                         AI Capabilities
                       </h4>
-                      <p className="text-orange-800 text-sm">{insight?.focus.aiCapability}</p>
+                      <p className="text-gray-700 text-sm">{insight?.focus.aiCapability}</p>
                     </div>
                   </div>
                   <p className="text-gray-700 font-medium mb-6">
@@ -327,19 +327,19 @@ export default function OracleModal({ isOpen, onClose, onContactModalOpen }: Ora
                         setAnswers({});
                         setShowResult(false);
                       }}
-                      className="flex-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                      className="flex-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors border border-gray-200"
                     >
                       Ask Again
                     </button>
-                                         <button
-                       onClick={() => {
-                         onContactModalOpen();
-                         onClose();
-                       }}
-                       className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-lg hover:from-blue-600 hover:to-cyan-700 transition-all duration-200"
-                     >
-                       Join Signal
-                     </button>
+                    <button
+                      onClick={() => {
+                        onContactModalOpen();
+                        onClose();
+                      }}
+                      className="flex-1 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors border border-gray-900"
+                    >
+                      Join Signal
+                    </button>
                   </div>
                 </motion.div>
               </div>
