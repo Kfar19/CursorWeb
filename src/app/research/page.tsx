@@ -227,7 +227,8 @@ export default function ResearchPage() {
         },
         body: JSON.stringify({
           email,
-          fileName: emailModal.fileName
+          fileName: emailModal.fileName,
+          source: 'research_download'
         }),
       });
 
