@@ -1520,7 +1520,7 @@ export default function Home() {
                     Ask the Oracle
                   </h3>
                   <p className="text-gray-600 mb-6">
-                    Answer 3 simple questions to discover how our AI is tailored for your investment approach
+                    Answer 3 simple questions to learn more about your risk profile
                   </p>
                   <motion.button
                     className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-8 rounded-full text-lg shadow-lg"
