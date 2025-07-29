@@ -1433,17 +1433,15 @@ export default function Home() {
             className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 relative"
             variants={fadeInUp}
           >
-            <motion.span
-              animate={{ 
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-              }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 bg-[length:200%_100%] bg-clip-text text-transparent"
-            >
+            <span className="block">
               See What Others
-            </motion.span>
+            </span>
             <motion.span 
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-black relative"
+              className="block text-gray-900 relative"
+              animate={{ 
+                opacity: [0.8, 1, 0.8],
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               Miss
             </motion.span>
