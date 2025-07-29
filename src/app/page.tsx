@@ -1602,129 +1602,108 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Social Buzz Tracking Section */}
-      <section id="social-sentiment" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      {/* Simplified Live Data Dashboard */}
+      <section id="live-data" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-center">
-              Live Social Sentiment
+              Live Market Data
             </h2>
           </ScrollAnimation>
           <ScrollAnimation delay={0.2}>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12 text-center">
-              Real-time buzz tracking across Reddit, Twitter, and crypto communities
+              Key metrics that drive our AI investment decisions
             </p>
           </ScrollAnimation>
           
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {/* Sentiment Overview */}
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {/* Market Sentiment */}
             <ScrollAnimation delay={0.3}>
               <motion.div 
-                className="bg-gray-50 rounded-2xl p-8 border border-gray-200"
+                className="bg-gray-50 rounded-2xl p-6 border border-gray-200"
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900">Market Sentiment</h3>
-                  <div className="flex items-center space-x-2">
-                                 <div className="flex items-center space-x-2">
-               <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-               <span className="text-blue-600 text-sm">Live simulated data</span>
-             </div>
-                  </div>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-bold text-gray-900">Market Sentiment</h3>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                 </div>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
+                <div className="text-center mb-4">
+                  <p className="text-3xl font-bold text-blue-600">{socialSentiment.bullish}%</p>
+                  <p className="text-gray-600 text-sm">Bullish</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm">
                     <span className="text-green-600">Bullish</span>
-                    <div className="flex items-center">
-                      <div className="w-32 bg-gray-200 rounded-full h-2 mr-3">
-                        <motion.div 
-                          className="bg-green-500 h-2 rounded-full"
-                          initial={{ width: 0 }}
-                          animate={{ width: `${socialSentiment.bullish}%` }}
-                          transition={{ duration: 1 }}
-                        />
-                      </div>
-                      <span className="text-gray-900 font-semibold">{socialSentiment.bullish}%</span>
-                    </div>
+                    <span className="font-semibold">{socialSentiment.bullish}%</span>
                   </div>
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center text-sm">
                     <span className="text-gray-600">Neutral</span>
-                    <div className="flex items-center">
-                      <div className="w-32 bg-gray-200 rounded-full h-2 mr-3">
-                        <motion.div 
-                          className="bg-gray-500 h-2 rounded-full"
-                          initial={{ width: 0 }}
-                          animate={{ width: `${socialSentiment.neutral}%` }}
-                          transition={{ duration: 1 }}
-                        />
-                      </div>
-                      <span className="text-gray-900 font-semibold">{socialSentiment.neutral}%</span>
-                    </div>
+                    <span className="font-semibold">{socialSentiment.neutral}%</span>
                   </div>
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center text-sm">
                     <span className="text-red-600">Bearish</span>
-                    <div className="flex items-center">
-                      <div className="w-32 bg-gray-200 rounded-full h-2 mr-3">
-                        <motion.div 
-                          className="bg-red-500 h-2 rounded-full"
-                          initial={{ width: 0 }}
-                          animate={{ width: `${socialSentiment.bearish}%` }}
-                          transition={{ duration: 1 }}
-                        />
-                      </div>
-                      <span className="text-gray-900 font-semibold">{socialSentiment.bearish}%</span>
-                    </div>
+                    <span className="font-semibold">{socialSentiment.bearish}%</span>
                   </div>
-                </div>
-                <div className="mt-6 text-center">
-                  <p className="text-2xl font-bold text-blue-600">{totalMentions.toLocaleString()}</p>
-                           <p className="text-gray-600">Total Mentions (24h)</p>
-         <div className="text-xs text-blue-600 mt-1 space-y-1">
-           <p>{realSocialData.twitterMentions} from Twitter</p>
-           <p>{realSocialData.redditMentions} from Reddit</p>
-           <p>{realSocialData.newsMentions} from News APIs</p>
-         </div>
                 </div>
               </motion.div>
             </ScrollAnimation>
 
-            {/* Trending Topics */}
+            {/* Social Activity */}
             <ScrollAnimation delay={0.4}>
               <motion.div 
-                className="bg-gray-50 rounded-2xl p-8 border border-gray-200"
+                className="bg-gray-50 rounded-2xl p-6 border border-gray-200"
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Trending Topics</h3>
-                <div className="space-y-4">
-                  {trendingTopics.map((topic, index) => (
-                    <motion.div 
-                      key={topic.topic}
-                      className="flex justify-between items-center p-3 bg-white rounded-lg border border-gray-200"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <div>
-                        <p className="text-gray-900 font-semibold">{topic.topic}</p>
-                        <p className="text-sm text-gray-600">{topic.mentions.toLocaleString()} mentions</p>
-                      </div>
-                      <div className="text-right">
-                        <span className={`text-sm font-semibold ${
-                          topic.sentiment === 'bullish' ? 'text-green-600' : 
-                          topic.sentiment === 'bearish' ? 'text-red-600' : 'text-gray-600'
-                        }`}>
-                          {topic.sentiment}
-                        </span>
-                        <p className={`text-sm ${
-                          topic.change.startsWith('+') ? 'text-green-600' : 'text-red-600'
-                        }`}>
-                          {topic.change}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-bold text-gray-900">Social Activity</h3>
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                </div>
+                <div className="text-center mb-4">
+                  <p className="text-3xl font-bold text-green-600">{totalMentions.toLocaleString()}</p>
+                  <p className="text-gray-600 text-sm">Total Mentions (24h)</p>
+                </div>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span>Twitter</span>
+                    <span className="font-semibold">{realSocialData.twitterMentions}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Reddit</span>
+                    <span className="font-semibold">{realSocialData.redditMentions}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>News</span>
+                    <span className="font-semibold">{realSocialData.newsMentions}</span>
+                  </div>
+                </div>
+              </motion.div>
+            </ScrollAnimation>
+
+            {/* Market Cap */}
+            <ScrollAnimation delay={0.5}>
+              <motion.div 
+                className="bg-gray-50 rounded-2xl p-6 border border-gray-200"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-bold text-gray-900">Private Markets</h3>
+                  <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                </div>
+                <div className="text-center mb-4">
+                  <p className="text-3xl font-bold text-purple-600">
+                    {isLoading ? (
+                      <motion.div className="w-6 h-6 border-2 border-purple-500 border-t-transparent rounded-full mx-auto animate-spin" />
+                    ) : (
+                      formatMarketCap(marketCap)
+                    )}
+                  </p>
+                  <p className="text-gray-600 text-sm">Market Cap</p>
+                </div>
+                <div className="text-center text-sm text-gray-600">
+                  <p>Updated {lastUpdated.toLocaleTimeString()}</p>
                 </div>
               </motion.div>
             </ScrollAnimation>
@@ -1735,7 +1714,7 @@ export default function Home() {
 
 
       {/* AI Eats Data Section */}
-      <section id="live-data" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="ai-data" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left Side - Text Content */}
