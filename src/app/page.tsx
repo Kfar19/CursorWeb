@@ -1204,7 +1204,7 @@ export default function Home() {
                 <motion.div whileHover={{ scale: 1.05 }}>
                   <span>Research</span>
                   <motion.div 
-                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-indigo-500 group-hover:w-full transition-all duration-300"
+                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 group-hover:w-full transition-all duration-300"
                     whileHover={{ width: "100%" }}
                   />
                 </motion.div>
@@ -1244,7 +1244,7 @@ export default function Home() {
               >
                 <span>Social Sentiment</span>
                 <motion.div 
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 group-hover:w-full transition-all duration-300"
                   whileHover={{ width: "100%" }}
                 />
               </motion.a>
@@ -1403,7 +1403,7 @@ export default function Home() {
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           />
           <motion.div 
-            className="absolute bottom-20 left-1/4 w-20 h-20 bg-purple-500/10 rounded-full blur-2xl"
+                            className="absolute bottom-20 left-1/4 w-20 h-20 bg-blue-500/10 rounded-full blur-2xl"
             animate={{ 
               scale: [1, 1.3, 1],
               opacity: [0.2, 0.4, 0.2],
@@ -1685,7 +1685,7 @@ export default function Home() {
       </section>
 
       {/* Oracle Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-blue-50">
+              <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <ScrollAnimation>
@@ -1720,7 +1720,7 @@ export default function Home() {
                     Answer 3 simple questions to discover how our AI is tailored for your investment approach
                   </p>
                   <motion.button
-                    className="bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white font-semibold py-3 px-8 rounded-full text-lg shadow-lg"
+                    className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-8 rounded-full text-lg shadow-lg"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -1820,7 +1820,7 @@ export default function Home() {
                   transition={{ duration: 0.2 }}
                 >
                   <motion.div 
-                    className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6"
+                    className="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6"
                     whileHover={{ rotate: 5, scale: 1.1 }}
                     transition={{ duration: 0.2 }}
                   >
@@ -1907,7 +1907,7 @@ export default function Home() {
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6"
+                className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
@@ -2237,7 +2237,7 @@ export default function Home() {
                             <div className={`w-3 h-3 rounded-full ${
                               holder.category === 'public_company' ? 'bg-blue-500' : 
                               holder.category === 'spot_etf' ? 'bg-green-500' : 
-                              holder.category === 'trust' ? 'bg-purple-500' :
+                              holder.category === 'trust' ? 'bg-blue-500' :
                               holder.category === 'private_company' ? 'bg-orange-500' :
                               holder.category === 'asset_manager' ? 'bg-cyan-500' :
                               holder.category === 'sovereign' ? 'bg-red-500' :
