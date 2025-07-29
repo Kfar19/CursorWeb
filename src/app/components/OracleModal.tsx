@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Eye, Brain, Clock, TrendingUp, Shield, Zap } from 'lucide-react';
 import Lottie from 'lottie-react';
-import oracleAnimation from '../../oracle-animation.json';
+import oracleAnimation from '../../../public/oracle-animation.json';
 
 interface OracleModalProps {
   isOpen: boolean;
