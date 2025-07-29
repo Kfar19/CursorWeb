@@ -86,8 +86,9 @@ const PDFViewer = ({ isOpen, onClose, fileName }: {
                 <span className="text-gray-400 text-sm">Share:</span>
                 <button
                   onClick={() => {
+                    const paperSlug = fileName === 'From Rails to Returns_ Payments Circle.pdf' ? 'from-rails-to-returns' : 'from-wires-to-wallets';
                     const text = `Check out this research paper "${fileName.replace('.pdf', '')}" from Birdai - cutting-edge insights at the intersection of AI, blockchain, and venture capital.`;
-                    const url = window.location.href;
+                    const url = `${window.location.origin}/research/${paperSlug}`;
                     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
                     window.open(twitterUrl, '_blank');
                   }}
@@ -98,8 +99,9 @@ const PDFViewer = ({ isOpen, onClose, fileName }: {
                 </button>
                 <button
                   onClick={() => {
+                    const paperSlug = fileName === 'From Rails to Returns_ Payments Circle.pdf' ? 'from-rails-to-returns' : 'from-wires-to-wallets';
                     const text = `Check out this research paper "${fileName.replace('.pdf', '')}" from Birdai - cutting-edge insights at the intersection of AI, blockchain, and venture capital.`;
-                    const url = window.location.href;
+                    const url = `${window.location.origin}/research/${paperSlug}`;
                     const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent(fileName.replace('.pdf', ''))}&summary=${encodeURIComponent(text)}`;
                     window.open(linkedinUrl, '_blank');
                   }}
@@ -656,7 +658,7 @@ export default function ResearchPage() {
                         <button
                           onClick={() => {
                             const text = `Check out "From Rails to Returns" research paper from Birdai - comprehensive analysis of payment infrastructure evolution and investment opportunities in fintech.`;
-                            const url = window.location.href;
+                            const url = `${window.location.origin}/research/from-rails-to-returns`;
                             const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
                             window.open(twitterUrl, '_blank');
                           }}
@@ -668,7 +670,7 @@ export default function ResearchPage() {
                         <button
                           onClick={() => {
                             const text = `Check out "From Rails to Returns" research paper from Birdai - comprehensive analysis of payment infrastructure evolution and investment opportunities in fintech.`;
-                            const url = window.location.href;
+                            const url = `${window.location.origin}/research/from-rails-to-returns`;
                             const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=From Rails to Returns&summary=${encodeURIComponent(text)}`;
                             window.open(linkedinUrl, '_blank');
                           }}
@@ -715,7 +717,7 @@ export default function ResearchPage() {
                         <button
                           onClick={() => {
                             const text = `Check out "From Wires to Wallets" research paper from Birdai - mental model shift for how we should think about Bitcoin relative to past innovations.`;
-                            const url = window.location.href;
+                            const url = `${window.location.origin}/research/from-wires-to-wallets`;
                             const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
                             window.open(twitterUrl, '_blank');
                           }}
@@ -727,7 +729,7 @@ export default function ResearchPage() {
                         <button
                           onClick={() => {
                             const text = `Check out "From Wires to Wallets" research paper from Birdai - mental model shift for how we should think about Bitcoin relative to past innovations.`;
-                            const url = window.location.href;
+                            const url = `${window.location.origin}/research/from-wires-to-wallets`;
                             const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=From Wires to Wallets&summary=${encodeURIComponent(text)}`;
                             window.open(linkedinUrl, '_blank');
                           }}
