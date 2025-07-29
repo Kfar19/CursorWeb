@@ -3,10 +3,48 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, Send, Bot, AlertTriangle, Info, BookOpen, Shield, Mic, MicOff, TrendingUp, DollarSign, Activity, Brain, Sparkles, RefreshCw } from 'lucide-react';
+import { ArrowLeft, Send, AlertTriangle, BookOpen, Shield, Mic, MicOff, TrendingUp, DollarSign, Activity, Brain, Sparkles, RefreshCw } from 'lucide-react';
+
+// Type definitions
+interface AIResponse {
+  response: string;
+  disclaimer: string;
+  type: string;
+}
+
+interface AIResponses {
+  [key: string]: AIResponse;
+}
+
+// Speech recognition types
+interface SpeechRecognitionEvent {
+  results: {
+    [index: number]: {
+      [index: number]: {
+        transcript: string;
+      };
+    };
+  };
+}
+
+interface SpeechRecognition extends EventTarget {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  start(): void;
+  stop(): void;
+  onresult: ((event: SpeechRecognitionEvent) => void) | null;
+  onerror: (() => void) | null;
+}
+
+declare global {
+  interface Window {
+    webkitSpeechRecognition: new () => SpeechRecognition;
+  }
+}
 
 // Enhanced AI responses with real-time data integration
-const aiResponses = {
+const aiResponses: AIResponses = {
   // Market analysis
   'market analysis': {
     response: "Based on current market data, I'm seeing interesting patterns. Bitcoin is showing strong institutional adoption signals, while DeFi protocols are experiencing increased TVL growth. The overall market sentiment appears cautiously optimistic, with key resistance levels being tested.",
@@ -73,7 +111,7 @@ const aiResponses = {
 };
 
 // Default response for unknown queries
-const defaultResponse = {
+const defaultResponse: AIResponse = {
   response: "I'm an AI financial advisor designed to help with cryptocurrency education and market analysis. I can provide real-time insights, market analysis, risk assessments, and educational content. What would you like to know?",
   disclaimer: "This AI provides educational information only. Always do your own research and consult qualified advisors.",
   type: 'general'
@@ -99,7 +137,7 @@ export default function ChatbotPage() {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  const [userPreferences, setUserPreferences] = useState({
+  const [userPreferences] = useState({
     experience: 'beginner',
     interests: [] as string[],
     riskTolerance: 'moderate'
@@ -110,7 +148,7 @@ export default function ChatbotPage() {
     lastUpdated: new Date()
   });
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const recognitionRef = useRef<any>(null);
+  const recognitionRef = useRef<SpeechRecognition | null>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -123,21 +161,23 @@ export default function ChatbotPage() {
   // Initialize speech recognition
   useEffect(() => {
     if (typeof window !== 'undefined' && 'webkitSpeechRecognition' in window) {
-      const SpeechRecognition = (window as any).webkitSpeechRecognition;
+      const SpeechRecognition = window.webkitSpeechRecognition as new () => SpeechRecognition;
       recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.continuous = false;
-      recognitionRef.current.interimResults = false;
-      recognitionRef.current.lang = 'en-US';
+      if (recognitionRef.current) {
+        recognitionRef.current.continuous = false;
+        recognitionRef.current.interimResults = false;
+        recognitionRef.current.lang = 'en-US';
 
-      recognitionRef.current.onresult = (event: any) => {
-        const transcript = event.results[0][0].transcript;
-        setInputValue(transcript);
-        setIsListening(false);
-      };
+        recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
+          const transcript = event.results[0][0].transcript;
+          setInputValue(transcript);
+          setIsListening(false);
+        };
 
-      recognitionRef.current.onerror = () => {
-        setIsListening(false);
-      };
+        recognitionRef.current.onerror = () => {
+          setIsListening(false);
+        };
+      }
     }
   }, []);
 
@@ -175,7 +215,7 @@ export default function ChatbotPage() {
     return defaultResponse;
   };
 
-  const generatePersonalizedResponse = (baseResponse: any, query: string) => {
+  const generatePersonalizedResponse = (baseResponse: AIResponse) => {
     let personalized = baseResponse.response;
     
     // Add personalized elements based on user preferences
@@ -210,7 +250,7 @@ export default function ChatbotPage() {
     // Simulate AI processing with enhanced response
     setTimeout(() => {
       const baseResponse = findBestMatch(inputValue);
-      const personalizedResponse = generatePersonalizedResponse(baseResponse, inputValue);
+      const personalizedResponse = generatePersonalizedResponse(baseResponse);
       
       const botMessage = {
         id: Date.now() + 1,

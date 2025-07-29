@@ -634,6 +634,39 @@ export default function ResearchPage() {
                     </div>
                   </motion.div>
 
+                  {/* From Wires to Wallets */}
+                  <motion.div 
+                    className="bg-white/10 rounded-xl p-6 border border-white/20"
+                    whileHover={{ scale: 1.05, y: -3 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="flex items-center mb-4">
+                      <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center mr-3">
+                        <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold">From Wires to Wallets</h4>
+                        <p className="text-gray-400 text-xs">Digital Payment Evolution</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-sm mb-4">
+                      Deep dive into the transformation of traditional wire transfers to modern digital wallet solutions.
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-400 text-xs">5.2 MB • PDF</span>
+                      <motion.button 
+                        onClick={() => handleReadRequest('From-Wires-to-Wallets.pdf')}
+                        className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Read
+                      </motion.button>
+                    </div>
+                  </motion.div>
+
                   {/* Template for new research papers */}
                   <motion.div 
                     className="bg-white/10 rounded-xl p-6 border border-white/20 border-dashed"
