@@ -958,7 +958,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 overflow-x-hidden relative">
+    <div className="min-h-screen bg-white overflow-x-hidden relative">
       {/* Particle Background */}
       <div className="fixed inset-0 z-0">
                 <Particles
@@ -1141,7 +1141,7 @@ export default function Home() {
       )}
 
       {/* Navbar */}
-      <nav className="fixed top-0 w-full bg-black/20 backdrop-blur-md border-b border-white/10 z-10">
+      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-gray-200 z-10 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -1185,24 +1185,24 @@ export default function Home() {
             <div className="hidden md:flex items-center space-x-6">
               <motion.a 
                 href="#home" 
-                className="text-gray-300 hover:text-white transition-colors relative group"
+                className="text-gray-600 hover:text-gray-900 transition-colors relative group"
                 whileHover={{ scale: 1.05 }}
               >
                 <span>Home</span>
                 <motion.div 
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-full transition-all duration-300"
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 group-hover:w-full transition-all duration-300"
                   whileHover={{ width: "100%" }}
                 />
               </motion.a>
               
               <Link
                 href="/research" 
-                className="text-gray-300 hover:text-white transition-colors relative group"
+                className="text-gray-600 hover:text-gray-900 transition-colors relative group"
               >
                 <motion.div whileHover={{ scale: 1.05 }}>
                   <span>Research</span>
                   <motion.div 
-                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-indigo-400 group-hover:w-full transition-all duration-300"
+                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-indigo-500 group-hover:w-full transition-all duration-300"
                     whileHover={{ width: "100%" }}
                   />
                 </motion.div>
@@ -1210,13 +1210,13 @@ export default function Home() {
               
               <Link
                 href="/chatbot" 
-                className="text-gray-300 hover:text-white transition-colors relative group flex items-center space-x-1"
+                className="text-gray-600 hover:text-gray-900 transition-colors relative group flex items-center space-x-1"
               >
                 <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-1">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                   <span>Chatbot</span>
                   <motion.div 
-                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-full transition-all duration-300"
+                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 group-hover:w-full transition-all duration-300"
                     whileHover={{ width: "100%" }}
                   />
                 </motion.div>
@@ -1224,37 +1224,37 @@ export default function Home() {
               
               <motion.a 
                 href="#live-data" 
-                className="text-gray-300 hover:text-white transition-colors relative group flex items-center space-x-1"
+                className="text-gray-600 hover:text-gray-900 transition-colors relative group flex items-center space-x-1"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span>Live Data</span>
                 <motion.div 
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-400 to-emerald-400 group-hover:w-full transition-all duration-300"
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 group-hover:w-full transition-all duration-300"
                   whileHover={{ width: "100%" }}
                 />
               </motion.a>
               
               <motion.a 
                 href="#social-sentiment" 
-                className="text-gray-300 hover:text-white transition-colors relative group"
+                className="text-gray-600 hover:text-gray-900 transition-colors relative group"
                 whileHover={{ scale: 1.05 }}
               >
                 <span>Social Sentiment</span>
                 <motion.div 
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 group-hover:w-full transition-all duration-300"
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"
                   whileHover={{ width: "100%" }}
                 />
               </motion.a>
               
               <motion.a 
                 href="#blockchain-feed" 
-                className="text-gray-300 hover:text-white transition-colors relative group"
+                className="text-gray-600 hover:text-gray-900 transition-colors relative group"
                 whileHover={{ scale: 1.05 }}
               >
                 <span>Blockchain</span>
                 <motion.div 
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-red-400 group-hover:w-full transition-all duration-300"
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 group-hover:w-full transition-all duration-300"
                   whileHover={{ width: "100%" }}
                 />
               </motion.a>
@@ -1263,12 +1263,12 @@ export default function Home() {
               
               <motion.a 
                 href="#bitcoin-holdings" 
-                className="text-gray-300 hover:text-white transition-colors relative group"
+                className="text-gray-600 hover:text-gray-900 transition-colors relative group"
                 whileHover={{ scale: 1.05 }}
               >
                 <span>Bitcoin Holdings</span>
                 <motion.div 
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-400 to-orange-400 group-hover:w-full transition-all duration-300"
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow-500 to-orange-500 group-hover:w-full transition-all duration-300"
                   whileHover={{ width: "100%" }}
                 />
               </motion.a>
@@ -1420,17 +1420,17 @@ export default function Home() {
         >
           {/* Live Market Cap Badge */}
           <motion.div 
-            className="inline-flex items-center space-x-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2 mb-8"
+            className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-2 mb-8"
             variants={fadeInUp}
             whileHover={{ scale: 1.05 }}
           >
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-green-400 text-sm font-medium">Live Market Cap: {formatMarketCap(marketCap)}</span>
-            <span className="text-gray-400 text-xs">• Updated {lastUpdated.toLocaleTimeString()}</span>
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="text-green-600 text-sm font-medium">Live Market Cap: {formatMarketCap(marketCap)}</span>
+            <span className="text-gray-500 text-xs">• Updated {lastUpdated.toLocaleTimeString()}</span>
           </motion.div>
 
           <motion.h1 
-            className="text-5xl md:text-7xl font-bold text-white mb-6 relative"
+            className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 relative"
             variants={fadeInUp}
           >
             <motion.span
@@ -1438,20 +1438,12 @@ export default function Home() {
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-[length:200%_100%] bg-clip-text text-transparent"
+              className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 bg-[length:200%_100%] bg-clip-text text-transparent"
             >
               See What Others
             </motion.span>
             <motion.span 
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 relative"
-              animate={{ 
-                textShadow: [
-                  "0 0 20px rgba(96, 165, 250, 0.5)",
-                  "0 0 40px rgba(96, 165, 250, 0.8)",
-                  "0 0 20px rgba(96, 165, 250, 0.5)"
-                ]
-              }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600 relative"
             >
               Miss
             </motion.span>
@@ -1465,22 +1457,22 @@ export default function Home() {
             variants={fadeInUp}
           >
             <motion.span 
-              className="text-lg md:text-xl text-gray-300 font-mono px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10"
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(96, 165, 250, 0.1)" }}
+              className="text-lg md:text-xl text-gray-700 font-mono px-4 py-2 bg-blue-50 rounded-full border border-blue-200"
+              whileHover={{ scale: 1.05, backgroundColor: "rgb(239, 246, 255)" }}
               transition={{ duration: 0.3 }}
             >
               Machine-native
             </motion.span>
             <motion.span 
-              className="text-lg md:text-xl text-gray-300 font-mono px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10"
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(34, 211, 238, 0.1)" }}
+              className="text-lg md:text-xl text-gray-700 font-mono px-4 py-2 bg-cyan-50 rounded-full border border-cyan-200"
+              whileHover={{ scale: 1.05, backgroundColor: "rgb(236, 254, 255)" }}
               transition={{ duration: 0.3 }}
             >
               Protocol-first
             </motion.span>
             <motion.span 
-              className="text-lg md:text-xl text-gray-300 font-mono px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10"
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(168, 85, 247, 0.1)" }}
+              className="text-lg md:text-xl text-gray-700 font-mono px-4 py-2 bg-purple-50 rounded-full border border-purple-200"
+              whileHover={{ scale: 1.05, backgroundColor: "rgb(250, 245, 255)" }}
               transition={{ duration: 0.3 }}
             >
               Liquidity-aware
@@ -1488,7 +1480,7 @@ export default function Home() {
           </motion.div>
 
           <motion.p 
-            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
+            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto"
             variants={fadeInUp}
           >
             A structural shift is happening.
@@ -1521,15 +1513,15 @@ export default function Home() {
 
             {/* Live Stats */}
             <motion.div 
-              className="flex items-center space-x-6 text-sm text-gray-400"
+              className="flex items-center space-x-6 text-sm text-gray-500"
               variants={fadeInUp}
             >
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                 <span>{totalMentions.toLocaleString()} mentions</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span>{totalTransactions.toLocaleString()} transactions</span>
               </div>
 
