@@ -1531,26 +1531,26 @@ export default function Home() {
       </motion.section>
 
       {/* Coding Capital Section */}
-      <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+      <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <ScrollAnimation>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Coding Capital
               </h2>
             </ScrollAnimation>
             <ScrollAnimation delay={0.2}>
-              <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
                 The fastest-growing asset class isn&apos;t just emerging—it&apos;s rewriting the rules. Are you inside the system, or watching it evolve from the outside?
               </p>
             </ScrollAnimation>
             <ScrollAnimation delay={0.4}>
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-2xl mx-auto"
+                className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm max-w-2xl mx-auto"
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
-                                  <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-2">
+                                  <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600 mb-2">
                     {isLoading ? (
                       <motion.div
                         className="flex items-center"
@@ -1558,7 +1558,7 @@ export default function Home() {
                         animate={{ opacity: 1 }}
                       >
                         <motion.div
-                          className="w-6 h-6 border-2 border-blue-400 border-t-transparent rounded-full mr-2"
+                          className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full mr-2"
                           animate={{ rotate: 360 }}
                           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                         />
@@ -1575,7 +1575,7 @@ export default function Home() {
                       </motion.span>
                     )}
                   </p>
-                                  <p className="text-gray-300">
+                                  <p className="text-gray-700">
                     Private markets growth from negligible size in 2013 to over {isLoading ? '...' : formatMarketCap(marketCap)} in 2025
                   </p>
                   <p className="text-xs text-gray-500 mt-2">
@@ -1588,15 +1588,15 @@ export default function Home() {
       </section>
 
       {/* Social Buzz Tracking Section */}
-      <section id="social-sentiment" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+      <section id="social-sentiment" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-center">
               Live Social Sentiment
             </h2>
           </ScrollAnimation>
           <ScrollAnimation delay={0.2}>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-12 text-center">
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12 text-center">
               Real-time buzz tracking across Reddit, Twitter, and crypto communities
             </p>
           </ScrollAnimation>
@@ -1605,67 +1605,67 @@ export default function Home() {
             {/* Sentiment Overview */}
             <ScrollAnimation delay={0.3}>
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+                className="bg-gray-50 rounded-2xl p-8 border border-gray-200"
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-2xl font-bold text-white">Market Sentiment</h3>
+                  <h3 className="text-2xl font-bold text-gray-900">Market Sentiment</h3>
                   <div className="flex items-center space-x-2">
                                  <div className="flex items-center space-x-2">
-               <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-               <span className="text-blue-400 text-sm">Live simulated data</span>
+               <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+               <span className="text-blue-600 text-sm">Live simulated data</span>
              </div>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-green-400">Bullish</span>
+                    <span className="text-green-600">Bullish</span>
                     <div className="flex items-center">
-                      <div className="w-32 bg-gray-700 rounded-full h-2 mr-3">
+                      <div className="w-32 bg-gray-200 rounded-full h-2 mr-3">
                         <motion.div 
-                          className="bg-green-400 h-2 rounded-full"
+                          className="bg-green-500 h-2 rounded-full"
                           initial={{ width: 0 }}
                           animate={{ width: `${socialSentiment.bullish}%` }}
                           transition={{ duration: 1 }}
                         />
                       </div>
-                      <span className="text-white font-semibold">{socialSentiment.bullish}%</span>
+                      <span className="text-gray-900 font-semibold">{socialSentiment.bullish}%</span>
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-400">Neutral</span>
+                    <span className="text-gray-600">Neutral</span>
                     <div className="flex items-center">
-                      <div className="w-32 bg-gray-700 rounded-full h-2 mr-3">
+                      <div className="w-32 bg-gray-200 rounded-full h-2 mr-3">
                         <motion.div 
-                          className="bg-gray-400 h-2 rounded-full"
+                          className="bg-gray-500 h-2 rounded-full"
                           initial={{ width: 0 }}
                           animate={{ width: `${socialSentiment.neutral}%` }}
                           transition={{ duration: 1 }}
                         />
                       </div>
-                      <span className="text-white font-semibold">{socialSentiment.neutral}%</span>
+                      <span className="text-gray-900 font-semibold">{socialSentiment.neutral}%</span>
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-red-400">Bearish</span>
+                    <span className="text-red-600">Bearish</span>
                     <div className="flex items-center">
-                      <div className="w-32 bg-gray-700 rounded-full h-2 mr-3">
+                      <div className="w-32 bg-gray-200 rounded-full h-2 mr-3">
                         <motion.div 
-                          className="bg-red-400 h-2 rounded-full"
+                          className="bg-red-500 h-2 rounded-full"
                           initial={{ width: 0 }}
                           animate={{ width: `${socialSentiment.bearish}%` }}
                           transition={{ duration: 1 }}
                         />
                       </div>
-                      <span className="text-white font-semibold">{socialSentiment.bearish}%</span>
+                      <span className="text-gray-900 font-semibold">{socialSentiment.bearish}%</span>
                     </div>
                   </div>
                 </div>
                 <div className="mt-6 text-center">
-                  <p className="text-2xl font-bold text-blue-400">{totalMentions.toLocaleString()}</p>
-                           <p className="text-gray-400">Total Mentions (24h)</p>
-         <div className="text-xs text-blue-400 mt-1 space-y-1">
+                  <p className="text-2xl font-bold text-blue-600">{totalMentions.toLocaleString()}</p>
+                           <p className="text-gray-600">Total Mentions (24h)</p>
+         <div className="text-xs text-blue-600 mt-1 space-y-1">
            <p>{realSocialData.twitterMentions} from Twitter</p>
            <p>{realSocialData.redditMentions} from Reddit</p>
            <p>{realSocialData.newsMentions} from News APIs</p>
@@ -1677,33 +1677,33 @@ export default function Home() {
             {/* Trending Topics */}
             <ScrollAnimation delay={0.4}>
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+                className="bg-gray-50 rounded-2xl p-8 border border-gray-200"
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="text-2xl font-bold text-white mb-6">Trending Topics</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Trending Topics</h3>
                 <div className="space-y-4">
                   {trendingTopics.map((topic, index) => (
                     <motion.div 
                       key={topic.topic}
-                      className="flex justify-between items-center p-3 bg-white/5 rounded-lg"
+                      className="flex justify-between items-center p-3 bg-white rounded-lg border border-gray-200"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
                     >
                       <div>
-                        <p className="text-white font-semibold">{topic.topic}</p>
-                        <p className="text-sm text-gray-400">{topic.mentions.toLocaleString()} mentions</p>
+                        <p className="text-gray-900 font-semibold">{topic.topic}</p>
+                        <p className="text-sm text-gray-600">{topic.mentions.toLocaleString()} mentions</p>
                       </div>
                       <div className="text-right">
                         <span className={`text-sm font-semibold ${
-                          topic.sentiment === 'bullish' ? 'text-green-400' : 
-                          topic.sentiment === 'bearish' ? 'text-red-400' : 'text-gray-400'
+                          topic.sentiment === 'bullish' ? 'text-green-600' : 
+                          topic.sentiment === 'bearish' ? 'text-red-600' : 'text-gray-600'
                         }`}>
                           {topic.sentiment}
                         </span>
                         <p className={`text-sm ${
-                          topic.change.startsWith('+') ? 'text-green-400' : 'text-red-400'
+                          topic.change.startsWith('+') ? 'text-green-600' : 'text-red-600'
                         }`}>
                           {topic.change}
                         </p>
@@ -1769,11 +1769,11 @@ export default function Home() {
       </section>
 
       {/* Why Now Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             <ScrollAnimation>
-              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">
+              <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8">
                 Why Now
               </h2>
             </ScrollAnimation>
@@ -1794,8 +1794,8 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-white mb-2">AI-Native Capital</h3>
-                  <p className="text-gray-300">The infrastructure is ready</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">AI-Native Capital</h3>
+                  <p className="text-gray-600">The infrastructure is ready</p>
                 </motion.div>
                 
                 <motion.div 
@@ -1812,8 +1812,8 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Perfect Timing</h3>
-                  <p className="text-gray-300">Early conviction pays</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Perfect Timing</h3>
+                  <p className="text-gray-600">Early conviction pays</p>
                 </motion.div>
                 
                 <motion.div 
@@ -1830,8 +1830,8 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                     </svg>
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Built for Scale</h3>
-                  <p className="text-gray-300">Code over headcount</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Built for Scale</h3>
+                  <p className="text-gray-600">Code over headcount</p>
                 </motion.div>
               </div>
             </ScrollAnimation>
@@ -1842,13 +1842,13 @@ export default function Home() {
       {/* Features Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-16 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-16 text-center">
             This Cycle Is Different
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Feature 1 */}
             <motion.div 
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+              className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm"
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
@@ -1859,15 +1859,15 @@ export default function Home() {
               >
                 <Brain className="w-8 h-8 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-white mb-4">Better Tooling</h3>
-              <p className="text-gray-300">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Better Tooling</h3>
+              <p className="text-gray-600">
                 AI + on-chain infrastructure enables unprecedented deal discovery and execution.
               </p>
             </motion.div>
 
             {/* Feature 2 */}
             <motion.div 
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+              className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm"
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
@@ -1878,15 +1878,15 @@ export default function Home() {
               >
                 <Code className="w-8 h-8 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-white mb-4">Fundamental Execution</h3>
-              <p className="text-gray-300">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Fundamental Execution</h3>
+              <p className="text-gray-600">
                 Where legacy firms add headcount, we add code. Scalable, intelligent, and aligned from day one.
               </p>
             </motion.div>
 
             {/* Feature 3 */}
             <motion.div 
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+              className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm"
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
@@ -1897,8 +1897,8 @@ export default function Home() {
               >
                 <Brain className="w-8 h-8 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-white mb-4">Machine Intelligence</h3>
-              <p className="text-gray-300">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Machine Intelligence</h3>
+              <p className="text-gray-600">
                 AI-powered signal processing at scale. See patterns others miss.
               </p>
             </motion.div>
@@ -1911,15 +1911,15 @@ export default function Home() {
 
 
       {/* Live Blockchain Feed Section */}
-      <section id="blockchain-feed" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+      <section id="blockchain-feed" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-center">
               Live Blockchain Feed
             </h2>
           </ScrollAnimation>
           <ScrollAnimation delay={0.2}>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-12 text-center">
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12 text-center">
               Real-time on-chain activity across DeFi protocols, whale movements, and market events
             </p>
           </ScrollAnimation>
@@ -1928,69 +1928,69 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <ScrollAnimation delay={0.3}>
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm text-center"
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
                 <motion.div 
-                  className="text-3xl font-bold text-blue-400 mb-2"
+                  className="text-3xl font-bold text-blue-600 mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 4, repeat: Infinity }}
                 >
                   {totalTransactions.toLocaleString()}
                 </motion.div>
-                <p className="text-gray-400">Total Transactions (24h)</p>
+                <p className="text-gray-600">Total Transactions (24h)</p>
               </motion.div>
             </ScrollAnimation>
 
             <ScrollAnimation delay={0.4}>
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm text-center"
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
                 <motion.div 
-                  className="text-3xl font-bold text-green-400 mb-2"
+                  className="text-3xl font-bold text-green-600 mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 4, repeat: Infinity, delay: 1 }}
                 >
                   {activeProtocols}
                 </motion.div>
-                <p className="text-gray-400">Active Protocols</p>
+                <p className="text-gray-600">Active Protocols</p>
               </motion.div>
             </ScrollAnimation>
 
             <ScrollAnimation delay={0.5}>
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center"
+                className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm text-center"
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
                 <motion.div 
-                  className="text-3xl font-bold text-orange-400 mb-2"
+                  className="text-3xl font-bold text-orange-600 mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 4, repeat: Infinity, delay: 2 }}
                 >
                   {gasPrice} gwei
                 </motion.div>
-                <p className="text-gray-400">Current Gas Price</p>
+                <p className="text-gray-600">Current Gas Price</p>
               </motion.div>
             </ScrollAnimation>
           </div>
 
           {/* Live Activity Feed */}
           <ScrollAnimation delay={0.6}>
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <h3 className="text-2xl font-bold text-white mb-6">Live Activity Feed</h3>
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Live Activity Feed</h3>
               <div className="space-y-4 max-h-96 overflow-y-auto">
                 {blockchainFeed.map((activity, index) => (
                   <motion.div 
                     key={activity.id}
-                    className="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/10"
+                    className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
+                    whileHover={{ scale: 1.02, backgroundColor: 'rgb(249, 250, 251)' }}
                   >
                     <div className="flex items-center space-x-4">
                       <div className={`w-3 h-3 rounded-full ${
@@ -1999,23 +1999,23 @@ export default function Home() {
                       }`} />
                       <div>
                         <div className="flex items-center space-x-2">
-                          <span className="text-white font-semibold">{activity.protocol}</span>
-                          <span className="text-xs text-gray-400 bg-white/10 px-2 py-1 rounded">
+                          <span className="text-gray-900 font-semibold">{activity.protocol}</span>
+                          <span className="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded">
                             {activity.type.replace('_', ' ')}
                           </span>
                         </div>
-                        <p className="text-gray-300 text-sm">{activity.description}</p>
+                        <p className="text-gray-700 text-sm">{activity.description}</p>
                         <div className="flex items-center space-x-4 mt-1">
-                          <span className="text-blue-400 text-sm">{activity.amount}</span>
-                          <span className="text-green-400 text-sm">{activity.value}</span>
-                          <span className="text-gray-400 text-xs">{activity.time}</span>
+                          <span className="text-blue-600 text-sm">{activity.amount}</span>
+                          <span className="text-green-600 text-sm">{activity.value}</span>
+                          <span className="text-gray-500 text-xs">{activity.time}</span>
                         </div>
                       </div>
                     </div>
                     <div className="text-right">
                       <p className="text-xs text-gray-500 font-mono">{activity.txHash}</p>
                       <motion.div 
-                        className="w-2 h-2 bg-blue-400 rounded-full mt-2"
+                        className="w-2 h-2 bg-blue-500 rounded-full mt-2"
                         animate={{ opacity: [0.5, 1, 0.5] }}
                         transition={{ duration: 3, repeat: Infinity }}
                       />
@@ -2031,21 +2031,21 @@ export default function Home() {
 
 
       {/* Bitcoin Holdings Monitor Section */}
-      <section id="bitcoin-holdings" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+      <section id="bitcoin-holdings" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-center">
               Bitcoin Holdings Monitor
             </h2>
           </ScrollAnimation>
           <ScrollAnimation delay={0.2}>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-12 text-center">
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12 text-center">
               Accurate institutional holdings data from bitcointreasuries.net and bitbo.io (July 2025)
             </p>
             <div className="flex items-center justify-center mb-8">
-              <div className="flex items-center space-x-2 bg-blue-500/20 border border-blue-500/30 rounded-full px-4 py-2">
-                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                <span className="text-blue-400 text-sm font-medium">
+              <div className="flex items-center space-x-2 bg-blue-100 border border-blue-200 rounded-full px-4 py-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                <span className="text-blue-600 text-sm font-medium">
                   Data from bitcointreasuries.net • Updated {bitcoinHoldings.lastUpdated?.toLocaleTimeString() || 'Just now'}
                 </span>
               </div>
@@ -2056,18 +2056,18 @@ export default function Home() {
           <div className="grid md:grid-cols-8 gap-4 mb-12">
             <ScrollAnimation delay={0.3}>
               <motion.div 
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 text-center"
+                className="bg-gray-50 rounded-2xl p-4 border border-gray-200 text-center"
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
                 <motion.div 
-                  className="text-2xl font-bold text-blue-400 mb-2"
+                  className="text-2xl font-bold text-blue-600 mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 4, repeat: Infinity }}
                 >
                   {(bitcoinHoldings.totalPublicCompanies / 1000).toFixed(1)}K
                 </motion.div>
-                <p className="text-gray-400 text-sm">Public Companies</p>
+                <p className="text-gray-600 text-sm">Public Companies</p>
               </motion.div>
             </ScrollAnimation>
 
