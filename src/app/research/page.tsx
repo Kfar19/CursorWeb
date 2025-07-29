@@ -199,9 +199,16 @@ export default function ResearchPage() {
     isOpen: false,
     fileName: ''
   });
+  const [subscribeModal, setSubscribeModal] = useState<{ isOpen: boolean }>({
+    isOpen: false
+  });
 
   const handleReadRequest = (fileName: string) => {
     setEmailModal({ isOpen: true, fileName });
+  };
+
+  const handleSubscribeRequest = () => {
+    setSubscribeModal({ isOpen: true });
   };
 
   const handleEmailSubmit = async (email: string) => {
@@ -233,6 +240,36 @@ export default function ResearchPage() {
     }
   };
 
+  const handleSubscribeEmailSubmit = async (email: string) => {
+    try {
+      const response = await fetch('/api/collect-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          source: 'contact_form',
+          message: 'Subscribed to research updates'
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('Subscribe email collected successfully:', email);
+        // Close subscribe modal
+        setSubscribeModal({ isOpen: false });
+        alert('Thank you for subscribing! You\'ll be notified when new research papers are available.');
+      } else {
+        alert(data.error || 'Failed to subscribe');
+      }
+    } catch (error) {
+      console.error('Error subscribing:', error);
+      alert('Failed to subscribe. Please try again.');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
       {/* Email Capture Modal */}
@@ -241,6 +278,14 @@ export default function ResearchPage() {
         onClose={() => setEmailModal({ isOpen: false, fileName: '' })}
         onEmailSubmit={handleEmailSubmit}
         fileName={emailModal.fileName}
+      />
+
+      {/* Subscribe Modal */}
+      <EmailCaptureModal
+        isOpen={subscribeModal.isOpen}
+        onClose={() => setSubscribeModal({ isOpen: false })}
+        onEmailSubmit={handleSubscribeEmailSubmit}
+        fileName="Research Updates"
       />
 
       {/* PDF Viewer Modal */}
@@ -366,6 +411,7 @@ export default function ResearchPage() {
                     <div className="flex items-center justify-between">
                       <span className="text-gray-400 text-xs">Stay Updated</span>
                       <motion.button 
+                        onClick={handleSubscribeRequest}
                         className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
