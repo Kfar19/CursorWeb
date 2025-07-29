@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import Lottie from 'lottie-react';
 import productivityAnimation from '../../public/productivity-animation.json';
+import oracleAnimation from '../../public/oracle-animation.json';
 import OracleModal from './components/OracleModal';
 
 
@@ -1712,7 +1713,14 @@ export default function Home() {
                 onClick={() => setIsOracleOpen(true)}
               >
                 <div className="text-center">
-                  <div className="text-6xl mb-4">🔮</div>
+                  <div className="w-32 h-32 mx-auto mb-4">
+                    <Lottie
+                      animationData={oracleAnimation}
+                      loop={true}
+                      autoplay={true}
+                      style={{ width: '100%', height: '100%' }}
+                    />
+                  </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">
                     Ask the Oracle
                   </h3>

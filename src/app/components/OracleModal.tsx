@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Eye, Brain, Clock, TrendingUp, Shield, Zap } from 'lucide-react';
+import Lottie from 'lottie-react';
+import oracleAnimation from '../../oracle-animation.json';
 
 interface OracleModalProps {
   isOpen: boolean;
@@ -269,7 +271,14 @@ export default function OracleModal({ isOpen, onClose, onContactModalOpen }: Ora
                   animate={{ opacity: 1, y: 0 }}
                   className="text-center"
                 >
-                  <div className="text-4xl mb-4">🔮</div>
+                  <div className="w-24 h-24 mx-auto mb-4">
+                    <Lottie
+                      animationData={oracleAnimation}
+                      loop={true}
+                      autoplay={true}
+                      style={{ width: '100%', height: '100%' }}
+                    />
+                  </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">
                     {insight?.title}
                   </h3>
