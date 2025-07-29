@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, X, Eye, Mail, TrendingUp, ExternalLink } from 'lucide-react';
+import { ArrowLeft, X, Eye, Mail, TrendingUp, ExternalLink, Twitter, Linkedin } from 'lucide-react';
 import { useState, useEffect, useMemo } from 'react';
 
 // ScrollAnimation component for consistent animations
@@ -77,9 +77,38 @@ const PDFViewer = ({ isOpen, onClose, fileName }: {
             <p className="text-gray-400 text-sm">
               This research paper is for internal use only. Please do not share or distribute.
             </p>
-            <div className="flex items-center space-x-2 text-gray-400 text-sm">
-              <Eye size={16} />
-              <span>View Only</span>
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2 text-gray-400 text-sm">
+                <Eye size={16} />
+                <span>View Only</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span className="text-gray-400 text-sm">Share:</span>
+                <button
+                  onClick={() => {
+                    const text = `Check out this research paper "${fileName.replace('.pdf', '')}" from Birdai - cutting-edge insights at the intersection of AI, blockchain, and venture capital.`;
+                    const url = window.location.href;
+                    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+                    window.open(twitterUrl, '_blank');
+                  }}
+                  className="text-blue-400 hover:text-blue-300 transition-colors p-2 rounded-lg hover:bg-blue-500/10"
+                  title="Share on Twitter"
+                >
+                  <Twitter size={18} />
+                </button>
+                <button
+                  onClick={() => {
+                    const text = `Check out this research paper "${fileName.replace('.pdf', '')}" from Birdai - cutting-edge insights at the intersection of AI, blockchain, and venture capital.`;
+                    const url = window.location.href;
+                    const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent(fileName.replace('.pdf', ''))}&summary=${encodeURIComponent(text)}`;
+                    window.open(linkedinUrl, '_blank');
+                  }}
+                  className="text-blue-600 hover:text-blue-500 transition-colors p-2 rounded-lg hover:bg-blue-600/10"
+                  title="Share on LinkedIn"
+                >
+                  <Linkedin size={18} />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -623,14 +652,40 @@ export default function ResearchPage() {
                     </p>
                     <div className="flex items-center justify-between">
                       <span className="text-gray-400 text-xs">3.9 MB • PDF</span>
-                      <motion.button 
-                        onClick={() => handleReadRequest('From Rails to Returns_ Payments Circle.pdf')}
-                        className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        Read
-                      </motion.button>
+                      <div className="flex items-center space-x-2">
+                        <button
+                          onClick={() => {
+                            const text = `Check out "From Rails to Returns" research paper from Birdai - comprehensive analysis of payment infrastructure evolution and investment opportunities in fintech.`;
+                            const url = window.location.href;
+                            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+                            window.open(twitterUrl, '_blank');
+                          }}
+                          className="text-blue-400 hover:text-blue-300 transition-colors p-1 rounded hover:bg-blue-500/10"
+                          title="Share on Twitter"
+                        >
+                          <Twitter size={16} />
+                        </button>
+                        <button
+                          onClick={() => {
+                            const text = `Check out "From Rails to Returns" research paper from Birdai - comprehensive analysis of payment infrastructure evolution and investment opportunities in fintech.`;
+                            const url = window.location.href;
+                            const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=From Rails to Returns&summary=${encodeURIComponent(text)}`;
+                            window.open(linkedinUrl, '_blank');
+                          }}
+                          className="text-blue-600 hover:text-blue-500 transition-colors p-1 rounded hover:bg-blue-600/10"
+                          title="Share on LinkedIn"
+                        >
+                          <Linkedin size={16} />
+                        </button>
+                        <motion.button 
+                          onClick={() => handleReadRequest('From Rails to Returns_ Payments Circle.pdf')}
+                          className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          Read
+                        </motion.button>
+                      </div>
                     </div>
                   </motion.div>
 
@@ -656,14 +711,40 @@ export default function ResearchPage() {
                     </p>
                     <div className="flex items-center justify-between">
                       <span className="text-gray-400 text-xs">5.2 MB • PDF</span>
-                      <motion.button 
-                        onClick={() => handleReadRequest('From-Wires-to-Wallets.pdf')}
-                        className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        Read
-                      </motion.button>
+                      <div className="flex items-center space-x-2">
+                        <button
+                          onClick={() => {
+                            const text = `Check out "From Wires to Wallets" research paper from Birdai - mental model shift for how we should think about Bitcoin relative to past innovations.`;
+                            const url = window.location.href;
+                            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+                            window.open(twitterUrl, '_blank');
+                          }}
+                          className="text-blue-400 hover:text-blue-300 transition-colors p-1 rounded hover:bg-blue-500/10"
+                          title="Share on Twitter"
+                        >
+                          <Twitter size={16} />
+                        </button>
+                        <button
+                          onClick={() => {
+                            const text = `Check out "From Wires to Wallets" research paper from Birdai - mental model shift for how we should think about Bitcoin relative to past innovations.`;
+                            const url = window.location.href;
+                            const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=From Wires to Wallets&summary=${encodeURIComponent(text)}`;
+                            window.open(linkedinUrl, '_blank');
+                          }}
+                          className="text-blue-600 hover:text-blue-500 transition-colors p-1 rounded hover:bg-blue-600/10"
+                          title="Share on LinkedIn"
+                        >
+                          <Linkedin size={16} />
+                        </button>
+                        <motion.button 
+                          onClick={() => handleReadRequest('From-Wires-to-Wallets.pdf')}
+                          className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          Read
+                        </motion.button>
+                      </div>
                     </div>
                   </motion.div>
 
