@@ -143,8 +143,8 @@ export default function ChatbotPage() {
     riskTolerance: 'moderate'
   });
   const [marketData, setMarketData] = useState({
-    bitcoin: 42000,
-    ethereum: 2800,
+    bitcoin: 65000,
+    ethereum: 3500,
     lastUpdated: new Date()
   });
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -157,6 +157,11 @@ export default function ChatbotPage() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Fetch real market data on component mount
+  useEffect(() => {
+    refreshMarketData();
+  }, []);
 
   // Initialize speech recognition
   useEffect(() => {
@@ -273,13 +278,21 @@ export default function ChatbotPage() {
     }
   };
 
-  const refreshMarketData = () => {
-    // Simulate real-time market data update
-    setMarketData({
-      bitcoin: Math.floor(Math.random() * 10000) + 40000,
-      ethereum: Math.floor(Math.random() * 1000) + 2500,
-      lastUpdated: new Date()
-    });
+  const refreshMarketData = async () => {
+    try {
+      const response = await fetch('/api/market-data');
+      if (response.ok) {
+        const data = await response.json();
+        setMarketData({
+          bitcoin: data.data.bitcoinPrice,
+          ethereum: data.data.ethereumPrice,
+          lastUpdated: new Date()
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching market data:', error);
+      // Keep existing data if fetch fails
+    }
   };
 
   return (
