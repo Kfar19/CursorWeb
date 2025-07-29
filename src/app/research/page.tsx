@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, X, Eye, Mail } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowLeft, X, Eye, Mail, TrendingUp, ExternalLink } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 // ScrollAnimation component for consistent animations
 const ScrollAnimation = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
@@ -187,6 +187,176 @@ const EmailCaptureModal = ({ isOpen, onClose, onEmailSubmit, fileName }: {
         </p>
       </motion.div>
     </motion.div>
+  );
+};
+
+// Crypto Treasuries Component
+const CryptoTreasuries = () => {
+  const [treasuryData, setTreasuryData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const cryptoTreasuries = [
+    { company: 'Strategy', crypto: 'BTC', ticker: 'MSTR', cryptoOwned: 597325, yahoo: 'https://finance.yahoo.com/quote/MSTR/key-statistics/' },
+    { company: 'Marathon Digital', crypto: 'BTC', ticker: 'MARA', cryptoOwned: 14402, yahoo: 'https://finance.yahoo.com/quote/MARA/key-statistics/' },
+    { company: 'Riot Platforms', crypto: 'BTC', ticker: 'RIOT', cryptoOwned: 12530, yahoo: 'https://finance.yahoo.com/quote/RIOT/key-statistics/' },
+    { company: 'Bitfarms', crypto: 'BTC', ticker: 'BITF', cryptoOwned: 11858, yahoo: 'https://finance.yahoo.com/quote/BITF/key-statistics/' },
+    { company: 'Hut8', crypto: 'BTC', ticker: 'HUT', cryptoOwned: 5000, yahoo: 'https://finance.yahoo.com/quote/HUT/key-statistics/' },
+    { company: 'ProCap | Columbus Circle', crypto: 'BTC', ticker: 'CCCM', cryptoOwned: 4716.981132, yahoo: 'https://finance.yahoo.com/quote/CCCM/key-statistics/' },
+    { company: 'Trump Media', crypto: 'BTC', ticker: 'DJT', cryptoOwned: 21186.44068, yahoo: 'https://finance.yahoo.com/quote/DJT/key-statistics/' },
+    { company: 'Twenty - One', crypto: 'BTC', ticker: '', cryptoOwned: 4812, yahoo: '' },
+    { company: 'Sharplink Gaming', crypto: 'ETH', ticker: 'SBET', cryptoOwned: 390607, yahoo: 'https://finance.yahoo.com/quote/SBET/key-statistics/' },
+    { company: 'Bitminer', crypto: 'ETH', ticker: 'BMNR', cryptoOwned: 566776, yahoo: 'https://finance.yahoo.com/quote/BMNR/key-statistics/' },
+    { company: 'Upexi', crypto: 'SOL', ticker: 'UPXI', cryptoOwned: 2631578.947, yahoo: 'https://finance.yahoo.com/quote/UPXI/key-statistics/' },
+    { company: 'Mill City', crypto: 'SUI', ticker: '', cryptoOwned: 0, yahoo: '' }
+  ];
+
+  useEffect(() => {
+    const fetchTreasuryData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/crypto-treasuries');
+        if (!response.ok) {
+          throw new Error('Failed to fetch treasury data');
+        }
+        const data = await response.json();
+        setTreasuryData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred');
+        // Use static data as fallback
+        setTreasuryData(cryptoTreasuries);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTreasuryData();
+  }, []);
+
+  const formatNumber = (num: number) => {
+    if (num >= 1e9) return `$${(num / 1e9).toFixed(2)}B`;
+    if (num >= 1e6) return `$${(num / 1e6).toFixed(2)}M`;
+    if (num >= 1e3) return `$${(num / 1e3).toFixed(2)}K`;
+    return `$${num.toFixed(2)}`;
+  };
+
+  const formatCrypto = (amount: number, crypto: string) => {
+    if (amount >= 1e6) return `${(amount / 1e6).toFixed(2)}M ${crypto}`;
+    if (amount >= 1e3) return `${(amount / 1e3).toFixed(2)}K ${crypto}`;
+    return `${amount.toLocaleString()} ${crypto}`;
+  };
+
+  if (loading) {
+    return (
+      <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+        <h2 className="text-3xl font-bold text-white mb-8 text-center">Crypto Treasuries</h2>
+        <div className="flex items-center justify-center py-12">
+          <div className="w-8 h-8 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
+          <span className="ml-3 text-gray-300">Loading treasury data...</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+      <div className="flex items-center justify-center mb-8">
+        <TrendingUp className="w-8 h-8 text-blue-400 mr-3" />
+        <h2 className="text-3xl font-bold text-white">Crypto Treasuries</h2>
+      </div>
+      
+      {error && (
+        <div className="bg-red-500/20 border border-red-500/30 rounded-lg p-4 mb-6">
+          <p className="text-red-300 text-sm">
+            {error} - Showing static data as fallback
+          </p>
+        </div>
+      )}
+
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-white/10">
+              <th className="text-left text-gray-300 font-semibold py-4 px-2">Company</th>
+              <th className="text-left text-gray-300 font-semibold py-4 px-2">Crypto</th>
+              <th className="text-left text-gray-300 font-semibold py-4 px-2">Ticker</th>
+              <th className="text-right text-gray-300 font-semibold py-4 px-2">Holdings</th>
+              <th className="text-right text-gray-300 font-semibold py-4 px-2">Treasury Value</th>
+              <th className="text-right text-gray-300 font-semibold py-4 px-2">Market Cap</th>
+              <th className="text-right text-gray-300 font-semibold py-4 px-2">OCF (TTM)</th>
+              <th className="text-right text-gray-300 font-semibold py-4 px-2">Obligation Rate</th>
+              <th className="text-right text-gray-300 font-semibold py-4 px-2">Short %</th>
+              <th className="text-right text-gray-300 font-semibold py-4 px-2">Short Days</th>
+              <th className="text-center text-gray-300 font-semibold py-4 px-2">Yahoo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {treasuryData.map((company, index) => (
+              <motion.tr
+                key={index}
+                className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+              >
+                <td className="py-4 px-2">
+                  <div className="text-white font-medium">{company.company}</div>
+                </td>
+                <td className="py-4 px-2">
+                  <span className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-2 py-1 rounded text-xs font-semibold">
+                    {company.crypto}
+                  </span>
+                </td>
+                <td className="py-4 px-2">
+                  <span className="text-blue-400 font-mono">
+                    {company.ticker || 'N/A'}
+                  </span>
+                </td>
+                <td className="py-4 px-2 text-right text-gray-300">
+                  {formatCrypto(company.cryptoOwned, company.crypto)}
+                </td>
+                <td className="py-4 px-2 text-right text-green-400 font-semibold">
+                  {company.treasuryValue ? formatNumber(company.treasuryValue) : 'N/A'}
+                </td>
+                <td className="py-4 px-2 text-right text-gray-300">
+                  {company.marketCap ? formatNumber(company.marketCap) : 'N/A'}
+                </td>
+                <td className="py-4 px-2 text-right text-gray-300">
+                  {company.operatingCashFlow ? formatNumber(company.operatingCashFlow) : 'N/A'}
+                </td>
+                <td className="py-4 px-2 text-right text-gray-300">
+                  {company.obligationRate ? `${(company.obligationRate * 100).toFixed(2)}%` : 'N/A'}
+                </td>
+                <td className="py-4 px-2 text-right text-red-400">
+                  {company.shortPercent ? `${company.shortPercent.toFixed(2)}%` : 'N/A'}
+                </td>
+                <td className="py-4 px-2 text-right text-gray-300">
+                  {company.shortDays ? `${company.shortDays.toFixed(1)}d` : 'N/A'}
+                </td>
+                <td className="py-4 px-2 text-center">
+                  {company.yahoo && (
+                    <a
+                      href={company.yahoo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-300 transition-colors"
+                    >
+                      <ExternalLink size={16} />
+                    </a>
+                  )}
+                </td>
+              </motion.tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="mt-6 text-center">
+        <p className="text-gray-400 text-sm">
+          Data updates every 15 minutes during market hours. Treasury values calculated using real-time crypto prices.
+        </p>
+      </div>
+    </div>
   );
 };
 
@@ -387,15 +557,18 @@ export default function ResearchPage() {
             </ScrollAnimation>
           </div>
 
-
+          {/* Crypto Treasuries Section */}
+          <ScrollAnimation delay={0.4}>
+            <div className="mb-20">
+              <CryptoTreasuries />
+            </div>
+          </ScrollAnimation>
 
           {/* Research Publications & Downloads */}
           <ScrollAnimation delay={0.6}>
             <div className="mb-20">
               <h2 className="text-3xl font-bold text-white mb-12 text-center">Research Publications</h2>
               
-
-
               {/* Research Papers */}
               <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
                 <h3 className="text-2xl font-bold text-white mb-8 text-center">Research Papers</h3>
