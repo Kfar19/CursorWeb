@@ -1188,7 +1188,7 @@ export default function Home() {
             <div className="hidden md:flex items-center space-x-6">
               <motion.a 
                 href="#home" 
-                className="text-gray-600 hover:text-gray-900 transition-colors relative group"
+                className="text-gray-800 hover:text-gray-900 transition-colors relative group font-semibold"
                 whileHover={{ scale: 1.05 }}
               >
                 <span>Home</span>
@@ -1200,7 +1200,7 @@ export default function Home() {
               
               <Link
                 href="/research" 
-                className="text-gray-600 hover:text-gray-900 transition-colors relative group"
+                className="text-gray-800 hover:text-gray-900 transition-colors relative group font-semibold"
               >
                 <motion.div whileHover={{ scale: 1.05 }}>
                   <span>Research</span>
@@ -1213,7 +1213,7 @@ export default function Home() {
               
               <Link
                 href="/chatbot" 
-                className="text-gray-600 hover:text-gray-900 transition-colors relative group flex items-center space-x-1"
+                className="text-gray-800 hover:text-gray-900 transition-colors relative group flex items-center space-x-1 font-semibold"
               >
                 <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-1">
                   <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
@@ -1227,7 +1227,7 @@ export default function Home() {
               
               <motion.a 
                 href="#live-data" 
-                className="text-gray-600 hover:text-gray-900 transition-colors relative group flex items-center space-x-1"
+                className="text-gray-800 hover:text-gray-900 transition-colors relative group flex items-center space-x-1 font-semibold"
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -1240,7 +1240,7 @@ export default function Home() {
               
               <motion.a 
                 href="#social-sentiment" 
-                className="text-gray-600 hover:text-gray-900 transition-colors relative group"
+                className="text-gray-800 hover:text-gray-900 transition-colors relative group font-semibold"
                 whileHover={{ scale: 1.05 }}
               >
                 <span>Social Sentiment</span>
@@ -1252,7 +1252,7 @@ export default function Home() {
               
               <motion.a 
                 href="#blockchain-feed" 
-                className="text-gray-600 hover:text-gray-900 transition-colors relative group"
+                className="text-gray-800 hover:text-gray-900 transition-colors relative group font-semibold"
                 whileHover={{ scale: 1.05 }}
               >
                 <span>Blockchain</span>
@@ -1266,7 +1266,7 @@ export default function Home() {
               
               <motion.a 
                 href="#bitcoin-holdings" 
-                className="text-gray-600 hover:text-gray-900 transition-colors relative group"
+                className="text-gray-800 hover:text-gray-900 transition-colors relative group font-semibold"
                 whileHover={{ scale: 1.05 }}
               >
                 <span>Bitcoin Holdings</span>
@@ -1289,7 +1289,7 @@ export default function Home() {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-600 hover:text-gray-900"
+                className="text-gray-800 hover:text-gray-900 font-semibold"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -1302,7 +1302,7 @@ export default function Home() {
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white rounded-lg mt-2 border border-gray-200 shadow-lg">
                 <motion.a 
                   href="#home" 
-                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50"
+                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 font-semibold"
                   whileHover={{ x: 5 }}
                 >
                   Home
@@ -1310,7 +1310,7 @@ export default function Home() {
                 
                 <Link
                   href="/research" 
-                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50"
+                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 font-semibold"
                 >
                   <motion.div whileHover={{ x: 5 }}>
                     Research
@@ -1319,7 +1319,7 @@ export default function Home() {
                 
                 <Link
                   href="/chatbot" 
-                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 flex items-center space-x-2"
+                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 flex items-center space-x-2 font-semibold"
                 >
                   <motion.div whileHover={{ x: 5 }} className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
@@ -1329,7 +1329,7 @@ export default function Home() {
                 
                 <motion.a 
                   href="#live-data" 
-                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 flex items-center space-x-2"
+                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 flex items-center space-x-2 font-semibold"
                   whileHover={{ x: 5 }}
                 >
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -1338,7 +1338,7 @@ export default function Home() {
                 
                 <motion.a 
                   href="#social-sentiment" 
-                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50"
+                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 font-semibold"
                   whileHover={{ x: 5 }}
                 >
                   Social Sentiment
@@ -1346,7 +1346,7 @@ export default function Home() {
                 
                 <motion.a 
                   href="#blockchain-feed" 
-                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50"
+                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 font-semibold"
                   whileHover={{ x: 5 }}
                 >
                   Blockchain Feed
@@ -1356,7 +1356,7 @@ export default function Home() {
                 
                 <motion.a 
                   href="#bitcoin-holdings" 
-                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50"
+                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 font-semibold"
                   whileHover={{ x: 5 }}
                 >
                   Bitcoin Holdings
