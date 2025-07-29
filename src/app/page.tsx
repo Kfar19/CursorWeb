@@ -1440,7 +1440,7 @@ export default function Home() {
               }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
-              An investment machine that knows when not to act.
+              An investment machine.
             </motion.span>
           </motion.h1>
 
