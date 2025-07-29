@@ -1430,7 +1430,7 @@ export default function Home() {
           </motion.div>
 
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 relative text-left"
+            className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 relative text-center"
             variants={fadeInUp}
           >
             <motion.span 
@@ -1445,7 +1445,7 @@ export default function Home() {
           </motion.h1>
 
           <motion.p 
-            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl text-left"
+            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto text-center"
             variants={fadeInUp}
           >
             Engineered for restraint in a reckless world.
