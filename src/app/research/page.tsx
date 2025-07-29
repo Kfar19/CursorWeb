@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowLeft, X, Eye, Mail, TrendingUp, ExternalLink } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // ScrollAnimation component for consistent animations
 const ScrollAnimation = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
@@ -192,11 +192,23 @@ const EmailCaptureModal = ({ isOpen, onClose, onEmailSubmit, fileName }: {
 
 // Crypto Treasuries Component
 const CryptoTreasuries = () => {
-  const [treasuryData, setTreasuryData] = useState<any[]>([]);
+  const [treasuryData, setTreasuryData] = useState<Array<{
+    company: string;
+    crypto: string;
+    ticker: string;
+    cryptoOwned: number;
+    yahoo: string;
+    treasuryValue?: number;
+    marketCap?: number;
+    operatingCashFlow?: number;
+    obligationRate?: number;
+    shortPercent?: number;
+    shortDays?: number;
+  }>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const cryptoTreasuries = [
+  const cryptoTreasuries = useMemo(() => [
     { company: 'Strategy', crypto: 'BTC', ticker: 'MSTR', cryptoOwned: 597325, yahoo: 'https://finance.yahoo.com/quote/MSTR/key-statistics/' },
     { company: 'Marathon Digital', crypto: 'BTC', ticker: 'MARA', cryptoOwned: 14402, yahoo: 'https://finance.yahoo.com/quote/MARA/key-statistics/' },
     { company: 'Riot Platforms', crypto: 'BTC', ticker: 'RIOT', cryptoOwned: 12530, yahoo: 'https://finance.yahoo.com/quote/RIOT/key-statistics/' },
@@ -209,7 +221,7 @@ const CryptoTreasuries = () => {
     { company: 'Bitminer', crypto: 'ETH', ticker: 'BMNR', cryptoOwned: 566776, yahoo: 'https://finance.yahoo.com/quote/BMNR/key-statistics/' },
     { company: 'Upexi', crypto: 'SOL', ticker: 'UPXI', cryptoOwned: 2631578.947, yahoo: 'https://finance.yahoo.com/quote/UPXI/key-statistics/' },
     { company: 'Mill City', crypto: 'SUI', ticker: '', cryptoOwned: 0, yahoo: '' }
-  ];
+  ], []);
 
   useEffect(() => {
     const fetchTreasuryData = async () => {
@@ -231,7 +243,7 @@ const CryptoTreasuries = () => {
     };
 
     fetchTreasuryData();
-  }, []);
+  }, [cryptoTreasuries]);
 
   const formatNumber = (num: number) => {
     if (num >= 1e9) return `$${(num / 1e9).toFixed(2)}B`;

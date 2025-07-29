@@ -33,7 +33,17 @@ const getCryptoPrices = async (): Promise<CryptoPrice> => {
 // Mock Yahoo Finance data scraper - in production, this would scrape actual data
 const getYahooFinanceData = async (ticker: string) => {
   // This is mock data - in production, you'd scrape or use Yahoo Finance API
-  const mockData: { [key: string]: any } = {
+  interface YahooFinanceData {
+    marketCap: number;
+    sharesOutstanding: number;
+    lastPrice: number;
+    operatingCashFlow: number;
+    shortPercent: number;
+    sharesShort: number;
+    avgVolume10Day: number;
+  }
+
+  const mockData: { [key: string]: YahooFinanceData } = {
     'MSTR': {
       marketCap: 85000000000,
       sharesOutstanding: 22000000,
