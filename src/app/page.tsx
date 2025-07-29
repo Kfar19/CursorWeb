@@ -1037,12 +1037,12 @@ export default function Home() {
       {/* Contact Modal */}
       {isContactModalOpen && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 max-w-md w-full">
+          <div className="bg-white rounded-2xl p-8 border border-gray-200 max-w-md w-full shadow-xl">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-bold text-white">Join the Signal</h3>
+              <h3 className="text-2xl font-bold text-gray-900">Join the Signal</h3>
               <button
                 onClick={() => setIsContactModalOpen(false)}
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-gray-600 transition-colors"
               >
                 <X size={24} />
               </button>
@@ -1050,7 +1050,7 @@ export default function Home() {
             
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                   Name
                 </label>
                 <input
@@ -1060,13 +1060,13 @@ export default function Home() {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
                   placeholder="Your name"
                 />
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                   Email
                 </label>
                 <input
@@ -1076,13 +1076,13 @@ export default function Home() {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
                   placeholder="your.email@company.com"
                 />
               </div>
               
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
                   Company
                 </label>
                 <input
@@ -1091,13 +1091,13 @@ export default function Home() {
                   name="company"
                   value={formData.company}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
                   placeholder="Your company"
                 />
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                   Message
                 </label>
                 <textarea
@@ -1106,7 +1106,7 @@ export default function Home() {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:bg-white transition-colors resize-none"
                   placeholder="Tell us about your interest in AI-native capital infrastructure..."
                 />
               </div>
@@ -1286,7 +1286,7 @@ export default function Home() {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-300 hover:text-white"
+                className="text-gray-600 hover:text-gray-900"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -1296,10 +1296,10 @@ export default function Home() {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <div className="md:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/50 backdrop-blur-md rounded-lg mt-2 border border-white/10">
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white rounded-lg mt-2 border border-gray-200 shadow-lg">
                 <motion.a 
                   href="#home" 
-                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5"
+                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50"
                   whileHover={{ x: 5 }}
                 >
                   Home
@@ -1307,7 +1307,7 @@ export default function Home() {
                 
                 <Link
                   href="/research" 
-                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5"
+                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50"
                 >
                   <motion.div whileHover={{ x: 5 }}>
                     Research
@@ -1316,26 +1316,26 @@ export default function Home() {
                 
                 <Link
                   href="/chatbot" 
-                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5 flex items-center space-x-2"
+                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 flex items-center space-x-2"
                 >
                   <motion.div whileHover={{ x: 5 }} className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                     <span>Chatbot</span>
                   </motion.div>
                 </Link>
                 
                 <motion.a 
                   href="#live-data" 
-                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5 flex items-center space-x-2"
+                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 flex items-center space-x-2"
                   whileHover={{ x: 5 }}
                 >
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                   <span>Live Data</span>
                 </motion.a>
                 
                 <motion.a 
                   href="#social-sentiment" 
-                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5"
+                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50"
                   whileHover={{ x: 5 }}
                 >
                   Social Sentiment
@@ -1343,7 +1343,7 @@ export default function Home() {
                 
                 <motion.a 
                   href="#blockchain-feed" 
-                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5"
+                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50"
                   whileHover={{ x: 5 }}
                 >
                   Blockchain Feed
@@ -1353,7 +1353,7 @@ export default function Home() {
                 
                 <motion.a 
                   href="#bitcoin-holdings" 
-                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors rounded-md hover:bg-white/5"
+                  className="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50"
                   whileHover={{ x: 5 }}
                 >
                   Bitcoin Holdings
@@ -1724,12 +1724,12 @@ export default function Home() {
             {/* Left Side - Text Content */}
             <div className="text-left">
               <ScrollAnimation>
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                   Trained on data. Tuned for decisions
                 </h2>
               </ScrollAnimation>
               <ScrollAnimation delay={0.2}>
-                <p className="text-xl text-gray-300 mb-8">
+                <p className="text-xl text-gray-600 mb-8">
                   The old system filters signal through committees. Ours reads it in real time.
                 </p>
               </ScrollAnimation>
@@ -2193,25 +2193,25 @@ export default function Home() {
 
           {/* Institutional Holders Table */}
           <ScrollAnimation delay={0.7}>
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <h3 className="text-2xl font-bold text-white mb-6">Institutional Holders</h3>
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Institutional Holders</h3>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-white/10">
-                      <th className="text-left py-4 px-4 text-gray-400 font-semibold">Holder</th>
-                      <th className="text-left py-4 px-4 text-gray-400 font-semibold">Type</th>
-                      <th className="text-right py-4 px-4 text-gray-400 font-semibold">Holdings (BTC)</th>
-                      <th className="text-right py-4 px-4 text-gray-400 font-semibold">Value</th>
-                      <th className="text-right py-4 px-4 text-gray-400 font-semibold">24h Change</th>
-                      <th className="text-right py-4 px-4 text-gray-400 font-semibold">Last Updated</th>
+                    <tr className="border-b border-gray-200">
+                      <th className="text-left py-4 px-4 text-gray-600 font-semibold">Holder</th>
+                      <th className="text-left py-4 px-4 text-gray-600 font-semibold">Type</th>
+                      <th className="text-right py-4 px-4 text-gray-600 font-semibold">Holdings (BTC)</th>
+                      <th className="text-right py-4 px-4 text-gray-600 font-semibold">Value</th>
+                      <th className="text-right py-4 px-4 text-gray-600 font-semibold">24h Change</th>
+                      <th className="text-right py-4 px-4 text-gray-600 font-semibold">Last Updated</th>
                     </tr>
                   </thead>
                   <tbody>
                     {institutionalHolders.map((holder, index) => (
                       <motion.tr 
                         key={holder.id}
-                        className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                        className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
@@ -2219,57 +2219,57 @@ export default function Home() {
                         <td className="py-4 px-4">
                           <div className="flex items-center space-x-3">
                             <div className={`w-3 h-3 rounded-full ${
-                              holder.category === 'public_company' ? 'bg-blue-400' : 
-                              holder.category === 'spot_etf' ? 'bg-green-400' : 
-                              holder.category === 'trust' ? 'bg-purple-400' :
-                              holder.category === 'private_company' ? 'bg-orange-400' :
-                              holder.category === 'asset_manager' ? 'bg-cyan-400' :
-                              holder.category === 'sovereign' ? 'bg-red-400' :
-                              holder.category === 'dao' ? 'bg-pink-400' :
-                              holder.category === 'protocol' ? 'bg-indigo-400' : 'bg-gray-400'
+                              holder.category === 'public_company' ? 'bg-blue-500' : 
+                              holder.category === 'spot_etf' ? 'bg-green-500' : 
+                              holder.category === 'trust' ? 'bg-purple-500' :
+                              holder.category === 'private_company' ? 'bg-orange-500' :
+                              holder.category === 'asset_manager' ? 'bg-cyan-500' :
+                              holder.category === 'sovereign' ? 'bg-red-500' :
+                              holder.category === 'dao' ? 'bg-pink-500' :
+                              holder.category === 'protocol' ? 'bg-indigo-500' : 'bg-gray-500'
                             }`} />
                             <div>
-                              <div className="text-white font-semibold">{holder.name}</div>
-                              <div className="text-xs text-gray-400">{holder.type}</div>
+                              <div className="text-gray-900 font-semibold">{holder.name}</div>
+                              <div className="text-xs text-gray-500">{holder.type}</div>
                             </div>
                           </div>
                         </td>
                         <td className="py-4 px-4">
                           <span className={`px-2 py-1 rounded text-xs font-semibold ${
-                            holder.category === 'public_company' ? 'bg-blue-400/20 text-blue-400' : 
-                            holder.category === 'spot_etf' ? 'bg-green-400/20 text-green-400' : 
-                            holder.category === 'trust' ? 'bg-purple-400/20 text-purple-400' :
-                            holder.category === 'private_company' ? 'bg-orange-400/20 text-orange-400' :
-                            holder.category === 'asset_manager' ? 'bg-cyan-400/20 text-cyan-400' :
-                            holder.category === 'sovereign' ? 'bg-red-400/20 text-red-400' :
-                            holder.category === 'dao' ? 'bg-pink-400/20 text-pink-400' :
-                            holder.category === 'protocol' ? 'bg-indigo-400/20 text-indigo-400' : 'bg-gray-400/20 text-gray-400'
+                            holder.category === 'public_company' ? 'bg-blue-100 text-blue-700' : 
+                            holder.category === 'spot_etf' ? 'bg-green-100 text-green-700' : 
+                            holder.category === 'trust' ? 'bg-purple-100 text-purple-700' :
+                            holder.category === 'private_company' ? 'bg-orange-100 text-orange-700' :
+                            holder.category === 'asset_manager' ? 'bg-cyan-100 text-cyan-700' :
+                            holder.category === 'sovereign' ? 'bg-red-100 text-red-700' :
+                            holder.category === 'dao' ? 'bg-pink-100 text-pink-700' :
+                            holder.category === 'protocol' ? 'bg-indigo-100 text-indigo-700' : 'bg-gray-100 text-gray-700'
                           }`}>
                             {holder.type.toUpperCase()}
                           </span>
                         </td>
                         <td className="py-4 px-4 text-right">
-                          <div className="text-white font-semibold">{holder.holdings.toLocaleString()}</div>
+                          <div className="text-gray-900 font-semibold">{holder.holdings.toLocaleString()}</div>
                         </td>
                         <td className="py-4 px-4 text-right">
-                          <div className="text-white font-semibold">{holder.value}</div>
+                          <div className="text-gray-900 font-semibold">{holder.value}</div>
                         </td>
                         <td className="py-4 px-4 text-right">
                           <div className={`font-semibold ${
-                            holder.change.startsWith('+') ? 'text-green-400' : 
-                            holder.change.startsWith('-') ? 'text-red-400' : 'text-gray-400'
+                            holder.change.startsWith('+') ? 'text-green-600' : 
+                            holder.change.startsWith('-') ? 'text-red-600' : 'text-gray-600'
                           }`}>
                             {holder.change}
                           </div>
                           <div className={`text-xs ${
-                            holder.changePercent.startsWith('+') ? 'text-green-400' : 
-                            holder.changePercent.startsWith('-') ? 'text-red-400' : 'text-gray-400'
+                            holder.changePercent.startsWith('+') ? 'text-green-600' : 
+                            holder.changePercent.startsWith('-') ? 'text-red-600' : 'text-gray-600'
                           }`}>
                             {holder.changePercent}
                           </div>
                         </td>
                         <td className="py-4 px-4 text-right">
-                          <div className="text-xs text-gray-400">{holder.lastUpdated}</div>
+                          <div className="text-xs text-gray-500">{holder.lastUpdated}</div>
                         </td>
                       </motion.tr>
                     ))}
@@ -2282,51 +2282,51 @@ export default function Home() {
       </section>
 
       {/* Team Section */}
-      <section id="team" className="py-20 px-4 sm:px-6 lg:px-8 bg-black/20">
+      <section id="team" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Meet the Team
             </h2>
           </div>
           
           <div className="grid md:grid-cols-2 gap-12">
             {/* Kevin Farrelly */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <h3 className="text-2xl font-bold text-white mb-4">Kevin Farrelly</h3>
-              <p className="text-gray-300 mb-4">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Kevin Farrelly</h3>
+              <p className="text-gray-600 mb-4">
                 Kevin is a repeat founder and investor at the intersection of machine learning, venture, and crypto. 
                 He previously founded a machine learning credit fund acquired by Franklin Templeton in 2018, where 
                 he subsequently launched and led Blockchain Venture Funds I and II, delivering top-decile DPI returns.
               </p>
-              <p className="text-gray-300 mb-4">
+              <p className="text-gray-600 mb-4">
                 With over 15 years of hands-on experience scaling fintech and consumer companies—focusing on CAC 
                 optimization, margin expansion, and data science—Kevin specializes in early-stage investing, token 
                 economics, and ML infrastructure.
               </p>
-              <p className="text-gray-400 text-sm">BSBA from the University of Richmond</p>
+              <p className="text-gray-500 text-sm">BSBA from the University of Richmond</p>
             </div>
 
             {/* Greg Scanlon */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <h3 className="text-2xl font-bold text-white mb-4">Greg Scanlon</h3>
-              <p className="text-gray-300 mb-4">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Greg Scanlon</h3>
+              <p className="text-gray-600 mb-4">
                 Greg is a seasoned investor and technologist operating at the intersection of blockchain, data science, 
                 and institutional capital. He co-founded Franklin Templeton&apos;s Blockchain Venture Funds I and II, and 
                 brings over 15 years of experience in investing and risk management from leading firms such as Citadel 
                 and Orange Capital.
               </p>
-              <p className="text-gray-300 mb-4">
+              <p className="text-gray-600 mb-4">
                 Greg is also an active mentor and advisor across multiple top universities.
               </p>
-              <p className="text-gray-400 text-sm">BSBA from the University of Richmond, MS in Data Science from NYU, CFA charterholder</p>
+              <p className="text-gray-500 text-sm">BSBA from the University of Richmond, MS in Data Science from NYU, CFA charterholder</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-black/40 border-t border-white/10">
+      <footer className="bg-gray-900 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid md:grid-cols-4 gap-8">
             {/* Brand */}
@@ -2356,16 +2356,16 @@ export default function Home() {
                 Machine-native. Protocol-first. Liquidity-aware. See what others miss.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+                <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors">
                   <Twitter className="w-5 h-5 text-white" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+                <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors">
                   <Linkedin className="w-5 h-5 text-white" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+                <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors">
                   <Github className="w-5 h-5 text-white" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+                <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors">
                   <Mail className="w-5 h-5 text-white" />
                 </a>
               </div>
@@ -2393,7 +2393,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="border-t border-white/10 mt-8 pt-8 text-center">
+          <div className="border-t border-gray-700 mt-8 pt-8 text-center">
             <p className="text-gray-400">
               © 2025 Birdai. All rights reserved.
             </p>
