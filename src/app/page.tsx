@@ -995,17 +995,17 @@ export default function Home() {
                   },
                 },
               },
-              particles: {
-                color: {
-                  value: "#9ca3af",
-                },
-                links: {
-                  color: "#9ca3af",
-                  distance: 150,
-                  enable: true,
-                  opacity: 0.2,
-                  width: 1,
-                },
+                      particles: {
+          color: {
+            value: "#d1d5db",
+          },
+          links: {
+            color: "#d1d5db",
+            distance: 150,
+            enable: true,
+            opacity: 0.15,
+            width: 1,
+          },
                 move: {
                   direction: "none",
                   enable: true,
