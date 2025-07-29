@@ -1430,12 +1430,9 @@ export default function Home() {
           </motion.div>
 
           <motion.h1 
-            className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 relative"
+            className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 relative text-left"
             variants={fadeInUp}
           >
-            <span className="block">
-              See What Others
-            </span>
             <motion.span 
               className="block text-gray-900 relative"
               animate={{ 
@@ -1443,45 +1440,15 @@ export default function Home() {
               }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
-              Miss
+              An investment machine that knows when not to act.
             </motion.span>
           </motion.h1>
 
-
-
-          {/* Animated Tagline */}
-          <motion.div 
-            className="flex flex-wrap justify-center items-center gap-4 mb-6"
-            variants={fadeInUp}
-          >
-            <motion.span 
-              className="text-lg md:text-xl text-gray-700 font-mono px-4 py-2 bg-blue-50 rounded-full border border-blue-200"
-              whileHover={{ scale: 1.05, backgroundColor: "rgb(239, 246, 255)" }}
-              transition={{ duration: 0.3 }}
-            >
-              Machine-native
-            </motion.span>
-            <motion.span 
-              className="text-lg md:text-xl text-gray-700 font-mono px-4 py-2 bg-cyan-50 rounded-full border border-cyan-200"
-              whileHover={{ scale: 1.05, backgroundColor: "rgb(236, 254, 255)" }}
-              transition={{ duration: 0.3 }}
-            >
-              Protocol-first
-            </motion.span>
-            <motion.span 
-              className="text-lg md:text-xl text-gray-700 font-mono px-4 py-2 bg-purple-50 rounded-full border border-purple-200"
-              whileHover={{ scale: 1.05, backgroundColor: "rgb(250, 245, 255)" }}
-              transition={{ duration: 0.3 }}
-            >
-              Liquidity-aware
-            </motion.span>
-          </motion.div>
-
           <motion.p 
-            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto"
+            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl text-left"
             variants={fadeInUp}
           >
-            A structural shift is happening.
+            Engineered for restraint in a reckless world.
           </motion.p>
 
           {/* Enhanced CTA Button */}
