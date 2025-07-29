@@ -391,7 +391,7 @@ export default function ResearchPage() {
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Data Collection</h3>
                   <p className="text-gray-300 text-sm">
-                    Aggregate data from 500+ sources including social media, news, financial reports, and on-chain analytics
+                    Aggregate data from sources including social media, news, financial reports, and on-chain analytics
                   </p>
                 </div>
                 
