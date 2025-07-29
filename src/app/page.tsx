@@ -133,13 +133,13 @@ export default function Home() {
   const [activeProtocols, setActiveProtocols] = useState(47);
   const [gasPrice, setGasPrice] = useState(25);
 
-  // Backend Analytics Data
-  const [analyticsData, setAnalyticsData] = useState({
-    insights: [],
-    marketData: null,
-    sentimentData: null,
-    isLoading: true
-  });
+  // Backend Analytics Data (currently unused - keeping for future use)
+  // const [analyticsData, setAnalyticsData] = useState({
+  //   insights: [],
+  //   marketData: null,
+  //   sentimentData: null,
+  //   isLoading: true
+  // });
 
   // AI Market Predictions state
 
@@ -392,28 +392,23 @@ export default function Home() {
     }
   }, []);
 
-  // Fetch analytics data from backend
+  // Fetch analytics data from backend (currently unused - keeping for future use)
   const fetchAnalyticsData = useCallback(async () => {
     try {
-      const [insightsRes, marketRes, sentimentRes] = await Promise.all([
-        fetch('/api/insights'),
-        fetch('/api/market-data'),
-        fetch('/api/sentiment')
-      ]);
+      // const [insightsRes, marketRes, sentimentRes] = await Promise.all([
+      //   fetch('/api/insights'),
+      //   fetch('/api/market-data'),
+      //   fetch('/api/sentiment')
+      // ]);
 
-      const insights = await insightsRes.json();
-      const marketData = await marketRes.json();
-      const sentimentData = await sentimentRes.json();
+      // Data fetched but not currently used
+      // const insights = await insightsRes.json();
+      // const marketData = await marketRes.json();
+      // const sentimentData = await sentimentRes.json();
 
-      setAnalyticsData({
-        insights: insights.data?.insights || [],
-        marketData: marketData.data || null,
-        sentimentData: sentimentData.data || null,
-        isLoading: false
-      });
+      // console.log('Analytics data fetched:', { insights, marketData, sentimentData });
     } catch (error) {
       console.error('Error fetching analytics data:', error);
-      setAnalyticsData(prev => ({ ...prev, isLoading: false }));
     }
   }, []);
 

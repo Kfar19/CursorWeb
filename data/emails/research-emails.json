@@ -1,6 +1,39 @@
 [
   {
     "email": "test@example.com",
+    "fileName": "test-research.pdf",
+    "source": "research_download",
+    "name": "",
+    "company": "",
+    "message": "",
+    "timestamp": "2025-07-29T00:24:10.419Z",
+    "userAgent": "curl/8.7.1",
+    "ip": "::1"
+  },
+  {
+    "email": "test2@example.com",
+    "fileName": "Join the Signal",
+    "source": "contact_form",
+    "name": "Test User 2",
+    "company": "Test Co",
+    "message": "Test message 2",
+    "timestamp": "2025-07-29T00:22:01.483Z",
+    "userAgent": "curl/8.7.1",
+    "ip": "::1"
+  },
+  {
+    "email": "test@example.com",
+    "fileName": "Join the Signal",
+    "source": "contact_form",
+    "name": "Test User",
+    "company": "Test Co",
+    "message": "Test message",
+    "timestamp": "2025-07-29T00:21:39.982Z",
+    "userAgent": "curl/8.7.1",
+    "ip": "::1"
+  },
+  {
+    "email": "test@example.com",
     "fileName": null,
     "source": "contact_form",
     "name": "Test User",
