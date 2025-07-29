@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   // Configuration for stable deployment - Vercel build fix
+  // Updated configuration to ensure proper deployment
 };
 
 export default nextConfig;
