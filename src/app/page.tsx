@@ -1421,16 +1421,7 @@ export default function Home() {
           animate="visible"
           variants={staggerContainer}
         >
-          {/* Live Market Cap Badge */}
-          <motion.div 
-            className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-2 mb-8"
-            variants={fadeInUp}
-            whileHover={{ scale: 1.05 }}
-          >
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-green-600 text-sm font-medium">Live Market Cap: {formatMarketCap(marketCap)}</span>
-            <span className="text-gray-500 text-xs">• Updated {lastUpdated.toLocaleTimeString()}</span>
-          </motion.div>
+
 
           <motion.h1 
             className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 relative text-center"
