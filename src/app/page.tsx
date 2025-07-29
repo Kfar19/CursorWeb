@@ -1689,15 +1689,7 @@ export default function Home() {
               <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <ScrollAnimation>
-              <div className="flex items-center justify-center space-x-3 mb-4">
-                <div className="text-4xl">𓂀</div>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-                  The Oracle
-                </h2>
-                <div className="text-4xl">🔮</div>
-              </div>
-            </ScrollAnimation>
+
             <ScrollAnimation delay={0.2}>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Discover how our AI is optimized for your investment profile
