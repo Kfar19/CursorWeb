@@ -1438,12 +1438,12 @@ export default function Home() {
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 bg-[length:200%_100%] bg-clip-text text-transparent"
+              className="bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 bg-[length:200%_100%] bg-clip-text text-transparent"
             >
               See What Others
             </motion.span>
             <motion.span 
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600 relative"
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-black relative"
             >
               Miss
             </motion.span>
