@@ -1118,11 +1118,11 @@ export default function Home() {
             className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 relative text-center"
             variants={fadeInUp}
           >
-            <motion.span 
-              className="block text-gradient relative"
+            <span 
+              className="block text-blue-800 relative font-bold"
             >
               Built to See What Others Miss.
-            </motion.span>
+            </span>
           </motion.h1>
 
           <p 
