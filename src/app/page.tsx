@@ -1238,16 +1238,16 @@ export default function Home() {
                 transition={{ duration: 1, ease: "easeOut" }}
                 whileHover={{ scale: 1.02, y: -5 }}
               >
-                <Lottie
-                  animationData={aiDataAnimation}
-                  loop={true}
-                  autoplay={true}
-                  style={{ 
-                    width: '100%', 
-                    height: '100%',
-                    filter: 'hue-rotate(200deg) saturate(1.2) brightness(1.1)'
-                  }}
-                />
+                                  <Lottie
+                    animationData={aiDataAnimation}
+                    loop={true}
+                    autoplay={true}
+                    style={{ 
+                      width: '100%', 
+                      height: '100%',
+                      filter: 'hue-rotate(220deg) saturate(1.5) brightness(1.2)'
+                    }}
+                  />
                 {/* Enhanced glow effect */}
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-2xl"
