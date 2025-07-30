@@ -20,7 +20,7 @@ export default function SuiChatBox({ isOpen, onClose }: SuiChatBoxProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
-      text: "Hi! I'm your Sui blockchain assistant. Ask me anything about the network data, transactions, validators, gas prices, stablecoin activity, or any other blockchain metrics you see on the dashboard!",
+      text: "Hi! I'm your Sui blockchain assistant with real-time data from Sui mainnet. Ask me anything about live network data, transactions, validators, gas prices, stablecoin activity, or any other blockchain metrics!",
       isUser: false,
       timestamp: new Date()
     }
@@ -107,7 +107,7 @@ export default function SuiChatBox({ isOpen, onClose }: SuiChatBoxProps) {
     "How many validators are active?",
     "How many stablecoin transactions today?",
     "What's the stablecoin volume in dollars?",
-    "Explain the transaction types",
+    "Is this real-time data from Sui?",
     "How does staking work?"
   ];
 
