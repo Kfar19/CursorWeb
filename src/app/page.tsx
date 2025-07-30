@@ -146,7 +146,6 @@ export default function Home() {
 
   // AI Market Predictions state
 
-
   // Bitcoin Holdings Monitor state
   const [bitcoinHoldings, setBitcoinHoldings] = useState({
     totalPublicCompanies: 650297, // ~650K BTC (including MicroStrategy's 607,770)
@@ -536,6 +535,8 @@ export default function Home() {
 
 
 
+
+
   // Update Bitcoin holdings timestamp only (no fake data changes)
   const updateBitcoinHoldings = useCallback(() => {
     // Only update the timestamp to show the data is "live"
@@ -847,13 +848,15 @@ export default function Home() {
     return () => clearInterval(blockchainInterval);
   }, [updateBlockchainFeed]);
 
-
-
   // Update Bitcoin holdings every 60 seconds
   useEffect(() => {
     const bitcoinInterval = setInterval(updateBitcoinHoldings, 60000); // Update every 60 seconds
     return () => clearInterval(bitcoinInterval);
   }, [updateBitcoinHoldings]);
+
+
+
+
 
   // Format market cap for display
   const formatMarketCap = (value: number) => {
@@ -1250,7 +1253,7 @@ export default function Home() {
                 />
               </motion.a>
               
-              <motion.a 
+                            <motion.a 
                 href="#blockchain-feed" 
                 className="text-gray-800 hover:text-gray-900 transition-colors relative group font-semibold"
                 whileHover={{ scale: 1.05 }}
@@ -1261,8 +1264,6 @@ export default function Home() {
                   whileHover={{ width: "100%" }}
                 />
               </motion.a>
-              
-
               
               <motion.a 
                 href="#bitcoin-holdings" 
@@ -1275,6 +1276,9 @@ export default function Home() {
                   whileHover={{ width: "100%" }}
                 />
               </motion.a>
+              
+              
+              
               
               <motion.button 
                 onClick={() => setIsContactModalOpen(true)}
@@ -1345,6 +1349,14 @@ export default function Home() {
                 </motion.a>
                 
                 <motion.a 
+                  href="#bitcoin-holdings" 
+                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 font-semibold"
+                  whileHover={{ x: 5 }}
+                >
+                  Bitcoin Holdings
+                </motion.a>
+                
+                <motion.a 
                   href="#blockchain-feed" 
                   className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 font-semibold"
                   whileHover={{ x: 5 }}
@@ -1354,13 +1366,7 @@ export default function Home() {
                 
 
                 
-                <motion.a 
-                  href="#bitcoin-holdings" 
-                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 font-semibold"
-                  whileHover={{ x: 5 }}
-                >
-                  Bitcoin Holdings
-                </motion.a>
+
                 
                 <motion.button 
                   onClick={() => setIsContactModalOpen(true)}
@@ -2017,27 +2023,7 @@ export default function Home() {
 
 
 
-      {/* Bitcoin Holdings Monitor Section */}
-      <section id="bitcoin-holdings" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <ScrollAnimation>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-center">
-              Bitcoin Holdings Monitor
-            </h2>
-          </ScrollAnimation>
-          <ScrollAnimation delay={0.2}>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12 text-center">
-              Accurate institutional holdings data from bitcointreasuries.net and bitbo.io (July 2025)
-            </p>
-            <div className="flex items-center justify-center mb-8">
-              <div className="flex items-center space-x-2 bg-blue-100 border border-blue-200 rounded-full px-4 py-2">
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                <span className="text-blue-600 text-sm font-medium">
-                  Data from bitcointreasuries.net • Updated {bitcoinHoldings.lastUpdated?.toLocaleTimeString() || 'Just now'}
-                </span>
-              </div>
-            </div>
-          </ScrollAnimation>
+
 
           {/* Total Holdings Overview */}
           <div className="grid md:grid-cols-8 gap-4 mb-12">
