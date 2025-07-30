@@ -1125,11 +1125,7 @@ export default function Home() {
             </span>
           </motion.h1>
 
-          <p 
-            className="text-lg sm:text-xl md:text-2xl text-blue-800 mb-8 max-w-3xl mx-auto text-center font-medium"
-          >
-            The central nervous system for institutional investment funds.
-          </p>
+
 
           {/* Enhanced CTA Button */}
           <motion.div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -1169,6 +1165,11 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-cyan-50/30"></div>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
+            <ScrollAnimation delay={0.1}>
+              <p className="text-lg sm:text-xl md:text-2xl text-blue-800 mb-8 max-w-3xl mx-auto text-center font-medium">
+                The central nervous system for institutional investment funds.
+              </p>
+            </ScrollAnimation>
             <ScrollAnimation delay={0.2}>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
                 Redefining private institutional investing through advanced data systems, AI-native workflows, and deep fundamental research
