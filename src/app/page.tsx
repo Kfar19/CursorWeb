@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import Lottie from 'lottie-react';
 import aiDataAnimation from '../../public/ai-data-animation.json';
-import productivityAnimation from '../../public/productivity-animation.json';
+import brainAnimation from '../../public/brain-animation.json';
 
 
 
@@ -1178,7 +1178,7 @@ export default function Home() {
                   transition={{ duration: 1, ease: "easeOut" }}
                 >
                   <Lottie
-                    animationData={productivityAnimation}
+                    animationData={brainAnimation}
                     loop={true}
                     autoplay={true}
                     style={{ 
