@@ -1190,7 +1190,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-800 mb-6 text-center">
-              Institutional Data Intelligence
+              The Data That Moves Money
             </h2>
           </ScrollAnimation>
           <ScrollAnimation delay={0.2}>
