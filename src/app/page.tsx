@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import Lottie from 'lottie-react';
 import productivityAnimation from '../../public/productivity-animation.json';
+import aiDataAnimation from '../../public/ai-data-animation.json';
 
 
 
@@ -1234,6 +1235,36 @@ export default function Home() {
             </p>
           </ScrollAnimation>
           
+          <ScrollAnimation delay={0.3}>
+            <div className="flex justify-center mb-12">
+              <motion.div 
+                className="w-96 h-96 relative"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              >
+                <Lottie
+                  animationData={aiDataAnimation}
+                  loop={true}
+                  autoplay={true}
+                  style={{ width: '100%', height: '100%' }}
+                />
+                {/* Enhanced glow effect */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-2xl"
+                  animate={{ 
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                />
+              </motion.div>
+            </div>
+          </ScrollAnimation>
 
         </div>
       </section>
