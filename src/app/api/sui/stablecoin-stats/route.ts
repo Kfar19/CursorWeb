@@ -27,9 +27,11 @@ export async function GET() {
 
     // Get recent transactions for analysis
     const transactions = await client.queryTransactionBlocks({
-      limit: 500, // Increased sample size to find more stablecoin transactions
+      limit: 2000, // Much larger sample size to find stablecoin transactions
       order: 'descending'
     });
+
+    console.log(`Fetched ${transactions.data.length} transactions from Sui mainnet`);
 
     let stablecoinStats: any = {
       totalTransactions: 0,
@@ -47,11 +49,14 @@ export async function GET() {
       sampleSize: transactions.data.length,
       analyzedTransactions: 0,
       transactionTypes: [],
-      debugInfo: []
+      debugInfo: [],
+      allCoinTypes: new Set(),
+      recentTransactionDigests: []
     };
 
-    // Analyze real transactions
-    for (const tx of transactions.data) {
+    // Analyze real transactions (process first 100 for speed)
+    const transactionsToAnalyze = transactions.data.slice(0, 100);
+    for (const tx of transactionsToAnalyze) {
       try {
         // Get detailed transaction information
         const txDetails = await client.getTransactionBlock({
@@ -64,6 +69,7 @@ export async function GET() {
         });
 
         stablecoinStats.analyzedTransactions++;
+        stablecoinStats.recentTransactionDigests.push(tx.digest);
 
         // Check for coin transfer events
         if (txDetails.effects) {
@@ -78,6 +84,9 @@ export async function GET() {
             if (event.type === 'coin::CoinTransferredEvent') {
               const coinType = event.parsedJson?.coin_type;
               const amount = event.parsedJson?.amount || 0;
+              
+              // Track all coin types we find
+              stablecoinStats.allCoinTypes.add(coinType);
               
               // Add debug info for coin transfers
               stablecoinStats.debugInfo.push({

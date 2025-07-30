@@ -4,11 +4,13 @@ export async function POST(request: Request) {
   try {
     const { message, context } = await request.json();
 
-    // Get stablecoin statistics if the question is about stablecoins
+    // Get stablecoin statistics if the question is about stablecoins or transactions
     let stablecoinStats = null;
     if (message.toLowerCase().includes('stablecoin') || 
         message.toLowerCase().includes('usdc') || 
-        message.toLowerCase().includes('usdt')) {
+        message.toLowerCase().includes('usdt') ||
+        message.toLowerCase().includes('transaction') ||
+        message.toLowerCase().includes('recent')) {
       try {
         const stablecoinResponse = await fetch('http://localhost:3000/api/sui/stablecoin-stats');
         if (stablecoinResponse.ok) {
@@ -65,6 +67,11 @@ function generateAIResponse(message: string, context: any): string {
   }
 
   if (message.includes('transaction') || message.includes('tx') || message.includes('recent')) {
+    if (context.stablecoinStats) {
+      const stats = context.stablecoinStats;
+      const coinTypes = Array.from(stats.allCoinTypes || []);
+      return `📊 **Recent Transaction Analysis** (${stats.analyzedTransactions} transactions analyzed):\n\n**Transaction Types Found:** ${stats.transactionTypes.length > 0 ? stats.transactionTypes.slice(0, 10).join(', ') : 'None detected'}\n\n**Coin Types Found:** ${coinTypes.length > 0 ? coinTypes.join(', ') : 'None detected'}\n\n**Sample Transaction Digests:** ${stats.recentTransactionDigests.slice(0, 5).join(', ')}\n\n**Data Source:** ${stats.dataSource} - Real blockchain data from Sui mainnet.`;
+    }
     return `Sui supports various transaction types including transfers, smart contract calls, and NFT operations. The network processes transactions in parallel when possible, which significantly improves throughput compared to traditional blockchains.`;
   }
 
