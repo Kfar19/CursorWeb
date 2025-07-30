@@ -747,7 +747,7 @@ export default function Home() {
                   density: {
                     enable: true,
                   },
-                  value: window.innerWidth < 768 ? 40 : 80, // Fewer particles on mobile
+                  value: typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 80, // Fewer particles on mobile
                 },
                 opacity: {
                   value: 0.8,
