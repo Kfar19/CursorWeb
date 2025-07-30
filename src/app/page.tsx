@@ -1188,11 +1188,9 @@ export default function Home() {
       <section id="live-data" className="py-20 px-4 sm:px-6 lg:px-8 bg-white relative">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white"></div>
         <div className="max-w-7xl mx-auto">
-          <ScrollAnimation>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-800 mb-6 text-center">
-              The Data That Moves Money
-            </h2>
-          </ScrollAnimation>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-800 mb-6 text-center">
+            The Data That Moves Money
+          </h2>
           <ScrollAnimation delay={0.2}>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12 text-center">
               Real-time institutional data feeds powering investment decisions
