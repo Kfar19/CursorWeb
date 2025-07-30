@@ -25,9 +25,19 @@ export async function GET() {
             }
           });
 
+          // Get timestamp from various possible sources
+          let timestamp = Date.now();
+          if (txDetails.effects?.gasUsed?.timestampMs) {
+            timestamp = parseInt(txDetails.effects.gasUsed.timestampMs);
+          } else if (txDetails.effects?.gasUsed?.timestamp) {
+            timestamp = parseInt(txDetails.effects.gasUsed.timestamp);
+          } else if (txDetails.effects?.createdAt) {
+            timestamp = parseInt(txDetails.effects.createdAt);
+          }
+
           return {
             digest: tx.digest,
-            timestamp: txDetails.effects?.gasUsed?.timestampMs || Date.now(),
+            timestamp: timestamp,
             status: txDetails.effects?.status?.status || 'Success',
             gasUsed: txDetails.effects?.gasUsed?.computationCost || 0,
             gasPrice: txDetails.effects?.gasUsed?.gasPrice || 0,
@@ -100,12 +110,26 @@ function getTransactionType(txDetails: any): string {
 function getTransactionAmount(txDetails: any): number {
   if (!txDetails?.objectChanges) return 0;
   
+  // Look for coin transfers
   const coinChanges = txDetails.objectChanges.filter((change: any) => 
     change.type === 'transferred' && change.objectType?.includes('coin')
   );
   
   if (coinChanges.length > 0) {
-    return parseFloat(coinChanges[0].amount || 0) / Math.pow(10, 9); // Convert from MIST to SUI
+    const amount = parseFloat(coinChanges[0].amount || 0);
+    // Handle different decimal places for different coins
+    if (coinChanges[0].objectType?.includes('sui::sui::SUI')) {
+      return amount / Math.pow(10, 9); // SUI has 9 decimals
+    } else if (coinChanges[0].objectType?.includes('usdc') || coinChanges[0].objectType?.includes('usdt')) {
+      return amount / Math.pow(10, 6); // USDC/USDT have 6 decimals
+    } else {
+      return amount / Math.pow(10, 9); // Default to 9 decimals
+    }
+  }
+  
+  // Also check for gas costs as a fallback
+  if (txDetails.effects?.gasUsed?.computationCost) {
+    return parseFloat(txDetails.effects.gasUsed.computationCost) / Math.pow(10, 9);
   }
   
   return 0;
@@ -114,11 +138,27 @@ function getTransactionAmount(txDetails: any): number {
 function getTransactionRecipient(txDetails: any): string {
   if (!txDetails?.objectChanges) return 'Unknown';
   
+  // Look for transfers
   const transfer = txDetails.objectChanges.find((change: any) => change.type === 'transferred');
   
   if (transfer) {
-    return transfer.recipient?.AddressOwner || 'Unknown';
+    if (transfer.recipient?.AddressOwner) {
+      return transfer.recipient.AddressOwner;
+    } else if (transfer.recipient?.ObjectOwner) {
+      return transfer.recipient.ObjectOwner;
+    }
   }
   
-  return 'Unknown';
+  // Check for PaySui transactions
+  if (txDetails.transaction?.data?.transactions) {
+    for (const tx of txDetails.transaction.data.transactions) {
+      if (tx.PaySui && tx.recipients && tx.recipients.length > 0) {
+        return tx.recipients[0];
+      } else if (tx.Pay && tx.recipients && tx.recipients.length > 0) {
+        return tx.recipients[0];
+      }
+    }
+  }
+  
+  return 'System';
 } 
