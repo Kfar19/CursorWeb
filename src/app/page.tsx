@@ -881,41 +881,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <motion.div 
-              className="flex items-center cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <motion.div 
-                className="text-2xl font-bold text-white"
-                animate={{ 
-                  y: [0, -2, 0],
-                  scale: [1, 1.02, 1]
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <motion.span 
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 via-blue-600 to-cyan-600"
-                  animate={{
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  style={{
-                    backgroundSize: "200% 200%"
-                  }}
-                >
-                  Birdai
-                </motion.span>
-              </motion.div>
-            </motion.div>
+            <div className="flex items-center cursor-pointer">
+              <div className="text-3xl font-black text-blue-800">
+                Birdai
+              </div>
+            </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
