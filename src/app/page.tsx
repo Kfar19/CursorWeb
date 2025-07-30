@@ -1247,7 +1247,11 @@ export default function Home() {
                   animationData={aiDataAnimation}
                   loop={true}
                   autoplay={true}
-                  style={{ width: '100%', height: '100%' }}
+                  style={{ 
+                    width: '100%', 
+                    height: '100%',
+                    filter: 'hue-rotate(200deg) saturate(1.2) brightness(1.1)'
+                  }}
                 />
                 {/* Enhanced glow effect */}
                 <motion.div 
