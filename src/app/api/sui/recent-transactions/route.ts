@@ -79,29 +79,97 @@ export async function GET() {
 function getTransactionType(txDetails: any): string {
   if (!txDetails) return 'Unknown';
   
-  // Check for coin transfer
-  if (txDetails.objectChanges?.some((change: any) => change.type === 'transferred')) {
-    return 'Transfer';
+  const transactions = txDetails.transaction?.data?.transactions || [];
+  const objectChanges = txDetails.objectChanges || [];
+  
+  // Check for specific transaction types first
+  for (const tx of transactions) {
+    // PaySui transaction
+    if (tx.PaySui) {
+      return 'SUI Payment';
+    }
+    
+    // Pay transaction (for other coins)
+    if (tx.Pay) {
+      return 'Coin Payment';
+    }
+    
+    // MoveCall (smart contract)
+    if (tx.MoveCall) {
+      const module = tx.MoveCall.module;
+      const funcName = tx.MoveCall.function;
+      
+      // DeFi operations
+      if (module?.includes('swap') || funcName?.includes('swap')) {
+        return 'DeFi Swap';
+      }
+      if (module?.includes('liquidity') || funcName?.includes('liquidity')) {
+        return 'DeFi Liquidity';
+      }
+      if (module?.includes('stake') || funcName?.includes('stake')) {
+        return 'Staking';
+      }
+      if (module?.includes('nft') || funcName?.includes('nft')) {
+        return 'NFT Operation';
+      }
+      if (module?.includes('marketplace') || funcName?.includes('marketplace')) {
+        return 'NFT Marketplace';
+      }
+      
+      return 'Smart Contract';
+    }
+    
+    // TransferSui
+    if (tx.TransferSui) {
+      return 'SUI Transfer';
+    }
+    
+    // TransferObject
+    if (tx.TransferObject) {
+      return 'Object Transfer';
+    }
   }
   
-  // Check for NFT transfer
-  if (txDetails.objectChanges?.some((change: any) => change.objectType?.includes('nft'))) {
-    return 'NFT';
+  // Check object changes for more specific types
+  for (const change of objectChanges) {
+    // Coin transfers
+    if (change.type === 'transferred' && change.objectType?.includes('coin')) {
+      if (change.objectType?.includes('sui::sui::SUI')) {
+        return 'SUI Transfer';
+      } else if (change.objectType?.includes('usdc')) {
+        return 'USDC Transfer';
+      } else if (change.objectType?.includes('usdt')) {
+        return 'USDT Transfer';
+      } else {
+        return 'Coin Transfer';
+      }
+    }
+    
+    // NFT transfers
+    if (change.type === 'transferred' && change.objectType?.includes('nft')) {
+      return 'NFT Transfer';
+    }
+    
+    // Object creation
+    if (change.type === 'created') {
+      if (change.objectType?.includes('nft')) {
+        return 'NFT Mint';
+      } else if (change.objectType?.includes('coin')) {
+        return 'Coin Mint';
+      } else {
+        return 'Object Creation';
+      }
+    }
+    
+    // Object mutation
+    if (change.type === 'mutated') {
+      return 'Object Update';
+    }
   }
   
-  // Check for smart contract call
-  if (txDetails.transaction?.data?.transactions?.some((t: any) => t.MoveCall)) {
-    return 'Smart Contract';
-  }
-  
-  // Check for system transactions (gas payments, etc.)
-  if (txDetails.transaction?.data?.transactions?.some((t: any) => t.PaySui || t.Pay)) {
-    return 'Payment';
-  }
-  
-  // Check for object operations
-  if (txDetails.objectChanges?.some((change: any) => change.type === 'created' || change.type === 'mutated')) {
-    return 'Object Operation';
+  // Check for gas payments (system transactions)
+  if (transactions.length === 0 && objectChanges.length === 0) {
+    return 'Gas Payment';
   }
   
   return 'System';
