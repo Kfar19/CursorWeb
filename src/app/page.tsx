@@ -1355,9 +1355,9 @@ export default function Home() {
             </div>
             
             {/* Right Side - AI Productivity Animation */}
-            <div className="flex justify-center md:justify-end">
+            <div className="flex justify-center md:justify-end items-center">
               <motion.div 
-                className="w-80 h-80 relative"
+                className="w-96 h-96 relative"
                 initial={{ opacity: 0, scale: 0.8, x: 50 }}
                 animate={{ opacity: 1, scale: 1, x: 0 }}
                 transition={{ duration: 1, ease: "easeOut" }}
