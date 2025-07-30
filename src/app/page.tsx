@@ -1194,7 +1194,7 @@ export default function Home() {
             </ScrollAnimation>
             <ScrollAnimation delay={0.2}>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
-                Enterprise-grade data infrastructure powering the next generation of institutional investment strategies
+                Redefining private institutional investing through advanced data systems, AI-native workflows, and deep fundamental research
               </p>
             </ScrollAnimation>
             <ScrollAnimation delay={0.4}>
