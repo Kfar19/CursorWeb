@@ -1442,7 +1442,7 @@ export default function Home() {
             className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto text-center"
             variants={fadeInUp}
           >
-            Engineered for restraint in a reckless world.
+            The central nervous system for institutional investment funds.
           </motion.p>
 
           {/* Enhanced CTA Button */}
@@ -1495,7 +1495,7 @@ export default function Home() {
           <div className="text-center mb-12">
             <ScrollAnimation delay={0.2}>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Discover how our AI is optimized for your investment profile
+                Experience our institutional-grade AI infrastructure
               </p>
             </ScrollAnimation>
           </div>
@@ -1712,12 +1712,12 @@ export default function Home() {
             <div className="text-left">
               <ScrollAnimation>
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                  Trained on data. Tuned for decisions
+                  Corporate data infrastructure. Institutional AI.
                 </h2>
               </ScrollAnimation>
               <ScrollAnimation delay={0.2}>
                 <p className="text-xl text-gray-600 mb-8">
-                  The old system filters signal through committees. Ours reads it in real time.
+                  Birdai serves as the central nervous system, powering investment funds with real-time data and AI tooling.
                 </p>
               </ScrollAnimation>
             </div>
