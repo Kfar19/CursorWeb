@@ -1255,7 +1255,7 @@ export default function Home() {
           </ScrollAnimation>
           
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* Market Sentiment */}
+            {/* Deal Flow Intelligence */}
             <ScrollAnimation delay={0.3}>
               <motion.div 
                 className="bg-gray-50 rounded-2xl p-6 border border-gray-200"
@@ -1263,31 +1263,31 @@ export default function Home() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-gray-900">Institutional Sentiment</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Deal Flow Intelligence</h3>
                   <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                 </div>
                 <div className="text-center mb-4">
-                  <p className="text-3xl font-bold text-blue-600">{socialSentiment.bullish}%</p>
-                  <p className="text-gray-600 text-sm">Bullish</p>
+                  <p className="text-3xl font-bold text-blue-600">500+</p>
+                  <p className="text-gray-600 text-sm">Early-stage opportunities</p>
                 </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-green-600">Bullish</span>
-                    <span className="font-semibold">{socialSentiment.bullish}%</span>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span>Private Markets</span>
+                    <span className="font-semibold">Tracked</span>
                   </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-600">Neutral</span>
-                    <span className="font-semibold">{socialSentiment.neutral}%</span>
+                  <div className="flex justify-between">
+                    <span>Deal Velocity</span>
+                    <span className="font-semibold">Real-time</span>
                   </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-red-600">Bearish</span>
-                    <span className="font-semibold">{socialSentiment.bearish}%</span>
+                  <div className="flex justify-between">
+                    <span>Due Diligence</span>
+                    <span className="font-semibold">AI-powered</span>
                   </div>
                 </div>
               </motion.div>
             </ScrollAnimation>
 
-            {/* Social Activity */}
+            {/* Portfolio Correlation Analysis */}
             <ScrollAnimation delay={0.4}>
               <motion.div 
                 className="bg-gray-50 rounded-2xl p-6 border border-gray-200"
@@ -1295,31 +1295,31 @@ export default function Home() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-gray-900">Data Sources</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Portfolio Correlation Analysis</h3>
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 </div>
                 <div className="text-center mb-4">
-                  <p className="text-3xl font-bold text-green-600">{totalMentions.toLocaleString()}</p>
-                  <p className="text-gray-600 text-sm">Total Mentions (24h)</p>
+                  <p className="text-3xl font-bold text-green-600">24/7</p>
+                  <p className="text-gray-600 text-sm">Risk modeling</p>
                 </div>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span>Twitter</span>
-                    <span className="font-semibold">{realSocialData.twitterMentions}</span>
+                    <span>Institutional Positions</span>
+                    <span className="font-semibold">Monitored</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Reddit</span>
-                    <span className="font-semibold">{realSocialData.redditMentions}</span>
+                    <span>Risk Metrics</span>
+                    <span className="font-semibold">Real-time</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>News</span>
-                    <span className="font-semibold">{realSocialData.newsMentions}</span>
+                    <span>Correlation Matrix</span>
+                    <span className="font-semibold">Live</span>
                   </div>
                 </div>
               </motion.div>
             </ScrollAnimation>
 
-            {/* Market Cap */}
+            {/* Regulatory Signal Processing */}
             <ScrollAnimation delay={0.5}>
               <motion.div 
                 className="bg-gray-50 rounded-2xl p-6 border border-gray-200"
@@ -1327,21 +1327,26 @@ export default function Home() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-gray-900">Market Intelligence</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Regulatory Signal Processing</h3>
                   <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
                 </div>
                 <div className="text-center mb-4">
-                  <p className="text-3xl font-bold text-purple-600">
-                    {isLoading ? (
-                      <motion.div className="w-6 h-6 border-2 border-purple-500 border-t-transparent rounded-full mx-auto animate-spin" />
-                    ) : (
-                      formatMarketCap(marketCap)
-                    )}
-                  </p>
-                  <p className="text-gray-600 text-sm">Market Cap</p>
+                  <p className="text-3xl font-bold text-purple-600">24/7</p>
+                  <p className="text-gray-600 text-sm">Regulatory monitoring</p>
                 </div>
-                <div className="text-center text-sm text-gray-600">
-                  <p>Updated {lastUpdated.toLocaleTimeString()}</p>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span>Global Jurisdictions</span>
+                    <span className="font-semibold">Tracked</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Policy Changes</span>
+                    <span className="font-semibold">Alerted</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Impact Analysis</span>
+                    <span className="font-semibold">Automated</span>
+                  </div>
                 </div>
               </motion.div>
             </ScrollAnimation>
