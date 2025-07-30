@@ -1113,15 +1113,6 @@ export default function Home() {
             >
               Built to See What Others Miss.
             </motion.span>
-            <motion.span 
-              className="block text-gray-900 relative mt-2"
-              animate={{ 
-                opacity: [0.8, 1, 0.8],
-              }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            >
-              Engineered to Move First.
-            </motion.span>
           </motion.h1>
 
           <motion.p 
