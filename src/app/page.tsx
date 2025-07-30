@@ -21,14 +21,14 @@ import {
 } from 'lucide-react';
 import Lottie from 'lottie-react';
 import productivityAnimation from '../../public/productivity-animation.json';
-import oracleAnimation from '../../public/oracle-animation.json';
-import OracleModal from './components/OracleModal';
+
+
 
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const [isOracleOpen, setIsOracleOpen] = useState(false);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -1181,52 +1181,7 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-      {/* Oracle Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <ScrollAnimation delay={0.2}>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Experience our institutional-grade AI infrastructure
-              </p>
-            </ScrollAnimation>
-          </div>
-          
-          <ScrollAnimation delay={0.3}>
-            <div className="max-w-2xl mx-auto">
-              <motion.div 
-                className="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                whileHover={{ scale: 1.02, y: -5 }}
-                onClick={() => setIsOracleOpen(true)}
-              >
-                <div className="text-center">
-                  <div className="w-32 h-32 mx-auto mb-4">
-                    <Lottie
-                      animationData={oracleAnimation}
-                      loop={true}
-                      autoplay={true}
-                      style={{ width: '100%', height: '100%' }}
-                    />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                    Ask the Oracle
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    Answer 3 simple questions to learn more about your risk profile
-                  </p>
-                  <motion.button
-                    className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-8 rounded-full text-lg shadow-lg"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Begin Your Reading
-                  </motion.button>
-                </div>
-              </motion.div>
-            </div>
-          </ScrollAnimation>
-        </div>
-      </section>
+
 
       {/* Institutional Infrastructure Section */}
       <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
@@ -1764,12 +1719,7 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Oracle Modal */}
-      <OracleModal 
-        isOpen={isOracleOpen} 
-        onClose={() => setIsOracleOpen(false)} 
-        onContactModalOpen={() => setIsContactModalOpen(true)}
-      />
+
     </div>
   );
 }
