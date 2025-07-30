@@ -1,35 +1,16 @@
 import { NextResponse } from 'next/server';
-import { SuiClient } from '@mysten/sui/client';
-
-const client = new SuiClient({ url: 'https://fullnode.mainnet.sui.io' });
 
 export async function POST(request: Request) {
   try {
     const { message, context } = await request.json();
 
-    // Get current blockchain data for context
-    const [latestCheckpoint, validators, referenceGasPrice, totalSupply] = await Promise.all([
-      client.getLatestCheckpoint(),
-      client.getValidators(),
-      client.getReferenceGasPrice(),
-      client.getTotalSupply({ coinType: '0x2::sui::SUI' })
-    ]);
-
-    // Get recent transactions for context
-    const recentTransactions = await client.queryTransactions({
-      limit: 10,
-      order: 'descending'
-    });
-
     // Get stablecoin statistics if the question is about stablecoins
     let stablecoinStats = null;
     if (message.toLowerCase().includes('stablecoin') || 
         message.toLowerCase().includes('usdc') || 
-        message.toLowerCase().includes('usdt') || 
-        message.toLowerCase().includes('dai') ||
-        message.toLowerCase().includes('busd')) {
+        message.toLowerCase().includes('usdt')) {
       try {
-        const stablecoinResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/sui/stablecoin-stats`);
+        const stablecoinResponse = await fetch('http://localhost:3000/api/sui/stablecoin-stats');
         if (stablecoinResponse.ok) {
           stablecoinStats = await stablecoinResponse.json();
         }
@@ -40,14 +21,6 @@ export async function POST(request: Request) {
 
     // Create context for the AI
     const blockchainContext = {
-      currentEpoch: latestCheckpoint.epoch,
-      currentCheckpoint: latestCheckpoint.sequenceNumber,
-      totalValidators: validators.validators.length,
-      activeValidators: validators.validators.filter(v => v.stakingPool?.suiBalance > 0).length,
-      gasPrice: referenceGasPrice,
-      totalSupply: totalSupply.value,
-      recentTransactionCount: recentTransactions.data.length,
-      averageGasUsed: recentTransactions.data.reduce((acc, tx) => acc + (tx.effects?.gasUsed?.computationCost || 0), 0) / recentTransactions.data.length,
       timestamp: Date.now(),
       stablecoinStats
     };
@@ -63,7 +36,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('Error in chat API:', error);
     return NextResponse.json(
-      { error: 'Failed to process chat message' },
+      { error: 'Failed to process chat message', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }
@@ -76,24 +49,23 @@ function generateAIResponse(message: string, context: any): string {
   }
 
   if (message.includes('gas') || message.includes('gas price') || message.includes('fees')) {
-    return `The current reference gas price is ${context.gasPrice} MIST. Gas prices on Sui are typically much lower than other blockchains due to its efficient consensus mechanism. Gas fees are used to compensate validators for processing transactions and maintaining network security.`;
+    return `Gas prices on Sui are typically much lower than other blockchains due to its efficient consensus mechanism. Gas fees are used to compensate validators for processing transactions and maintaining network security. The current gas price varies based on network congestion.`;
   }
 
   if (message.includes('validator') || message.includes('validators')) {
-    return `Sui currently has ${context.totalValidators} total validators, with ${context.activeValidators} actively participating in consensus. Validators are responsible for processing transactions, maintaining network security, and earning rewards through staking. The validator set is dynamic and can change based on staking amounts and performance.`;
+    return `Sui uses a distributed validator set to maintain network security and process transactions. Validators are responsible for processing transactions, maintaining network security, and earning rewards through staking. The validator set is dynamic and can change based on staking amounts and performance.`;
   }
 
   if (message.includes('epoch') || message.includes('checkpoint')) {
-    return `The network is currently at epoch ${context.currentEpoch} and checkpoint ${context.currentCheckpoint}. Sui uses a unique consensus mechanism where epochs represent periods of validator participation, and checkpoints are created every few seconds to finalize transaction batches.`;
+    return `Sui uses a unique consensus mechanism where epochs represent periods of validator participation, and checkpoints are created every few seconds to finalize transaction batches. This ensures fast finality and high throughput.`;
   }
 
   if (message.includes('supply') || message.includes('circulating') || message.includes('total supply')) {
-    const supplyInSUI = context.totalSupply / Math.pow(10, 9);
-    return `The total supply of SUI is approximately ${supplyInSUI.toLocaleString()} tokens. SUI has a fixed supply, meaning no new tokens are minted. The circulating supply represents tokens available for trading and staking.`;
+    return `SUI has a fixed supply, meaning no new tokens are minted. The circulating supply represents tokens available for trading and staking. The total supply is distributed among various stakeholders including validators, stakers, and general users.`;
   }
 
   if (message.includes('transaction') || message.includes('tx') || message.includes('recent')) {
-    return `I can see ${context.recentTransactionCount} recent transactions in the network. The average gas used per transaction is approximately ${Math.round(context.averageGasUsed)} MIST. Sui supports various transaction types including transfers, smart contract calls, and NFT operations.`;
+    return `Sui supports various transaction types including transfers, smart contract calls, and NFT operations. The network processes transactions in parallel when possible, which significantly improves throughput compared to traditional blockchains.`;
   }
 
   if (message.includes('performance') || message.includes('speed') || message.includes('fast')) {
@@ -105,7 +77,7 @@ function generateAIResponse(message: string, context: any): string {
   }
 
   if (message.includes('stake') || message.includes('staking') || message.includes('rewards')) {
-    return `SUI holders can stake their tokens with validators to earn rewards. Staking helps secure the network and provides passive income. Rewards are distributed based on validator performance and the amount staked. The current validator set shows active participation in the staking ecosystem.`;
+    return `SUI holders can stake their tokens with validators to earn rewards. Staking helps secure the network and provides passive income. Rewards are distributed based on validator performance and the amount staked.`;
   }
 
   if (message.includes('nft') || message.includes('token') || message.includes('asset')) {
@@ -121,7 +93,7 @@ function generateAIResponse(message: string, context: any): string {
   }
 
   // Stablecoin-specific responses
-  if (message.includes('stablecoin') || message.includes('usdc') || message.includes('usdt') || message.includes('dai') || message.includes('busd')) {
+  if (message.includes('stablecoin') || message.includes('usdc') || message.includes('usdt')) {
     if (context.stablecoinStats) {
       const stats = context.stablecoinStats;
       const totalVolumeFormatted = stats.totalVolumeUSD.toLocaleString('en-US', { 
