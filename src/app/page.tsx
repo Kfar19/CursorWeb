@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import Lottie from 'lottie-react';
 import aiDataAnimation from '../../public/ai-data-animation.json';
+import productivityAnimation from '../../public/productivity-animation.json';
 
 
 
@@ -1169,43 +1170,38 @@ export default function Home() {
               </p>
             </ScrollAnimation>
             <ScrollAnimation delay={0.4}>
-              <motion.div 
-                className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm max-w-2xl mx-auto"
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
-                                  <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600 mb-2">
-                    {isLoading ? (
-                      <motion.div
-                        className="flex items-center"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                      >
-                        <motion.div
-                          className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full mr-2"
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        />
-                        Loading...
-                      </motion.div>
-                    ) : (
-                      <motion.span
-                        key={marketCap}
-                        initial={{ scale: 1.2, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        {formatMarketCap(marketCap)}
-                      </motion.span>
-                    )}
-                  </p>
-                                  <p className="text-gray-700">
-                    Private markets growth from negligible size in 2013 to over {isLoading ? '...' : formatMarketCap(marketCap)} in 2025
-                  </p>
-                  <p className="text-xs text-gray-500 mt-2">
-                    Live data • Updated {lastUpdated.toLocaleTimeString()}
-                  </p>
-              </motion.div>
+              <div className="flex justify-center mb-8">
+                <motion.div 
+                  className="w-64 h-64 md:w-96 md:h-96 relative"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                >
+                  <Lottie
+                    animationData={productivityAnimation}
+                    loop={true}
+                    autoplay={true}
+                    style={{ 
+                      width: '100%', 
+                      height: '100%',
+                      filter: 'hue-rotate(200deg) saturate(1.2) brightness(1.1)'
+                    }}
+                  />
+                  {/* Enhanced glow effect */}
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-2xl"
+                    animate={{ 
+                      opacity: [0.3, 0.6, 0.3],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{ 
+                      duration: 4, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }}
+                  />
+                </motion.div>
+              </div>
             </ScrollAnimation>
           </div>
         </div>
