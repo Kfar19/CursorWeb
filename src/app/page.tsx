@@ -766,8 +766,14 @@ export default function Home() {
       </div>
       {/* Contact Modal */}
       {isContactModalOpen && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 max-w-md w-full shadow-xl mx-4">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-premium z-50 flex items-center justify-center p-4">
+          <motion.div 
+            className="bg-white/95 backdrop-blur-premium rounded-3xl p-6 sm:p-8 border border-white/20 max-w-md w-full shadow-premium mx-4"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-2xl font-bold text-gray-900">Join the Signal</h3>
               <button
@@ -866,12 +872,12 @@ export default function Home() {
                 )}
               </motion.button>
             </form>
-          </div>
+          </motion.div>
         </div>
       )}
 
       {/* Navbar */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-gray-200 z-10 shadow-sm">
+      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-premium border-b border-gray-200 z-10 shadow-premium">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -893,7 +899,7 @@ export default function Home() {
                 }}
               >
                 <motion.span 
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-900"
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 via-blue-600 to-cyan-600"
                   animate={{
                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
                   }}
@@ -974,10 +980,17 @@ export default function Home() {
               
               <motion.button 
                 onClick={() => setIsContactModalOpen(true)}
-                className="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-2 px-4 rounded-full text-sm shadow-lg transition-all duration-300"
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(59, 130, 246, 0.3)" }}
+                className="bg-gradient-accent text-white font-semibold py-2.5 px-6 rounded-full text-sm shadow-premium transition-all duration-300 relative overflow-hidden group"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Join Signal
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.6 }}
+                />
+                <span className="relative z-10">Join Signal</span>
               </motion.button>
             </div>
 
@@ -1102,13 +1115,13 @@ export default function Home() {
 
 
           <motion.h1 
-            className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-6 relative text-center"
+            className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 relative text-center"
             variants={fadeInUp}
           >
             <motion.span 
-              className="block text-gray-900 relative"
+              className="block text-gradient relative"
               animate={{ 
-                opacity: [0.8, 1, 0.8],
+                opacity: [0.9, 1, 0.9],
               }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -1127,9 +1140,10 @@ export default function Home() {
           <motion.div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <motion.button 
               onClick={() => setIsContactModalOpen(true)}
-              className="group relative bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-4 px-8 rounded-full text-lg shadow-lg overflow-hidden"
+              className="group relative bg-gradient-accent text-white font-semibold py-4 px-8 rounded-full text-lg shadow-premium overflow-hidden border border-white/20"
               variants={fadeInUp}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
@@ -1156,7 +1170,8 @@ export default function Home() {
 
 
       {/* The Operating System for Private Markets Section */}
-      <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-premium relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-cyan-50/30"></div>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <ScrollAnimation delay={0.2}>
@@ -1167,10 +1182,11 @@ export default function Home() {
             <ScrollAnimation delay={0.4}>
               <div className="flex justify-center mb-8">
                 <motion.div 
-                  className="w-64 h-64 md:w-96 md:h-96 relative"
+                  className="w-64 h-64 md:w-96 md:h-96 relative bg-white/50 backdrop-blur-sm rounded-3xl p-8 shadow-premium border border-white/20"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 1, ease: "easeOut" }}
+                  whileHover={{ scale: 1.02, y: -5 }}
                 >
                   <Lottie
                     animationData={brainAnimation}
@@ -1203,7 +1219,8 @@ export default function Home() {
       </section>
 
       {/* Simplified Live Data Dashboard */}
-      <section id="live-data" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="live-data" className="py-20 px-4 sm:px-6 lg:px-8 bg-white relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white"></div>
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-center">
@@ -1219,10 +1236,11 @@ export default function Home() {
           <ScrollAnimation delay={0.3}>
             <div className="flex justify-center mb-12">
               <motion.div 
-                className="w-64 h-64 md:w-96 md:h-96 relative"
+                className="w-64 h-64 md:w-96 md:h-96 relative bg-white/50 backdrop-blur-sm rounded-3xl p-8 shadow-premium border border-white/20"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
+                whileHover={{ scale: 1.02, y: -5 }}
               >
                 <Lottie
                   animationData={aiDataAnimation}
