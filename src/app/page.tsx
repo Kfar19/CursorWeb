@@ -1189,7 +1189,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white"></div>
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-center">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-800 mb-6 text-center">
               Institutional Data Intelligence
             </h2>
           </ScrollAnimation>
