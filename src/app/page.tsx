@@ -1125,12 +1125,11 @@ export default function Home() {
             </motion.span>
           </motion.h1>
 
-          <motion.p 
-            className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto text-center"
-            variants={fadeInUp}
+          <p 
+            className="text-lg sm:text-xl md:text-2xl text-blue-800 mb-8 max-w-3xl mx-auto text-center font-medium"
           >
             The central nervous system for institutional investment funds.
-          </motion.p>
+          </p>
 
           {/* Enhanced CTA Button */}
           <motion.div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
