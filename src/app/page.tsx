@@ -20,7 +20,6 @@ import {
   Code
 } from 'lucide-react';
 import Lottie from 'lottie-react';
-import productivityAnimation from '../../public/productivity-animation.json';
 import aiDataAnimation from '../../public/ai-data-animation.json';
 
 
@@ -1275,56 +1274,7 @@ export default function Home() {
 
 
 
-      {/* AI Eats Data Section */}
-      <section id="ai-data" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left Side - Text Content */}
-            <div className="text-left">
-              <ScrollAnimation>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                  Corporate data infrastructure. Institutional AI.
-                </h2>
-              </ScrollAnimation>
-              <ScrollAnimation delay={0.2}>
-                <p className="text-xl text-gray-600 mb-8">
-                  Birdai serves as the central nervous system, powering investment funds with real-time data and AI tooling.
-                </p>
-              </ScrollAnimation>
-            </div>
-            
-            {/* Right Side - AI Productivity Animation */}
-            <div className="flex justify-center md:justify-end items-center">
-              <motion.div 
-                className="w-96 h-96 relative"
-                initial={{ opacity: 0, scale: 0.8, x: 50 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-              >
-                <Lottie
-                  animationData={productivityAnimation}
-                  loop={true}
-                  autoplay={true}
-                  style={{ width: '100%', height: '100%' }}
-                />
-                {/* Enhanced glow effect */}
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-2xl"
-                  animate={{ 
-                    opacity: [0.3, 0.6, 0.3],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
-                />
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
 
 
