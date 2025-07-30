@@ -20,7 +20,7 @@ export default function SuiChatBox({ isOpen, onClose }: SuiChatBoxProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
-      text: "Hi! I'm your Sui blockchain assistant. Ask me anything about the network data, transactions, validators, gas prices, or any other blockchain metrics you see on the dashboard!",
+      text: "Hi! I'm your Sui blockchain assistant. Ask me anything about the network data, transactions, validators, gas prices, stablecoin activity, or any other blockchain metrics you see on the dashboard!",
       isUser: false,
       timestamp: new Date()
     }
@@ -105,10 +105,10 @@ export default function SuiChatBox({ isOpen, onClose }: SuiChatBoxProps) {
   const suggestedQuestions = [
     "What's the current gas price?",
     "How many validators are active?",
+    "How many stablecoin transactions today?",
+    "What's the stablecoin volume in dollars?",
     "Explain the transaction types",
-    "What affects network performance?",
-    "How does staking work?",
-    "Tell me about Sui's security"
+    "How does staking work?"
   ];
 
   return (

@@ -21,6 +21,23 @@ export async function POST(request: Request) {
       order: 'descending'
     });
 
+    // Get stablecoin statistics if the question is about stablecoins
+    let stablecoinStats = null;
+    if (message.toLowerCase().includes('stablecoin') || 
+        message.toLowerCase().includes('usdc') || 
+        message.toLowerCase().includes('usdt') || 
+        message.toLowerCase().includes('dai') ||
+        message.toLowerCase().includes('busd')) {
+      try {
+        const stablecoinResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/sui/stablecoin-stats`);
+        if (stablecoinResponse.ok) {
+          stablecoinStats = await stablecoinResponse.json();
+        }
+      } catch (error) {
+        console.error('Failed to fetch stablecoin stats:', error);
+      }
+    }
+
     // Create context for the AI
     const blockchainContext = {
       currentEpoch: latestCheckpoint.epoch,
@@ -31,7 +48,8 @@ export async function POST(request: Request) {
       totalSupply: totalSupply.value,
       recentTransactionCount: recentTransactions.data.length,
       averageGasUsed: recentTransactions.data.reduce((acc, tx) => acc + (tx.effects?.gasUsed?.computationCost || 0), 0) / recentTransactions.data.length,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      stablecoinStats
     };
 
     // Simple AI response logic based on keywords
@@ -102,6 +120,39 @@ function generateAIResponse(message: string, context: any): string {
     return `I can see live market data in the dashboard, including current price, market cap, and 24-hour volume. SUI's price is determined by market forces and can be influenced by network adoption, developer activity, and overall market conditions. The dashboard shows real-time price updates.`;
   }
 
+  // Stablecoin-specific responses
+  if (message.includes('stablecoin') || message.includes('usdc') || message.includes('usdt') || message.includes('dai') || message.includes('busd')) {
+    if (context.stablecoinStats) {
+      const stats = context.stablecoinStats;
+      const totalVolumeFormatted = stats.totalVolumeUSD.toLocaleString('en-US', { 
+        style: 'currency', 
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      });
+      const suiVolumeFormatted = stats.totalVolumeSUI.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+
+      if (message.includes('today') || message.includes('daily') || message.includes('24 hour')) {
+        return `Today's stablecoin activity on Sui: ${stats.totalTransactions} total stablecoin transactions with ${totalVolumeFormatted} in volume. In SUI terms, that's approximately ${suiVolumeFormatted} SUI. USDC leads with ${stats.usdcTransactions} transactions (${stats.usdcVolumeUSD.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}), followed by USDT with ${stats.usdtTransactions} transactions (${stats.usdtVolumeUSD.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}).`;
+      }
+
+      if (message.includes('volume') || message.includes('amount') || message.includes('dollar')) {
+        return `Current stablecoin volume on Sui: ${totalVolumeFormatted} in USD and ${suiVolumeFormatted} SUI. USDC volume: ${stats.usdcVolumeUSD.toLocaleString('en-US', { style: 'currency', currency: 'USD' })} (${stats.usdcTransactions} transactions), USDT volume: ${stats.usdtVolumeUSD.toLocaleString('en-US', { style: 'currency', currency: 'USD' })} (${stats.usdtTransactions} transactions).`;
+      }
+
+      if (message.includes('transaction') || message.includes('count') || message.includes('number')) {
+        return `Stablecoin transaction count on Sui today: ${stats.totalTransactions} total transactions. Breakdown: ${stats.usdcTransactions} USDC transactions, ${stats.usdtTransactions} USDT transactions. This represents significant DeFi activity on the network.`;
+      }
+
+      return `Sui stablecoin activity: ${stats.totalTransactions} transactions today with ${totalVolumeFormatted} in volume. USDC is the most active with ${stats.usdcTransactions} transactions, followed by USDT with ${stats.usdtTransactions} transactions. The network supports major stablecoins for DeFi applications.`;
+    } else {
+      return `I can see stablecoin activity on Sui, but I'm having trouble fetching the specific data right now. Sui supports major stablecoins like USDC and USDT, which are widely used for DeFi applications, trading, and cross-border payments on the network.`;
+    }
+  }
+
   // Default response
-  return `I can help you understand the Sui blockchain data! You can ask me about network performance, gas prices, validators, transactions, supply, security, staking, NFTs, smart contracts, or market data. What specific aspect of the Sui network would you like to know more about?`;
+  return `I can help you understand the Sui blockchain data! You can ask me about network performance, gas prices, validators, transactions, supply, security, staking, NFTs, smart contracts, market data, or stablecoin activity. What specific aspect of the Sui network would you like to know more about?`;
 } 
