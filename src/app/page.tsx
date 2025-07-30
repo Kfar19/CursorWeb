@@ -1234,7 +1234,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span>Live Data</span>
+                <span>Data Intelligence</span>
                 <motion.div 
                   className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 group-hover:w-full transition-all duration-300"
                   whileHover={{ width: "100%" }}
@@ -1337,7 +1337,7 @@ export default function Home() {
                   whileHover={{ x: 5 }}
                 >
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span>Live Data</span>
+                  <span>Data Intelligence</span>
                 </motion.a>
                 
                 <motion.a 
@@ -1483,11 +1483,11 @@ export default function Home() {
             >
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                <span>{totalMentions.toLocaleString()} mentions</span>
+                <span>12 funds powered</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span>{totalTransactions.toLocaleString()} transactions</span>
+                <span>24/7 data feeds</span>
               </div>
 
             </motion.div>
@@ -1542,18 +1542,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Coding Capital Section */}
+      {/* Institutional Infrastructure Section */}
       <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <ScrollAnimation>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Coding Capital
+                Institutional Infrastructure
               </h2>
             </ScrollAnimation>
             <ScrollAnimation delay={0.2}>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
-                The fastest-growing asset class isn&apos;t just emerging—it&apos;s rewriting the rules. Are you inside the system, or watching it evolve from the outside?
+                Enterprise-grade data infrastructure powering the next generation of institutional investment strategies
               </p>
             </ScrollAnimation>
             <ScrollAnimation delay={0.4}>
@@ -1604,12 +1604,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-center">
-              Live Market Data
+              Institutional Data Intelligence
             </h2>
           </ScrollAnimation>
           <ScrollAnimation delay={0.2}>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12 text-center">
-              Key metrics that drive our AI investment decisions
+              Real-time institutional data feeds powering investment decisions
             </p>
           </ScrollAnimation>
           
@@ -1622,7 +1622,7 @@ export default function Home() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-gray-900">Market Sentiment</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Institutional Sentiment</h3>
                   <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                 </div>
                 <div className="text-center mb-4">
@@ -1654,7 +1654,7 @@ export default function Home() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-gray-900">Social Activity</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Data Sources</h3>
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 </div>
                 <div className="text-center mb-4">
@@ -1686,7 +1686,7 @@ export default function Home() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-gray-900">Private Markets</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Market Intelligence</h3>
                   <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
                 </div>
                 <div className="text-center mb-4">
@@ -1761,76 +1761,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Now Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center">
-            <ScrollAnimation>
-              <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8">
-                Why Now
-              </h2>
-            </ScrollAnimation>
-            
-            <ScrollAnimation delay={0.2}>
-              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <motion.div 
-                  className="text-center"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <motion.div 
-                    className="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6"
-                    whileHover={{ rotate: 5, scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">AI-Native Capital</h3>
-                  <p className="text-gray-600">The infrastructure is ready</p>
-                </motion.div>
-                
-                <motion.div 
-                  className="text-center"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <motion.div 
-                    className="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6"
-                    whileHover={{ rotate: 5, scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Perfect Timing</h3>
-                  <p className="text-gray-600">Early conviction pays</p>
-                </motion.div>
-                
-                <motion.div 
-                  className="text-center"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <motion.div 
-                    className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6"
-                    whileHover={{ rotate: 5, scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Built for Scale</h3>
-                  <p className="text-gray-600">Code over headcount</p>
-                </motion.div>
-              </div>
-            </ScrollAnimation>
-          </div>
-        </div>
-      </section>
+
 
       {/* Features Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
