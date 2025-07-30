@@ -964,17 +964,7 @@ export default function Home() {
                 />
               </motion.a>
               
-              <motion.a 
-                href="#social-sentiment" 
-                className="text-gray-800 hover:text-gray-900 transition-colors relative group font-semibold"
-                whileHover={{ scale: 1.05 }}
-              >
-                <span>Social Sentiment</span>
-                <motion.div 
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 group-hover:w-full transition-all duration-300"
-                  whileHover={{ width: "100%" }}
-                />
-              </motion.a>
+
               
                             <motion.a 
                 href="#blockchain-feed" 
@@ -1053,13 +1043,7 @@ export default function Home() {
                   <span>Data Intelligence</span>
                 </motion.a>
                 
-                <motion.a 
-                  href="#social-sentiment" 
-                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 font-semibold"
-                  whileHover={{ x: 5 }}
-                >
-                  Social Sentiment
-                </motion.a>
+
                 
 
                 
