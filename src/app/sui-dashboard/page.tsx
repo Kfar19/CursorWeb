@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, Activity, Users, GasPump, TrendingUp, Clock, ExternalLink, ArrowUpRight, ArrowDownRight, MessageCircle } from 'lucide-react';
-import SuiChatBox from '../components/SuiChatBox';
+import { ArrowLeft, Activity, Users, GasPump, TrendingUp, Clock, ExternalLink, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
 interface NetworkStats {
   tps: number;
@@ -44,7 +43,6 @@ export default function SuiDashboard() {
   const [priceData, setPriceData] = useState<PriceData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -150,25 +148,15 @@ export default function SuiDashboard() {
                 <p className="text-gray-400">Real-time network statistics and transactions</p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="text-right">
-                <div className="text-white font-semibold">
-                  {priceData ? `$${priceData.price.toFixed(4)}` : 'Loading...'}
-                </div>
-                {priceData && (
-                  <div className={`text-sm ${priceData.change24h >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                    {priceData.change24h >= 0 ? '+' : ''}{priceData.change24h.toFixed(2)}%
-                  </div>
-                )}
+            <div className="text-right">
+              <div className="text-white font-semibold">
+                {priceData ? `$${priceData.price.toFixed(4)}` : 'Loading...'}
               </div>
-              <motion.button
-                onClick={() => setIsChatOpen(true)}
-                className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <MessageCircle size={20} />
-              </motion.button>
+              {priceData && (
+                <div className={`text-sm ${priceData.change24h >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                  {priceData.change24h >= 0 ? '+' : ''}{priceData.change24h.toFixed(2)}%
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -339,9 +327,6 @@ export default function SuiDashboard() {
           </div>
                  </motion.div>
        </div>
-       
-       {/* Chat Box */}
-       <SuiChatBox isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
      </div>
    );
  } 
