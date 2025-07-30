@@ -747,7 +747,7 @@ export default function Home() {
                   density: {
                     enable: true,
                   },
-                  value: 80, // Fixed number for better visibility
+                  value: window.innerWidth < 768 ? 40 : 80, // Fewer particles on mobile
                 },
                 opacity: {
                   value: 0.8,
@@ -766,7 +766,7 @@ export default function Home() {
       {/* Contact Modal */}
       {isContactModalOpen && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl p-8 border border-gray-200 max-w-md w-full shadow-xl">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 max-w-md w-full shadow-xl mx-4">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-2xl font-bold text-gray-900">Join the Signal</h3>
               <button
@@ -1101,7 +1101,7 @@ export default function Home() {
 
 
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 relative text-center"
+            className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-6 relative text-center"
             variants={fadeInUp}
           >
             <motion.span 
@@ -1125,7 +1125,7 @@ export default function Home() {
           </motion.h1>
 
           <motion.p 
-            className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto text-center"
+            className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto text-center"
             variants={fadeInUp}
           >
             The central nervous system for institutional investment funds.
@@ -1167,11 +1167,11 @@ export default function Home() {
       <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <ScrollAnimation>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Institutional Infrastructure
-              </h2>
-            </ScrollAnimation>
+                      <ScrollAnimation>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Institutional Infrastructure
+            </h2>
+          </ScrollAnimation>
             <ScrollAnimation delay={0.2}>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
                 Redefining private institutional investing through advanced data systems, AI-native workflows, and deep fundamental research
@@ -1224,7 +1224,7 @@ export default function Home() {
       <section id="live-data" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-center">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-center">
               Institutional Data Intelligence
             </h2>
           </ScrollAnimation>
@@ -1237,7 +1237,7 @@ export default function Home() {
           <ScrollAnimation delay={0.3}>
             <div className="flex justify-center mb-12">
               <motion.div 
-                className="w-96 h-96 relative"
+                className="w-64 h-64 md:w-96 md:h-96 relative"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
@@ -1281,10 +1281,10 @@ export default function Home() {
       {/* Features Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-16 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-12 md:mb-16 text-center">
             This Cycle Is Different
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {/* Feature 1 */}
             <motion.div 
               className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm"
