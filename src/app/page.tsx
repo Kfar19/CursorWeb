@@ -1120,10 +1120,6 @@ export default function Home() {
           >
             <motion.span 
               className="block text-gradient relative"
-              animate={{ 
-                opacity: [0.9, 1, 0.9],
-              }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               Built to See What Others Miss.
             </motion.span>
@@ -1182,7 +1178,7 @@ export default function Home() {
             <ScrollAnimation delay={0.4}>
               <div className="flex justify-center mb-8">
                 <motion.div 
-                  className="w-64 h-64 md:w-96 md:h-96 relative bg-white/50 backdrop-blur-sm rounded-3xl p-8 shadow-premium border border-white/20"
+                  className="w-64 h-64 md:w-96 md:h-96 relative"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 1, ease: "easeOut" }}
@@ -1236,7 +1232,7 @@ export default function Home() {
           <ScrollAnimation delay={0.3}>
             <div className="flex justify-center mb-12">
               <motion.div 
-                className="w-64 h-64 md:w-96 md:h-96 relative bg-white/50 backdrop-blur-sm rounded-3xl p-8 shadow-premium border border-white/20"
+                className="w-64 h-64 md:w-96 md:h-96 relative"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
