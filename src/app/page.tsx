@@ -1183,21 +1183,7 @@ export default function Home() {
               </span>
             </motion.button>
 
-            {/* Live Stats */}
-            <motion.div 
-              className="flex items-center space-x-6 text-sm text-gray-500"
-              variants={fadeInUp}
-            >
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                <span>12 funds powered</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span>24/7 data feeds</span>
-              </div>
 
-            </motion.div>
           </motion.div>
         </motion.div>
       </motion.section>
