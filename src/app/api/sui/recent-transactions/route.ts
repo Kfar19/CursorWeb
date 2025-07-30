@@ -6,7 +6,7 @@ const client = new SuiClient({ url: 'https://fullnode.mainnet.sui.io' });
 export async function GET() {
   try {
     // Get recent transactions
-    const recentTransactions = await client.queryTransactions({
+    const recentTransactions = await client.queryTransactionBlocks({
       limit: 20,
       order: 'descending'
     });
@@ -27,11 +27,11 @@ export async function GET() {
 
           return {
             digest: tx.digest,
-            timestamp: tx.timestampMs,
-            status: tx.effects?.status?.status,
-            gasUsed: tx.effects?.gasUsed?.computationCost || 0,
-            gasPrice: tx.effects?.gasUsed?.gasPrice || 0,
-            sender: tx.transaction?.data?.sender,
+            timestamp: txDetails.effects?.gasUsed?.timestampMs || Date.now(),
+            status: txDetails.effects?.status?.status || 'Success',
+            gasUsed: txDetails.effects?.gasUsed?.computationCost || 0,
+            gasPrice: txDetails.effects?.gasUsed?.gasPrice || 0,
+            sender: txDetails.transaction?.data?.sender || 'Unknown',
             type: getTransactionType(txDetails),
             amount: getTransactionAmount(txDetails),
             recipient: getTransactionRecipient(txDetails)
@@ -40,8 +40,8 @@ export async function GET() {
           console.log('Error processing transaction:', error);
           return {
             digest: tx.digest,
-            timestamp: tx.timestampMs,
-            status: 'Unknown',
+            timestamp: Date.now(),
+            status: 'Error',
             gasUsed: 0,
             gasPrice: 0,
             sender: 'Unknown',
@@ -84,7 +84,17 @@ function getTransactionType(txDetails: any): string {
     return 'Smart Contract';
   }
   
-  return 'Other';
+  // Check for system transactions (gas payments, etc.)
+  if (txDetails.transaction?.data?.transactions?.some((t: any) => t.PaySui || t.Pay)) {
+    return 'Payment';
+  }
+  
+  // Check for object operations
+  if (txDetails.objectChanges?.some((change: any) => change.type === 'created' || change.type === 'mutated')) {
+    return 'Object Operation';
+  }
+  
+  return 'System';
 }
 
 function getTransactionAmount(txDetails: any): number {
