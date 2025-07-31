@@ -5,14 +5,14 @@ const client = new SuiClient({ url: 'https://fullnode.mainnet.sui.io' });
 
 export async function GET() {
   try {
-    // Get recent transactions
+    // Get recent transactions with higher limit to find more interesting ones
     const recentTransactions = await client.queryTransactionBlocks({
-      limit: 20,
+      limit: 200,
       order: 'descending'
     });
 
     // Process transactions to get more details
-    const processedTransactions = await Promise.all(
+    const allProcessedTransactions = await Promise.all(
       recentTransactions.data.map(async (tx) => {
         try {
           const txDetails = await client.getTransactionBlock({
@@ -28,7 +28,7 @@ export async function GET() {
           // Use current time for recent transactions since Sui timestamps are in a different epoch
           const timestamp = Date.now() - Math.floor(Math.random() * 60000); // Random time within last minute
 
-          return {
+          const transaction = {
             digest: tx.digest,
             timestamp: timestamp,
             status: txDetails.effects?.status?.status || 'Success',
@@ -39,6 +39,8 @@ export async function GET() {
             amount: getTransactionAmount(txDetails),
             recipient: getTransactionRecipient(txDetails)
           };
+
+          return transaction;
         } catch (error) {
           console.log('Error processing transaction:', error);
           return {
@@ -55,6 +57,33 @@ export async function GET() {
         }
       })
     );
+
+    // Filter to prioritize interesting transactions and limit to 20
+    let processedTransactions = allProcessedTransactions
+      .filter(tx => {
+        // Skip system transactions and boring updates
+        if (tx.sender === '0x0000000000000000000000000000000000000000000000000000000000000000') return false;
+        if (tx.type === 'Object Update' && tx.amount === 0) return false;
+        if (tx.type === 'System') return false;
+        if (tx.recipient === 'System' && tx.amount === 0) return false;
+        return true;
+      })
+      .sort((a, b) => {
+        // Prioritize transactions with actual amounts
+        if (a.amount > 0 && b.amount === 0) return -1;
+        if (a.amount === 0 && b.amount > 0) return 1;
+        // Then prioritize by gas used (more gas = more complex transaction)
+        return (b.gasUsed || 0) - (a.gasUsed || 0);
+      })
+      .slice(0, 20); // Take the first 20 interesting transactions
+
+    // If filtering removed too many, add back some transactions
+    if (processedTransactions.length < 10) {
+      const remainingTransactions = allProcessedTransactions
+        .filter(tx => !processedTransactions.find(pt => pt.digest === tx.digest))
+        .slice(0, 10 - processedTransactions.length);
+      processedTransactions = [...processedTransactions, ...remainingTransactions];
+    }
 
     return NextResponse.json({
       transactions: processedTransactions,
@@ -165,9 +194,15 @@ function getTransactionType(txDetails: any): string {
       }
     }
     
-    // Object mutation
+    // Object mutation - be more specific
     if (change.type === 'mutated') {
-      return 'Object Update';
+      if (change.objectType?.includes('coin')) {
+        return 'Coin Update';
+      } else if (change.objectType?.includes('nft')) {
+        return 'NFT Update';
+      } else {
+        return 'Object Update';
+      }
     }
   }
   
