@@ -1012,14 +1012,7 @@ export default function Home() {
                 
 
                 
-                <Link
-                  href="/sui-dashboard" 
-                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 font-semibold"
-                >
-                  <motion.div whileHover={{ x: 5 }}>
-                    Sui Dashboard
-                  </motion.div>
-                </Link>
+
                 
 
                 
