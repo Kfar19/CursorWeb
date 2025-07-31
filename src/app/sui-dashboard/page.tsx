@@ -95,9 +95,12 @@ export default function SuiDashboard() {
 
   const formatTime = (timestamp: number) => {
     const now = Date.now();
-    const diff = now - timestamp;
+    const diff = Math.abs(now - timestamp);
     const minutes = Math.floor(diff / 60000);
     const seconds = Math.floor((diff % 60000) / 1000);
+    
+    // Handle very recent transactions (less than 1 second)
+    if (diff < 1000) return 'Just now';
     
     if (minutes > 0) return `${minutes}m ${seconds}s ago`;
     return `${seconds}s ago`;
