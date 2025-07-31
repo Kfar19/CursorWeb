@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, Activity, Users, GasPump, TrendingUp, Clock, ExternalLink, ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { ArrowLeft, Activity, Users, GasPump, TrendingUp, Clock, ExternalLink, ArrowUpRight, ArrowDownRight, X, Copy } from 'lucide-react';
 
 interface NetworkStats {
   tps: number;
@@ -43,6 +43,8 @@ export default function SuiDashboard() {
   const [priceData, setPriceData] = useState<PriceData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -104,6 +106,23 @@ export default function SuiDashboard() {
     
     if (minutes > 0) return `${minutes}m ${seconds}s ago`;
     return `${seconds}s ago`;
+  };
+
+  const formatFullTime = (timestamp: number) => {
+    return new Date(timestamp).toLocaleString();
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+  };
+
+  const openTransactionExplorer = (digest: string) => {
+    window.open(`https://suiexplorer.com/txblock/${digest}?network=mainnet`, '_blank');
+  };
+
+  const handleTransactionClick = (transaction: Transaction) => {
+    setSelectedTransaction(transaction);
+    setIsModalOpen(true);
   };
 
   if (isLoading) {
@@ -313,10 +332,11 @@ export default function SuiDashboard() {
                 {transactions.map((tx, index) => (
                   <motion.tr 
                     key={tx.digest}
-                    className="hover:bg-white/5 transition-colors"
+                    className="hover:bg-white/5 transition-colors cursor-pointer"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.7 + index * 0.1 }}
+                    onClick={() => handleTransactionClick(tx)}
                   >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
@@ -361,6 +381,157 @@ export default function SuiDashboard() {
             </table>
           </div>
                  </motion.div>
+
+        {/* Transaction Details Modal */}
+        <AnimatePresence>
+          {isModalOpen && selectedTransaction && (
+            <motion.div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsModalOpen(false)}
+            >
+              <motion.div
+                className="bg-gray-900 border border-white/10 rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Header */}
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-xl font-bold text-white">Transaction Details</h2>
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+
+                {/* Transaction Hash */}
+                <div className="mb-6">
+                  <div className="flex items-center justify-between">
+                    <p className="text-gray-400 text-sm">Transaction Hash</p>
+                    <button
+                      onClick={() => openTransactionExplorer(selectedTransaction.digest)}
+                      className="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1"
+                    >
+                      <ExternalLink size={16} />
+                      View on Explorer
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-2 mt-2">
+                    <code className="bg-gray-800 px-3 py-2 rounded text-white text-sm font-mono flex-1">
+                      {selectedTransaction.digest}
+                    </code>
+                    <button
+                      onClick={() => copyToClipboard(selectedTransaction.digest)}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      <Copy size={16} />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Transaction Info Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <p className="text-gray-400 text-sm mb-2">Type</p>
+                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+                      selectedTransaction.type === 'Transfer' || selectedTransaction.type === 'Move Transfer' ? 'bg-blue-100 text-blue-800' :
+                      selectedTransaction.type === 'NFT' || selectedTransaction.type === 'NFT Operation' ? 'bg-purple-100 text-purple-800' :
+                      selectedTransaction.type === 'Smart Contract' || selectedTransaction.type === 'Move Contract' ? 'bg-green-100 text-green-800' :
+                      selectedTransaction.type === 'Move Coin Mint' ? 'bg-yellow-100 text-yellow-800' :
+                      selectedTransaction.type === 'Move Object Create' ? 'bg-indigo-100 text-indigo-800' :
+                      selectedTransaction.type === 'DeFi Swap' ? 'bg-pink-100 text-pink-800' :
+                      selectedTransaction.type === 'DeFi Liquidity' ? 'bg-orange-100 text-orange-800' :
+                      selectedTransaction.type === 'Staking' ? 'bg-teal-100 text-teal-800' :
+                      'bg-gray-100 text-gray-800'
+                    }`}>
+                      {selectedTransaction.type}
+                    </span>
+                  </div>
+
+                  <div>
+                    <p className="text-gray-400 text-sm mb-2">Status</p>
+                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+                      selectedTransaction.status === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                    }`}>
+                      {selectedTransaction.status}
+                    </span>
+                  </div>
+
+                  <div>
+                    <p className="text-gray-400 text-sm mb-2">Amount</p>
+                    <p className="text-white font-semibold">
+                      {selectedTransaction.amount > 0 ? `${selectedTransaction.amount.toFixed(6)} SUI` : '-'}
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-gray-400 text-sm mb-2">Gas Used</p>
+                    <p className="text-white font-semibold">{selectedTransaction.gasUsed} MIST</p>
+                  </div>
+
+                  <div>
+                    <p className="text-gray-400 text-sm mb-2">Gas Price</p>
+                    <p className="text-white font-semibold">{selectedTransaction.gasPrice} MIST</p>
+                  </div>
+
+                  <div>
+                    <p className="text-gray-400 text-sm mb-2">Timestamp</p>
+                    <p className="text-white font-semibold">{formatFullTime(selectedTransaction.timestamp)}</p>
+                  </div>
+                </div>
+
+                {/* Addresses */}
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-gray-400 text-sm mb-2">From Address</p>
+                    <div className="flex items-center gap-2">
+                      <code className="bg-gray-800 px-3 py-2 rounded text-white text-sm font-mono flex-1">
+                        {selectedTransaction.sender}
+                      </code>
+                      <button
+                        onClick={() => copyToClipboard(selectedTransaction.sender)}
+                        className="text-gray-400 hover:text-white transition-colors"
+                      >
+                        <Copy size={16} />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-gray-400 text-sm mb-2">To Address</p>
+                    <div className="flex items-center gap-2">
+                      <code className="bg-gray-800 px-3 py-2 rounded text-white text-sm font-mono flex-1">
+                        {selectedTransaction.recipient}
+                      </code>
+                      <button
+                        onClick={() => copyToClipboard(selectedTransaction.recipient)}
+                        className="text-gray-400 hover:text-white transition-colors"
+                      >
+                        <Copy size={16} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Move Language Context */}
+                <div className="mt-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                  <h3 className="text-blue-400 font-semibold mb-2">Move Language Context</h3>
+                  <p className="text-gray-300 text-sm">
+                    This transaction was executed on Sui's Move-based blockchain. Move provides type safety, 
+                    resource-oriented programming, and parallel execution capabilities that enable high throughput 
+                    and secure smart contract execution.
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
        </div>
      </div>
    );
