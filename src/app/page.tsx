@@ -1122,11 +1122,9 @@ export default function Home() {
             <p className="text-lg sm:text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto text-center font-medium relative z-10">
               Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
             </p>
-            <ScrollAnimation delay={0.2}>
-                          <p className="text-xl text-black max-w-4xl mx-auto mb-8">
+            <p className="text-xl text-black max-w-4xl mx-auto mb-8 relative z-10">
               We see patterns others miss. We move when others wait. We build the infrastructure that powers tomorrow's investment decisions.
             </p>
-            </ScrollAnimation>
             <ScrollAnimation delay={0.4}>
               <div className="flex justify-center mb-8">
                 <motion.div 
