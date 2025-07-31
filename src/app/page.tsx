@@ -931,18 +931,7 @@ export default function Home() {
               
 
               
-                            <Link
-                href="/sui-dashboard" 
-                className="text-gray-800 hover:text-gray-900 transition-colors relative group font-semibold"
-              >
-                <motion.div whileHover={{ scale: 1.05 }}>
-                  <span>Sui Dashboard</span>
-                  <motion.div 
-                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 group-hover:w-full transition-all duration-300"
-                    whileHover={{ width: "100%" }}
-                  />
-                </motion.div>
-              </Link>
+              
               
 
               
