@@ -1119,11 +1119,9 @@ export default function Home() {
         <div className="absolute inset-0 bg-white"></div>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <ScrollAnimation delay={0.1}>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black mb-8 max-w-4xl mx-auto text-center leading-tight tracking-tight">
-                Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
-              </h2>
-            </ScrollAnimation>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black mb-8 max-w-4xl mx-auto text-center leading-tight tracking-tight">
+              Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
+            </h2>
             <ScrollAnimation delay={0.2}>
                           <p className="text-xl text-black max-w-4xl mx-auto mb-8">
               We see patterns others miss. We move when others wait. We build the infrastructure that powers tomorrow's investment decisions.
