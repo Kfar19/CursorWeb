@@ -27,7 +27,9 @@ const getCryptoPrices = async (): Promise<CryptoPrice> => {
     'BTC': 97000,
     'ETH': 3500,
     'SOL': 180,
-    'SUI': 4.2
+    'SUI': 4.2,
+    'BNB': 580,
+    'TRX': 0.12
   };
 };
 
@@ -98,6 +100,15 @@ const getYahooFinanceData = async (ticker: string) => {
       sharesShort: 6400000,
       avgVolume10Day: 18500000
     },
+    'CEP': {
+      marketCapFromYahoo: 1200000000,
+      sharesOutstanding: 150000000,
+      lastPrice: 8.00,
+      operatingCashFlow: 20000000,
+      shortPercent: 16.5,
+      sharesShort: 24750000,
+      avgVolume10Day: 3500000
+    },
     'SBET': {
       marketCapFromYahoo: 2090000000, // Updated Yahoo market cap
       sharesOutstanding: 99960000, // Updated: 99.96M shares
@@ -124,6 +135,42 @@ const getYahooFinanceData = async (ticker: string) => {
       shortPercent: 19.8,
       sharesShort: 3762000,
       avgVolume10Day: 280000
+    },
+    'DFDV': {
+      marketCapFromYahoo: 850000000,
+      sharesOutstanding: 85000000,
+      lastPrice: 10.00,
+      operatingCashFlow: 15000000,
+      shortPercent: 12.8,
+      sharesShort: 10880000,
+      avgVolume10Day: 1200000
+    },
+    'VAPE': {
+      marketCapFromYahoo: 3200000000,
+      sharesOutstanding: 80000000,
+      lastPrice: 40.00,
+      operatingCashFlow: 45000000,
+      shortPercent: 8.9,
+      sharesShort: 7120000,
+      avgVolume10Day: 2500000
+    },
+    'MBAV': {
+      marketCapFromYahoo: 1800000000,
+      sharesOutstanding: 90000000,
+      lastPrice: 20.00,
+      operatingCashFlow: 25000000,
+      shortPercent: 15.2,
+      sharesShort: 13680000,
+      avgVolume10Day: 1800000
+    },
+    'SRM.O': {
+      marketCapFromYahoo: 15000000000,
+      sharesOutstanding: 1000000000,
+      lastPrice: 15.00,
+      operatingCashFlow: 120000000,
+      shortPercent: 5.8,
+      sharesShort: 58000000,
+      avgVolume10Day: 8500000
     }
   };
 
@@ -140,19 +187,34 @@ export async function GET() {
       { company: 'Riot Platforms', crypto: 'BTC', ticker: 'RIOT', cryptoOwned: 12530, yahoo: 'https://finance.yahoo.com/quote/RIOT/key-statistics/' },
       { company: 'Bitfarms', crypto: 'BTC', ticker: 'BITF', cryptoOwned: 11858, yahoo: 'https://finance.yahoo.com/quote/BITF/key-statistics/' },
       { company: 'Hut8', crypto: 'BTC', ticker: 'HUT', cryptoOwned: 5000, yahoo: 'https://finance.yahoo.com/quote/HUT/key-statistics/' },
-      { company: 'ProCap | Columbus Circle', crypto: 'BTC', ticker: 'CCCM', cryptoOwned: 4716.981132, yahoo: 'https://finance.yahoo.com/quote/CCCM/key-statistics/' },
-      { company: 'Trump Media', crypto: 'BTC', ticker: 'DJT', cryptoOwned: 21186.44068, yahoo: 'https://finance.yahoo.com/quote/DJT/key-statistics/' },
-      { company: 'Twenty - One', crypto: 'BTC', ticker: '', cryptoOwned: 4812, yahoo: '' },
+      { company: 'ProCap | Columbus Circle', crypto: 'BTC', ticker: 'CCCM', cryptoOwned: 4717, yahoo: 'https://finance.yahoo.com/quote/CCCM/key-statistics/' },
+      { company: 'Trump Media', crypto: 'BTC', ticker: 'DJT', cryptoOwned: 21186, yahoo: 'https://finance.yahoo.com/quote/DJT/key-statistics/' },
+      { company: 'Twenty - One', crypto: 'BTC', ticker: 'CEP', cryptoOwned: 43500, yahoo: 'https://finance.yahoo.com/quote/CEP/key-statistics/' },
       { company: 'Sharplink Gaming', crypto: 'ETH', ticker: 'SBET', cryptoOwned: 390607, yahoo: 'https://finance.yahoo.com/quote/SBET/key-statistics/' },
       { company: 'Bitminer', crypto: 'ETH', ticker: 'BMNR', cryptoOwned: 566776, yahoo: 'https://finance.yahoo.com/quote/BMNR/key-statistics/' },
-      { company: 'Upexi', crypto: 'SOL', ticker: 'UPXI', cryptoOwned: 2631578.947, yahoo: 'https://finance.yahoo.com/quote/UPXI/key-statistics/' },
-      { company: 'Mill City', crypto: 'SUI', ticker: '', cryptoOwned: 0, yahoo: '' }
+      { company: 'Upexi', crypto: 'SOL', ticker: 'UPXI', cryptoOwned: 2631579, yahoo: 'https://finance.yahoo.com/quote/UPXI/key-statistics/' },
+      { company: 'Mill City', crypto: 'SUI', ticker: '', cryptoOwned: 0, yahoo: '' },
+      { company: 'DeFi Dev Corp', crypto: 'SOL', ticker: 'DFDV', cryptoOwned: 1180000, yahoo: 'https://finance.yahoo.com/quote/DFDV/key-statistics/' },
+      { company: 'YZi Labs', crypto: 'BNB', ticker: 'VAPE', cryptoOwned: 635324, yahoo: 'https://finance.yahoo.com/quote/VAPE/key-statistics/' },
+      { company: 'ReserveOne', crypto: 'BTC, ETH, SOL', ticker: 'MBAV', cryptoOwned: 8475, yahoo: 'https://finance.yahoo.com/quote/MBAV/key-statistics/' },
+      { company: 'Tron Inc', crypto: 'TRX', ticker: 'SRM.O', cryptoOwned: 303030303, yahoo: '' }
     ];
 
     const enrichedCompanies = await Promise.all(
       companies.map(async (company) => {
-        const cryptoPrice = cryptoPrices[company.crypto] || 0;
-        const treasuryValue = company.cryptoOwned * cryptoPrice;
+        // For companies with multiple cryptos, calculate total value
+        let treasuryValue = 0;
+        if (company.crypto.includes(',')) {
+          const cryptos = company.crypto.split(',').map(c => c.trim());
+          cryptos.forEach(crypto => {
+            const price = cryptoPrices[crypto] || 0;
+            // Distribute crypto owned equally among the cryptos
+            treasuryValue += (company.cryptoOwned / cryptos.length) * price;
+          });
+        } else {
+          const cryptoPrice = cryptoPrices[company.crypto] || 0;
+          treasuryValue = company.cryptoOwned * cryptoPrice;
+        }
         
         let enrichedCompany = {
           ...company,
