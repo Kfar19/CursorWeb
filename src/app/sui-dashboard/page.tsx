@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, Activity, Users, GasPump, TrendingUp, Clock, ExternalLink, ArrowUpRight, ArrowDownRight, X, Copy } from 'lucide-react';
+import { ArrowLeft, Activity, Users, TrendingUp, Clock, ExternalLink, ArrowUpRight, ArrowDownRight, X, Copy, Zap } from 'lucide-react';
 
 interface NetworkActivity {
   timestamp: number;
@@ -227,7 +227,7 @@ export default function SuiDashboard() {
                   <p className="text-gray-400 text-sm">Gas Price</p>
                   <p className="text-2xl font-bold text-white">{networkActivity.gasTrends.currentGasPrice}</p>
                 </div>
-                <GasPump className="w-8 h-8 text-yellow-400" />
+                <Zap className="w-8 h-8 text-yellow-400" />
               </div>
             </motion.div>
 
