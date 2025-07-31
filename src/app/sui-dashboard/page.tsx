@@ -158,7 +158,14 @@ export default function SuiDashboard() {
               </Link>
               <div>
                 <h1 className="text-2xl font-bold text-white">Sui Blockchain Dashboard</h1>
-                <p className="text-gray-400">Real-time network statistics and transactions • Built on Move</p>
+                <p className="text-gray-400">Real-time network statistics and transactions</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-blue-400 text-sm font-semibold">⚡ Built on Move</span>
+                  <span className="text-gray-500">•</span>
+                  <span className="text-purple-400 text-sm">Resource-Oriented</span>
+                  <span className="text-gray-500">•</span>
+                  <span className="text-green-400 text-sm">Type-Safe</span>
+                </div>
               </div>
             </div>
             <div className="text-right">
@@ -243,6 +250,39 @@ export default function SuiDashboard() {
           </div>
         )}
 
+        {/* Move Programming Language */}
+        <motion.div 
+          className="bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-green-500/10 backdrop-blur-md rounded-xl p-6 border border-blue-500/20 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center">
+            <span className="mr-2">⚡</span>
+            Move Programming Language
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <p className="text-blue-400 text-sm font-semibold mb-2">Resource-Oriented</p>
+              <p className="text-gray-300 text-sm">Objects are first-class citizens with ownership semantics. Every transaction operates on resources with clear ownership rules.</p>
+            </div>
+            <div>
+              <p className="text-purple-400 text-sm font-semibold mb-2">Type Safety</p>
+              <p className="text-gray-300 text-sm">Compile-time guarantees prevent common blockchain vulnerabilities like reentrancy attacks and double-spending.</p>
+            </div>
+            <div>
+              <p className="text-green-400 text-sm font-semibold mb-2">Parallel Execution</p>
+              <p className="text-gray-300 text-sm">Independent transactions execute simultaneously, enabling high throughput and low latency on the Sui network.</p>
+            </div>
+          </div>
+          <div className="mt-6 p-4 bg-white/5 rounded-lg border border-white/10">
+            <p className="text-gray-300 text-sm">
+              <strong className="text-white">Why Move Matters:</strong> Move's design principles enable Sui to achieve unprecedented performance and security. 
+              The resource-oriented model ensures that digital assets behave like physical objects, while type safety eliminates entire classes of smart contract bugs.
+            </p>
+          </div>
+        </motion.div>
+
         {/* Transaction Volume Analysis */}
         {networkActivity && (
           <motion.div 
@@ -278,6 +318,7 @@ export default function SuiDashboard() {
             transition={{ delay: 0.6 }}
           >
             <h2 className="text-xl font-bold text-white mb-4">Top DeFi Protocols</h2>
+            <p className="text-gray-400 text-sm mb-4">DeFi applications built on Move smart contracts</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {networkActivity.defiActivity.map((protocol, index) => (
                 <div key={protocol.name} className="bg-white/5 rounded-lg p-4 border border-white/10">
@@ -293,6 +334,9 @@ export default function SuiDashboard() {
                       Volume: <span className="text-white">{protocol.volume.toFixed(2)} SUI</span>
                     </p>
                   </div>
+                  <div className="mt-2 pt-2 border-t border-white/10">
+                    <p className="text-xs text-blue-400">Move Smart Contract</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -307,7 +351,8 @@ export default function SuiDashboard() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
           >
-            <h2 className="text-xl font-bold text-white mb-4">Transaction Type Distribution</h2>
+            <h2 className="text-xl font-bold text-white mb-4">Move Transaction Types</h2>
+            <p className="text-gray-400 text-sm mb-4">Distribution of transaction types on Sui's Move-based blockchain</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {Object.entries(networkActivity.transactionTypes).map(([type, count]) => (
                 <div key={type} className="bg-white/5 rounded-lg p-4 border border-white/10">
@@ -315,6 +360,11 @@ export default function SuiDashboard() {
                   <p className="text-xl font-bold text-white">{count}</p>
                   <p className="text-xs text-gray-500">
                     {((count / networkActivity.transactionVolume.totalTransactions) * 100).toFixed(1)}%
+                  </p>
+                  <p className="text-xs text-blue-400 mt-1">
+                    {type === 'Object Update' ? 'Move Resource Mutation' :
+                     type === 'Smart Contract' ? 'Move Module Call' :
+                     type === 'Transfer' ? 'Move Resource Transfer' : 'Move Operation'}
                   </p>
                 </div>
               ))}
