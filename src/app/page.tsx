@@ -850,7 +850,7 @@ export default function Home() {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-3 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -882,7 +882,7 @@ export default function Home() {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center cursor-pointer">
-              <div className="text-3xl font-black text-blue-800">
+              <div className="text-3xl font-black text-black">
                 Birdai
               </div>
             </div>
@@ -891,12 +891,12 @@ export default function Home() {
             <div className="hidden md:flex items-center space-x-6">
               <motion.a 
                 href="#home" 
-                className="text-gray-800 hover:text-gray-900 transition-colors relative group font-semibold"
+                className="text-black hover:text-gray-600 transition-colors relative group font-semibold"
                 whileHover={{ scale: 1.05 }}
               >
                 <span>Home</span>
                 <motion.div 
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 group-hover:w-full transition-all duration-300"
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300"
                   whileHover={{ width: "100%" }}
                 />
               </motion.a>
@@ -1009,7 +1009,7 @@ export default function Home() {
                 
                 <motion.button 
                   onClick={() => setIsContactModalOpen(true)}
-                  className="w-full mt-2 bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-semibold py-2 px-4 rounded-md text-sm shadow-lg transition-all duration-300"
+                  className="w-full mt-2 bg-black hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md text-sm shadow-lg transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                 >
                   Join Signal
@@ -1029,30 +1029,30 @@ export default function Home() {
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div 
-            className="absolute top-20 left-10 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl"
+            className="absolute top-20 left-10 w-32 h-32 bg-transparent rounded-full blur-3xl"
             animate={{ 
               scale: [1, 1.2, 1],
-              opacity: [0.3, 0.6, 0.3],
+              opacity: [0, 0, 0],
               x: [0, 50, 0],
               y: [0, -30, 0]
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div 
-            className="absolute top-40 right-20 w-24 h-24 bg-cyan-500/20 rounded-full blur-2xl"
+            className="absolute top-40 right-20 w-24 h-24 bg-transparent rounded-full blur-2xl"
             animate={{ 
               scale: [1, 1.5, 1],
-              opacity: [0.2, 0.5, 0.2],
+              opacity: [0, 0, 0],
               x: [0, -40, 0],
               y: [0, 40, 0]
             }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           />
           <motion.div 
-                            className="absolute bottom-20 left-1/4 w-20 h-20 bg-blue-500/20 rounded-full blur-2xl"
+                            className="absolute bottom-20 left-1/4 w-20 h-20 bg-transparent rounded-full blur-2xl"
             animate={{ 
               scale: [1, 1.3, 1],
-              opacity: [0.2, 0.4, 0.2],
+              opacity: [0, 0, 0],
               x: [0, 30, 0],
               y: [0, -20, 0]
             }}
@@ -1073,7 +1073,7 @@ export default function Home() {
             variants={fadeInUp}
           >
             <span 
-              className="block text-blue-800 relative font-bold"
+              className="block text-black relative font-bold"
             >
               Built to See What Others Miss.
             </span>
@@ -1085,7 +1085,7 @@ export default function Home() {
           <motion.div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <motion.button 
               onClick={() => setIsContactModalOpen(true)}
-              className="group relative bg-gradient-accent text-white font-semibold py-4 px-8 rounded-full text-lg shadow-premium overflow-hidden border border-white/20"
+              className="group relative bg-black text-white font-semibold py-4 px-8 rounded-full text-lg shadow-premium overflow-hidden border border-black"
               variants={fadeInUp}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -1115,19 +1115,19 @@ export default function Home() {
 
 
       {/* The Operating System for Private Markets Section */}
-      <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-premium relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/60 to-cyan-50/60"></div>
+      <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-white relative">
+        <div className="absolute inset-0 bg-white"></div>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <ScrollAnimation delay={0.1}>
-              <p className="text-lg sm:text-xl md:text-2xl text-blue-800 mb-8 max-w-3xl mx-auto text-center font-medium">
+              <p className="text-lg sm:text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto text-center font-medium">
                 Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
               </p>
             </ScrollAnimation>
             <ScrollAnimation delay={0.2}>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
-                We see patterns others miss. We move when others wait. We build the infrastructure that powers tomorrow's investment decisions.
-              </p>
+                          <p className="text-xl text-black max-w-4xl mx-auto mb-8">
+              We see patterns others miss. We move when others wait. We build the infrastructure that powers tomorrow's investment decisions.
+            </p>
             </ScrollAnimation>
             <ScrollAnimation delay={0.4}>
               <div className="flex justify-center mb-8">
@@ -1150,9 +1150,9 @@ export default function Home() {
                   />
                                   {/* Enhanced glow effect */}
                 <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full blur-2xl"
+                  className="absolute inset-0 bg-transparent rounded-full blur-2xl"
                   animate={{ 
-                    opacity: [0.3, 0.6, 0.3],
+                    opacity: [0, 0, 0],
                     scale: [1, 1.1, 1]
                   }}
                   transition={{ 
@@ -1170,15 +1170,15 @@ export default function Home() {
 
       {/* Simplified Live Data Dashboard */}
       <section id="live-data" className="py-20 px-4 sm:px-6 lg:px-8 bg-white relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50/80 to-white"></div>
+        <div className="absolute inset-0 bg-white"></div>
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-blue-800 mb-6 text-center leading-tight tracking-tight">
-            The Data That Moves Money
-          </h2>
+                      <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black mb-6 text-center leading-tight tracking-tight">
+              The Data That Moves Money
+            </h2>
           <ScrollAnimation delay={0.2}>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12 text-center">
-              Where data becomes insight, and insight becomes advantage
-            </p>
+                          <p className="text-xl text-black max-w-4xl mx-auto mb-12 text-center">
+                Where data becomes insight, and insight becomes advantage
+              </p>
           </ScrollAnimation>
           
           <ScrollAnimation delay={0.3}>
@@ -1202,9 +1202,9 @@ export default function Home() {
                   />
                 {/* Enhanced glow effect */}
                 <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full blur-2xl"
+                  className="absolute inset-0 bg-transparent rounded-full blur-2xl"
                   animate={{ 
-                    opacity: [0.3, 0.6, 0.3],
+                    opacity: [0, 0, 0],
                     scale: [1, 1.1, 1]
                   }}
                   transition={{ 
@@ -1229,7 +1229,7 @@ export default function Home() {
       {/* Features Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-12 md:mb-16 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-12 md:mb-16 text-center">
             This Cycle Is Different
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
@@ -1240,14 +1240,14 @@ export default function Home() {
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6"
+                className="w-16 h-16 bg-black rounded-xl flex items-center justify-center mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
                 <Brain className="w-8 h-8 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Better Tooling</h3>
-              <p className="text-gray-600">
+              <h3 className="text-2xl font-bold text-black mb-4">Better Tooling</h3>
+              <p className="text-black">
                 AI + on-chain infrastructure enables unprecedented deal discovery and execution.
               </p>
             </motion.div>
@@ -1259,14 +1259,14 @@ export default function Home() {
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-gradient-to-r from-teal-500 to-blue-600 rounded-xl flex items-center justify-center mb-6"
+                className="w-16 h-16 bg-black rounded-xl flex items-center justify-center mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
                 <Code className="w-8 h-8 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Fundamental Execution</h3>
-              <p className="text-gray-600">
+              <h3 className="text-2xl font-bold text-black mb-4">Fundamental Execution</h3>
+              <p className="text-black">
                 Where legacy firms add headcount, we add code. Scalable, intelligent, and aligned from day one.
               </p>
             </motion.div>
@@ -1278,14 +1278,14 @@ export default function Home() {
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6"
+                className="w-16 h-16 bg-black rounded-xl flex items-center justify-center mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
                 <Brain className="w-8 h-8 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Machine Intelligence</h3>
-              <p className="text-gray-600">
+              <h3 className="text-2xl font-bold text-black mb-4">Machine Intelligence</h3>
+              <p className="text-black">
                 AI-powered signal processing at scale. See patterns others miss.
               </p>
             </motion.div>
@@ -1298,15 +1298,15 @@ export default function Home() {
 
 
       {/* Live Blockchain Feed Section */}
-      <section id="blockchain-feed" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section id="blockchain-feed" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 text-center">
               Live Blockchain Feed
             </h2>
           </ScrollAnimation>
           <ScrollAnimation delay={0.2}>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12 text-center">
+            <p className="text-xl text-black max-w-4xl mx-auto mb-12 text-center">
               Real-time on-chain activity across DeFi protocols, whale movements, and market events
             </p>
           </ScrollAnimation>
@@ -1320,13 +1320,13 @@ export default function Home() {
                 transition={{ duration: 0.3 }}
               >
                 <motion.div 
-                  className="text-3xl font-bold text-blue-600 mb-2"
+                  className="text-3xl font-bold text-black mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 4, repeat: Infinity }}
                 >
                   {totalTransactions.toLocaleString()}
                 </motion.div>
-                <p className="text-gray-600">Total Transactions (24h)</p>
+                <p className="text-black">Total Transactions (24h)</p>
               </motion.div>
             </ScrollAnimation>
 
@@ -1337,13 +1337,13 @@ export default function Home() {
                 transition={{ duration: 0.3 }}
               >
                 <motion.div 
-                  className="text-3xl font-bold text-green-600 mb-2"
+                  className="text-3xl font-bold text-black mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 4, repeat: Infinity, delay: 1 }}
                 >
                   {activeProtocols}
                 </motion.div>
-                <p className="text-gray-600">Active Protocols</p>
+                <p className="text-black">Active Protocols</p>
               </motion.div>
             </ScrollAnimation>
 
@@ -1354,13 +1354,13 @@ export default function Home() {
                 transition={{ duration: 0.3 }}
               >
                 <motion.div 
-                  className="text-3xl font-bold text-orange-600 mb-2"
+                  className="text-3xl font-bold text-black mb-2"
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 4, repeat: Infinity, delay: 2 }}
                 >
                   {gasPrice} gwei
                 </motion.div>
-                <p className="text-gray-600">Current Gas Price</p>
+                <p className="text-black">Current Gas Price</p>
               </motion.div>
             </ScrollAnimation>
           </div>
@@ -1368,7 +1368,7 @@ export default function Home() {
           {/* Live Activity Feed */}
           <ScrollAnimation delay={0.6}>
             <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Live Activity Feed</h3>
+              <h3 className="text-2xl font-bold text-black mb-6">Live Activity Feed</h3>
               <div className="space-y-4 max-h-96 overflow-y-auto">
                 {blockchainFeed.map((activity, index) => (
                   <motion.div 
@@ -1381,28 +1381,28 @@ export default function Home() {
                   >
                     <div className="flex items-center space-x-4">
                       <div className={`w-3 h-3 rounded-full ${
-                        activity.impact === 'high' ? 'bg-red-400' : 
-                        activity.impact === 'medium' ? 'bg-yellow-400' : 'bg-green-400'
+                        activity.impact === 'high' ? 'bg-black' : 
+                        activity.impact === 'medium' ? 'bg-gray-600' : 'bg-gray-400'
                       }`} />
                       <div>
                         <div className="flex items-center space-x-2">
-                          <span className="text-gray-900 font-semibold">{activity.protocol}</span>
-                          <span className="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded">
+                          <span className="text-black font-semibold">{activity.protocol}</span>
+                          <span className="text-xs text-black bg-gray-100 px-2 py-1 rounded">
                             {activity.type.replace('_', ' ')}
                           </span>
                         </div>
-                        <p className="text-gray-700 text-sm">{activity.description}</p>
+                        <p className="text-black text-sm">{activity.description}</p>
                         <div className="flex items-center space-x-4 mt-1">
-                          <span className="text-blue-600 text-sm">{activity.amount}</span>
-                          <span className="text-green-600 text-sm">{activity.value}</span>
-                          <span className="text-gray-500 text-xs">{activity.time}</span>
+                          <span className="text-black text-sm">{activity.amount}</span>
+                          <span className="text-black text-sm">{activity.value}</span>
+                          <span className="text-black text-xs">{activity.time}</span>
                         </div>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs text-gray-500 font-mono">{activity.txHash}</p>
+                      <p className="text-xs text-black font-mono">{activity.txHash}</p>
                       <motion.div 
-                        className="w-2 h-2 bg-blue-500 rounded-full mt-2"
+                        className="w-2 h-2 bg-black rounded-full mt-2"
                         animate={{ opacity: [0.5, 1, 0.5] }}
                         transition={{ duration: 3, repeat: Infinity }}
                       />
@@ -1422,10 +1422,10 @@ export default function Home() {
 
 
       {/* Team Section */}
-      <section id="team" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section id="team" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
               Meet the Team
             </h2>
           </div>
@@ -1433,79 +1433,68 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Kevin Farrelly */}
             <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Kevin Farrelly</h3>
-              <p className="text-gray-600 mb-4">
+              <h3 className="text-2xl font-bold text-black mb-4">Kevin Farrelly</h3>
+              <p className="text-black mb-4">
                 Kevin is a repeat founder and investor at the intersection of machine learning, venture, and crypto. 
                 He previously founded a machine learning credit fund acquired by Franklin Templeton in 2018, where 
                 he subsequently launched and led Blockchain Venture Funds I and II, delivering top-decile DPI returns.
               </p>
-              <p className="text-gray-600 mb-4">
+              <p className="text-black mb-4">
                 With over 15 years of hands-on experience scaling fintech and consumer companies—focusing on CAC 
                 optimization, margin expansion, and data science—Kevin specializes in early-stage investing, token 
                 economics, and ML infrastructure.
               </p>
-              <p className="text-gray-500 text-sm">BSBA from the University of Richmond</p>
+              <p className="text-black text-sm">BSBA from the University of Richmond</p>
             </div>
 
             {/* Greg Scanlon */}
             <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Greg Scanlon</h3>
-              <p className="text-gray-600 mb-4">
+              <h3 className="text-2xl font-bold text-black mb-4">Greg Scanlon</h3>
+              <p className="text-black mb-4">
                 Greg is a seasoned investor and technologist operating at the intersection of blockchain, data science, 
                 and institutional capital. He co-founded Franklin Templeton&apos;s Blockchain Venture Funds I and II, and 
                 brings over 15 years of experience in investing and risk management from leading firms such as Citadel 
                 and Orange Capital.
               </p>
-              <p className="text-gray-600 mb-4">
+              <p className="text-black mb-4">
                 Greg is also an active mentor and advisor across multiple top universities.
               </p>
-              <p className="text-gray-500 text-sm">BSBA from the University of Richmond, MS in Data Science from NYU, CFA charterholder</p>
+              <p className="text-black text-sm">BSBA from the University of Richmond, MS in Data Science from NYU, CFA charterholder</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 border-t border-gray-200">
+      <footer className="bg-white border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid md:grid-cols-4 gap-8">
             {/* Brand */}
             <div className="md:col-span-2">
               <motion.div 
-                className="text-2xl font-bold text-white mb-4"
+                className="text-2xl font-bold text-black mb-4"
                 whileHover={{ scale: 1.05 }}
               >
                 <motion.span 
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400"
-                  animate={{
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  style={{
-                    backgroundSize: "200% 200%"
-                  }}
+                  className="text-black"
                 >
                   Birdai
                 </motion.span>
               </motion.div>
-              <p className="text-gray-300 mb-6 max-w-md">
+              <p className="text-black mb-6 max-w-md">
                 Machine-native. Protocol-first. Liquidity-aware. See what others miss.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors">
+                <a href="#" className="w-10 h-10 bg-black hover:bg-gray-800 rounded-full flex items-center justify-center transition-colors">
                   <Twitter className="w-5 h-5 text-white" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors">
+                <a href="#" className="w-10 h-10 bg-black hover:bg-gray-800 rounded-full flex items-center justify-center transition-colors">
                   <Linkedin className="w-5 h-5 text-white" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors">
+                <a href="#" className="w-10 h-10 bg-black hover:bg-gray-800 rounded-full flex items-center justify-center transition-colors">
                   <Github className="w-5 h-5 text-white" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors">
+                <a href="#" className="w-10 h-10 bg-black hover:bg-gray-800 rounded-full flex items-center justify-center transition-colors">
                   <Mail className="w-5 h-5 text-white" />
                 </a>
               </div>
@@ -1513,28 +1502,28 @@ export default function Home() {
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Platform</h3>
+              <h3 className="text-black font-semibold mb-4">Platform</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Signal</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Score</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Structure</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Allocate</a></li>
+                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Signal</a></li>
+                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Score</a></li>
+                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Structure</a></li>
+                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Allocate</a></li>
               </ul>
             </div>
 
             {/* Company */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Company</h3>
+              <h3 className="text-black font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Team</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Deals</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Team</a></li>
+                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Deals</a></li>
+                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Contact</a></li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-            <p className="text-gray-400">
+          <div className="border-t border-gray-300 mt-8 pt-8 text-center">
+            <p className="text-black">
               © 2025 Birdai. All rights reserved.
             </p>
           </div>
