@@ -1171,11 +1171,9 @@ export default function Home() {
                       <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black mb-6 text-center leading-tight tracking-tight">
               The Data That Moves Money
             </h2>
-          <ScrollAnimation delay={0.2}>
-                          <p className="text-xl text-black max-w-4xl mx-auto mb-12 text-center">
-                Where data becomes insight, and insight becomes advantage
-              </p>
-          </ScrollAnimation>
+          <p className="text-xl text-black max-w-4xl mx-auto mb-12 text-center relative z-10">
+            Where data becomes insight, and insight becomes advantage
+          </p>
           
           <ScrollAnimation delay={0.3}>
             <div className="flex justify-center mb-12">
