@@ -1172,7 +1172,7 @@ export default function Home() {
       <section id="live-data" className="py-20 px-4 sm:px-6 lg:px-8 bg-white relative">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white"></div>
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-blue-800 mb-6 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-blue-800 mb-6 text-center leading-tight tracking-tight">
             The Data That Moves Money
           </h2>
           <ScrollAnimation delay={0.2}>
