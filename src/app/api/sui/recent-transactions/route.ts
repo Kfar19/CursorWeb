@@ -87,7 +87,7 @@ function getTransactionType(txDetails: any): string {
       return 'Coin Payment';
     }
     
-    // MoveCall (smart contract)
+    // MoveCall (Move smart contract)
     if (tx.MoveCall) {
       const module = tx.MoveCall.module;
       const funcName = tx.MoveCall.function;
@@ -109,7 +109,18 @@ function getTransactionType(txDetails: any): string {
         return 'NFT Marketplace';
       }
       
-      return 'Smart Contract';
+      // Move-specific operations
+      if (module?.includes('coin') || funcName?.includes('mint')) {
+        return 'Move Coin Mint';
+      }
+      if (module?.includes('object') || funcName?.includes('create')) {
+        return 'Move Object Create';
+      }
+      if (module?.includes('transfer') || funcName?.includes('transfer')) {
+        return 'Move Transfer';
+      }
+      
+      return 'Move Contract';
     }
     
     // TransferSui

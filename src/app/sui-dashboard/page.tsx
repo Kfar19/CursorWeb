@@ -148,7 +148,7 @@ export default function SuiDashboard() {
               </Link>
               <div>
                 <h1 className="text-2xl font-bold text-white">Sui Blockchain Dashboard</h1>
-                <p className="text-gray-400">Real-time network statistics and transactions</p>
+                <p className="text-gray-400">Real-time network statistics and transactions • Built on Move</p>
               </div>
             </div>
             <div className="text-right">
@@ -231,6 +231,33 @@ export default function SuiDashboard() {
           </div>
         )}
 
+        {/* Move Language Info */}
+        <motion.div 
+          className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-md rounded-xl p-6 border border-blue-500/20 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center">
+            <span className="mr-2">⚡</span>
+            Move Programming Language
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <p className="text-blue-400 text-sm font-semibold">Resource-Oriented</p>
+              <p className="text-gray-300 text-sm">Objects are first-class citizens with ownership semantics</p>
+            </div>
+            <div>
+              <p className="text-purple-400 text-sm font-semibold">Type Safety</p>
+              <p className="text-gray-300 text-sm">Compile-time guarantees prevent common blockchain vulnerabilities</p>
+            </div>
+            <div>
+              <p className="text-green-400 text-sm font-semibold">Parallel Execution</p>
+              <p className="text-gray-300 text-sm">Independent transactions execute simultaneously for high throughput</p>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Market Data */}
         {priceData && (
           <motion.div 
@@ -293,9 +320,14 @@ export default function SuiDashboard() {
                   >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        tx.type === 'Transfer' ? 'bg-blue-100 text-blue-800' :
-                        tx.type === 'NFT' ? 'bg-purple-100 text-purple-800' :
-                        tx.type === 'Smart Contract' ? 'bg-green-100 text-green-800' :
+                        tx.type === 'Transfer' || tx.type === 'Move Transfer' ? 'bg-blue-100 text-blue-800' :
+                        tx.type === 'NFT' || tx.type === 'NFT Operation' ? 'bg-purple-100 text-purple-800' :
+                        tx.type === 'Smart Contract' || tx.type === 'Move Contract' ? 'bg-green-100 text-green-800' :
+                        tx.type === 'Move Coin Mint' ? 'bg-yellow-100 text-yellow-800' :
+                        tx.type === 'Move Object Create' ? 'bg-indigo-100 text-indigo-800' :
+                        tx.type === 'DeFi Swap' ? 'bg-pink-100 text-pink-800' :
+                        tx.type === 'DeFi Liquidity' ? 'bg-orange-100 text-orange-800' :
+                        tx.type === 'Staking' ? 'bg-teal-100 text-teal-800' :
                         'bg-gray-100 text-gray-800'
                       }`}>
                         {tx.type}
