@@ -1116,10 +1116,10 @@ export default function Home() {
 
       {/* The Operating System for Private Markets Section */}
       <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-white relative">
-        <div className="absolute inset-0 bg-white"></div>
+        <div className="absolute inset-0 bg-white z-0"></div>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-lg sm:text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto text-center font-medium">
+            <p className="text-lg sm:text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto text-center font-medium relative z-10">
               Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
             </p>
             <ScrollAnimation delay={0.2}>
