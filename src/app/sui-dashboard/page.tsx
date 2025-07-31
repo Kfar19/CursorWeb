@@ -5,28 +5,40 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowLeft, Activity, Users, GasPump, TrendingUp, Clock, ExternalLink, ArrowUpRight, ArrowDownRight, X, Copy } from 'lucide-react';
 
-interface NetworkStats {
-  tps: number;
-  totalValidators: number;
-  activeValidators: number;
-  referenceGasPrice: number;
-  totalSupply: number;
-  circulatingSupply: number;
-  currentEpoch: number;
-  currentCheckpoint: number;
+interface NetworkActivity {
   timestamp: number;
-}
-
-interface Transaction {
-  digest: string;
-  timestamp: number;
-  status: string;
-  gasUsed: number;
-  gasPrice: number;
-  sender: string;
-  type: string;
-  amount: number;
-  recipient: string;
+  networkStats: {
+    currentCheckpoint: number;
+    totalValidators: number;
+    referenceGasPrice: number;
+    totalSupply: number;
+    activeAddresses: number;
+  };
+  transactionVolume: {
+    totalTransactions: number;
+    totalVolume: number;
+    averageTransactionSize: number;
+    volumeByType: { [key: string]: number };
+  };
+  gasTrends: {
+    currentGasPrice: number;
+    averageGasUsed: number;
+    gasPriceHistory: number[];
+    gasUsageDistribution: { [key: string]: number };
+  };
+  networkCongestion: {
+    level: string;
+    score: number;
+    gasPrice: number;
+    averageGasUsed: number;
+    transactionCount: number;
+  };
+  defiActivity: Array<{
+    name: string;
+    transactions: number;
+    volume: number;
+  }>;
+  transactionTypes: { [key: string]: number };
 }
 
 interface PriceData {
@@ -38,13 +50,10 @@ interface PriceData {
 }
 
 export default function SuiDashboard() {
-  const [networkStats, setNetworkStats] = useState<NetworkStats | null>(null);
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [networkActivity, setNetworkActivity] = useState<NetworkActivity | null>(null);
   const [priceData, setPriceData] = useState<PriceData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -54,20 +63,14 @@ export default function SuiDashboard() {
 
   const fetchData = async () => {
     try {
-      const [statsRes, txRes, priceRes] = await Promise.all([
-        fetch('/api/sui/network-stats'),
-        fetch('/api/sui/recent-transactions'),
+      const [activityRes, priceRes] = await Promise.all([
+        fetch('/api/sui/network-activity'),
         fetch('/api/sui/price')
       ]);
 
-      if (statsRes.ok) {
-        const stats = await statsRes.json();
-        setNetworkStats(stats);
-      }
-
-      if (txRes.ok) {
-        const txData = await txRes.json();
-        setTransactions(txData.transactions);
+      if (activityRes.ok) {
+        const activity = await activityRes.json();
+        setNetworkActivity(activity);
       }
 
       if (priceRes.ok) {
@@ -95,34 +98,22 @@ export default function SuiDashboard() {
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
 
-  const formatTime = (timestamp: number) => {
-    const now = Date.now();
-    const diff = Math.abs(now - timestamp);
-    const minutes = Math.floor(diff / 60000);
-    const seconds = Math.floor((diff % 60000) / 1000);
-    
-    // Handle very recent transactions (less than 1 second)
-    if (diff < 1000) return 'Just now';
-    
-    if (minutes > 0) return `${minutes}m ${seconds}s ago`;
-    return `${seconds}s ago`;
+  const getCongestionColor = (level: string) => {
+    switch (level.toLowerCase()) {
+      case 'high': return 'text-red-400';
+      case 'medium': return 'text-yellow-400';
+      case 'low': return 'text-green-400';
+      default: return 'text-gray-400';
+    }
   };
 
-  const formatFullTime = (timestamp: number) => {
-    return new Date(timestamp).toLocaleString();
-  };
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-  };
-
-  const openTransactionExplorer = (digest: string) => {
-    window.open(`https://suiexplorer.com/txblock/${digest}?network=mainnet`, '_blank');
-  };
-
-  const handleTransactionClick = (transaction: Transaction) => {
-    setSelectedTransaction(transaction);
-    setIsModalOpen(true);
+  const getCongestionBgColor = (level: string) => {
+    switch (level.toLowerCase()) {
+      case 'high': return 'bg-red-500/20 border-red-500/30';
+      case 'medium': return 'bg-yellow-500/20 border-yellow-500/30';
+      case 'low': return 'bg-green-500/20 border-green-500/30';
+      default: return 'bg-gray-500/20 border-gray-500/30';
+    }
   };
 
   if (isLoading) {
@@ -185,8 +176,8 @@ export default function SuiDashboard() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Network Stats Grid */}
-        {networkStats && (
+        {/* Network Activity Overview */}
+        {networkActivity && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <motion.div 
               className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10"
@@ -196,10 +187,10 @@ export default function SuiDashboard() {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm">Transactions/sec</p>
-                  <p className="text-2xl font-bold text-white">{networkStats.tps}</p>
+                  <p className="text-gray-400 text-sm">Active Addresses</p>
+                  <p className="text-2xl font-bold text-white">{formatNumber(networkActivity.networkStats.activeAddresses)}</p>
                 </div>
-                <Activity className="w-8 h-8 text-blue-400" />
+                <Users className="w-8 h-8 text-blue-400" />
               </div>
             </motion.div>
 
@@ -211,10 +202,10 @@ export default function SuiDashboard() {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm">Active Validators</p>
-                  <p className="text-2xl font-bold text-white">{networkStats.activeValidators}</p>
+                  <p className="text-gray-400 text-sm">Total Transactions</p>
+                  <p className="text-2xl font-bold text-white">{formatNumber(networkActivity.transactionVolume.totalTransactions)}</p>
                 </div>
-                <Users className="w-8 h-8 text-green-400" />
+                <Activity className="w-8 h-8 text-green-400" />
               </div>
             </motion.div>
 
@@ -227,22 +218,24 @@ export default function SuiDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-400 text-sm">Gas Price</p>
-                  <p className="text-2xl font-bold text-white">{networkStats.referenceGasPrice}</p>
+                  <p className="text-2xl font-bold text-white">{networkActivity.gasTrends.currentGasPrice}</p>
                 </div>
                 <GasPump className="w-8 h-8 text-yellow-400" />
               </div>
             </motion.div>
 
             <motion.div 
-              className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10"
+              className={`backdrop-blur-md rounded-xl p-6 border ${getCongestionBgColor(networkActivity.networkCongestion.level)}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-400 text-sm">Current Epoch</p>
-                  <p className="text-2xl font-bold text-white">{networkStats.currentEpoch}</p>
+                  <p className="text-gray-400 text-sm">Network Congestion</p>
+                  <p className={`text-2xl font-bold ${getCongestionColor(networkActivity.networkCongestion.level)}`}>
+                    {networkActivity.networkCongestion.level}
+                  </p>
                 </div>
                 <TrendingUp className="w-8 h-8 text-purple-400" />
               </div>
@@ -250,32 +243,84 @@ export default function SuiDashboard() {
           </div>
         )}
 
-        {/* Move Language Info */}
-        <motion.div 
-          className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-md rounded-xl p-6 border border-blue-500/20 mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <h2 className="text-xl font-bold text-white mb-4 flex items-center">
-            <span className="mr-2">⚡</span>
-            Move Programming Language
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <p className="text-blue-400 text-sm font-semibold">Resource-Oriented</p>
-              <p className="text-gray-300 text-sm">Objects are first-class citizens with ownership semantics</p>
+        {/* Transaction Volume Analysis */}
+        {networkActivity && (
+          <motion.div 
+            className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <h2 className="text-xl font-bold text-white mb-4">Transaction Volume Analysis</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <p className="text-gray-400 text-sm">Total Volume</p>
+                <p className="text-2xl font-bold text-white">{networkActivity.transactionVolume.totalVolume.toFixed(2)} SUI</p>
+              </div>
+              <div>
+                <p className="text-gray-400 text-sm">Average Transaction Size</p>
+                <p className="text-2xl font-bold text-white">{networkActivity.transactionVolume.averageTransactionSize.toFixed(4)} SUI</p>
+              </div>
+              <div>
+                <p className="text-gray-400 text-sm">Average Gas Used</p>
+                <p className="text-2xl font-bold text-white">{formatNumber(networkActivity.gasTrends.averageGasUsed)} MIST</p>
+              </div>
             </div>
-            <div>
-              <p className="text-purple-400 text-sm font-semibold">Type Safety</p>
-              <p className="text-gray-300 text-sm">Compile-time guarantees prevent common blockchain vulnerabilities</p>
+          </motion.div>
+        )}
+
+        {/* Top DeFi Protocols */}
+        {networkActivity && networkActivity.defiActivity.length > 0 && (
+          <motion.div 
+            className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            <h2 className="text-xl font-bold text-white mb-4">Top DeFi Protocols</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {networkActivity.defiActivity.map((protocol, index) => (
+                <div key={protocol.name} className="bg-white/5 rounded-lg p-4 border border-white/10">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-semibold text-white">{protocol.name}</h3>
+                    <span className="text-sm text-gray-400">#{index + 1}</span>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-gray-400">
+                      Transactions: <span className="text-white">{protocol.transactions}</span>
+                    </p>
+                    <p className="text-sm text-gray-400">
+                      Volume: <span className="text-white">{protocol.volume.toFixed(2)} SUI</span>
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div>
-              <p className="text-green-400 text-sm font-semibold">Parallel Execution</p>
-              <p className="text-gray-300 text-sm">Independent transactions execute simultaneously for high throughput</p>
+          </motion.div>
+        )}
+
+        {/* Transaction Type Distribution */}
+        {networkActivity && (
+          <motion.div 
+            className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+          >
+            <h2 className="text-xl font-bold text-white mb-4">Transaction Type Distribution</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {Object.entries(networkActivity.transactionTypes).map(([type, count]) => (
+                <div key={type} className="bg-white/5 rounded-lg p-4 border border-white/10">
+                  <p className="text-sm text-gray-400 mb-1">{type}</p>
+                  <p className="text-xl font-bold text-white">{count}</p>
+                  <p className="text-xs text-gray-500">
+                    {((count / networkActivity.transactionVolume.totalTransactions) * 100).toFixed(1)}%
+                  </p>
+                </div>
+              ))}
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
 
         {/* Market Data */}
         {priceData && (
@@ -305,233 +350,9 @@ export default function SuiDashboard() {
           </motion.div>
         )}
 
-        {/* Recent Transactions */}
-        <motion.div 
-          className="bg-white/5 backdrop-blur-md rounded-xl border border-white/10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-        >
-          <div className="p-6 border-b border-white/10">
-            <h2 className="text-xl font-bold text-white">Recent Transactions</h2>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-white/5">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Amount</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">From</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">To</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Gas</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Time</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/10">
-                {transactions.map((tx, index) => (
-                  <motion.tr 
-                    key={tx.digest}
-                    className="hover:bg-white/5 transition-colors cursor-pointer"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.7 + index * 0.1 }}
-                    onClick={() => handleTransactionClick(tx)}
-                  >
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        tx.type === 'Transfer' || tx.type === 'Move Transfer' ? 'bg-blue-100 text-blue-800' :
-                        tx.type === 'NFT' || tx.type === 'NFT Operation' ? 'bg-purple-100 text-purple-800' :
-                        tx.type === 'Smart Contract' || tx.type === 'Move Contract' ? 'bg-green-100 text-green-800' :
-                        tx.type === 'Move Coin Mint' ? 'bg-yellow-100 text-yellow-800' :
-                        tx.type === 'Move Object Create' ? 'bg-indigo-100 text-indigo-800' :
-                        tx.type === 'DeFi Swap' ? 'bg-pink-100 text-pink-800' :
-                        tx.type === 'DeFi Liquidity' ? 'bg-orange-100 text-orange-800' :
-                        tx.type === 'Staking' ? 'bg-teal-100 text-teal-800' :
-                        'bg-gray-100 text-gray-800'
-                      }`}>
-                        {tx.type}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-white">
-                      {tx.amount > 0 ? `${tx.amount.toFixed(4)} SUI` : '-'}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-300">
-                      {formatAddress(tx.sender)}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-300">
-                      {formatAddress(tx.recipient)}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-300">
-                      {tx.gasUsed}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-300">
-                      {formatTime(tx.timestamp)}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        tx.status === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                      }`}>
-                        {tx.status}
-                      </span>
-                    </td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-                 </motion.div>
 
-        {/* Transaction Details Modal */}
-        <AnimatePresence>
-          {isModalOpen && selectedTransaction && (
-            <motion.div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsModalOpen(false)}
-            >
-              <motion.div
-                className="bg-gray-900 border border-white/10 rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                {/* Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-white">Transaction Details</h2>
-                  <button
-                    onClick={() => setIsModalOpen(false)}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    <X size={24} />
-                  </button>
-                </div>
 
-                {/* Transaction Hash */}
-                <div className="mb-6">
-                  <div className="flex items-center justify-between">
-                    <p className="text-gray-400 text-sm">Transaction Hash</p>
-                    <button
-                      onClick={() => openTransactionExplorer(selectedTransaction.digest)}
-                      className="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1"
-                    >
-                      <ExternalLink size={16} />
-                      View on Explorer
-                    </button>
-                  </div>
-                  <div className="flex items-center gap-2 mt-2">
-                    <code className="bg-gray-800 px-3 py-2 rounded text-white text-sm font-mono flex-1">
-                      {selectedTransaction.digest}
-                    </code>
-                    <button
-                      onClick={() => copyToClipboard(selectedTransaction.digest)}
-                      className="text-gray-400 hover:text-white transition-colors"
-                    >
-                      <Copy size={16} />
-                    </button>
-                  </div>
-                </div>
 
-                {/* Transaction Info Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <p className="text-gray-400 text-sm mb-2">Type</p>
-                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                      selectedTransaction.type === 'Transfer' || selectedTransaction.type === 'Move Transfer' ? 'bg-blue-100 text-blue-800' :
-                      selectedTransaction.type === 'NFT' || selectedTransaction.type === 'NFT Operation' ? 'bg-purple-100 text-purple-800' :
-                      selectedTransaction.type === 'Smart Contract' || selectedTransaction.type === 'Move Contract' ? 'bg-green-100 text-green-800' :
-                      selectedTransaction.type === 'Move Coin Mint' ? 'bg-yellow-100 text-yellow-800' :
-                      selectedTransaction.type === 'Move Object Create' ? 'bg-indigo-100 text-indigo-800' :
-                      selectedTransaction.type === 'DeFi Swap' ? 'bg-pink-100 text-pink-800' :
-                      selectedTransaction.type === 'DeFi Liquidity' ? 'bg-orange-100 text-orange-800' :
-                      selectedTransaction.type === 'Staking' ? 'bg-teal-100 text-teal-800' :
-                      'bg-gray-100 text-gray-800'
-                    }`}>
-                      {selectedTransaction.type}
-                    </span>
-                  </div>
-
-                  <div>
-                    <p className="text-gray-400 text-sm mb-2">Status</p>
-                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                      selectedTransaction.status === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                    }`}>
-                      {selectedTransaction.status}
-                    </span>
-                  </div>
-
-                  <div>
-                    <p className="text-gray-400 text-sm mb-2">Amount</p>
-                    <p className="text-white font-semibold">
-                      {selectedTransaction.amount > 0 ? `${selectedTransaction.amount.toFixed(6)} SUI` : '-'}
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="text-gray-400 text-sm mb-2">Gas Used</p>
-                    <p className="text-white font-semibold">{selectedTransaction.gasUsed} MIST</p>
-                  </div>
-
-                  <div>
-                    <p className="text-gray-400 text-sm mb-2">Gas Price</p>
-                    <p className="text-white font-semibold">{selectedTransaction.gasPrice} MIST</p>
-                  </div>
-
-                  <div>
-                    <p className="text-gray-400 text-sm mb-2">Timestamp</p>
-                    <p className="text-white font-semibold">{formatFullTime(selectedTransaction.timestamp)}</p>
-                  </div>
-                </div>
-
-                {/* Addresses */}
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-gray-400 text-sm mb-2">From Address</p>
-                    <div className="flex items-center gap-2">
-                      <code className="bg-gray-800 px-3 py-2 rounded text-white text-sm font-mono flex-1">
-                        {selectedTransaction.sender}
-                      </code>
-                      <button
-                        onClick={() => copyToClipboard(selectedTransaction.sender)}
-                        className="text-gray-400 hover:text-white transition-colors"
-                      >
-                        <Copy size={16} />
-                      </button>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p className="text-gray-400 text-sm mb-2">To Address</p>
-                    <div className="flex items-center gap-2">
-                      <code className="bg-gray-800 px-3 py-2 rounded text-white text-sm font-mono flex-1">
-                        {selectedTransaction.recipient}
-                      </code>
-                      <button
-                        onClick={() => copyToClipboard(selectedTransaction.recipient)}
-                        className="text-gray-400 hover:text-white transition-colors"
-                      >
-                        <Copy size={16} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Move Language Context */}
-                <div className="mt-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-                  <h3 className="text-blue-400 font-semibold mb-2">Move Language Context</h3>
-                  <p className="text-gray-300 text-sm">
-                    This transaction was executed on Sui's Move-based blockchain. Move provides type safety, 
-                    resource-oriented programming, and parallel execution capabilities that enable high throughput 
-                    and secure smart contract execution.
-                  </p>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
        </div>
      </div>
    );
