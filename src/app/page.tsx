@@ -768,7 +768,7 @@ export default function Home() {
       {isContactModalOpen && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-premium z-50 flex items-center justify-center p-4">
           <motion.div 
-            className="bg-white/95 backdrop-blur-premium rounded-3xl p-6 sm:p-8 border border-white/20 max-w-md w-full shadow-premium mx-4"
+            className="bg-white/99 backdrop-blur-premium rounded-3xl p-6 sm:p-8 border border-white/20 max-w-md w-full shadow-premium mx-4"
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -877,7 +877,7 @@ export default function Home() {
       )}
 
       {/* Navbar */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-premium border-b border-gray-200 z-10 shadow-premium">
+      <nav className="fixed top-0 w-full bg-white/98 backdrop-blur-premium border-b border-gray-200 z-10 shadow-premium">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -1029,7 +1029,7 @@ export default function Home() {
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div 
-            className="absolute top-20 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"
+            className="absolute top-20 left-10 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl"
             animate={{ 
               scale: [1, 1.2, 1],
               opacity: [0.3, 0.6, 0.3],
@@ -1039,7 +1039,7 @@ export default function Home() {
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div 
-            className="absolute top-40 right-20 w-24 h-24 bg-cyan-500/10 rounded-full blur-2xl"
+            className="absolute top-40 right-20 w-24 h-24 bg-cyan-500/20 rounded-full blur-2xl"
             animate={{ 
               scale: [1, 1.5, 1],
               opacity: [0.2, 0.5, 0.2],
@@ -1049,7 +1049,7 @@ export default function Home() {
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           />
           <motion.div 
-                            className="absolute bottom-20 left-1/4 w-20 h-20 bg-blue-500/10 rounded-full blur-2xl"
+                            className="absolute bottom-20 left-1/4 w-20 h-20 bg-blue-500/20 rounded-full blur-2xl"
             animate={{ 
               scale: [1, 1.3, 1],
               opacity: [0.2, 0.4, 0.2],
@@ -1116,17 +1116,17 @@ export default function Home() {
 
       {/* The Operating System for Private Markets Section */}
       <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-premium relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-cyan-50/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/60 to-cyan-50/60"></div>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <ScrollAnimation delay={0.1}>
               <p className="text-lg sm:text-xl md:text-2xl text-blue-800 mb-8 max-w-3xl mx-auto text-center font-medium">
-                The central nervous system for institutional investment funds.
+                Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
               </p>
             </ScrollAnimation>
             <ScrollAnimation delay={0.2}>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
-                Redefining private institutional investing through advanced data systems, AI-native workflows, and deep fundamental research
+                We see patterns others miss. We move when others wait. We build the infrastructure that powers tomorrow's investment decisions.
               </p>
             </ScrollAnimation>
             <ScrollAnimation delay={0.4}>
@@ -1148,19 +1148,19 @@ export default function Home() {
                       filter: 'hue-rotate(200deg) saturate(1.2) brightness(1.1)'
                     }}
                   />
-                  {/* Enhanced glow effect */}
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-2xl"
-                    animate={{ 
-                      opacity: [0.3, 0.6, 0.3],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 4, 
-                      repeat: Infinity, 
-                      ease: "easeInOut" 
-                    }}
-                  />
+                                  {/* Enhanced glow effect */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full blur-2xl"
+                  animate={{ 
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                />
                 </motion.div>
               </div>
             </ScrollAnimation>
@@ -1170,14 +1170,14 @@ export default function Home() {
 
       {/* Simplified Live Data Dashboard */}
       <section id="live-data" className="py-20 px-4 sm:px-6 lg:px-8 bg-white relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50/80 to-white"></div>
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-blue-800 mb-6 text-center leading-tight tracking-tight">
             The Data That Moves Money
           </h2>
           <ScrollAnimation delay={0.2}>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12 text-center">
-              Real-time institutional data feeds powering investment decisions
+              Where data becomes insight, and insight becomes advantage
             </p>
           </ScrollAnimation>
           
@@ -1202,7 +1202,7 @@ export default function Home() {
                   />
                 {/* Enhanced glow effect */}
                 <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-2xl"
+                  className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full blur-2xl"
                   animate={{ 
                     opacity: [0.3, 0.6, 0.3],
                     scale: [1, 1.1, 1]
