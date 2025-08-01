@@ -1485,7 +1485,7 @@ export default function Home() {
                 </button>
                 <button 
                   className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors relative z-20"
-                  onClick={() => window.open('https://twitter.com/gscanlon.lrn', '_blank')}
+                  onClick={() => window.open('https://twitter.com/ggscanlon', '_blank')}
                 >
                   Twitter
                 </button>
