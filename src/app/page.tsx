@@ -1440,34 +1440,26 @@ export default function Home() {
               </p>
               <p className="text-black text-sm mb-4">BSBA from the University of Richmond</p>
               <div className="flex space-x-4">
-                <a 
-                  href="https://www.linkedin.com/in/pies" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
-                  onClick={(e) => {
-                    e.preventDefault();
+                <button 
+                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer bg-transparent border-none p-0"
+                  onClick={() => {
                     console.log('LinkedIn clicked');
                     window.open('https://www.linkedin.com/in/pies', '_blank');
                   }}
                 >
                   <Linkedin className="w-5 h-5" />
                   <span className="text-sm">LinkedIn</span>
-                </a>
-                <a 
-                  href="https://twitter.com/KRFsocial" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
-                  onClick={(e) => {
-                    e.preventDefault();
+                </button>
+                <button 
+                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer bg-transparent border-none p-0"
+                  onClick={() => {
                     console.log('Twitter clicked');
                     window.open('https://twitter.com/KRFsocial', '_blank');
                   }}
                 >
                   <Twitter className="w-5 h-5" />
                   <span className="text-sm">Twitter</span>
-                </a>
+                </button>
               </div>
             </div>
 
@@ -1485,34 +1477,26 @@ export default function Home() {
               </p>
               <p className="text-black text-sm mb-4">BSBA from the University of Richmond, MS in Data Science from NYU, CFA charterholder</p>
               <div className="flex space-x-4">
-                <a 
-                  href="https://www.linkedin.com/in/scatman/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
-                  onClick={(e) => {
-                    e.preventDefault();
+                <button 
+                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer bg-transparent border-none p-0"
+                  onClick={() => {
                     console.log('Greg LinkedIn clicked');
                     window.open('https://www.linkedin.com/in/scatman/', '_blank');
                   }}
                 >
                   <Linkedin className="w-5 h-5" />
                   <span className="text-sm">LinkedIn</span>
-                </a>
-                <a 
-                  href="https://twitter.com/gscanlon.lrn" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
-                  onClick={(e) => {
-                    e.preventDefault();
+                </button>
+                <button 
+                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer bg-transparent border-none p-0"
+                  onClick={() => {
                     console.log('Greg Twitter clicked');
                     window.open('https://twitter.com/gscanlon.lrn', '_blank');
                   }}
                 >
                   <Twitter className="w-5 h-5" />
                   <span className="text-sm">Twitter</span>
-                </a>
+                </button>
               </div>
             </div>
           </div>
