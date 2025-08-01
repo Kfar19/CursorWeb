@@ -12,7 +12,7 @@ export default function DemoLogin() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  console.log('DemoLogin: Component loaded - Version 2.0');
+  console.log('DemoLogin: Component loaded - Version 3.0');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,43 +20,17 @@ export default function DemoLogin() {
     setError('');
 
     console.log('Demo login attempt with password:', password);
-    console.log('Password length:', password.length);
-    console.log('Expected password: demo2025');
-    console.log('Password match:', password === 'demo2025');
 
-    // Client-side password validation
-    const DEMO_PASSWORD = 'demo2025';
-    
-    if (password === DEMO_PASSWORD) {
-      console.log('Password correct, setting demo token');
+    // Simple password check
+    if (password === 'demo2025') {
+      console.log('Password correct!');
       
-      try {
-        // Create a simple demo token (client-side only)
-        const tokenData = {
-          access: 'demo',
-          timestamp: Date.now(),
-          expires: Date.now() + (2 * 60 * 60 * 1000) // 2 hours
-        };
-        
-        const demoToken = btoa(JSON.stringify(tokenData));
-        console.log('Token data:', tokenData);
-        console.log('Encoded token:', demoToken);
-        
-        // Store in localStorage
-        localStorage.setItem('demoToken', demoToken);
-        console.log('Demo token stored in localStorage');
-        
-        // Test localStorage
-        const storedToken = localStorage.getItem('demoToken');
-        console.log('Retrieved token from localStorage:', storedToken);
-        
-        console.log('About to redirect to /live-demo');
-        router.push('/live-demo');
-        console.log('Redirect called');
-      } catch (error) {
-        console.error('Error during login process:', error);
-        setError('Login error: ' + error);
-      }
+      // Set a simple token
+      localStorage.setItem('demoToken', 'demo-access-granted');
+      console.log('Token set, redirecting...');
+      
+      // Redirect to demo
+      router.push('/live-demo');
     } else {
       console.log('Password incorrect');
       setError('Invalid demo password');
@@ -65,15 +39,9 @@ export default function DemoLogin() {
     setIsLoading(false);
   };
 
-  const testLogin = () => {
-    console.log('Test login button clicked');
-    const testToken = btoa(JSON.stringify({
-      access: 'demo',
-      timestamp: Date.now(),
-      expires: Date.now() + (2 * 60 * 60 * 1000)
-    }));
-    localStorage.setItem('demoToken', testToken);
-    console.log('Test token set, redirecting...');
+  const bypassLogin = () => {
+    console.log('Bypass login clicked');
+    localStorage.setItem('demoToken', 'demo-access-granted');
     router.push('/live-demo');
   };
 
@@ -88,7 +56,7 @@ export default function DemoLogin() {
           {/* Version indicator */}
           <div className="text-center mb-4">
             <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
-              Version 2.0 - Debug Mode
+              Version 3.0 - Simple Mode
             </span>
           </div>
 
@@ -100,16 +68,17 @@ export default function DemoLogin() {
             <p className="text-gray-600">Enter the demo password to access the Stablecoin Bank Demo</p>
           </div>
 
-          {/* Test button - Moved to top for visibility */}
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-            <button
-              onClick={testLogin}
-              className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-green-700 transition-colors text-lg"
+          {/* Direct bypass link */}
+          <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <a
+              href="/live-demo"
+              onClick={bypassLogin}
+              className="block w-full bg-yellow-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-yellow-700 transition-colors text-lg text-center"
             >
-              🧪 TEST LOGIN (Skip Password) - CLICK HERE
-            </button>
-            <p className="text-xs text-green-600 mt-2 text-center">
-              Use this button to bypass password validation
+              🚀 DIRECT ACCESS - CLICK HERE
+            </a>
+            <p className="text-xs text-yellow-600 mt-2 text-center">
+              Skip login and go directly to demo
             </p>
           </div>
 

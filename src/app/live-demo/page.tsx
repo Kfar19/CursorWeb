@@ -16,35 +16,11 @@ export default function LiveDemo() {
     const demoToken = localStorage.getItem('demoToken');
     console.log('LiveDemo: demoToken from localStorage:', demoToken);
     
-    if (demoToken) {
-      try {
-        // Decode the token
-        const tokenData = JSON.parse(atob(demoToken));
-        console.log('LiveDemo: decoded tokenData:', tokenData);
-        
-        const now = Date.now();
-        console.log('LiveDemo: current time:', now);
-        console.log('LiveDemo: token expires:', tokenData.expires);
-        console.log('LiveDemo: token access:', tokenData.access);
-        
-        // Check if token is expired
-        if (tokenData.expires && now < tokenData.expires && tokenData.access === 'demo') {
-          console.log('LiveDemo: Token is valid, setting authenticated');
-          setIsAuthenticated(true);
-        } else {
-          console.log('LiveDemo: Token expired or invalid');
-          console.log('LiveDemo: expires check:', tokenData.expires && now < tokenData.expires);
-          console.log('LiveDemo: access check:', tokenData.access === 'demo');
-          localStorage.removeItem('demoToken');
-          router.push('/live-demo/login');
-        }
-      } catch (error) {
-        console.error('LiveDemo: Error parsing token:', error);
-        localStorage.removeItem('demoToken');
-        router.push('/live-demo/login');
-      }
+    if (demoToken === 'demo-access-granted') {
+      console.log('LiveDemo: Simple token found, setting authenticated');
+      setIsAuthenticated(true);
     } else {
-      console.log('LiveDemo: No token found');
+      console.log('LiveDemo: No valid token found, redirecting to login');
       router.push('/live-demo/login');
     }
     
