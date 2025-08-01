@@ -1191,7 +1191,7 @@ export default function Home() {
                     style={{ 
                       width: '100%', 
                       height: '100%',
-                      filter: 'hue-rotate(220deg) saturate(1.5) brightness(1.2)'
+                      filter: 'grayscale(0.8) contrast(1.2) brightness(0.9)'
                     }}
                   />
                 {/* Enhanced glow effect */}
