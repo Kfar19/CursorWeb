@@ -81,79 +81,76 @@ export default function Home() {
   });
   const [totalMentions, setTotalMentions] = useState(3385);
 
-  // Live blockchain feed state
-  const [blockchainFeed, setBlockchainFeed] = useState([
+  // Market opportunity scanner state
+  const [marketOpportunities, setMarketOpportunities] = useState([
     {
       id: 1,
-      type: 'whale_movement',
-      protocol: 'Uniswap V4',
-      description: 'Whale moved 2,500 ETH to liquidity pool',
-      amount: '2,500 ETH',
-      value: '$4.2M',
-      time: '2 min ago',
-      impact: 'high',
-      txHash: '0x7a8b...3f2e'
+      type: 'emerging_trend',
+      category: 'AI Infrastructure',
+      title: 'AI Compute Demand Surge',
+      description: 'GPU shortages driving 40% price increases, creating arbitrage opportunities in cloud compute markets',
+      confidence: 92,
+      timeframe: '3-6 months',
+      potentialReturn: '+150-300%',
+      riskLevel: 'medium',
+      timestamp: '2 min ago'
     },
     {
       id: 2,
-      type: 'protocol_activity',
-      protocol: 'Compound',
-      description: 'New lending pool launched: USDC/ETH',
-      amount: 'Pool Size: $12M',
-      value: 'APY: 8.5%',
-      time: '5 min ago',
-      impact: 'medium',
-      txHash: '0x9c1d...7a4b'
+      type: 'undervalued_asset',
+      category: 'DeFi Protocol',
+      title: 'Uniswap V4 Launch',
+      description: 'New concentrated liquidity features undervalued by market, significant TVL migration expected',
+      confidence: 87,
+      timeframe: '1-2 months',
+      potentialReturn: '+80-120%',
+      riskLevel: 'low',
+      timestamp: '5 min ago'
     },
     {
       id: 3,
-      type: 'defi_activity',
-      protocol: 'Aave',
-      description: 'Flash loan executed: $850K USDC',
-      amount: '850K USDC',
-      value: 'Fee: $425',
-      time: '8 min ago',
-      impact: 'low',
-      txHash: '0x3e2f...9c8d'
+      type: 'market_inefficiency',
+      category: 'Cross-Chain',
+      title: 'Bridge Liquidity Gap',
+      description: 'Ethereum-Polygon bridge showing 15% price differential, arbitrage opportunity with low risk',
+      confidence: 94,
+      timeframe: '1-2 weeks',
+      potentialReturn: '+12-18%',
+      riskLevel: 'low',
+      timestamp: '8 min ago'
     },
     {
       id: 4,
-      type: 'nft_activity',
-      protocol: 'OpenSea',
-      description: 'Rare NFT sold: CryptoPunk #1234',
-      amount: '1 NFT',
-      value: '45 ETH',
-      time: '12 min ago',
-      impact: 'high',
-      txHash: '0x5a7b...1e9f'
+      type: 'timing_signal',
+      category: 'Macro',
+      title: 'Fed Policy Shift',
+      description: 'Rate cut signals creating favorable conditions for growth assets, rotation opportunity emerging',
+      confidence: 78,
+      timeframe: '2-4 weeks',
+      potentialReturn: '+25-40%',
+      riskLevel: 'medium',
+      timestamp: '12 min ago'
     },
     {
       id: 5,
-      type: 'governance',
-      protocol: 'Uniswap DAO',
-      description: 'Proposal passed: Fee structure update',
-      amount: 'Votes: 2.1M',
-      value: 'Quorum: 85%',
-      time: '15 min ago',
-      impact: 'medium',
-      txHash: '0x8d4e...6b2a'
+      type: 'emerging_trend',
+      category: 'Real World Assets',
+      title: 'Tokenized Real Estate',
+      description: 'Regulatory clarity driving institutional adoption, early mover advantage in RWA protocols',
+      confidence: 85,
+      timeframe: '6-12 months',
+      potentialReturn: '+200-400%',
+      riskLevel: 'high',
+      timestamp: '15 min ago'
     }
   ]);
-  const [totalTransactions, setTotalTransactions] = useState(1247500);
-  const [activeProtocols, setActiveProtocols] = useState(47);
-  const [gasPrice, setGasPrice] = useState(25);
 
-  // Backend Analytics Data (currently unused - keeping for future use)
-  // const [analyticsData, setAnalyticsData] = useState({
-  //   insights: [],
-  //   marketData: null,
-  //   sentimentData: null,
-  //   isLoading: true
-  // });
-
-  // AI Market Predictions state
-
-
+  const [scannerStats, setScannerStats] = useState({
+    opportunitiesFound: 47,
+    averageReturn: '+85%',
+    successRate: 78,
+    activeAlerts: 12
+  });
 
   // Fetch live crypto market cap
   const fetchMarketCap = useCallback(async () => {
@@ -249,65 +246,77 @@ export default function Home() {
     });
   }, [trendingTopics]);
 
-  // Simulate blockchain feed updates
-  const updateBlockchainFeed = useCallback(() => {
-    const protocols = ['Uniswap V4', 'Compound', 'Aave', 'OpenSea', 'Uniswap DAO', 'Curve', 'Balancer', 'SushiSwap', 'dYdX', 'GMX'];
-    const types = ['whale_movement', 'protocol_activity', 'defi_activity', 'nft_activity', 'governance', 'liquidity_event', 'flash_loan', 'yield_farming'];
+  // Simulate market opportunity scanner updates
+  const updateMarketOpportunities = useCallback(() => {
+    const categories = ['AI Infrastructure', 'DeFi Protocol', 'Cross-Chain', 'Macro', 'Real World Assets', 'Layer 2', 'Gaming', 'Social Finance'];
+    const types = ['emerging_trend', 'undervalued_asset', 'market_inefficiency', 'timing_signal'];
+    const riskLevels = ['low', 'medium', 'high'];
     
-    const newActivity = {
+    const newOpportunity = {
       id: Date.now(),
       type: types[Math.floor(Math.random() * types.length)],
-      protocol: protocols[Math.floor(Math.random() * protocols.length)],
-      description: generateActivityDescription(),
-      amount: generateAmount(),
-      value: generateValue(),
-      time: 'Just now',
-      impact: ['high', 'medium', 'low'][Math.floor(Math.random() * 3)],
-      txHash: generateTxHash()
+      category: categories[Math.floor(Math.random() * categories.length)],
+      title: generateOpportunityTitle(),
+      description: generateOpportunityDescription(),
+      confidence: Math.floor(Math.random() * 20) + 75, // 75-95%
+      timeframe: generateTimeframe(),
+      potentialReturn: generatePotentialReturn(),
+      riskLevel: riskLevels[Math.floor(Math.random() * riskLevels.length)],
+      timestamp: 'Just now'
     };
 
-    setBlockchainFeed(prev => [newActivity, ...prev.slice(0, 4)]); // Keep only 5 items
+    setMarketOpportunities(prev => [newOpportunity, ...prev.slice(0, 4)]); // Keep only 5 items
     
-    // Update stats
-    setTotalTransactions(prev => prev + Math.floor(Math.random() * 100) + 50);
-    setActiveProtocols(prev => Math.max(40, Math.min(60, prev + (Math.random() > 0.5 ? 1 : -1))));
-    setGasPrice(prev => Math.max(15, Math.min(50, prev + (Math.random() > 0.5 ? 2 : -2))));
+    // Update scanner stats
+    setScannerStats(prev => ({
+      opportunitiesFound: prev.opportunitiesFound + Math.floor(Math.random() * 3) + 1,
+      averageReturn: `+${Math.floor(Math.random() * 20) + 75}%`,
+      successRate: Math.max(70, Math.min(85, prev.successRate + (Math.random() > 0.5 ? 1 : -1))),
+      activeAlerts: Math.max(8, Math.min(20, prev.activeAlerts + (Math.random() > 0.5 ? 1 : -1)))
+    }));
   }, []);
 
-  // Helper functions for blockchain feed
-  const generateActivityDescription = () => {
+  // Helper functions for market opportunity scanner
+  const generateOpportunityTitle = () => {
+    const titles = [
+      'AI Compute Demand Surge',
+      'Layer 2 Adoption Acceleration',
+      'Cross-Chain Bridge Opportunity',
+      'DeFi Protocol Innovation',
+      'Real World Asset Tokenization',
+      'Gaming Token Breakout',
+      'Social Finance Revolution',
+      'Macro Policy Shift',
+      'Institutional Adoption Wave',
+      'Regulatory Clarity Impact'
+    ];
+    return titles[Math.floor(Math.random() * titles.length)];
+  };
+
+  const generateOpportunityDescription = () => {
     const descriptions = [
-      'Whale moved large position to new protocol',
-      'Flash loan executed for arbitrage opportunity',
-      'New liquidity pool launched with high APY',
-      'Governance proposal passed with overwhelming support',
-      'Rare NFT sold for significant premium',
-      'Protocol upgrade deployed successfully',
-      'Cross-chain bridge activity detected',
-      'Yield farming strategy executed',
-      'Liquidation event occurred',
-      'New token listing on DEX'
+      'Market inefficiency creating arbitrage opportunities with low risk',
+      'Emerging trend driving significant capital flows and adoption',
+      'Undervalued asset showing strong fundamentals and growth potential',
+      'Timing signal indicating favorable entry point for strategic positioning',
+      'Regulatory clarity opening new investment frontiers',
+      'Technology breakthrough enabling novel financial products',
+      'Institutional adoption creating liquidity and stability',
+      'Cross-chain interoperability unlocking new use cases',
+      'Tokenomics innovation driving sustainable value creation',
+      'Market rotation creating sector-specific opportunities'
     ];
     return descriptions[Math.floor(Math.random() * descriptions.length)];
   };
 
-  const generateAmount = () => {
-    const amounts = ['1,250 ETH', '500K USDC', '2.5M DAI', '100K LINK', '50K UNI', '25K AAVE', '10K COMP', '5K CRV'];
-    return amounts[Math.floor(Math.random() * amounts.length)];
+  const generateTimeframe = () => {
+    const timeframes = ['1-2 weeks', '2-4 weeks', '1-2 months', '3-6 months', '6-12 months'];
+    return timeframes[Math.floor(Math.random() * timeframes.length)];
   };
 
-  const generateValue = () => {
-    const values = ['$2.1M', '$500K', '$1.8M', '$750K', '$300K', '$950K', '$420K', '$1.2M'];
-    return values[Math.floor(Math.random() * values.length)];
-  };
-
-  const generateTxHash = () => {
-    const chars = '0123456789abcdef';
-    let hash = '0x';
-    for (let i = 0; i < 8; i++) {
-      hash += chars[Math.floor(Math.random() * chars.length)];
-    }
-    return hash + '...' + chars[Math.floor(Math.random() * chars.length)] + chars[Math.floor(Math.random() * chars.length)];
+  const generatePotentialReturn = () => {
+    const returns = ['+15-25%', '+25-40%', '+40-60%', '+60-100%', '+100-200%', '+200-400%'];
+    return returns[Math.floor(Math.random() * returns.length)];
   };
 
 
@@ -576,11 +585,11 @@ export default function Home() {
     return () => clearInterval(socialInterval);
   }, [updateSocialBuzz]);
 
-  // Update blockchain feed every 30 seconds
+  // Update market opportunities every 30 seconds
   useEffect(() => {
-    const blockchainInterval = setInterval(updateBlockchainFeed, 30000); // Update every 30 seconds
-    return () => clearInterval(blockchainInterval);
-  }, [updateBlockchainFeed]);
+    const opportunityInterval = setInterval(updateMarketOpportunities, 30000); // Update every 30 seconds
+    return () => clearInterval(opportunityInterval);
+  }, [updateMarketOpportunities]);
 
 
 
@@ -1301,22 +1310,22 @@ export default function Home() {
 
 
 
-      {/* Live Blockchain Feed Section */}
-      <section id="blockchain-feed" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      {/* Market Opportunity Scanner Section */}
+      <section id="market-opportunities" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 text-center">
-              Live Blockchain Feed
+              Market Opportunity Scanner
             </h2>
           </ScrollAnimation>
           <ScrollAnimation delay={0.2}>
             <p className="text-xl text-black max-w-4xl mx-auto mb-12 text-center">
-              Real-time on-chain activity across DeFi protocols, whale movements, and market events
+              AI-powered detection of emerging trends, undervalued assets, market inefficiencies, and timing signals
             </p>
           </ScrollAnimation>
 
-          {/* Live Stats */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {/* Scanner Stats */}
+          <div className="grid md:grid-cols-4 gap-6 mb-12">
             <ScrollAnimation delay={0.3}>
               <motion.div 
                 className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm text-center"
@@ -1328,9 +1337,9 @@ export default function Home() {
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 4, repeat: Infinity }}
                 >
-                  {totalTransactions.toLocaleString()}
+                  {scannerStats.opportunitiesFound}
                 </motion.div>
-                <p className="text-black">Total Transactions (24h)</p>
+                <p className="text-black">Opportunities Found</p>
               </motion.div>
             </ScrollAnimation>
 
@@ -1345,9 +1354,9 @@ export default function Home() {
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 4, repeat: Infinity, delay: 1 }}
                 >
-                  {activeProtocols}
+                  {scannerStats.averageReturn}
                 </motion.div>
-                <p className="text-black">Active Protocols</p>
+                <p className="text-black">Average Return</p>
               </motion.div>
             </ScrollAnimation>
 
@@ -1362,21 +1371,38 @@ export default function Home() {
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 4, repeat: Infinity, delay: 2 }}
                 >
-                  {gasPrice} gwei
+                  {scannerStats.successRate}%
                 </motion.div>
-                <p className="text-black">Current Gas Price</p>
+                <p className="text-black">Success Rate</p>
+              </motion.div>
+            </ScrollAnimation>
+
+            <ScrollAnimation delay={0.6}>
+              <motion.div 
+                className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm text-center"
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="text-3xl font-bold text-black mb-2"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 3 }}
+                >
+                  {scannerStats.activeAlerts}
+                </motion.div>
+                <p className="text-black">Active Alerts</p>
               </motion.div>
             </ScrollAnimation>
           </div>
 
-          {/* Live Activity Feed */}
-          <ScrollAnimation delay={0.6}>
+          {/* Live Opportunities Feed */}
+          <ScrollAnimation delay={0.7}>
             <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
-              <h3 className="text-2xl font-bold text-black mb-6">Live Activity Feed</h3>
+              <h3 className="text-2xl font-bold text-black mb-6">Live Opportunities Feed</h3>
               <div className="space-y-4 max-h-96 overflow-y-auto">
-                {blockchainFeed.map((activity, index) => (
+                {marketOpportunities.map((opportunity, index) => (
                   <motion.div 
-                    key={activity.id}
+                    key={opportunity.id}
                     className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -1385,26 +1411,28 @@ export default function Home() {
                   >
                     <div className="flex items-center space-x-4">
                       <div className={`w-3 h-3 rounded-full ${
-                        activity.impact === 'high' ? 'bg-black' : 
-                        activity.impact === 'medium' ? 'bg-gray-600' : 'bg-gray-400'
+                        opportunity.riskLevel === 'low' ? 'bg-green-500' : 
+                        opportunity.riskLevel === 'medium' ? 'bg-yellow-500' : 'bg-red-500'
                       }`} />
                       <div>
                         <div className="flex items-center space-x-2">
-                          <span className="text-black font-semibold">{activity.protocol}</span>
+                          <span className="text-black font-semibold">{opportunity.title}</span>
                           <span className="text-xs text-black bg-gray-100 px-2 py-1 rounded">
-                            {activity.type.replace('_', ' ')}
+                            {opportunity.type.replace('_', ' ')}
                           </span>
                         </div>
-                        <p className="text-black text-sm">{activity.description}</p>
+                        <p className="text-black text-sm">{opportunity.description}</p>
                         <div className="flex items-center space-x-4 mt-1">
-                          <span className="text-black text-sm">{activity.amount}</span>
-                          <span className="text-black text-sm">{activity.value}</span>
-                          <span className="text-black text-xs">{activity.time}</span>
+                          <span className="text-black text-sm">{opportunity.category}</span>
+                          <span className="text-black text-sm">{opportunity.timeframe}</span>
+                          <span className="text-green-600 font-semibold">{opportunity.potentialReturn}</span>
+                          <span className="text-black text-xs">{opportunity.timestamp}</span>
                         </div>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs text-black font-mono">{activity.txHash}</p>
+                      <div className="text-sm font-semibold text-black">{opportunity.confidence}%</div>
+                      <div className="text-xs text-gray-500">Confidence</div>
                       <motion.div 
                         className="w-2 h-2 bg-black rounded-full mt-2"
                         animate={{ opacity: [0.5, 1, 0.5] }}
