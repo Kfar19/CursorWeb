@@ -1450,7 +1450,7 @@ export default function Home() {
               <div className="flex space-x-4 mt-4 relative z-10">
                 <button 
                   className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors relative z-20"
-                  onClick={() => window.open('https://www.linkedin.com/in/kevinfarrelly', '_blank')}
+                  onClick={() => window.open('https://linkedin.com/in/pies', '_blank')}
                 >
                   LinkedIn
                 </button>
