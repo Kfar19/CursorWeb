@@ -1455,9 +1455,9 @@ export default function Home() {
                 economics, and ML infrastructure.
               </p>
               <p className="text-black text-sm mb-4">BSBA from the University of Richmond</p>
-              <div className="flex space-x-4 mt-4">
+              <div className="flex space-x-4 mt-4 relative z-10">
                 <button 
-                  className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                  className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors relative z-20"
                   onClick={() => {
                     alert('LinkedIn button clicked!');
                     window.open('https://www.linkedin.com/in/pies', '_blank');
@@ -1466,7 +1466,7 @@ export default function Home() {
                   LinkedIn
                 </button>
                 <button 
-                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors relative z-20"
                   onClick={() => {
                     alert('Twitter button clicked!');
                     window.open('https://twitter.com/KRFsocial', '_blank');
