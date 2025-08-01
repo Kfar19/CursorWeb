@@ -17,6 +17,8 @@ export default function DemoLogin() {
     setIsLoading(true);
     setError('');
 
+    console.log('Attempting login with password:', password);
+
     try {
       const response = await fetch('/api/demo/auth/login', {
         method: 'POST',
@@ -26,15 +28,18 @@ export default function DemoLogin() {
         body: JSON.stringify({ password }),
       });
 
+      console.log('Response status:', response.status);
+      const data = await response.json();
+      console.log('Response data:', data);
+
       if (response.ok) {
-        const data = await response.json();
         localStorage.setItem('demoToken', data.token);
         router.push('/live-demo');
       } else {
-        const errorData = await response.json();
-        setError(errorData.message || 'Invalid password');
+        setError(data.message || 'Login failed');
       }
     } catch (err) {
+      console.error('Login error:', err);
       setError('Network error. Please try again.');
     } finally {
       setIsLoading(false);

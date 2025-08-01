@@ -8,6 +8,10 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this-in-pro
 export async function POST(request: NextRequest) {
   try {
     const { password } = await request.json();
+    
+    console.log('Received password:', password);
+    console.log('Expected password:', DEMO_PASSWORD);
+    console.log('Password match:', password === DEMO_PASSWORD);
 
     // Validate password
     if (password === DEMO_PASSWORD) {
