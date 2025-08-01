@@ -29,14 +29,6 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // Protect live demo page (but allow login page)
-  if (request.nextUrl.pathname === '/live-demo' && 
-      !request.nextUrl.pathname.startsWith('/live-demo/login')) {
-    // For demo, we'll let the client-side handle the token check
-    // since we're bypassing API routes
-    return NextResponse.next();
-  }
-
   return NextResponse.next();
 }
 
