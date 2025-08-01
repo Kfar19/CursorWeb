@@ -30,6 +30,12 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
+  // Test if JavaScript is working
+  useEffect(() => {
+    console.log('React component loaded');
+    // alert('React is working!');
+  }, []);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -689,6 +695,16 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden relative">
+      {/* Test Button */}
+      <div className="fixed top-4 left-4 z-[9999]">
+        <button 
+          className="px-4 py-2 bg-green-500 text-white rounded"
+          onClick={() => alert('Test button works!')}
+        >
+          TEST BUTTON
+        </button>
+      </div>
+      
       {/* Particle Background */}
       <div className="fixed inset-0 z-0">
                 <Particles
