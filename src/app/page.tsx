@@ -1439,26 +1439,18 @@ export default function Home() {
                 economics, and ML infrastructure.
               </p>
               <p className="text-black text-sm mb-4">BSBA from the University of Richmond</p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 mt-4">
                 <button 
-                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer bg-transparent border-none p-0"
-                  onClick={() => {
-                    console.log('LinkedIn clicked');
-                    window.open('https://www.linkedin.com/in/pies', '_blank');
-                  }}
+                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+                  onClick={() => window.open('https://www.linkedin.com/in/pies', '_blank')}
                 >
-                  <Linkedin className="w-5 h-5" />
-                  <span className="text-sm">LinkedIn</span>
+                  LinkedIn
                 </button>
                 <button 
-                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer bg-transparent border-none p-0"
-                  onClick={() => {
-                    console.log('Twitter clicked');
-                    window.open('https://twitter.com/KRFsocial', '_blank');
-                  }}
+                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+                  onClick={() => window.open('https://twitter.com/KRFsocial', '_blank')}
                 >
-                  <Twitter className="w-5 h-5" />
-                  <span className="text-sm">Twitter</span>
+                  Twitter
                 </button>
               </div>
             </div>
@@ -1476,26 +1468,18 @@ export default function Home() {
                 Greg is also an active mentor and advisor across multiple top universities.
               </p>
               <p className="text-black text-sm mb-4">BSBA from the University of Richmond, MS in Data Science from NYU, CFA charterholder</p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 mt-4">
                 <button 
-                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer bg-transparent border-none p-0"
-                  onClick={() => {
-                    console.log('Greg LinkedIn clicked');
-                    window.open('https://www.linkedin.com/in/scatman/', '_blank');
-                  }}
+                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+                  onClick={() => window.open('https://www.linkedin.com/in/scatman/', '_blank')}
                 >
-                  <Linkedin className="w-5 h-5" />
-                  <span className="text-sm">LinkedIn</span>
+                  LinkedIn
                 </button>
                 <button 
-                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer bg-transparent border-none p-0"
-                  onClick={() => {
-                    console.log('Greg Twitter clicked');
-                    window.open('https://twitter.com/gscanlon.lrn', '_blank');
-                  }}
+                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+                  onClick={() => window.open('https://twitter.com/gscanlon.lrn', '_blank')}
                 >
-                  <Twitter className="w-5 h-5" />
-                  <span className="text-sm">Twitter</span>
+                  Twitter
                 </button>
               </div>
             </div>
