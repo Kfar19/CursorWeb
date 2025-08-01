@@ -1438,7 +1438,16 @@ export default function Home() {
                 optimization, margin expansion, and data science—Kevin specializes in early-stage investing, token 
                 economics, and ML infrastructure.
               </p>
-              <p className="text-black text-sm">BSBA from the University of Richmond</p>
+              <p className="text-black text-sm mb-4">BSBA from the University of Richmond</p>
+              <a 
+                href="https://www.linkedin.com/in/kevinfarrelly/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+              >
+                <Linkedin className="w-5 h-5" />
+                <span className="text-sm">Connect on LinkedIn</span>
+              </a>
             </div>
 
             {/* Greg Scanlon */}
@@ -1453,7 +1462,16 @@ export default function Home() {
               <p className="text-black mb-4">
                 Greg is also an active mentor and advisor across multiple top universities.
               </p>
-              <p className="text-black text-sm">BSBA from the University of Richmond, MS in Data Science from NYU, CFA charterholder</p>
+              <p className="text-black text-sm mb-4">BSBA from the University of Richmond, MS in Data Science from NYU, CFA charterholder</p>
+              <a 
+                href="https://www.linkedin.com/in/gregscanlon/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+              >
+                <Linkedin className="w-5 h-5" />
+                <span className="text-sm">Connect on LinkedIn</span>
+              </a>
             </div>
           </div>
         </div>
