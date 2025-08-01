@@ -921,7 +921,7 @@ export default function Home() {
 
               
               <motion.a 
-                href="#live-data" 
+                href="#market-opportunities" 
                 className="text-gray-800 hover:text-gray-900 transition-colors relative group flex items-center space-x-1 font-semibold"
                 whileHover={{ scale: 1.05 }}
               >
@@ -993,7 +993,7 @@ export default function Home() {
 
                 
                 <motion.a 
-                  href="#live-data" 
+                  href="#market-opportunities" 
                   className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 flex items-center space-x-2 font-semibold"
                   whileHover={{ x: 5 }}
                 >
