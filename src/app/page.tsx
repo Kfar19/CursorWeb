@@ -1459,6 +1459,11 @@ export default function Home() {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    console.log('Twitter clicked');
+                    window.open('https://twitter.com/KRFsocial', '_blank');
+                  }}
                 >
                   <Twitter className="w-5 h-5" />
                   <span className="text-sm">Twitter</span>
@@ -1485,6 +1490,11 @@ export default function Home() {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    console.log('Greg LinkedIn clicked');
+                    window.open('https://www.linkedin.com/in/scatman/', '_blank');
+                  }}
                 >
                   <Linkedin className="w-5 h-5" />
                   <span className="text-sm">LinkedIn</span>
@@ -1494,6 +1504,11 @@ export default function Home() {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    console.log('Greg Twitter clicked');
+                    window.open('https://twitter.com/gscanlon.lrn', '_blank');
+                  }}
                 >
                   <Twitter className="w-5 h-5" />
                   <span className="text-sm">Twitter</span>
