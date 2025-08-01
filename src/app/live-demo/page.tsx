@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { Dashboard } from './components/Dashboard';
 
 export default function LiveDemo() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -57,26 +58,10 @@ export default function LiveDemo() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Placeholder for your Live Demo code */}
-      <div className="p-8">
-        <motion.div 
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <h1 className="text-3xl font-bold text-black mb-4">Live Demo</h1>
-          <p className="text-gray-600 mb-8">Your demo code will go here</p>
-          
-          {/* Placeholder content - replace with your actual demo code */}
-          <div className="bg-gray-100 rounded-lg p-8 max-w-2xl mx-auto">
-            <div className="text-gray-500 text-center">
-              <p className="text-lg mb-4">🚀</p>
-              <p className="font-medium">Demo Content Placeholder</p>
-              <p className="text-sm mt-2">Replace this section with your actual demo code</p>
-            </div>
-          </div>
-        </motion.div>
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-xl">
+        <h1 className="text-2xl font-bold mb-4">Stablecoin Bank Demo (Sui)</h1>
+        <Dashboard />
       </div>
     </div>
   );
