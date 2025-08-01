@@ -1400,6 +1400,10 @@ export default function Home() {
             <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
               <h3 className="text-2xl font-bold text-black mb-6">Live Opportunities Feed</h3>
               <div className="space-y-4 max-h-96 overflow-y-auto">
+                {/* Disclosure */}
+                <div className="text-xs text-gray-500 text-center py-2 border-b border-gray-100">
+                  * Data shown is for illustration purposes only and does not represent actual investment opportunities or recommendations
+                </div>
                 {marketOpportunities.map((opportunity, index) => (
                   <motion.div 
                     key={opportunity.id}
