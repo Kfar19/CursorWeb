@@ -1439,15 +1439,26 @@ export default function Home() {
                 economics, and ML infrastructure.
               </p>
               <p className="text-black text-sm mb-4">BSBA from the University of Richmond</p>
-              <a 
-                href="https://linkedin.com/in/pies" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-                <span className="text-sm">Connect on LinkedIn</span>
-              </a>
+              <div className="flex space-x-4">
+                <a 
+                  href="https://linkedin.com/in/pies" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+                >
+                  <Linkedin className="w-5 h-5" />
+                  <span className="text-sm">LinkedIn</span>
+                </a>
+                <a 
+                  href="https://twitter.com/kevinfarrelly" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+                >
+                  <Twitter className="w-5 h-5" />
+                  <span className="text-sm">Twitter</span>
+                </a>
+              </div>
             </div>
 
             {/* Greg Scanlon */}
@@ -1463,15 +1474,26 @@ export default function Home() {
                 Greg is also an active mentor and advisor across multiple top universities.
               </p>
               <p className="text-black text-sm mb-4">BSBA from the University of Richmond, MS in Data Science from NYU, CFA charterholder</p>
-              <a 
-                href="https://www.linkedin.com/in/scatman/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-                <span className="text-sm">Connect on LinkedIn</span>
-              </a>
+              <div className="flex space-x-4">
+                <a 
+                  href="https://www.linkedin.com/in/scatman/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+                >
+                  <Linkedin className="w-5 h-5" />
+                  <span className="text-sm">LinkedIn</span>
+                </a>
+                <a 
+                  href="https://twitter.com/gregscanlon" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+                >
+                  <Twitter className="w-5 h-5" />
+                  <span className="text-sm">Twitter</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
