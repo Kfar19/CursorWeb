@@ -1219,6 +1219,17 @@ export default function Home() {
             </div>
           </ScrollAnimation>
 
+          {/* Demo Link */}
+          <div className="text-center mt-12">
+            <a
+              href="/live-demo"
+              className="inline-block bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-colors text-lg"
+            >
+              🚀 Try Our Live Demo
+            </a>
+            <p className="text-sm text-gray-500 mt-2">Experience our Stablecoin Bank Demo</p>
+          </div>
+
         </div>
       </section>
 
