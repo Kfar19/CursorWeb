@@ -29,6 +29,18 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  // Protect live demo page
+  if (request.nextUrl.pathname === '/live-demo') {
+    // Check for demo token in cookies or headers
+    const token = request.cookies.get('demoToken')?.value || 
+                  request.headers.get('authorization')?.replace('Bearer ', '');
+
+    if (!token) {
+      // Redirect to demo login if no token
+      return NextResponse.redirect(new URL('/live-demo/login', request.url));
+    }
+  }
+
   return NextResponse.next();
 }
 
