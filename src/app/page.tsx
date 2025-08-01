@@ -1485,7 +1485,7 @@ export default function Home() {
                   <span className="text-sm">LinkedIn</span>
                 </a>
                 <a 
-                  href="https://twitter.com/gregscanlon" 
+                  href="https://twitter.com/gscanlon.lrn" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
