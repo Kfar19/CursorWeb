@@ -67,14 +67,22 @@ export default function DemoLogin() {
           >
             Live Demo Access
           </motion.h1>
-          <motion.p 
-            className="text-gray-600 mt-2"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Enter the demo password to access the live demonstration
-          </motion.p>
+                      <motion.p 
+              className="text-gray-600 mt-2"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              Enter the demo password to access the live demonstration
+            </motion.p>
+            <motion.p 
+              className="text-sm text-gray-500 mt-1"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              Password: demo2025
+            </motion.p>
         </div>
 
         {/* Login Form */}
