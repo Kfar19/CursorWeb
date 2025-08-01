@@ -1444,7 +1444,12 @@ export default function Home() {
                   href="https://www.linkedin.com/in/pies" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    console.log('LinkedIn clicked');
+                    window.open('https://www.linkedin.com/in/pies', '_blank');
+                  }}
                 >
                   <Linkedin className="w-5 h-5" />
                   <span className="text-sm">LinkedIn</span>
@@ -1453,7 +1458,7 @@ export default function Home() {
                   href="https://twitter.com/KRFsocial" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
                 >
                   <Twitter className="w-5 h-5" />
                   <span className="text-sm">Twitter</span>
@@ -1479,7 +1484,7 @@ export default function Home() {
                   href="https://www.linkedin.com/in/scatman/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
                 >
                   <Linkedin className="w-5 h-5" />
                   <span className="text-sm">LinkedIn</span>
@@ -1488,7 +1493,7 @@ export default function Home() {
                   href="https://twitter.com/gscanlon.lrn" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
+                  className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors cursor-pointer"
                 >
                   <Twitter className="w-5 h-5" />
                   <span className="text-sm">Twitter</span>
