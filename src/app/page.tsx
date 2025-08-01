@@ -131,18 +131,7 @@ export default function Home() {
       riskLevel: 'medium',
       timestamp: '12 min ago'
     },
-    {
-      id: 5,
-      type: 'emerging_trend',
-      category: 'Real World Assets',
-      title: 'Tokenized Real Estate',
-      description: 'Regulatory clarity driving institutional adoption, early mover advantage in RWA protocols',
-      confidence: 85,
-      timeframe: '6-12 months',
-      potentialReturn: '+200-400%',
-      riskLevel: 'high',
-      timestamp: '15 min ago'
-    }
+
   ]);
 
   const [scannerStats, setScannerStats] = useState({
@@ -247,7 +236,7 @@ export default function Home() {
 
   // Simulate market opportunity scanner updates
   const updateMarketOpportunities = useCallback(() => {
-    const categories = ['AI Infrastructure', 'DeFi Protocol', 'Cross-Chain', 'Macro', 'Real World Assets', 'Layer 2', 'Gaming', 'Social Finance'];
+    const categories = ['AI Infrastructure', 'DeFi Protocol', 'Cross-Chain', 'Macro', 'Layer 2', 'Gaming', 'Social Finance'];
     const types = ['emerging_trend', 'undervalued_asset', 'market_inefficiency', 'timing_signal'];
     const riskLevels = ['low', 'medium', 'high'];
     
@@ -281,7 +270,7 @@ export default function Home() {
       'Layer 2 Adoption Acceleration',
       'Cross-Chain Bridge Opportunity',
       'DeFi Protocol Innovation',
-      'Real World Asset Tokenization',
+
       'Gaming Token Breakout',
       'Social Finance Revolution',
       'Macro Policy Shift',
