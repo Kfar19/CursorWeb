@@ -1171,7 +1171,7 @@ export default function Home() {
                       <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black mb-6 text-center leading-tight tracking-tight">
               The Data That Moves Money
             </h2>
-          <p className="text-xl text-black max-w-4xl mx-auto mb-12 text-center relative z-10">
+          <p className="text-2xl sm:text-3xl md:text-4xl text-black max-w-4xl mx-auto mb-12 text-center relative z-10 font-semibold">
             Where data becomes insight, and insight becomes advantage
           </p>
           
