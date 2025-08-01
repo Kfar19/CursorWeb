@@ -695,15 +695,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden relative">
-      {/* Test Button */}
-      <div className="fixed top-4 left-4 z-[9999]">
-        <button 
-          className="px-4 py-2 bg-green-500 text-white rounded"
-          onClick={() => alert('Test button works!')}
-        >
-          TEST BUTTON
-        </button>
-      </div>
+
       
       {/* Particle Background */}
       <div className="fixed inset-0 z-0">
@@ -1457,20 +1449,14 @@ export default function Home() {
               <p className="text-black text-sm mb-4">BSBA from the University of Richmond</p>
               <div className="flex space-x-4 mt-4 relative z-10">
                 <button 
-                  className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors relative z-20"
-                  onClick={() => {
-                    alert('LinkedIn button clicked!');
-                    window.open('https://www.linkedin.com/in/pies', '_blank');
-                  }}
+                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors relative z-20"
+                  onClick={() => window.open('https://www.linkedin.com/in/kevinfarrelly', '_blank')}
                 >
                   LinkedIn
                 </button>
                 <button 
-                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors relative z-20"
-                  onClick={() => {
-                    alert('Twitter button clicked!');
-                    window.open('https://twitter.com/KRFsocial', '_blank');
-                  }}
+                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors relative z-20"
+                  onClick={() => window.open('https://twitter.com/KRFsocial', '_blank')}
                 >
                   Twitter
                 </button>
@@ -1490,15 +1476,15 @@ export default function Home() {
                 Greg is also an active mentor and advisor across multiple top universities.
               </p>
               <p className="text-black text-sm mb-4">BSBA from the University of Richmond, MS in Data Science from NYU, CFA charterholder</p>
-              <div className="flex space-x-4 mt-4">
+              <div className="flex space-x-4 mt-4 relative z-10">
                 <button 
-                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors relative z-20"
                   onClick={() => window.open('https://www.linkedin.com/in/scatman/', '_blank')}
                 >
                   LinkedIn
                 </button>
                 <button 
-                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors relative z-20"
                   onClick={() => window.open('https://twitter.com/gscanlon.lrn', '_blank')}
                 >
                   Twitter
