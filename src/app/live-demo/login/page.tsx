@@ -12,6 +12,8 @@ export default function DemoLogin() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
+  console.log('DemoLogin: Component loaded - Version 2.0');
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -83,12 +85,32 @@ export default function DemoLogin() {
         className="w-full max-w-md"
       >
         <div className="bg-white border border-gray-200 rounded-xl shadow-lg p-8">
+          {/* Version indicator */}
+          <div className="text-center mb-4">
+            <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+              Version 2.0 - Debug Mode
+            </span>
+          </div>
+
           <div className="text-center mb-8">
             <div className="mx-auto w-12 h-12 bg-black rounded-full flex items-center justify-center mb-4">
               <Lock className="w-6 h-6 text-white" />
             </div>
             <h1 className="text-2xl font-bold text-black mb-2">Live Demo Access</h1>
             <p className="text-gray-600">Enter the demo password to access the Stablecoin Bank Demo</p>
+          </div>
+
+          {/* Test button - Moved to top for visibility */}
+          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+            <button
+              onClick={testLogin}
+              className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-green-700 transition-colors text-lg"
+            >
+              🧪 TEST LOGIN (Skip Password) - CLICK HERE
+            </button>
+            <p className="text-xs text-green-600 mt-2 text-center">
+              Use this button to bypass password validation
+            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -130,16 +152,6 @@ export default function DemoLogin() {
               {isLoading ? 'Accessing Demo...' : 'Access Live Demo'}
             </button>
           </form>
-
-          {/* Test button for debugging */}
-          <div className="mt-4">
-            <button
-              onClick={testLogin}
-              className="w-full bg-green-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-700 transition-colors"
-            >
-              🧪 Test Login (Skip Password)
-            </button>
-          </div>
 
           <div className="mt-6 p-4 bg-gray-50 rounded-lg">
             <p className="text-sm text-gray-600 text-center">
