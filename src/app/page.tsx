@@ -147,7 +147,6 @@ export default function Home() {
 
   const [scannerStats, setScannerStats] = useState({
     opportunitiesFound: 47,
-    averageReturn: '+85%',
     successRate: 78,
     activeAlerts: 12
   });
@@ -270,7 +269,6 @@ export default function Home() {
     // Update scanner stats
     setScannerStats(prev => ({
       opportunitiesFound: prev.opportunitiesFound + Math.floor(Math.random() * 3) + 1,
-      averageReturn: `+${Math.floor(Math.random() * 20) + 75}%`,
       successRate: Math.max(70, Math.min(85, prev.successRate + (Math.random() > 0.5 ? 1 : -1))),
       activeAlerts: Math.max(8, Math.min(20, prev.activeAlerts + (Math.random() > 0.5 ? 1 : -1)))
     }));
@@ -1325,7 +1323,7 @@ export default function Home() {
           </ScrollAnimation>
 
           {/* Scanner Stats */}
-          <div className="grid md:grid-cols-4 gap-6 mb-12">
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
             <ScrollAnimation delay={0.3}>
               <motion.div 
                 className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm text-center"
@@ -1343,22 +1341,7 @@ export default function Home() {
               </motion.div>
             </ScrollAnimation>
 
-            <ScrollAnimation delay={0.4}>
-              <motion.div 
-                className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm text-center"
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.div 
-                  className="text-3xl font-bold text-black mb-2"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-                >
-                  {scannerStats.averageReturn}
-                </motion.div>
-                <p className="text-black">Average Return</p>
-              </motion.div>
-            </ScrollAnimation>
+
 
             <ScrollAnimation delay={0.5}>
               <motion.div 
