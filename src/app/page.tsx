@@ -1441,7 +1441,7 @@ export default function Home() {
               <p className="text-black text-sm mb-4">BSBA from the University of Richmond</p>
               <div className="flex space-x-4">
                 <a 
-                  href="https://linkedin.com/in/pies" 
+                  href="https://www.linkedin.com/in/pies" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
