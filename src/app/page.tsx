@@ -1441,14 +1441,20 @@ export default function Home() {
               <p className="text-black text-sm mb-4">BSBA from the University of Richmond</p>
               <div className="flex space-x-4 mt-4">
                 <button 
-                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
-                  onClick={() => window.open('https://www.linkedin.com/in/pies', '_blank')}
+                  className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                  onClick={() => {
+                    alert('LinkedIn button clicked!');
+                    window.open('https://www.linkedin.com/in/pies', '_blank');
+                  }}
                 >
                   LinkedIn
                 </button>
                 <button 
-                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
-                  onClick={() => window.open('https://twitter.com/KRFsocial', '_blank')}
+                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                  onClick={() => {
+                    alert('Twitter button clicked!');
+                    window.open('https://twitter.com/KRFsocial', '_blank');
+                  }}
                 >
                   Twitter
                 </button>
