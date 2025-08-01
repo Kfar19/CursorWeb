@@ -1464,7 +1464,7 @@ export default function Home() {
               </p>
               <p className="text-black text-sm mb-4">BSBA from the University of Richmond, MS in Data Science from NYU, CFA charterholder</p>
               <a 
-                href="https://www.linkedin.com/in/gregscanlon/" 
+                href="https://www.linkedin.com/in/scatman/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 text-black hover:text-gray-600 transition-colors"
