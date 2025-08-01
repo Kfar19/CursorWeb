@@ -1306,8 +1306,11 @@ export default function Home() {
             </h2>
           </ScrollAnimation>
           <ScrollAnimation delay={0.2}>
-            <p className="text-xl text-black max-w-4xl mx-auto mb-12 text-center">
+            <p className="text-xl text-black max-w-4xl mx-auto mb-4 text-center">
               AI-powered detection of emerging trends, undervalued assets, market inefficiencies, and timing signals
+            </p>
+            <p className="text-sm text-gray-500 max-w-4xl mx-auto mb-12 text-center">
+              * Data shown is for illustration purposes only and does not represent actual investment opportunities or recommendations
             </p>
           </ScrollAnimation>
 
@@ -1372,10 +1375,6 @@ export default function Home() {
             <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
               <h3 className="text-2xl font-bold text-black mb-6">Live Opportunities Feed</h3>
               <div className="space-y-4 max-h-96 overflow-y-auto">
-                {/* Disclosure */}
-                <div className="text-xs text-gray-500 text-center py-2 border-b border-gray-100">
-                  * Data shown is for illustration purposes only and does not represent actual investment opportunities or recommendations
-                </div>
                 {marketOpportunities.map((opportunity, index) => (
                   <motion.div 
                     key={opportunity.id}
