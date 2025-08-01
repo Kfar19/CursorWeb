@@ -18,6 +18,9 @@ export default function DemoLogin() {
     setError('');
 
     console.log('Demo login attempt with password:', password);
+    console.log('Password length:', password.length);
+    console.log('Expected password: demo2025');
+    console.log('Password match:', password === 'demo2025');
 
     // Client-side password validation
     const DEMO_PASSWORD = 'demo2025';
@@ -25,24 +28,51 @@ export default function DemoLogin() {
     if (password === DEMO_PASSWORD) {
       console.log('Password correct, setting demo token');
       
-      // Create a simple demo token (client-side only)
-      const demoToken = btoa(JSON.stringify({
-        access: 'demo',
-        timestamp: Date.now(),
-        expires: Date.now() + (2 * 60 * 60 * 1000) // 2 hours
-      }));
-      
-      // Store in localStorage
-      localStorage.setItem('demoToken', demoToken);
-      
-      console.log('Demo token stored, redirecting to live demo');
-      router.push('/live-demo');
+      try {
+        // Create a simple demo token (client-side only)
+        const tokenData = {
+          access: 'demo',
+          timestamp: Date.now(),
+          expires: Date.now() + (2 * 60 * 60 * 1000) // 2 hours
+        };
+        
+        const demoToken = btoa(JSON.stringify(tokenData));
+        console.log('Token data:', tokenData);
+        console.log('Encoded token:', demoToken);
+        
+        // Store in localStorage
+        localStorage.setItem('demoToken', demoToken);
+        console.log('Demo token stored in localStorage');
+        
+        // Test localStorage
+        const storedToken = localStorage.getItem('demoToken');
+        console.log('Retrieved token from localStorage:', storedToken);
+        
+        console.log('About to redirect to /live-demo');
+        router.push('/live-demo');
+        console.log('Redirect called');
+      } catch (error) {
+        console.error('Error during login process:', error);
+        setError('Login error: ' + error);
+      }
     } else {
       console.log('Password incorrect');
       setError('Invalid demo password');
     }
     
     setIsLoading(false);
+  };
+
+  const testLogin = () => {
+    console.log('Test login button clicked');
+    const testToken = btoa(JSON.stringify({
+      access: 'demo',
+      timestamp: Date.now(),
+      expires: Date.now() + (2 * 60 * 60 * 1000)
+    }));
+    localStorage.setItem('demoToken', testToken);
+    console.log('Test token set, redirecting...');
+    router.push('/live-demo');
   };
 
   return (
@@ -100,6 +130,16 @@ export default function DemoLogin() {
               {isLoading ? 'Accessing Demo...' : 'Access Live Demo'}
             </button>
           </form>
+
+          {/* Test button for debugging */}
+          <div className="mt-4">
+            <button
+              onClick={testLogin}
+              className="w-full bg-green-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-700 transition-colors"
+            >
+              🧪 Test Login (Skip Password)
+            </button>
+          </div>
 
           <div className="mt-6 p-4 bg-gray-50 rounded-lg">
             <p className="text-sm text-gray-600 text-center">
