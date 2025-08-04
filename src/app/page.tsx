@@ -1295,8 +1295,6 @@ export default function Home() {
         </div>
       </section>
 
-
-
       {/* Market Opportunity Scanner Section */}
       <section id="market-opportunities" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
@@ -1421,12 +1419,6 @@ export default function Home() {
           </ScrollAnimation>
         </div>
       </section>
-
-
-
-
-
-
 
       {/* Team Section */}
       <section id="team" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
