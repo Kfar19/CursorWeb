@@ -1175,7 +1175,7 @@ export default function Home() {
                       <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black mb-6 text-center leading-tight tracking-tight">
               The Data That Moves Money
             </h2>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-6 text-center relative z-10">
+          <p className="text-lg sm:text-xl md:text-2xl text-black max-w-4xl mx-auto mb-6 text-center relative z-10">
             Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
           </p>
           
@@ -1307,7 +1307,7 @@ export default function Home() {
             <p className="text-xl text-black max-w-4xl mx-auto mb-4 text-center">
               AI-powered detection of emerging trends, undervalued assets, market inefficiencies, and timing signals
             </p>
-            <p className="text-sm text-gray-500 max-w-4xl mx-auto mb-12 text-center">
+            <p className="text-sm text-black max-w-4xl mx-auto mb-12 text-center">
               * Data shown is for illustration purposes only and does not represent actual investment opportunities or recommendations
             </p>
           </ScrollAnimation>
@@ -1405,7 +1405,7 @@ export default function Home() {
                     </div>
                     <div className="text-right">
                       <div className="text-sm font-semibold text-black">{opportunity.confidence}%</div>
-                      <div className="text-xs text-gray-500">Confidence</div>
+                                                <div className="text-xs text-black">Confidence</div>
                       <motion.div 
                         className="w-2 h-2 bg-black rounded-full mt-2"
                         animate={{ opacity: [0.5, 1, 0.5] }}
