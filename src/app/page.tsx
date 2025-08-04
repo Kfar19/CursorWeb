@@ -1175,7 +1175,7 @@ export default function Home() {
                       <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black mb-6 text-center leading-tight tracking-tight">
               The Data That Moves Money
             </h2>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-12 text-center relative z-10">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-6 text-center relative z-10">
             Where data becomes insight, and insight becomes advantage
           </p>
           
@@ -1299,7 +1299,7 @@ export default function Home() {
       <section id="market-opportunities" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 text-center">
+            <h2 className="text-4xl md:text-5xl font-black text-black mb-6 text-center leading-tight tracking-tight">
               Market Opportunity Scanner
             </h2>
           </ScrollAnimation>
