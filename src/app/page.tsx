@@ -1176,7 +1176,7 @@ export default function Home() {
               The Data That Moves Money
             </h2>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto mb-6 text-center relative z-10">
-            Where data becomes insight, and insight becomes advantage
+            Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
           </p>
           
           <ScrollAnimation delay={0.3}>
