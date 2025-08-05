@@ -20,7 +20,6 @@ import {
   Code
 } from 'lucide-react';
 import ThemeToggle from './components/ThemeToggle';
-import MoneyRain from './components/MoneyRain';
 import Lottie from 'lottie-react';
 import aiDataAnimation from '../../public/ai-data-animation.json';
 import brainAnimation from '../../public/brain-animation.json';
@@ -694,9 +693,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden relative">
 
-      {/* Money Rain Effect */}
-      <MoneyRain />
-      
       {/* Particle Background */}
       <div className="fixed inset-0 z-0">
         <Particles
