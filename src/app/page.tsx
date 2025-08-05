@@ -20,6 +20,7 @@ import {
   Code
 } from 'lucide-react';
 import ThemeToggle from './components/ThemeToggle';
+import OldFinanceFall from './components/OldFinanceFall';
 import Lottie from 'lottie-react';
 import aiDataAnimation from '../../public/ai-data-animation.json';
 import brainAnimation from '../../public/brain-animation.json';
@@ -693,6 +694,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden relative">
 
+      {/* Old Finance Falling Effect */}
+      <OldFinanceFall />
+      
       {/* Particle Background */}
       <div className="fixed inset-0 z-0">
         <Particles
