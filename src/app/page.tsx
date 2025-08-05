@@ -19,6 +19,7 @@ import {
   Mail,
   Code
 } from 'lucide-react';
+import ThemeToggle from './components/ThemeToggle';
 import Lottie from 'lottie-react';
 import aiDataAnimation from '../../public/ai-data-animation.json';
 import brainAnimation from '../../public/brain-animation.json';
@@ -881,21 +882,22 @@ export default function Home() {
       )}
 
       {/* Navbar */}
-      <nav className="fixed top-0 w-full bg-white/98 backdrop-blur-premium border-b border-gray-200 z-10 shadow-premium">
+      <nav className="fixed top-0 w-full bg-white/98 dark:bg-gray-900/98 backdrop-blur-premium border-b border-gray-200 dark:border-gray-700 z-10 shadow-premium">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center cursor-pointer">
-              <div className="text-3xl font-black text-black">
+              <div className="text-3xl font-black text-black dark:text-white">
                 Birdai
               </div>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
+              <ThemeToggle />
               <motion.a 
                 href="#home" 
-                className="text-black hover:text-gray-600 transition-colors relative group font-semibold"
+                className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors relative group font-semibold"
                 whileHover={{ scale: 1.05 }}
               >
                 <span>Home</span>
@@ -907,7 +909,7 @@ export default function Home() {
               
               <Link
                 href="/research" 
-                className="text-black hover:text-gray-600 transition-colors relative group font-semibold"
+                className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors relative group font-semibold"
               >
                 <motion.div whileHover={{ scale: 1.05 }}>
                   <span>Research</span>
@@ -922,7 +924,7 @@ export default function Home() {
               
               <motion.a 
                 href="#market-opportunities" 
-                className="text-black hover:text-gray-600 transition-colors relative group flex items-center space-x-1 font-semibold"
+                className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors relative group flex items-center space-x-1 font-semibold"
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -944,7 +946,7 @@ export default function Home() {
               
               <motion.button 
                 onClick={() => setIsContactModalOpen(true)}
-                className="bg-gradient-accent text-white font-semibold py-2.5 px-6 rounded-full text-sm shadow-premium transition-all duration-300 relative overflow-hidden group"
+                className="bg-black dark:bg-white text-white dark:text-black font-semibold py-2.5 px-6 rounded-full text-sm shadow-premium transition-all duration-300 relative overflow-hidden group"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -959,10 +961,11 @@ export default function Home() {
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="md:hidden flex items-center space-x-4">
+              <ThemeToggle />
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-black hover:text-gray-600 font-semibold"
+                className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 font-semibold"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -972,10 +975,10 @@ export default function Home() {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <div className="md:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white rounded-lg mt-2 border border-gray-200 shadow-lg">
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-gray-800 rounded-lg mt-2 border border-gray-200 dark:border-gray-700 shadow-lg">
                 <motion.a 
                   href="#home" 
-                  className="block px-3 py-2 text-black hover:text-gray-600 transition-colors rounded-md hover:bg-gray-50 font-semibold"
+                  className="block px-3 py-2 text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 font-semibold"
                   whileHover={{ x: 5 }}
                 >
                   Home
@@ -983,7 +986,7 @@ export default function Home() {
                 
                 <Link
                   href="/research" 
-                  className="block px-3 py-2 text-black hover:text-gray-600 transition-colors rounded-md hover:bg-gray-50 font-semibold"
+                  className="block px-3 py-2 text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 font-semibold"
                 >
                   <motion.div whileHover={{ x: 5 }}>
                     Research
@@ -994,7 +997,7 @@ export default function Home() {
                 
                 <motion.a 
                   href="#market-opportunities" 
-                  className="block px-3 py-2 text-black hover:text-gray-600 transition-colors rounded-md hover:bg-gray-50 flex items-center space-x-2 font-semibold"
+                  className="block px-3 py-2 text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center space-x-2 font-semibold"
                   whileHover={{ x: 5 }}
                 >
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -1013,7 +1016,7 @@ export default function Home() {
                 
                 <motion.button 
                   onClick={() => setIsContactModalOpen(true)}
-                  className="w-full mt-2 bg-black hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md text-sm shadow-lg transition-all duration-300"
+                  className="w-full mt-2 bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 font-semibold py-2 px-4 rounded-md text-sm shadow-lg transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                 >
                   Join Signal
@@ -1027,7 +1030,7 @@ export default function Home() {
       {/* Hero Section */}
       <motion.section 
         id="home" 
-        className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+        className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white dark:bg-gray-900"
         style={{ y: heroY, opacity: heroOpacity }}
       >
         {/* Animated Background Elements */}
@@ -1077,7 +1080,7 @@ export default function Home() {
             variants={fadeInUp}
           >
             <span 
-              className="block text-black relative font-bold"
+              className="block text-black dark:text-white relative font-bold"
             >
               Built to See What Others Miss.
             </span>
@@ -1089,7 +1092,7 @@ export default function Home() {
           <motion.div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <motion.button 
               onClick={() => setIsContactModalOpen(true)}
-              className="group relative bg-black text-white font-semibold py-4 px-8 rounded-full text-lg shadow-premium overflow-hidden border border-black"
+              className="group relative bg-black dark:bg-white text-white dark:text-black font-semibold py-4 px-8 rounded-full text-lg shadow-premium overflow-hidden border border-black dark:border-white"
               variants={fadeInUp}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -1119,14 +1122,14 @@ export default function Home() {
 
 
       {/* Mission Section */}
-      <section id="mission" className="py-24 px-4 sm:px-6 lg:px-8 bg-white relative">
-        <div className="absolute inset-0 bg-white z-0"></div>
+      <section id="mission" className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 relative">
+        <div className="absolute inset-0 bg-white dark:bg-gray-900 z-0"></div>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-lg sm:text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto text-center font-medium relative z-10">
+            <p className="text-lg sm:text-xl md:text-2xl text-black dark:text-white mb-8 max-w-3xl mx-auto text-center font-medium relative z-10">
               Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
             </p>
-            <p className="text-xl text-black max-w-4xl mx-auto mb-8 relative z-10">
+            <p className="text-xl text-black dark:text-white max-w-4xl mx-auto mb-8 relative z-10">
               We see patterns others miss. We move when others wait. We build the infrastructure that powers tomorrow's investment decisions.
             </p>
             <ScrollAnimation delay={0.4}>
@@ -1169,13 +1172,13 @@ export default function Home() {
       </section>
 
       {/* Live Data Section */}
-      <section id="live-data" className="py-24 px-4 sm:px-6 lg:px-8 bg-white relative">
-        <div className="absolute inset-0 bg-white"></div>
+      <section id="live-data" className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 relative">
+        <div className="absolute inset-0 bg-white dark:bg-gray-900"></div>
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black mb-6 text-center leading-tight tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black dark:text-white mb-6 text-center leading-tight tracking-tight">
             The Data That Moves Money
           </h2>
-          <p className="text-lg sm:text-xl md:text-2xl text-black max-w-4xl mx-auto mb-6 text-center relative z-10">
+          <p className="text-lg sm:text-xl md:text-2xl text-black dark:text-white max-w-4xl mx-auto mb-6 text-center relative z-10">
             Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
           </p>
           
@@ -1227,65 +1230,65 @@ export default function Home() {
 
 
       {/* Features Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black mb-12 md:mb-16 text-center leading-tight tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black dark:text-white mb-12 md:mb-16 text-center leading-tight tracking-tight">
             This Cycle Is Different
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {/* Feature 1 */}
             <motion.div 
-              className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm"
+              className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 shadow-sm"
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-black rounded-xl flex items-center justify-center mb-6"
+                className="w-16 h-16 bg-black dark:bg-white rounded-xl flex items-center justify-center mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
-                <Brain className="w-8 h-8 text-white" />
+                <Brain className="w-8 h-8 text-white dark:text-black" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-black mb-4">Better Tooling</h3>
-              <p className="text-black">
+              <h3 className="text-2xl font-bold text-black dark:text-white mb-4">Better Tooling</h3>
+              <p className="text-black dark:text-gray-300">
                 AI + on-chain infrastructure enables unprecedented deal discovery and execution.
               </p>
             </motion.div>
 
             {/* Feature 2 */}
             <motion.div 
-              className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm"
+              className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 shadow-sm"
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-black rounded-xl flex items-center justify-center mb-6"
+                className="w-16 h-16 bg-black dark:bg-white rounded-xl flex items-center justify-center mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
-                <Code className="w-8 h-8 text-white" />
+                <Code className="w-8 h-8 text-white dark:text-black" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-black mb-4">Fundamental Execution</h3>
-              <p className="text-black">
+              <h3 className="text-2xl font-bold text-black dark:text-white mb-4">Fundamental Execution</h3>
+              <p className="text-black dark:text-gray-300">
                 Where legacy firms add headcount, we add code. Scalable, intelligent, and aligned from day one.
               </p>
             </motion.div>
 
             {/* Feature 3 */}
             <motion.div 
-              className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm"
+              className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 shadow-sm"
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-black rounded-xl flex items-center justify-center mb-6"
+                className="w-16 h-16 bg-black dark:bg-white rounded-xl flex items-center justify-center mb-6"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
-                <Brain className="w-8 h-8 text-white" />
+                <Brain className="w-8 h-8 text-white dark:text-black" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-black mb-4">Machine Intelligence</h3>
-              <p className="text-black">
+              <h3 className="text-2xl font-bold text-black dark:text-white mb-4">Machine Intelligence</h3>
+              <p className="text-black dark:text-gray-300">
                 AI-powered signal processing at scale. See patterns others miss.
               </p>
             </motion.div>
@@ -1296,7 +1299,7 @@ export default function Home() {
       </section>
 
       {/* Market Opportunity Scanner Section */}
-      <section id="market-opportunities" className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="market-opportunities" className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
             <h2 className="text-4xl md:text-5xl font-black text-black mb-6 text-center leading-tight tracking-tight">
