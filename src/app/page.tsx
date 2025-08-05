@@ -885,12 +885,12 @@ export default function Home() {
       )}
 
       {/* Navbar */}
-      <nav className="fixed top-0 w-full bg-white/98 dark:bg-gray-900/98 backdrop-blur-premium border-b border-gray-200 dark:border-gray-700 z-10 shadow-premium">
+      <nav className="fixed top-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-premium border-b border-gray-200/50 dark:border-gray-700/50 z-50 shadow-premium">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <div className="flex items-center cursor-pointer">
-              <div className="text-3xl font-black text-black dark:text-white">
+            <div className="flex items-center cursor-pointer group">
+              <div className="text-3xl font-black text-gradient dark:text-gradient-accent transition-all duration-300 group-hover:scale-105">
                 Birdai
               </div>
             </div>
@@ -949,7 +949,7 @@ export default function Home() {
               
               <motion.button 
                 onClick={() => setIsContactModalOpen(true)}
-                className="bg-black dark:bg-white text-white dark:text-black font-semibold py-2.5 px-6 rounded-full text-sm shadow-premium transition-all duration-300 relative overflow-hidden group"
+                className="bg-gradient-premium dark:bg-gradient-accent text-white dark:text-black font-semibold py-2.5 px-6 rounded-full text-sm shadow-premium hover:shadow-glow dark:hover:shadow-glow-dark transition-all duration-300 relative overflow-hidden group border border-gray-200/20 dark:border-gray-700/20"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -1033,7 +1033,7 @@ export default function Home() {
       {/* Hero Section */}
       <motion.section 
         id="home" 
-        className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white dark:bg-gray-900"
+        className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800"
         style={{ y: heroY, opacity: heroOpacity }}
       >
         {/* Animated Background Elements */}
@@ -1079,11 +1079,11 @@ export default function Home() {
 
 
           <motion.h1 
-            className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 relative text-center"
+            className="text-3xl sm:text-4xl md:text-6xl font-black mb-6 relative text-center leading-tight tracking-tight"
             variants={fadeInUp}
           >
             <span 
-              className="block text-black dark:text-white relative font-bold"
+              className="block text-gradient dark:text-gradient-accent relative font-bold"
             >
               Built to See What Others Miss.
             </span>
@@ -1095,7 +1095,7 @@ export default function Home() {
           <motion.div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <motion.button 
               onClick={() => setIsContactModalOpen(true)}
-              className="group relative bg-black dark:bg-white text-white dark:text-black font-semibold py-4 px-8 rounded-full text-lg shadow-premium overflow-hidden border border-black dark:border-white"
+              className="group relative bg-gradient-premium dark:bg-gradient-accent text-white dark:text-black font-semibold py-4 px-8 rounded-full text-lg shadow-premium hover:shadow-glow dark:hover:shadow-glow-dark overflow-hidden border border-gray-200/20 dark:border-gray-700/20"
               variants={fadeInUp}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -1241,57 +1241,57 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {/* Feature 1 */}
             <motion.div 
-              className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 shadow-sm"
+              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-premium rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-soft hover:shadow-premium transition-all duration-300"
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-black dark:bg-white rounded-xl flex items-center justify-center mb-6"
+                className="w-16 h-16 bg-gradient-premium dark:bg-gradient-accent rounded-xl flex items-center justify-center mb-6 shadow-soft"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
                 <Brain className="w-8 h-8 text-white dark:text-black" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-black dark:text-white mb-4">Better Tooling</h3>
-              <p className="text-black dark:text-gray-300">
+              <h3 className="text-2xl font-bold text-gradient dark:text-gradient-accent mb-4">Better Tooling</h3>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 AI + on-chain infrastructure enables unprecedented deal discovery and execution.
               </p>
             </motion.div>
 
             {/* Feature 2 */}
             <motion.div 
-              className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 shadow-sm"
+              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-premium rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-soft hover:shadow-premium transition-all duration-300"
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-black dark:bg-white rounded-xl flex items-center justify-center mb-6"
+                className="w-16 h-16 bg-gradient-premium dark:bg-gradient-accent rounded-xl flex items-center justify-center mb-6 shadow-soft"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
                 <Code className="w-8 h-8 text-white dark:text-black" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-black dark:text-white mb-4">Fundamental Execution</h3>
-              <p className="text-black dark:text-gray-300">
+              <h3 className="text-2xl font-bold text-gradient dark:text-gradient-accent mb-4">Fundamental Execution</h3>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 Where legacy firms add headcount, we add code. Scalable, intelligent, and aligned from day one.
               </p>
             </motion.div>
 
             {/* Feature 3 */}
             <motion.div 
-              className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 shadow-sm"
+              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-premium rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-soft hover:shadow-premium transition-all duration-300"
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-black dark:bg-white rounded-xl flex items-center justify-center mb-6"
+                className="w-16 h-16 bg-gradient-premium dark:bg-gradient-accent rounded-xl flex items-center justify-center mb-6 shadow-soft"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
                 <Brain className="w-8 h-8 text-white dark:text-black" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-black dark:text-white mb-4">Machine Intelligence</h3>
-              <p className="text-black dark:text-gray-300">
+              <h3 className="text-2xl font-bold text-gradient dark:text-gradient-accent mb-4">Machine Intelligence</h3>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 AI-powered signal processing at scale. See patterns others miss.
               </p>
             </motion.div>
