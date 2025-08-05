@@ -886,11 +886,9 @@ export default function Home() {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center cursor-pointer group">
-              <img 
-                src="/birdai-logo.svg" 
-                alt="Birdai" 
-                className="h-8 w-auto transition-all duration-300 group-hover:scale-105"
-              />
+              <div className="text-3xl font-black text-gradient dark:text-gradient-accent transition-all duration-300 group-hover:scale-105">
+                Birdai
+              </div>
             </div>
 
             {/* Desktop Navigation */}
