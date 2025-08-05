@@ -886,7 +886,7 @@ export default function Home() {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center cursor-pointer group">
-              <div className="text-3xl font-black text-gradient dark:text-gradient-accent transition-all duration-300 group-hover:scale-105">
+              <div className="text-3xl font-black text-black transition-all duration-300 group-hover:scale-105">
                 Birdai
               </div>
             </div>
@@ -895,56 +895,45 @@ export default function Home() {
             <div className="hidden md:flex items-center space-x-6">
               <motion.a 
                 href="#home" 
-                className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors relative group font-semibold"
+                className="text-black hover:text-gray-600 transition-colors relative group font-semibold"
                 whileHover={{ scale: 1.05 }}
               >
                 <span>Home</span>
                 <motion.div 
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-600 dark:bg-emerald-400 group-hover:w-full transition-all duration-300"
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300"
                   whileHover={{ width: "100%" }}
                 />
               </motion.a>
               
               <Link
                 href="/research" 
-                className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors relative group font-semibold"
+                className="text-black hover:text-gray-600 transition-colors relative group font-semibold"
               >
                 <motion.div whileHover={{ scale: 1.05 }}>
                   <span>Research</span>
                   <motion.div 
-                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-500 to-emerald-600 group-hover:w-full transition-all duration-300"
+                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300"
                     whileHover={{ width: "100%" }}
                   />
                 </motion.div>
               </Link>
               
-
-              
               <motion.a 
                 href="#market-opportunities" 
-                className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors relative group flex items-center space-x-1 font-semibold"
+                className="text-black hover:text-gray-600 transition-colors relative group flex items-center space-x-1 font-semibold"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-black rounded-full animate-pulse"></div>
                 <span>Data Intelligence</span>
                 <motion.div 
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-500 to-emerald-600 group-hover:w-full transition-all duration-300"
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300"
                   whileHover={{ width: "100%" }}
                 />
               </motion.a>
               
-
-              
-              
-              
-
-              
-              
-              
-              
               <motion.button 
                 onClick={() => setIsContactModalOpen(true)}
-                className="bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 text-white font-semibold py-2.5 px-6 rounded-full text-sm shadow-premium hover:shadow-glow dark:hover:shadow-glow-dark transition-all duration-300 relative overflow-hidden group border border-emerald-200/20 dark:border-emerald-700/20"
+                className="bg-black text-white font-semibold py-2.5 px-6 rounded-full text-sm shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -997,7 +986,7 @@ export default function Home() {
                   className="block px-3 py-2 text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center space-x-2 font-semibold"
                   whileHover={{ x: 5 }}
                 >
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-black rounded-full animate-pulse"></div>
                   <span>Data Intelligence</span>
                 </motion.a>
                 
@@ -1027,7 +1016,7 @@ export default function Home() {
       {/* Hero Section */}
       <motion.section 
         id="home" 
-        className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-br from-emerald-50 to-white dark:from-slate-900 dark:to-slate-800"
+        className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white"
         style={{ y: heroY, opacity: heroOpacity }}
       >
         {/* Animated Background Elements */}
@@ -1089,7 +1078,7 @@ export default function Home() {
           <motion.div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <motion.button 
               onClick={() => setIsContactModalOpen(true)}
-              className="group relative bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-500 dark:to-emerald-600 text-white font-semibold py-4 px-8 rounded-full text-lg shadow-premium hover:shadow-glow dark:hover:shadow-glow-dark overflow-hidden border border-emerald-200/20 dark:border-emerald-700/20"
+              className="group relative bg-black text-white font-semibold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl overflow-hidden"
               variants={fadeInUp}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
