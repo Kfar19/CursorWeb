@@ -1175,9 +1175,6 @@ export default function Home() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black dark:text-white mb-6 text-center leading-tight tracking-tight">
             The Data That Moves Money
           </h2>
-          <p className="text-lg sm:text-xl md:text-2xl text-black dark:text-white max-w-4xl mx-auto mb-6 text-center relative z-10">
-            Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
-          </p>
           
           <ScrollAnimation delay={0.3}>
             <div className="flex justify-center mb-12">
