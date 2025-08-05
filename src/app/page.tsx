@@ -19,7 +19,7 @@ import {
   Mail,
   Code
 } from 'lucide-react';
-import ThemeToggle from './components/ThemeToggle';
+
 import Lottie from 'lottie-react';
 import aiDataAnimation from '../../public/ai-data-animation.json';
 import brainAnimation from '../../public/brain-animation.json';
@@ -893,7 +893,6 @@ export default function Home() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
-              <ThemeToggle />
               <motion.a 
                 href="#home" 
                 className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors relative group font-semibold"
@@ -961,7 +960,6 @@ export default function Home() {
 
             {/* Mobile menu button */}
             <div className="md:hidden flex items-center space-x-4">
-              <ThemeToggle />
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 font-semibold"
