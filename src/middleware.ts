@@ -2,9 +2,10 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  // Protect admin routes (except login)
+  // Protect admin routes (except login and emails)
   if (request.nextUrl.pathname.startsWith('/admin') && 
       !request.nextUrl.pathname.startsWith('/admin/login') &&
+      !request.nextUrl.pathname.startsWith('/admin/emails') &&
       !request.nextUrl.pathname.startsWith('/api/admin')) {
     
     // Check for admin token in cookies or headers

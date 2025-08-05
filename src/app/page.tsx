@@ -907,7 +907,7 @@ export default function Home() {
               
               <Link
                 href="/research" 
-                className="text-gray-800 hover:text-gray-900 transition-colors relative group font-semibold"
+                className="text-black hover:text-gray-600 transition-colors relative group font-semibold"
               >
                 <motion.div whileHover={{ scale: 1.05 }}>
                   <span>Research</span>
@@ -922,7 +922,7 @@ export default function Home() {
               
               <motion.a 
                 href="#market-opportunities" 
-                className="text-gray-800 hover:text-gray-900 transition-colors relative group flex items-center space-x-1 font-semibold"
+                className="text-black hover:text-gray-600 transition-colors relative group flex items-center space-x-1 font-semibold"
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -962,7 +962,7 @@ export default function Home() {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-800 hover:text-gray-900 font-semibold"
+                className="text-black hover:text-gray-600 font-semibold"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -975,7 +975,7 @@ export default function Home() {
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white rounded-lg mt-2 border border-gray-200 shadow-lg">
                 <motion.a 
                   href="#home" 
-                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 font-semibold"
+                  className="block px-3 py-2 text-black hover:text-gray-600 transition-colors rounded-md hover:bg-gray-50 font-semibold"
                   whileHover={{ x: 5 }}
                 >
                   Home
@@ -983,7 +983,7 @@ export default function Home() {
                 
                 <Link
                   href="/research" 
-                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 font-semibold"
+                  className="block px-3 py-2 text-black hover:text-gray-600 transition-colors rounded-md hover:bg-gray-50 font-semibold"
                 >
                   <motion.div whileHover={{ x: 5 }}>
                     Research
@@ -994,7 +994,7 @@ export default function Home() {
                 
                 <motion.a 
                   href="#market-opportunities" 
-                  className="block px-3 py-2 text-gray-800 hover:text-gray-900 transition-colors rounded-md hover:bg-gray-50 flex items-center space-x-2 font-semibold"
+                  className="block px-3 py-2 text-black hover:text-gray-600 transition-colors rounded-md hover:bg-gray-50 flex items-center space-x-2 font-semibold"
                   whileHover={{ x: 5 }}
                 >
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -1118,8 +1118,8 @@ export default function Home() {
 
 
 
-      {/* The Operating System for Private Markets Section */}
-      <section id="mission" className="py-20 px-4 sm:px-6 lg:px-8 bg-white relative">
+      {/* Mission Section */}
+      <section id="mission" className="py-24 px-4 sm:px-6 lg:px-8 bg-white relative">
         <div className="absolute inset-0 bg-white z-0"></div>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -1168,13 +1168,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Simplified Live Data Dashboard */}
-      <section id="live-data" className="py-20 px-4 sm:px-6 lg:px-8 bg-white relative">
+      {/* Live Data Section */}
+      <section id="live-data" className="py-24 px-4 sm:px-6 lg:px-8 bg-white relative">
         <div className="absolute inset-0 bg-white"></div>
         <div className="max-w-7xl mx-auto">
-                      <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black mb-6 text-center leading-tight tracking-tight">
-              The Data That Moves Money
-            </h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black mb-6 text-center leading-tight tracking-tight">
+            The Data That Moves Money
+          </h2>
           <p className="text-lg sm:text-xl md:text-2xl text-black max-w-4xl mx-auto mb-6 text-center relative z-10">
             Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
           </p>
@@ -1227,9 +1227,9 @@ export default function Home() {
 
 
       {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-12 md:mb-16 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black mb-12 md:mb-16 text-center leading-tight tracking-tight">
             This Cycle Is Different
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
@@ -1296,7 +1296,7 @@ export default function Home() {
       </section>
 
       {/* Market Opportunity Scanner Section */}
-      <section id="market-opportunities" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="market-opportunities" className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <ScrollAnimation>
             <h2 className="text-4xl md:text-5xl font-black text-black mb-6 text-center leading-tight tracking-tight">
