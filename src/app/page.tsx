@@ -696,77 +696,77 @@ export default function Home() {
       
       {/* Particle Background */}
       <div className="fixed inset-0 z-0">
-                <Particles
+        <Particles
           id="tsparticles"
           init={particlesInit}
           loaded={particlesLoaded}
           options={{
-              background: {
-                color: {
-                  value: "transparent",
-                },
+            background: {
+              color: {
+                value: "transparent",
               },
-              fpsLimit: 120,
-              interactivity: {
-                events: {
-                  onClick: {
-                    enable: true,
-                    mode: "push",
-                  },
-                  onHover: {
-                    enable: true,
-                    mode: "repulse",
-                  },
-                },
-                modes: {
-                  push: {
-                    quantity: 4,
-                  },
-                  repulse: {
-                    distance: 200,
-                    duration: 0.4,
-                  },
-                },
-              },
-                      particles: {
-          color: {
-            value: "#d1d5db",
-          },
-          links: {
-            color: "#d1d5db",
-            distance: 150,
-            enable: true,
-            opacity: 0.15,
-            width: 1,
-          },
-                move: {
-                  direction: "none",
+            },
+            fpsLimit: 120,
+            interactivity: {
+              events: {
+                onClick: {
                   enable: true,
-                  outModes: {
-                    default: "bounce",
-                  },
-                  random: false,
-                  speed: 1,
-                  straight: false,
+                  mode: "push",
                 },
-                number: {
-                  density: {
-                    enable: true,
-                  },
-                  value: typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 80, // Fewer particles on mobile
-                },
-                opacity: {
-                  value: 0.8,
-                },
-                shape: {
-                  type: "circle",
-                },
-                size: {
-                  value: { min: 2, max: 4 },
+                onHover: {
+                  enable: true,
+                  mode: "repulse",
                 },
               },
-              detectRetina: true,
-            }}
+              modes: {
+                push: {
+                  quantity: 4,
+                },
+                repulse: {
+                  distance: 200,
+                  duration: 0.4,
+                },
+              },
+            },
+            particles: {
+              color: {
+                value: "#6b7280",
+              },
+              links: {
+                color: "#6b7280",
+                distance: 150,
+                enable: true,
+                opacity: 0.2,
+                width: 1,
+              },
+              move: {
+                direction: "none",
+                enable: true,
+                outModes: {
+                  default: "bounce",
+                },
+                random: false,
+                speed: 1,
+                straight: false,
+              },
+              number: {
+                density: {
+                  enable: true,
+                },
+                value: typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 80, // Fewer particles on mobile
+              },
+              opacity: {
+                value: 1,
+              },
+              shape: {
+                type: "circle",
+              },
+              size: {
+                value: { min: 2, max: 4 },
+              },
+            },
+            detectRetina: true,
+          }}
         />
       </div>
       {/* Contact Modal */}
