@@ -887,7 +887,7 @@ export default function Home() {
               <img 
                 src="/birdai-logo.png" 
                 alt="Birdai" 
-                className="h-10 w-auto transition-all duration-300 group-hover:scale-105"
+                className="h-14 w-auto transition-all duration-300 group-hover:scale-105"
               />
             </div>
 
