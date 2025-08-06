@@ -1169,14 +1169,14 @@ export default function Home() {
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-gradient-premium dark:bg-gradient-accent rounded-xl flex items-center justify-center mb-6 shadow-soft"
+                className="w-16 h-16 bg-black rounded-xl flex items-center justify-center mb-6 shadow-soft"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
-                <Brain className="w-8 h-8 text-white dark:text-black" />
+                <Brain className="w-8 h-8 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-gradient dark:text-gradient-accent mb-4">Better Tooling</h3>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              <h3 className="text-2xl font-bold text-black mb-4">Better Tooling</h3>
+              <p className="text-black leading-relaxed">
                 AI + on-chain infrastructure enables unprecedented deal discovery and execution.
               </p>
             </motion.div>
@@ -1188,14 +1188,14 @@ export default function Home() {
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-gradient-premium dark:bg-gradient-accent rounded-xl flex items-center justify-center mb-6 shadow-soft"
+                className="w-16 h-16 bg-black rounded-xl flex items-center justify-center mb-6 shadow-soft"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
-                <Code className="w-8 h-8 text-white dark:text-black" />
+                <Code className="w-8 h-8 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-gradient dark:text-gradient-accent mb-4">Fundamental Execution</h3>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              <h3 className="text-2xl font-bold text-black mb-4">Fundamental Execution</h3>
+              <p className="text-black leading-relaxed">
                 Where legacy firms add headcount, we add code. Scalable, intelligent, and aligned from day one.
               </p>
             </motion.div>
@@ -1207,14 +1207,14 @@ export default function Home() {
               transition={{ duration: 0.3 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-gradient-premium dark:bg-gradient-accent rounded-xl flex items-center justify-center mb-6 shadow-soft"
+                className="w-16 h-16 bg-black rounded-xl flex items-center justify-center mb-6 shadow-soft"
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
-                <Brain className="w-8 h-8 text-white dark:text-black" />
+                <Brain className="w-8 h-8 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-gradient dark:text-gradient-accent mb-4">Machine Intelligence</h3>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              <h3 className="text-2xl font-bold text-black mb-4">Machine Intelligence</h3>
+              <p className="text-black leading-relaxed">
                 AI-powered signal processing at scale. See patterns others miss.
               </p>
             </motion.div>
@@ -1313,8 +1313,8 @@ export default function Home() {
                   >
                     <div className="flex items-center space-x-4">
                       <div className={`w-3 h-3 rounded-full ${
-                        opportunity.riskLevel === 'low' ? 'bg-green-500' : 
-                        opportunity.riskLevel === 'medium' ? 'bg-yellow-500' : 'bg-red-500'
+                        opportunity.riskLevel === 'low' ? 'bg-black' : 
+                        opportunity.riskLevel === 'medium' ? 'bg-gray-600' : 'bg-red-500'
                       }`} />
                       <div>
                         <div className="flex items-center space-x-2">
@@ -1327,7 +1327,7 @@ export default function Home() {
                         <div className="flex items-center space-x-4 mt-1">
                           <span className="text-black text-sm">{opportunity.category}</span>
                           <span className="text-black text-sm">{opportunity.timeframe}</span>
-                          <span className="text-green-600 font-semibold">{opportunity.potentialReturn}</span>
+                          <span className="text-black font-semibold">{opportunity.potentialReturn}</span>
                           <span className="text-black text-xs">{opportunity.timestamp}</span>
                         </div>
                       </div>
