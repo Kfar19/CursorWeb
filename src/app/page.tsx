@@ -1066,7 +1066,7 @@ export default function Home() {
             variants={fadeInUp}
           >
             <span 
-              className="block text-gradient dark:text-gradient-accent relative font-bold"
+              className="block text-black relative font-bold"
             >
               Built to See What Others Miss.
             </span>
