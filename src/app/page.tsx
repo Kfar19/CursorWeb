@@ -924,7 +924,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="w-2 h-2 bg-black rounded-full animate-pulse"></div>
-                <span>Data Intelligence</span>
+                <span>Market Scanner</span>
                 <motion.div 
                   className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300"
                   whileHover={{ width: "100%" }}
@@ -987,7 +987,7 @@ export default function Home() {
                   whileHover={{ x: 5 }}
                 >
                   <div className="w-2 h-2 bg-black rounded-full animate-pulse"></div>
-                  <span>Data Intelligence</span>
+                  <span>Market Scanner</span>
                 </motion.a>
                 
 
@@ -1166,76 +1166,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Live Data Section */}
-      <section id="live-data" className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 relative">
-        <div className="absolute inset-0 bg-white dark:bg-gray-900"></div>
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black dark:text-white mb-6 text-center leading-tight tracking-tight">
-            The Data That Moves Money
-          </h2>
-          <p className="text-lg sm:text-xl md:text-2xl text-black max-w-4xl mx-auto mb-6 text-center relative z-10">
-            Where data becomes insight, and insight becomes advantage
-          </p>
-          
-          <ScrollAnimation delay={0.3}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              <motion.div 
-                className="text-center p-6 rounded-lg border border-gray-200 bg-gray-50"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="text-3xl font-bold text-black mb-2">$3.25T</div>
-                <div className="text-sm text-gray-600">Total Market Cap</div>
-              </motion.div>
-              
-              <motion.div 
-                className="text-center p-6 rounded-lg border border-gray-200 bg-gray-50"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="text-3xl font-bold text-black mb-2">2,847</div>
-                <div className="text-sm text-gray-600">Twitter Mentions</div>
-              </motion.div>
-              
-              <motion.div 
-                className="text-center p-6 rounded-lg border border-gray-200 bg-gray-50"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="text-3xl font-bold text-black mb-2">65%</div>
-                <div className="text-sm text-gray-600">Bullish Sentiment</div>
-              </motion.div>
-              
-              <motion.div 
-                className="text-center p-6 rounded-lg border border-gray-200 bg-gray-50"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="text-3xl font-bold text-black mb-2">47</div>
-                <div className="text-sm text-gray-600">Opportunities Found</div>
-              </motion.div>
-            </div>
-          </ScrollAnimation>
-
-
-
-        </div>
-      </section>
-
-
-
-
-
-
 
       {/* Features Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
