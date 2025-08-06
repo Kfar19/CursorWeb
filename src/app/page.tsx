@@ -20,9 +20,7 @@ import {
   Code
 } from 'lucide-react';
 
-import Lottie from 'lottie-react';
-import aiDataAnimation from '../../public/ai-data-animation.json';
-import brainAnimation from '../../public/brain-animation.json';
+
 
 
 
@@ -1119,37 +1117,47 @@ export default function Home() {
               We see patterns others miss. We move when others wait. We build the infrastructure that powers tomorrow's investment decisions.
             </p>
             <ScrollAnimation delay={0.4}>
-              <div className="flex justify-center mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                 <motion.div 
-                  className="w-64 h-64 md:w-96 md:h-96 relative"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1, ease: "easeOut" }}
-                  whileHover={{ scale: 1.02, y: -5 }}
+                  className="text-center p-6 rounded-lg border border-gray-200"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  whileHover={{ y: -5 }}
                 >
-                  <Lottie
-                    animationData={brainAnimation}
-                    loop={true}
-                    autoplay={true}
-                    style={{ 
-                      width: '100%', 
-                      height: '100%',
-                      filter: 'hue-rotate(200deg) saturate(1.1) brightness(1.3)'
-                    }}
-                  />
-                                  {/* Enhanced glow effect */}
+                  <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Brain className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-black mb-2">Intelligence</h3>
+                  <p className="text-gray-600">Advanced pattern recognition and predictive analytics</p>
+                </motion.div>
+                
                 <motion.div 
-                  className="absolute inset-0 bg-transparent rounded-full blur-2xl"
-                  animate={{ 
-                    opacity: [0, 0, 0],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
-                />
+                  className="text-center p-6 rounded-lg border border-gray-200"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Code className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-black mb-2">Technology</h3>
+                  <p className="text-gray-600">Cutting-edge infrastructure and automation</p>
+                </motion.div>
+                
+                <motion.div 
+                  className="text-center p-6 rounded-lg border border-gray-200"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Mail className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-black mb-2">Capital</h3>
+                  <p className="text-gray-600">Strategic investment and capital deployment</p>
                 </motion.div>
               </div>
             </ScrollAnimation>
@@ -1169,37 +1177,49 @@ export default function Home() {
           </p>
           
           <ScrollAnimation delay={0.3}>
-            <div className="flex justify-center mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               <motion.div 
-                className="w-64 h-64 md:w-96 md:h-96 relative"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                whileHover={{ scale: 1.02, y: -5 }}
+                className="text-center p-6 rounded-lg border border-gray-200 bg-gray-50"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                whileHover={{ y: -5 }}
               >
-                                  <Lottie
-                    animationData={aiDataAnimation}
-                    loop={true}
-                    autoplay={true}
-                    style={{ 
-                      width: '100%', 
-                      height: '100%',
-                      filter: 'grayscale(0.8) contrast(1.2) brightness(0.9)'
-                    }}
-                  />
-                {/* Enhanced glow effect */}
-                <motion.div 
-                  className="absolute inset-0 bg-transparent rounded-full blur-2xl"
-                  animate={{ 
-                    opacity: [0, 0, 0],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
-                />
+                <div className="text-3xl font-bold text-black mb-2">$3.25T</div>
+                <div className="text-sm text-gray-600">Total Market Cap</div>
+              </motion.div>
+              
+              <motion.div 
+                className="text-center p-6 rounded-lg border border-gray-200 bg-gray-50"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="text-3xl font-bold text-black mb-2">2,847</div>
+                <div className="text-sm text-gray-600">Twitter Mentions</div>
+              </motion.div>
+              
+              <motion.div 
+                className="text-center p-6 rounded-lg border border-gray-200 bg-gray-50"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="text-3xl font-bold text-black mb-2">65%</div>
+                <div className="text-sm text-gray-600">Bullish Sentiment</div>
+              </motion.div>
+              
+              <motion.div 
+                className="text-center p-6 rounded-lg border border-gray-200 bg-gray-50"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="text-3xl font-bold text-black mb-2">47</div>
+                <div className="text-sm text-gray-600">Opportunities Found</div>
               </motion.div>
             </div>
           </ScrollAnimation>
