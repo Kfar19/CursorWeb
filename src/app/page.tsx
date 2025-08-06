@@ -1118,51 +1118,31 @@ export default function Home() {
             <p className="text-xl text-black dark:text-white max-w-4xl mx-auto mb-8 relative z-10">
               We see patterns others miss. We move when others wait. We build the infrastructure that powers tomorrow's investment decisions.
             </p>
-            <ScrollAnimation delay={0.4}>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <motion.div 
-                  className="text-center p-6 rounded-lg border border-gray-200"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Brain className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-black mb-2">Intelligence</h3>
-                  <p className="text-gray-600">Advanced pattern recognition and predictive analytics</p>
-                </motion.div>
-                
-                <motion.div 
-                  className="text-center p-6 rounded-lg border border-gray-200"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Code className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-black mb-2">Technology</h3>
-                  <p className="text-gray-600">Cutting-edge infrastructure and automation</p>
-                </motion.div>
-                
-                <motion.div 
-                  className="text-center p-6 rounded-lg border border-gray-200"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Mail className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-black mb-2">Capital</h3>
-                  <p className="text-gray-600">Strategic investment and capital deployment</p>
-                </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="text-center p-6 rounded-lg border border-gray-200">
+                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Brain className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-black mb-2">Intelligence</h3>
+                <p className="text-gray-600">Advanced pattern recognition and predictive analytics</p>
               </div>
-            </ScrollAnimation>
+              
+              <div className="text-center p-6 rounded-lg border border-gray-200">
+                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Code className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-black mb-2">Technology</h3>
+                <p className="text-gray-600">Cutting-edge infrastructure and automation</p>
+              </div>
+              
+              <div className="text-center p-6 rounded-lg border border-gray-200">
+                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Mail className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-black mb-2">Capital</h3>
+                <p className="text-gray-600">Strategic investment and capital deployment</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
