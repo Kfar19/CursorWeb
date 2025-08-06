@@ -883,11 +883,20 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <div className="flex items-center cursor-pointer group">
-              <img 
+            <div className="flex items-center justify-center cursor-pointer group">
+              <motion.img 
                 src="/birdai-logo.png" 
                 alt="Birdai" 
-                className="h-14 w-auto transition-all duration-300 group-hover:scale-105"
+                className="h-20 w-auto"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                whileHover={{ 
+                  scale: 1.1,
+                  rotate: [0, -2, 2, 0],
+                  transition: { duration: 0.3 }
+                }}
+                whileTap={{ scale: 0.95 }}
               />
             </div>
 
