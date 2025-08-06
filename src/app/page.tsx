@@ -1117,14 +1117,13 @@ export default function Home() {
 
 
       {/* Mission Section */}
-      <section id="mission" className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 relative">
-        <div className="absolute inset-0 bg-white dark:bg-gray-900 z-0"></div>
+      <section id="mission" className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-lg sm:text-xl md:text-2xl text-black dark:text-white mb-8 max-w-3xl mx-auto text-center font-medium relative z-10">
+            <p className="text-lg sm:text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto text-center font-medium">
               Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
             </p>
-            <p className="text-xl text-black dark:text-white max-w-4xl mx-auto mb-8 relative z-10">
+            <p className="text-xl text-black max-w-4xl mx-auto mb-8">
               We see patterns others miss. We move when others wait. We build the infrastructure that powers tomorrow's investment decisions.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -1157,9 +1156,9 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black dark:text-white mb-12 md:mb-16 text-center leading-tight tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black mb-12 md:mb-16 text-center leading-tight tracking-tight">
             This Cycle Is Different
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
