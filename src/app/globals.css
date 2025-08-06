@@ -8,26 +8,26 @@
   --muted: #6b7280;
   --muted-background: #f9fafb;
   --border: #e5e7eb;
-  --accent: #059669;
+  --accent: #000000;
   --accent-foreground: #ffffff;
-  --primary: #059669;
-  --secondary: #047857;
-  --tertiary: #065f46;
-  --success: #059669;
+  --primary: #000000;
+  --secondary: #333333;
+  --tertiary: #666666;
+  --success: #000000;
   --warning: #d97706;
   --error: #dc2626;
   --card: #ffffff;
   --card-foreground: #059669;
   --popover: #ffffff;
   --popover-foreground: #059669;
-  --shadow-sm: 0 1px 2px 0 rgb(5 150 105 / 0.05);
-  --shadow: 0 1px 3px 0 rgb(5 150 105 / 0.1), 0 1px 2px -1px rgb(5 150 105 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(5 150 105 / 0.1), 0 2px 4px -2px rgb(5 150 105 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(5 150 105 / 0.1), 0 4px 6px -4px rgb(5 150 105 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(5 150 105 / 0.1), 0 8px 10px -6px rgb(5 150 105 / 0.1);
-  --gradient-primary: linear-gradient(135deg, #059669 0%, #047857 100%);
-  --gradient-accent: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
-  --gradient-glow: linear-gradient(135deg, rgba(5, 150, 105, 0.1) 0%, rgba(4, 120, 87, 0.1) 100%);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --gradient-primary: linear-gradient(135deg, #000000 0%, #333333 100%);
+  --gradient-accent: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  --gradient-glow: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 100%);
 }
 
 .dark {
@@ -36,12 +36,12 @@
   --muted: #64748b;
   --muted-background: #1e293b;
   --border: #334155;
-  --accent: #10b981;
-  --accent-foreground: #ffffff;
-  --primary: #10b981;
-  --secondary: #059669;
-  --tertiary: #047857;
-  --success: #34d399;
+  --accent: #ffffff;
+  --accent-foreground: #000000;
+  --primary: #ffffff;
+  --secondary: #cccccc;
+  --tertiary: #999999;
+  --success: #ffffff;
   --warning: #fbbf24;
   --error: #f87171;
   --card: #1e293b;
@@ -53,9 +53,9 @@
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
-  --gradient-primary: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --gradient-primary: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
   --gradient-accent: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  --gradient-glow: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+  --gradient-glow: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
 }
 
 html {
