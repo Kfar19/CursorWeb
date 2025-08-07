@@ -1173,7 +1173,7 @@ export default function Home() {
               Meet the Founders
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Building the future of AI-driven venture capital at the intersection of machine learning, blockchain, and institutional finance.
+              Where intelligence compounds.
             </p>
           </motion.div>
           
