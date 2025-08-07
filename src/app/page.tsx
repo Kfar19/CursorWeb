@@ -28,6 +28,8 @@ import {
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [footerEmail, setFooterEmail] = useState('');
+  const [isFooterSubmitting, setIsFooterSubmitting] = useState(false);
 
   // Test if JavaScript is working
   useEffect(() => {
@@ -500,6 +502,23 @@ export default function Home() {
       ...prev,
       [name]: value
     }));
+  };
+
+  const handleFooterEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!footerEmail.trim()) return;
+    
+    setIsFooterSubmitting(true);
+    try {
+      // You can integrate with your email collection API here
+      console.log('Footer email submitted:', footerEmail);
+      setFooterEmail('');
+      // Optional: Show success message
+    } catch (error) {
+      console.error('Error submitting footer email:', error);
+    } finally {
+      setIsFooterSubmitting(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -1271,66 +1290,192 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid md:grid-cols-4 gap-8">
-            {/* Brand */}
-            <div className="md:col-span-2">
+      <footer className="bg-gray-900 text-white border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            {/* Brand & Description */}
+            <div className="lg:col-span-2">
               <motion.div 
-                className="text-2xl font-bold text-black mb-4"
+                className="text-2xl font-bold text-white mb-4"
                 whileHover={{ scale: 1.05 }}
               >
-                <motion.span 
-                  className="text-black"
-                >
+                <motion.span className="text-white">
                   Birdai
                 </motion.span>
               </motion.div>
-              <p className="text-black mb-6 max-w-md">
+              <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
                 Machine-native. Protocol-first. Liquidity-aware. See what others miss.
               </p>
+              
+              {/* Email Signup */}
+              <div className="mb-6">
+                <h4 className="text-sm font-semibold text-gray-200 mb-3">Stay Updated</h4>
+                <form onSubmit={handleFooterEmailSubmit} className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="email"
+                    value={footerEmail}
+                    onChange={(e) => setFooterEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    disabled={isFooterSubmitting}
+                    className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isFooterSubmitting ? 'Submitting...' : 'Subscribe'}
+                  </button>
+                </form>
+              </div>
+              
+              {/* Social Icons */}
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-black hover:bg-gray-800 rounded-full flex items-center justify-center transition-colors">
-                  <Twitter className="w-5 h-5 text-white" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-black hover:bg-gray-800 rounded-full flex items-center justify-center transition-colors">
-                  <Linkedin className="w-5 h-5 text-white" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-black hover:bg-gray-800 rounded-full flex items-center justify-center transition-colors">
-                  <Github className="w-5 h-5 text-white" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-black hover:bg-gray-800 rounded-full flex items-center justify-center transition-colors">
-                  <Mail className="w-5 h-5 text-white" />
-                </a>
+                <motion.a 
+                  href="https://twitter.com/birdai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gray-800 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all duration-200"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Twitter className="w-5 h-5 text-gray-300 hover:text-white transition-colors" />
+                </motion.a>
+                <motion.a 
+                  href="https://linkedin.com/company/birdai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gray-800 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all duration-200"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Linkedin className="w-5 h-5 text-gray-300 hover:text-white transition-colors" />
+                </motion.a>
+                <motion.a 
+                  href="https://github.com/birdai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gray-800 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all duration-200"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Github className="w-5 h-5 text-gray-300 hover:text-white transition-colors" />
+                </motion.a>
+                <motion.a 
+                  href="mailto:hello@birdai.xyz"
+                  className="w-10 h-10 bg-gray-800 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all duration-200"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Mail className="w-5 h-5 text-gray-300 hover:text-white transition-colors" />
+                </motion.a>
               </div>
             </div>
 
-            {/* Quick Links */}
+            {/* Navigation Links */}
             <div>
-              <h3 className="text-black font-semibold mb-4">Platform</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Signal</a></li>
-                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Score</a></li>
-                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Structure</a></li>
-                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Allocate</a></li>
+              <h3 className="text-white font-semibold mb-4">Navigation</h3>
+              <ul className="space-y-3">
+                <li>
+                  <motion.a 
+                    href="/research" 
+                    className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group"
+                    whileHover={{ x: 4 }}
+                  >
+                    <span className="group-hover:text-purple-400 transition-colors">Research</span>
+                  </motion.a>
+                </li>
+                <li>
+                  <motion.a 
+                    href="#contact" 
+                    onClick={() => setIsContactModalOpen(true)}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group cursor-pointer"
+                    whileHover={{ x: 4 }}
+                  >
+                    <span className="group-hover:text-purple-400 transition-colors">Join Signal</span>
+                  </motion.a>
+                </li>
+                <li>
+                  <motion.a 
+                    href="#contact" 
+                    onClick={() => setIsContactModalOpen(true)}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group cursor-pointer"
+                    whileHover={{ x: 4 }}
+                  >
+                    <span className="group-hover:text-purple-400 transition-colors">Contact</span>
+                  </motion.a>
+                </li>
+                <li>
+                  <motion.a 
+                    href="#invest" 
+                    className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group"
+                    whileHover={{ x: 4 }}
+                  >
+                    <span className="group-hover:text-purple-400 transition-colors">Invest</span>
+                  </motion.a>
+                </li>
               </ul>
             </div>
 
-            {/* Company */}
+            {/* Company Info */}
             <div>
-              <h3 className="text-black font-semibold mb-4">Company</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Team</a></li>
-                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Deals</a></li>
-                <li><a href="#" className="text-black hover:text-gray-600 transition-colors">Contact</a></li>
+              <h3 className="text-white font-semibold mb-4">Company</h3>
+              <ul className="space-y-3">
+                <li>
+                  <motion.a 
+                    href="#founders" 
+                    className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group"
+                    whileHover={{ x: 4 }}
+                  >
+                    <span className="group-hover:text-purple-400 transition-colors">Team</span>
+                  </motion.a>
+                </li>
+                <li>
+                  <motion.a 
+                    href="#mission" 
+                    className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group"
+                    whileHover={{ x: 4 }}
+                  >
+                    <span className="group-hover:text-purple-400 transition-colors">Mission</span>
+                  </motion.a>
+                </li>
+                <li>
+                  <motion.a 
+                    href="/products" 
+                    className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group"
+                    whileHover={{ x: 4 }}
+                  >
+                    <span className="group-hover:text-purple-400 transition-colors">Products</span>
+                  </motion.a>
+                </li>
+                <li>
+                  <motion.a 
+                    href="/admin" 
+                    className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group"
+                    whileHover={{ x: 4 }}
+                  >
+                    <span className="group-hover:text-purple-400 transition-colors">Admin</span>
+                  </motion.a>
+                </li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-gray-300 mt-8 pt-8 text-center">
-            <p className="text-black">
-              © 2025 Birdai. All rights reserved.
-            </p>
+          {/* Copyright */}
+          <div className="border-t border-gray-800 mt-12 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <p className="text-gray-400 text-sm mb-4 md:mb-0">
+                © 2025 Birdai. All rights reserved.
+              </p>
+              <div className="flex space-x-6 text-sm">
+                <a href="/privacy" className="text-gray-400 hover:text-white transition-colors duration-200">
+                  Privacy Policy
+                </a>
+                <a href="/terms" className="text-gray-400 hover:text-white transition-colors duration-200">
+                  Terms of Service
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
