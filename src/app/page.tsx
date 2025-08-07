@@ -978,41 +978,94 @@ export default function Home() {
 
 
       {/* Mission Section */}
-      <section id="mission" className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="mission" className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <p className="text-lg sm:text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto text-center font-medium">
               Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
             </p>
-            <p className="text-xl text-black max-w-4xl mx-auto mb-8">
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12">
               We see patterns others miss. We move when others wait. We build the infrastructure that powers tomorrow's investment decisions.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="text-center p-6 rounded-lg border border-gray-200">
-                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Brain className="w-8 h-8 text-white" />
+            
+            {/* Enhanced Pillars Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto">
+              {/* Intelligence Pillar */}
+              <motion.div 
+                className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl border border-gray-100 hover:border-purple-200 transition-all duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8, scale: 1.02 }}
+              >
+                {/* Hover glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <div className="relative z-10">
+                  <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                    <Brain className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-purple-700 transition-colors duration-300">Intelligence</h3>
+                  <p className="text-gray-600 leading-relaxed text-lg">
+                    Advanced pattern recognition and predictive analytics that identify opportunities before they become obvious.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-black mb-2">Intelligence</h3>
-                <p className="text-gray-600">Advanced pattern recognition and predictive analytics</p>
-              </div>
+              </motion.div>
               
-              <div className="text-center p-6 rounded-lg border border-gray-200">
-                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Code className="w-8 h-8 text-white" />
+              {/* Technology Pillar */}
+              <motion.div 
+                className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8, scale: 1.02 }}
+              >
+                {/* Hover glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <div className="relative z-10">
+                  <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                    <Code className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-700 transition-colors duration-300">Technology</h3>
+                  <p className="text-gray-600 leading-relaxed text-lg">
+                    Cutting-edge infrastructure and automation that scales with intelligence, not headcount.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-black mb-2">Technology</h3>
-                <p className="text-gray-600">Cutting-edge infrastructure and automation</p>
-              </div>
+              </motion.div>
               
-              <div className="text-center p-6 rounded-lg border border-gray-200">
-                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Mail className="w-8 h-8 text-white" />
+              {/* Capital Pillar */}
+              <motion.div 
+                className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl border border-gray-100 hover:border-green-200 transition-all duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8, scale: 1.02 }}
+              >
+                {/* Hover glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <div className="relative z-10">
+                  <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                    <Mail className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-green-700 transition-colors duration-300">Capital</h3>
+                  <p className="text-gray-600 leading-relaxed text-lg">
+                    Strategic investment and capital deployment that moves with conviction when others hesitate.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-black mb-2">Capital</h3>
-                <p className="text-gray-600">Strategic investment and capital deployment</p>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
