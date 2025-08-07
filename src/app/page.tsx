@@ -1006,10 +1006,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <p className="text-lg sm:text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto text-center font-medium">
-              Birdai explores what's hidden in plain sight. We combine intelligence, capital, and technology to move toward what's next—before it's obvious.
+            <p className="text-body-large text-black mb-8 sm:mb-12 max-w-3xl mx-auto text-center font-medium">
+              Birdai explores what's hidden in plain sight. We combine <span className="text-keyword-primary">intelligence</span>, <span className="text-keyword-secondary">capital</span>, and <span className="text-keyword-primary">technology</span> to move toward what's next—before it's obvious.
             </p>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12">
+            <p className="text-body-standard text-gray-600 dark:text-gray-400 max-w-4xl mx-auto mb-8 sm:mb-12 leading-relaxed">
               We see patterns others miss. We move when others wait. We build the infrastructure that powers tomorrow's investment decisions.
             </p>
             
@@ -1031,9 +1031,9 @@ export default function Home() {
                   <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                     <Brain className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-purple-700 transition-colors duration-300">Intelligence</h3>
-                  <p className="text-gray-600 leading-relaxed text-lg">
-                    Advanced pattern recognition and predictive analytics that identify opportunities before they become obvious.
+                  <h3 className="text-heading-card text-black mb-4 group-hover:text-purple-700 transition-colors duration-300">Intelligence</h3>
+                  <p className="text-body-standard text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                    Advanced <span className="text-keyword-primary">pattern recognition</span> and <span className="text-keyword-secondary">predictive analytics</span> that identify opportunities before they become obvious.
                   </p>
                 </div>
               </motion.div>
@@ -1054,9 +1054,9 @@ export default function Home() {
                   <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                     <Code className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-blue-700 transition-colors duration-300">Technology</h3>
-                  <p className="text-gray-600 leading-relaxed text-lg">
-                    Cutting-edge infrastructure and automation that scales with intelligence, not headcount.
+                  <h3 className="text-heading-card text-black mb-4 group-hover:text-blue-700 transition-colors duration-300">Technology</h3>
+                  <p className="text-body-standard text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                    Cutting-edge <span className="text-keyword-primary">infrastructure</span> and <span className="text-keyword-secondary">automation</span> that scales with intelligence, not headcount.
                   </p>
                 </div>
               </motion.div>
@@ -1077,9 +1077,9 @@ export default function Home() {
                   <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                     <Mail className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-black mb-4 group-hover:text-green-700 transition-colors duration-300">Capital</h3>
-                  <p className="text-gray-600 leading-relaxed text-lg">
-                    Strategic investment and capital deployment that moves with conviction when others hesitate.
+                  <h3 className="text-heading-card text-black mb-4 group-hover:text-green-700 transition-colors duration-300">Capital</h3>
+                  <p className="text-body-standard text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                    Strategic <span className="text-keyword-primary">investment</span> and <span className="text-keyword-secondary">capital deployment</span> that moves with conviction when others hesitate.
                   </p>
                 </div>
               </motion.div>
@@ -1198,8 +1198,8 @@ export default function Home() {
                 <p className="text-purple-600 font-medium mb-4">Co-Founder & CEO</p>
                 
                 {/* Bio */}
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  Repeat founder and investor at the intersection of machine learning, venture, and crypto. 
+                <p className="text-body-standard text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                  Repeat founder and investor at the intersection of <span className="text-keyword-primary">machine learning</span>, <span className="text-keyword-secondary">venture</span>, and <span className="text-keyword-primary">crypto</span>. 
                   Previously founded a machine learning credit fund acquired by Franklin Templeton in 2018.
                 </p>
                 
@@ -1252,9 +1252,9 @@ export default function Home() {
                 <p className="text-blue-600 font-medium mb-4">Co-Founder & CTO</p>
                 
                 {/* Bio */}
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  Seasoned investor and technologist operating at the intersection of blockchain, data science, 
-                  and institutional capital. Co-founded Franklin Templeton's Blockchain Venture Funds I and II.
+                <p className="text-body-standard text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                  Seasoned investor and technologist operating at the intersection of <span className="text-keyword-primary">blockchain</span>, <span className="text-keyword-secondary">data science</span>, 
+                  and <span className="text-keyword-primary">institutional capital</span>. Co-founded Franklin Templeton's Blockchain Venture Funds I and II.
                 </p>
                 
                 {/* Education */}

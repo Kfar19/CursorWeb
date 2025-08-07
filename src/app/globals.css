@@ -70,6 +70,41 @@ body {
   line-height: 1.6;
 }
 
+/* Typography utility classes */
+@layer utilities {
+  .text-body-large {
+    @apply text-lg sm:text-xl leading-relaxed;
+  }
+  
+  .text-body-standard {
+    @apply text-base sm:text-lg leading-relaxed;
+  }
+  
+  .text-keyword-primary {
+    @apply font-bold text-purple-600 dark:text-purple-400;
+  }
+  
+  .text-keyword-secondary {
+    @apply font-semibold text-blue-600 dark:text-blue-400;
+  }
+  
+  .text-heading-hero {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight;
+  }
+  
+  .text-heading-section {
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold leading-tight;
+  }
+  
+  .text-heading-subsection {
+    @apply text-2xl sm:text-3xl font-bold leading-snug;
+  }
+  
+  .text-heading-card {
+    @apply text-xl sm:text-2xl font-bold leading-snug;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
