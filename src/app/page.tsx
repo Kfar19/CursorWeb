@@ -932,35 +932,45 @@ export default function Home() {
             </span>
           </motion.h1>
 
-
+          {/* Subheadline */}
+          <motion.p 
+            className="text-lg sm:text-xl md:text-2xl text-black mb-12 max-w-4xl mx-auto text-center font-medium leading-relaxed"
+            variants={fadeInUp}
+          >
+            We deploy AI-driven capital and infrastructure to discover high-conviction startups before anyone else.
+          </motion.p>
 
           {/* Enhanced CTA Button */}
-          <motion.div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <motion.div className="flex justify-center items-center">
             <motion.button 
               onClick={() => setIsContactModalOpen(true)}
-              className="group relative bg-black text-white font-semibold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl overflow-hidden"
+              className="group relative bg-black text-white font-bold py-5 px-10 rounded-full text-xl shadow-2xl hover:shadow-3xl overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-1"
               variants={fadeInUp}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
+              {/* Subtle background glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/5 to-white/10 rounded-full blur-sm group-hover:blur-md transition-all duration-300"></div>
+              
+              {/* Shimmer effect */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                 initial={{ x: "-100%" }}
                 whileHover={{ x: "100%" }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.8 }}
               />
-              <span className="relative z-10 flex items-center space-x-2">
+              
+              <span className="relative z-10 flex items-center space-x-3">
                 <span>Join the Signal</span>
                 <motion.div
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
+                  className="text-xl"
                 >
                   →
                 </motion.div>
               </span>
             </motion.button>
-
-
           </motion.div>
         </motion.div>
       </motion.section>
