@@ -1140,74 +1140,132 @@ export default function Home() {
 
 
 
-      {/* Team Section */}
-      <section id="team" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      {/* Founders Section */}
+      <section id="founders" className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-              Meet the Team
+              Meet the Founders
             </h2>
-          </div>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Building the future of AI-driven venture capital at the intersection of machine learning, blockchain, and institutional finance.
+            </p>
+          </motion.div>
           
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
             {/* Kevin Farrelly */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
-              <h3 className="text-2xl font-bold text-black mb-4">Kevin Farrelly</h3>
-              <p className="text-black mb-4">
-                Kevin is a repeat founder and investor at the intersection of machine learning, venture, and crypto. 
-                He previously founded a machine learning credit fund acquired by Franklin Templeton in 2018, where 
-                he subsequently launched and led Blockchain Venture Funds I and II, delivering top-decile DPI returns.
-              </p>
-              <p className="text-black mb-4">
-                With over 15 years of hands-on experience scaling fintech and consumer companies—focusing on CAC 
-                optimization, margin expansion, and data science—Kevin specializes in early-stage investing, token 
-                economics, and ML infrastructure.
-              </p>
-              <p className="text-black text-sm mb-4">BSBA from the University of Richmond</p>
-              <div className="flex space-x-4 mt-4 relative z-10">
-                <button 
-                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors relative z-20"
-                  onClick={() => window.open('https://linkedin.com/in/pies', '_blank')}
-                >
-                  LinkedIn
-                </button>
-                <button 
-                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors relative z-20"
-                  onClick={() => window.open('https://twitter.com/KRFsocial', '_blank')}
-                >
-                  Twitter
-                </button>
+            <motion.div 
+              className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl border border-gray-100 hover:border-purple-200 transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -4 }}
+            >
+              <div className="flex flex-col items-center text-center">
+                {/* Circular Headshot */}
+                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <span className="text-4xl font-bold text-white">KF</span>
+                </div>
+                
+                {/* Name and Title */}
+                <h3 className="text-2xl font-bold text-black mb-2">Kevin Farrelly</h3>
+                <p className="text-purple-600 font-medium mb-4">Co-Founder & CEO</p>
+                
+                {/* Bio */}
+                <p className="text-gray-600 leading-relaxed mb-4">
+                  Repeat founder and investor at the intersection of machine learning, venture, and crypto. 
+                  Previously founded a machine learning credit fund acquired by Franklin Templeton in 2018.
+                </p>
+                
+                {/* Education */}
+                <p className="text-sm text-gray-500 mb-6">BSBA from the University of Richmond</p>
+                
+                {/* Social Icons */}
+                <div className="flex space-x-4">
+                  <motion.a 
+                    href="https://linkedin.com/in/pies"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 bg-gray-100 hover:bg-purple-100 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Linkedin className="w-5 h-5 text-gray-600 group-hover:text-purple-600 transition-colors" />
+                  </motion.a>
+                  <motion.a 
+                    href="https://twitter.com/KRFsocial"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 bg-gray-100 hover:bg-purple-100 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Twitter className="w-5 h-5 text-gray-600 group-hover:text-purple-600 transition-colors" />
+                  </motion.a>
+                </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Greg Scanlon */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
-              <h3 className="text-2xl font-bold text-black mb-4">Greg Scanlon</h3>
-              <p className="text-black mb-4">
-                Greg is a seasoned investor and technologist operating at the intersection of blockchain, data science, 
-                and institutional capital. He co-founded Franklin Templeton&apos;s Blockchain Venture Funds I and II, and 
-                brings over 15 years of experience in investing and risk management from leading firms such as Citadel 
-                and Orange Capital.
-              </p>
-              <p className="text-black mb-4">
-                Greg is also an active mentor and advisor across multiple top universities.
-              </p>
-              <p className="text-black text-sm mb-4">BSBA from the University of Richmond, MS in Data Science from NYU, CFA charterholder</p>
-              <div className="flex space-x-4 mt-4 relative z-10">
-                <button 
-                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors relative z-20"
-                  onClick={() => window.open('https://www.linkedin.com/in/scatman/', '_blank')}
-                >
-                  LinkedIn
-                </button>
-                <button 
-                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors relative z-20"
-                  onClick={() => window.open('https://twitter.com/ggscanlon', '_blank')}
-                >
-                  Twitter
-                </button>
+            <motion.div 
+              className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -4 }}
+            >
+              <div className="flex flex-col items-center text-center">
+                {/* Circular Headshot */}
+                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <span className="text-4xl font-bold text-white">GS</span>
+                </div>
+                
+                {/* Name and Title */}
+                <h3 className="text-2xl font-bold text-black mb-2">Greg Scanlon</h3>
+                <p className="text-blue-600 font-medium mb-4">Co-Founder & CTO</p>
+                
+                {/* Bio */}
+                <p className="text-gray-600 leading-relaxed mb-4">
+                  Seasoned investor and technologist operating at the intersection of blockchain, data science, 
+                  and institutional capital. Co-founded Franklin Templeton's Blockchain Venture Funds I and II.
+                </p>
+                
+                {/* Education */}
+                <p className="text-sm text-gray-500 mb-6">BSBA from University of Richmond, MS in Data Science from NYU, CFA charterholder</p>
+                
+                {/* Social Icons */}
+                <div className="flex space-x-4">
+                  <motion.a 
+                    href="https://www.linkedin.com/in/scatman/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 bg-gray-100 hover:bg-blue-100 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Linkedin className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors" />
+                  </motion.a>
+                  <motion.a 
+                    href="https://twitter.com/ggscanlon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 bg-gray-100 hover:bg-blue-100 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Twitter className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors" />
+                  </motion.a>
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
