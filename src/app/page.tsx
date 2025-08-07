@@ -927,18 +927,7 @@ export default function Home() {
                 </motion.div>
               </Link>
               
-              <motion.a 
-                href="#market-opportunities" 
-                className="text-black hover:text-gray-600 transition-colors relative group flex items-center space-x-1 font-semibold"
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="w-2 h-2 bg-black rounded-full animate-pulse"></div>
-                <span>Market Scanner</span>
-                <motion.div 
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300"
-                  whileHover={{ width: "100%" }}
-                />
-              </motion.a>
+
               
               <motion.button 
                 onClick={() => setIsContactModalOpen(true)}
@@ -990,14 +979,7 @@ export default function Home() {
                 
 
                 
-                <motion.a 
-                  href="#market-opportunities" 
-                  className="block px-3 py-2 text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center space-x-2 font-semibold"
-                  whileHover={{ x: 5 }}
-                >
-                  <div className="w-2 h-2 bg-black rounded-full animate-pulse"></div>
-                  <span>Market Scanner</span>
-                </motion.a>
+
                 
 
                 
@@ -1224,130 +1206,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Market Opportunity Scanner Section */}
-      <section id="market-opportunities" className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto">
-          <ScrollAnimation>
-            <h2 className="text-4xl md:text-5xl font-black text-black mb-6 text-center leading-tight tracking-tight">
-              Market Opportunity Scanner
-            </h2>
-          </ScrollAnimation>
-          <ScrollAnimation delay={0.2}>
-            <p className="text-xl text-black max-w-4xl mx-auto mb-4 text-center">
-              AI-powered detection of emerging trends, undervalued assets, market inefficiencies, and timing signals
-            </p>
-            <p className="text-sm text-black max-w-4xl mx-auto mb-12 text-center">
-              * Data shown is for illustration purposes only and does not represent actual investment opportunities or recommendations
-            </p>
-          </ScrollAnimation>
 
-          {/* Scanner Stats */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <ScrollAnimation delay={0.3}>
-              <motion.div 
-                className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm text-center"
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.div 
-                  className="text-3xl font-bold text-black mb-2"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                >
-                  {scannerStats.opportunitiesFound}
-                </motion.div>
-                <p className="text-black">Opportunities Found</p>
-              </motion.div>
-            </ScrollAnimation>
-
-
-
-            <ScrollAnimation delay={0.5}>
-              <motion.div 
-                className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm text-center"
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.div 
-                  className="text-3xl font-bold text-black mb-2"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 4, repeat: Infinity, delay: 2 }}
-                >
-                  {scannerStats.successRate}%
-                </motion.div>
-                <p className="text-black">Success Rate</p>
-              </motion.div>
-            </ScrollAnimation>
-
-            <ScrollAnimation delay={0.6}>
-              <motion.div 
-                className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm text-center"
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.div 
-                  className="text-3xl font-bold text-black mb-2"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 4, repeat: Infinity, delay: 3 }}
-                >
-                  {scannerStats.activeAlerts}
-                </motion.div>
-                <p className="text-black">Active Alerts</p>
-              </motion.div>
-            </ScrollAnimation>
-          </div>
-
-          {/* Live Opportunities Feed */}
-          <ScrollAnimation delay={0.7}>
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
-              <h3 className="text-2xl font-bold text-black mb-6">Live Opportunities Feed</h3>
-              <div className="space-y-4 max-h-96 overflow-y-auto">
-                {marketOpportunities.map((opportunity, index) => (
-                  <motion.div 
-                    key={opportunity.id}
-                    className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.02, backgroundColor: 'rgb(249, 250, 251)' }}
-                  >
-                    <div className="flex items-center space-x-4">
-                      <div className={`w-3 h-3 rounded-full ${
-                        opportunity.riskLevel === 'low' ? 'bg-black' : 
-                        opportunity.riskLevel === 'medium' ? 'bg-gray-600' : 'bg-red-500'
-                      }`} />
-                      <div>
-                        <div className="flex items-center space-x-2">
-                          <span className="text-black font-semibold">{opportunity.title}</span>
-                          <span className="text-xs text-black bg-gray-100 px-2 py-1 rounded">
-                            {opportunity.type.replace('_', ' ')}
-                          </span>
-                        </div>
-                        <p className="text-black text-sm">{opportunity.description}</p>
-                        <div className="flex items-center space-x-4 mt-1">
-                          <span className="text-black text-sm">{opportunity.category}</span>
-                          <span className="text-black text-sm">{opportunity.timeframe}</span>
-                          <span className="text-black font-semibold">{opportunity.potentialReturn}</span>
-                          <span className="text-black text-xs">{opportunity.timestamp}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-sm font-semibold text-black">{opportunity.confidence}%</div>
-                                                <div className="text-xs text-black">Confidence</div>
-                      <motion.div 
-                        className="w-2 h-2 bg-black rounded-full mt-2"
-                        animate={{ opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                      />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </ScrollAnimation>
-        </div>
-      </section>
 
       {/* Team Section */}
       <section id="team" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
