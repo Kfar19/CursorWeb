@@ -80,64 +80,7 @@ export default function Home() {
   });
   const [totalMentions, setTotalMentions] = useState(3385);
 
-  // Market opportunity scanner state
-  const [marketOpportunities, setMarketOpportunities] = useState([
-    {
-      id: 1,
-      type: 'emerging_trend',
-      category: 'AI Infrastructure',
-      title: 'AI Compute Demand Surge',
-      description: 'GPU shortages driving 40% price increases, creating arbitrage opportunities in cloud compute markets',
-      confidence: 92,
-      timeframe: '3-6 months',
-      potentialReturn: '+150-300%',
-      riskLevel: 'medium',
-      timestamp: '2 min ago'
-    },
-    {
-      id: 2,
-      type: 'undervalued_asset',
-      category: 'DeFi Protocol',
-      title: 'Uniswap V4 Launch',
-      description: 'New concentrated liquidity features undervalued by market, significant TVL migration expected',
-      confidence: 87,
-      timeframe: '1-2 months',
-      potentialReturn: '+80-120%',
-      riskLevel: 'low',
-      timestamp: '5 min ago'
-    },
-    {
-      id: 3,
-      type: 'market_inefficiency',
-      category: 'Cross-Chain',
-      title: 'Bridge Liquidity Gap',
-      description: 'Ethereum-Polygon bridge showing 15% price differential, arbitrage opportunity with low risk',
-      confidence: 94,
-      timeframe: '1-2 weeks',
-      potentialReturn: '+12-18%',
-      riskLevel: 'low',
-      timestamp: '8 min ago'
-    },
-    {
-      id: 4,
-      type: 'timing_signal',
-      category: 'Macro',
-      title: 'Fed Policy Shift',
-      description: 'Rate cut signals creating favorable conditions for growth assets, rotation opportunity emerging',
-      confidence: 78,
-      timeframe: '2-4 weeks',
-      potentialReturn: '+25-40%',
-      riskLevel: 'medium',
-      timestamp: '12 min ago'
-    },
 
-  ]);
-
-  const [scannerStats, setScannerStats] = useState({
-    opportunitiesFound: 47,
-    successRate: 78,
-    activeAlerts: 12
-  });
 
   // Fetch live crypto market cap
   const fetchMarketCap = useCallback(async () => {
@@ -233,77 +176,7 @@ export default function Home() {
     });
   }, [trendingTopics]);
 
-  // Simulate market opportunity scanner updates
-  const updateMarketOpportunities = useCallback(() => {
-    const categories = ['AI Infrastructure', 'DeFi Protocol', 'Cross-Chain', 'Macro', 'Layer 2', 'Gaming', 'Social Finance'];
-    const types = ['emerging_trend', 'undervalued_asset', 'market_inefficiency', 'timing_signal'];
-    const riskLevels = ['low', 'medium', 'high'];
-    
-    const newOpportunity = {
-      id: Date.now(),
-      type: types[Math.floor(Math.random() * types.length)],
-      category: categories[Math.floor(Math.random() * categories.length)],
-      title: generateOpportunityTitle(),
-      description: generateOpportunityDescription(),
-      confidence: Math.floor(Math.random() * 20) + 75, // 75-95%
-      timeframe: generateTimeframe(),
-      potentialReturn: generatePotentialReturn(),
-      riskLevel: riskLevels[Math.floor(Math.random() * riskLevels.length)],
-      timestamp: 'Just now'
-    };
 
-    setMarketOpportunities(prev => [newOpportunity, ...prev.slice(0, 4)]); // Keep only 5 items
-    
-    // Update scanner stats
-    setScannerStats(prev => ({
-      opportunitiesFound: prev.opportunitiesFound + Math.floor(Math.random() * 3) + 1,
-      successRate: Math.max(70, Math.min(85, prev.successRate + (Math.random() > 0.5 ? 1 : -1))),
-      activeAlerts: Math.max(8, Math.min(20, prev.activeAlerts + (Math.random() > 0.5 ? 1 : -1)))
-    }));
-  }, []);
-
-  // Helper functions for market opportunity scanner
-  const generateOpportunityTitle = () => {
-    const titles = [
-      'AI Compute Demand Surge',
-      'Layer 2 Adoption Acceleration',
-      'Cross-Chain Bridge Opportunity',
-      'DeFi Protocol Innovation',
-
-      'Gaming Token Breakout',
-      'Social Finance Revolution',
-      'Macro Policy Shift',
-      'Institutional Adoption Wave',
-      'Regulatory Clarity Impact'
-    ];
-    return titles[Math.floor(Math.random() * titles.length)];
-  };
-
-  const generateOpportunityDescription = () => {
-    const descriptions = [
-      'Market inefficiency creating arbitrage opportunities with low risk',
-      'Emerging trend driving significant capital flows and adoption',
-      'Undervalued asset showing strong fundamentals and growth potential',
-      'Timing signal indicating favorable entry point for strategic positioning',
-      'Regulatory clarity opening new investment frontiers',
-      'Technology breakthrough enabling novel financial products',
-      'Institutional adoption creating liquidity and stability',
-      'Cross-chain interoperability unlocking new use cases',
-      'Tokenomics innovation driving sustainable value creation',
-      'Market rotation creating sector-specific opportunities'
-    ];
-    return descriptions[Math.floor(Math.random() * descriptions.length)];
-  };
-
-  const generateTimeframe = () => {
-    const timeframes = ['1-2 weeks', '2-4 weeks', '1-2 months', '3-6 months', '6-12 months'];
-    return timeframes[Math.floor(Math.random() * timeframes.length)];
-  };
-
-  const generatePotentialReturn = () => {
-    const returns = ['+15-25%', '+25-40%', '+40-60%', '+60-100%', '+100-200%', '+200-400%'];
-    return returns[Math.floor(Math.random() * returns.length)];
-  };
 
 
 
@@ -571,11 +444,7 @@ export default function Home() {
     return () => clearInterval(socialInterval);
   }, [updateSocialBuzz]);
 
-  // Update market opportunities every 30 seconds
-  useEffect(() => {
-    const opportunityInterval = setInterval(updateMarketOpportunities, 30000); // Update every 30 seconds
-    return () => clearInterval(opportunityInterval);
-  }, [updateMarketOpportunities]);
+
 
 
 
