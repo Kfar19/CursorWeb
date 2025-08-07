@@ -934,10 +934,10 @@ export default function Home() {
 
           {/* Subheadline */}
           <motion.p 
-            className="text-lg sm:text-xl md:text-2xl text-black mb-12 max-w-4xl mx-auto text-center font-medium leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto text-center font-medium leading-relaxed"
             variants={fadeInUp}
           >
-            We deploy AI-driven capital and infrastructure to discover high-conviction startups before anyone else.
+            Backed by code. Tuned for signal.
           </motion.p>
 
           {/* Enhanced CTA Button */}
